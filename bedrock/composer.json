@@ -61,7 +61,15 @@
         "roots/wordpress": "5.2.1",
         "roots/wp-config": "1.0.0",
         "roots/wp-password-bcrypt": "1.0.0",
-        "advanced-custom-fields/advanced-custom-fields-pro": "^5.8.0"
+        "advanced-custom-fields/advanced-custom-fields-pro": "^5.8.0",
+        "wpackagist-plugin/svg-support":"2.3.15",
+        "wpackagist-plugin/user-switching":"1.5.0",
+        "wpackagist-plugin/tinymce-advanced":"5.2.1",
+        "wpackagist-plugin/metronet-profile-picture":"2.2.5",
+        "wpackagist-plugin/dashboard-server-specs":"1.0",
+        "wpackagist-plugin/simple-history":"2.31.1",
+        "wpackagist-plugin/imsanity":"2.4.2"
+
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0.2",
@@ -70,7 +78,14 @@
     "extra": {
         "installer-paths": {
             "web/app/mu-plugins/{$name}/": [
-                "type:wordpress-muplugin"
+                "type:wordpress-muplugin",
+                "wpackagist-plugin/svg-support",
+                "wpackagist-plugin/user-switching",
+                "wpackagist-plugin/tinymce-advanced",
+                "wpackagist-plugin/metronet-profile-picture",
+                "wpackagist-plugin/dashboard-server-specs",
+                "wpackagist-plugin/simple-history",
+                "wpackagist-plugin/imsanity"
             ],
             "web/app/plugins/{$name}/": [
                 "type:wordpress-plugin"
