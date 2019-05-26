@@ -90,3 +90,14 @@ Container::getInstance()
             'view' => require dirname(__DIR__).'/config/view.php',
         ]);
     }, true);
+
+// ------------------------------------------->
+// User Function / Includes
+// ------------------------------------------->
+// Loop through includes/
+$dir = new DirectoryIterator(locate_template("includes/"));
+foreach ($dir as $file_info) {
+    if (!$file_info->isDot()) {
+        include $file_info->getPathname();
+    }
+}
