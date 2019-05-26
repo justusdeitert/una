@@ -19,9 +19,6 @@ web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
 
-# Keep Plugins
-!web/app/mu-plugins/advanced-custom-fields-pro
-
 # WordPress
 web/wp
 web/.htaccess
