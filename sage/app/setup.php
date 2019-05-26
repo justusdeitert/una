@@ -14,10 +14,18 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('sage/main.css', asset_path('styles/main.css'), false, null);
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
 
-    if (is_single() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
-    }
+    // if (is_single() && comments_open() && get_option('thread_comments')) {
+    //     wp_enqueue_script('comment-reply');
+    // }
 }, 100);
+
+// Admin assets
+// ------------------------>
+add_action('admin_enqueue_scripts', function() {
+    wp_enqueue_style('sage/admin.css', asset_path('styles/admin.css'), false, null);
+    wp_enqueue_script('sage/admin.js', asset_path('scripts/admin.js'), ['jquery'], null, true);
+});
+
 
 /**
  * Theme setup
@@ -64,6 +72,12 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
      */
     add_theme_support('customize-selective-refresh-widgets');
+
+    // https://wordpress.org/gutenberg/handbook/designers-developers/developers/themes/theme-support/
+    // The block editor supports the theme’s editor styles,
+    // however it works a little differently than in the classic editor.
+    // TODO: Adding Editor Styles to Gutenberg Editor is not Working on npm start AND build.production!!
+    add_theme_support('editor-styles');
 
     /**
      * Use main stylesheet for visual editor
