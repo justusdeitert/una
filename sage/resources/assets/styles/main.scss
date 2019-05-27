@@ -15,3 +15,11 @@
 // Layouts
 // -------------------->
 @import "layouts/**/*";
+
+
+.xdebug-var-dump {
+    position: absolute;
+    z-index: 100000;
+    width: 100%;
+    background-color: #FFF;
+}

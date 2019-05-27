@@ -1,6 +1,74 @@
 // Smart Photo Styles
 @import '~smartphoto/scss/smartphoto.scss';
 
+.smartphoto {
+    background-color: #FFF;
+    z-index: 300;
+
+    .smartphoto-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        background-color: transparent;
+        cursor: initial;
+
+        .admin-bar & {
+            top: 32px;
+
+            @media screen and (max-width: 782px) {
+                top: 46px;
+            }
+        }
+    }
+
+    .smartphoto-count {
+        display: none;
+    }
+
+    .smartphoto-caption {
+        //display: none;
+        color: #000;
+        top: initial;
+        bottom: 0;
+        left: initial;
+        position: fixed;
+    }
+
+    .smartphoto-dismiss {
+        @extend .material-icons;
+        background-image: none;
+        top: initial;
+        outline: none;
+        width: 30px;
+        height: 30px;
+
+        &:after {
+            content: 'close';
+            font-size: 30px;
+            display: inline-block;
+            float: left;
+            color: #000;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        background-color: rgba(0, 0, 0, 0.8);
+
+        .smartphoto-caption {
+            color: #FFF;
+        }
+
+        .smartphoto-dismiss {
+
+
+            &:after {
+                color: #FFF;
+            }
+        }
+    }
+}
+
 //.smartphoto-arrow-left {
 //    left: 50px;
 //    background-color: transparent;
