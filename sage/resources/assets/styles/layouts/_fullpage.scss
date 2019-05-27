@@ -3,8 +3,66 @@
 //    position: absolute;
 //}
 
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 #fp-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    top: 0;
+    margin-top: 0 !important;
+    opacity: 0;
+    visibility: hidden;
+    //transition: opacity 1s ease-in, visibility 1s ease-in;
+
+    &.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
     ul {
+
+        li {
+            //display: none;
+            visibility: hidden;
+            opacity: 0;
+            height: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            transition: visibility 0.2s linear, height 0.2s linear , opacity 0.2s linear , margin-top 0.2s linear, margin-bottom 0.2s linear;
+
+            &.visible, &.next, &.prev {
+
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                height: 15px;
+                margin-top: 7px;
+                margin-bottom: 7px;
+
+
+            }
+
+            //a {
+            //    display: none;
+            //}
+            //
+            //a.active {
+            //    display: block;
+            //}
+            //
+            //a.next {
+            //    display: block;
+            //}
+            //
+            //a.prev {
+            //    display: block;
+            //}
+        }
+
         li:only-child {
             display: none;
         }
@@ -94,14 +152,14 @@
             justify-content: center;
             color: #000;
             font-size: 16px;
-            opacity: 0;
+            opacity: 0.7;
             visibility: hidden;
             transition: opacity 0.2s linear, visibility 0.2s linear;
         }
 
         &:hover {
             .hover-overlay {
-                opacity: 0.8;
+                opacity: 0.7;
                 visibility: visible;
             }
         }
@@ -153,14 +211,14 @@
                 justify-content: center;
                 color: #000;
                 font-size: 16px;
-                opacity: 0;
+                opacity: 0.7;
                 visibility: hidden;
                 transition: opacity 0.2s linear, visibility 0.2s linear;
             }
 
             &:hover {
                 .hover-overlay {
-                    opacity: 1;
+                    opacity: 0.7;
                     visibility: visible;
                 }
             }
