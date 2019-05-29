@@ -62,6 +62,16 @@
         border-right: 30px solid #000;
         //border-right-style: dashed;
     }
+
+    @include media-breakpoint-down(xs) {
+        border-right: 10px solid #000;
+
+        &:hover {
+            border-right: 20px solid #000;
+            //border-right-style: dashed;
+        }
+
+    }
 }
 
 .mobile-nav-burger {
