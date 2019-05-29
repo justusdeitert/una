@@ -145,12 +145,12 @@
 
     @include media-breakpoint-down(sm) {
         display: table !important;
-        padding: 0 50px;
+        //padding: 0 50px;
     }
 
-    @include media-breakpoint-down(xs) {
-        padding: 0 15px;
-    }
+    //@include media-breakpoint-down(xs) {
+    //    //padding: 0 15px;
+    //}
 
     .section-mobile-inner {
         position: relative;
@@ -265,11 +265,43 @@
     }
 }
 
-.text-container {
-    //padding-top: 100px;
-    padding: 100px 50px 50px 50px;
+.section-mobile {
+    .content-container {
+        &:first-child {
+            padding-top: 50px;
+        }
+    }
+}
+
+.content-container {
+    padding: 0 50px 50px;
+    max-width: 1200px;
 
     @include media-breakpoint-down(sm) {
-        padding: 50px 0;
+        padding: 0 25px 25px;
     }
+
+    &:first-child {
+        padding-top: 100px;
+    }
+
+    .image-container {
+        margin-bottom: 20px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .column-container {
+        //max-width: 920px;
+
+        .column-text-container {
+            margin-bottom: 50px;
+        }
+    }
+}
+
+.iScrollVerticalScrollbar {
+    display: none;
 }

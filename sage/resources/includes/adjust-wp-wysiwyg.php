@@ -29,6 +29,6 @@ add_filter('tiny_mce_before_init', function($in) {
 add_filter('tiny_mce_before_init', function($init) {
     // Add block format elements you want to show in dropdown
     // $init['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;';
-    $init['block_formats'] = 'Paragraph=p;Heading 2=h2;';
+    $init['block_formats'] = 'Paragraph=p;Heading 3=h3;';
     return $init;
 });
