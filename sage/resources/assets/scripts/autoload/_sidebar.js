@@ -45,20 +45,29 @@ if ($('[sidebarjs]').length > 0) {
 
             $('[sidebarjs-backdrop]').before('<div class="sidebar-backdrop"></div>');
 
-            // $('.sidebar-backdrop').fadeIn('slow', function() { });
+            let sidebarBackdrop = $('.sidebar-backdrop');
 
-            // $('<div class="sidebar-backdrop"></div>').hide().appendTo("[sidebarjs-backdrop]").fadeIn(1000);
-
-            $('.sidebar-backdrop').click(function() {
+            $(sidebarBackdrop).click(function() {
                 closeSidebar();
+            });
+
+            $(sidebarBackdrop).swipe({
+                //Generic swipe handler for all directions
+                swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                    // console.log("You swiped " + direction );
+
+                    if(direction === 'right') {
+                        closeSidebar();
+                    }
+                }
             });
         }
     };
 
-    $('.wrap, .mobile-nav-clicker, .sidebar-backdrop').swipe({
+    $('.wrap, .mobile-nav-clicker').swipe({
         //Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-            console.log("You swiped " + direction );
+            // console.log("You swiped " + direction );
 
             if(direction === 'left') {
                 openSidebar();
@@ -78,9 +87,9 @@ if ($('[sidebarjs]').length > 0) {
         }
     });
 
-    $('.sidenav-close-icon, .sidebar-backdrop').click(function() {
-        closeSidebar();
-    });
+    // $('.sidenav-close-icon').click(function() {
+    //     closeSidebar();
+    // });
 
     // Close on Resize
     $( window ).resize(function() {
