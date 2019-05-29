@@ -226,7 +226,7 @@
         }
     }
 
-    &.image-section {
+    .image-section {
 
         a {
             z-index: 100;
@@ -262,5 +262,14 @@
                 }
             }
         }
+    }
+}
+
+.text-container {
+    //padding-top: 100px;
+    padding: 100px 50px 50px 50px;
+
+    @include media-breakpoint-down(sm) {
+        padding: 50px 0;
     }
 }
