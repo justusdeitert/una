@@ -1,5 +1,5 @@
 {{--
-  Title: Image Section
+  Title: Content Section
   Description: Dies ist der Image Section Block
   Category: common
   Icon: format-gallery
@@ -22,7 +22,7 @@
                         <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="desktop-group-{!! get_sub_field('image')['ID'] !!}">
                             <div class="image-container">
                                 <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
-                                <div class="caption"><span>{!! get_sub_field('image')['caption'] !!}</span></div>
+                                <div class="caption"><div class="span">{!! get_sub_field('image')['caption'] !!}</div></div>
                             </div>
                         </a>
                     @endif
@@ -63,7 +63,7 @@
                         <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="mobile-group-{!! get_sub_field('image')['ID'] !!}">
                             <div class="image-container">
                                 <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
-                                <div class="caption"><span>{!! get_sub_field('image')['caption'] !!}</span></div>
+                                <div class="caption"><div class="span">{!! get_sub_field('image')['caption'] !!}</div></div>
                             </div>
                         </a>
                     </div>

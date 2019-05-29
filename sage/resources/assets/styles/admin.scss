@@ -107,9 +107,18 @@ body:not(.role-administrator) {
     }
 }
 
+.components-notice-list {
+    z-index: 1000;
+}
+
+.components-notice.is-warning {
+    border-left-color: #efa617;
+    background-color: #ffdfaa;
+}
+
 .section-mobile, .section-desktop {
     height: auto;
-    padding: 30px 0 !important;
+    padding: 50px 0 !important;
 }
 
 .section-desktop {
