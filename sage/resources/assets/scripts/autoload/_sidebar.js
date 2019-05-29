@@ -41,32 +41,18 @@ if ($('[sidebarjs]').length > 0) {
         $('.sidebar-backdrop').click(function() {
             closeSidebar();
         });
-
-        // $('.sidebar-backdrop').swipe({
-        //     //Generic swipe handler for all directions
-        //     swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-        //         // console.log("You swiped " + direction );
-        //
-        //         if(direction === 'right') {
-        //             closeSidebar();
-        //         }
-        //     }
-        // });
     };
 
-    // $('.mobile-nav-clicker, .main-navigation').mouseover(function() {
-    //     if (!sidebarjs.isVisible()) {
-    //         openSidebar();
-    //         console.log('mouseover')
-    //     }
-    // });
-    //
-    // $('.mobile-nav-clicker, .main-navigation').mouseout(function() {
-    //     if (sidebarjs.isVisible()) {
-    //         closeSidebar();
-    //         console.log('mouseout')
-    //     }
-    // });
+    $('.wrap, .mobile-nav-clicker').swipe({
+        //Generic swipe handler for all directions
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+            console.log("You swiped " + direction );
+
+            if(direction === 'left') {
+                openSidebar();
+            }
+        }
+    });
 
     $('.mobile-nav-clicker, .mobile-nav-burger').click(function() {
         if (sidebarjs.isVisible()) {
@@ -95,10 +81,10 @@ if ($('[sidebarjs]').length > 0) {
 
 $(window).load(() => {
     // console.log($('.sidebar-wrapper .main-navigation').height());
-    $('.mobile-nav-clicker').height($('.sidebar-wrapper .main-navigation').height())
+    $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height())
 });
 
 $(window).resize(() => {
     // console.log($('.sidebar-wrapper .main-navigation').height());
-    $('.mobile-nav-clicker').height($('.sidebar-wrapper .main-navigation').height())
+    $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height())
 });
