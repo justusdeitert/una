@@ -22,6 +22,7 @@ if ($('[sidebarjs]').length > 0) {
         onChangeVisibility: function (changes) {
             // console.log('sidebarjs is visible?', changes.isVisible);
         },
+        backdropOpacity: 0.5,
         nativeSwipe: false,
         position: 'right',
     });
