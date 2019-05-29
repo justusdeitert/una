@@ -20,7 +20,10 @@
                     @else
                         {{--@php var_dump(get_sub_field('image')['caption']); @endphp--}}
                         <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="desktop-group-{!! get_sub_field('image')['ID'] !!}">
-                            <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                            <div class="image-container">
+                                <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                                <div class="caption"><span>{!! get_sub_field('image')['caption'] !!}</span></div>
+                            </div>
                         </a>
                     @endif
 
@@ -58,7 +61,10 @@
                 <div class="section-mobile {{--fp-auto-height--}}">
                     <div class="section-mobile-inner">
                         <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="mobile-group-{!! get_sub_field('image')['ID'] !!}">
-                            <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                            <div class="image-container">
+                                <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                                <div class="caption"><span>{!! get_sub_field('image')['caption'] !!}</span></div>
+                            </div>
                         </a>
                     </div>
                 </div>
