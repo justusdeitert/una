@@ -7,7 +7,7 @@
 --}}
 
 @if(get_field('image_section'))
-    <div class="section-desktop image-section fp-auto-height">
+    <div class="section-desktop image-section">
         <div class="slide-content">
             @while(has_sub_field('image_section'))
                 @if(get_row_layout() == 'image')

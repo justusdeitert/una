@@ -79,22 +79,25 @@
 
 #fullpage {
     position: relative;
+    top: 0;
 
-    .admin-bar & {
-        top: -32px;
-
-        @media screen and (max-width: 782px) {
-            top: -46px;
-        }
-    }
+    //.admin-bar & {
+    //    top: -32px;
+    //
+    //    @media screen and (max-width: 782px) {
+    //        top: -46px;
+    //    }
+    //}
 
     .image-wrapper {
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-        transition: all 0.2s linear;
+        img {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s linear;
 
-        &:hover {
-            box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-            transform: scale(1.03);
+            &:hover {
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+                transform: scale(1.03);
+            }
         }
     }
 }
@@ -106,7 +109,7 @@
     //margin-top: -30px;
 
     @include media-breakpoint-down(sm) {
-        display: block !important;
+        display: table !important;
         padding: 0 50px;
     }
 
@@ -122,15 +125,15 @@
         align-items: center;
         justify-content: center;
 
-        .admin-bar & {
-            height: calc(100vh - 70px - 32px);
-            margin-top: calc(70px + 32px);
-
-            @media screen and (max-width: 782px) {
-                height: calc(100vh - 70px - 46px);
-                margin-top: calc(70px + 46px);
-            }
-        }
+        //.admin-bar & {
+        //    height: calc(100vh - 70px - 32px);
+        //    margin-top: calc(70px + 32px);
+        //
+        //    @media screen and (max-width: 782px) {
+        //        height: calc(100vh - 70px - 46px);
+        //        margin-top: calc(70px + 46px);
+        //    }
+        //}
     }
 
     a {
@@ -176,21 +179,20 @@
 
     .slide-content {
         position: relative;
-        height: calc(100vh - 70px);
-        margin-top: 70px;
-    }
+        //height: 100%;
 
-    .admin-bar & {
 
-        .slide-content {
-            height: calc(100vh - 70px - 32px);
-            margin-top: calc(70px + 32px);
-        }
+        height: 100%;
+        margin-bottom: 0;
+        //margin-top: 70px;
 
-        @media screen and (max-width: 782px) {
-            .slide-content {
-                height: calc(100vh - 70px - 46px);
-                margin-top: calc(70px + 46px);
+        .admin-bar & {
+            height: calc(100% - 32px);
+            margin-bottom: 32px;
+
+            @media screen and (max-width: 782px) {
+                height: calc(100% - 46px);
+                margin-bottom: 46px;
             }
         }
     }
@@ -200,7 +202,10 @@
         a {
 
             img {
-                width: 100%;
+                //width: 100%;
+                max-height: 80vh;
+                max-width: 100%;
+                width: auto;
             }
 
             .hover-overlay {

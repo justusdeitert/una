@@ -1,7 +1,8 @@
 .main-navigation {
     position: fixed;
-    bottom: 10%;
+    bottom: 8%;
     right: 0;
+    padding-bottom: 20px;
 
     ul {
         list-style: none;
@@ -26,12 +27,14 @@
 }
 
 .sidebar-wrapper-mobile {
-    ul {
-        li {
-            a {
-                font-size: 18px;
-                padding: 0 20px;
-                height: 28px;
+    .main-navigation {
+        ul {
+            li {
+                a {
+                    font-size: 18px;
+                    padding: 0 20px;
+                    height: 28px;
+                }
             }
         }
     }
@@ -39,10 +42,11 @@
 
 .mobile-nav-clicker {
     position: fixed;
-    bottom: 10%;
+    bottom: 8%;
     right: 0;
     width: 50px;
     height: 300px;
+    margin-bottom: 20px;
     /* background-color: #000; */
     cursor: pointer;
     border-right: 20px solid #000;
