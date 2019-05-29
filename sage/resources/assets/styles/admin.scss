@@ -5,6 +5,11 @@
     }
 }
 
+.admin-prevent-click {
+    cursor: initial;
+    pointer-events: none;
+}
+
 .editor-writing-flow {
     width: 100%;
 }
@@ -99,6 +104,19 @@ body:not(.role-administrator) {
 
     .acf-field-gallery {
         display: none;
+    }
+}
+
+.section-mobile, .section-desktop {
+    height: auto;
+    padding: 30px 0 !important;
+}
+
+.section-desktop {
+    height: 90vh;
+
+    @media screen and (max-width: 1400px) {
+        height: 60vh;
     }
 }
 
