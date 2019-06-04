@@ -2,74 +2,97 @@
 // Bedrock Sage makes trouble with buble converting to es2015
 import {SidebarElement} from 'sidebarjs/lib/umd/sidebarjs';
 
-// if ($('[sidebarjs]').length > 0) {
-//     // Init SidebarJS
-//
-//     const sidebarjs = new SidebarElement({
-//         onOpen: function () {
-//             // console.log('sidebarjs is open');
-//             // $('html').addClass('sidenav-active');
-//             // $('.burger-menu-icon').addClass('icon-close');
-//         },
-//         onClose: function () {
-//             // console.log('sidebarjs is close');
-//             // $('html').removeClass('sidenav-active');
-//             // $('.burger-menu-icon').removeClass('icon-close');
-//             // $('[sidebarjs-backdrop]').prepend( "<p>Test</p>" )
-//         },
-//         onChangeVisibility: function (changes) {
-//             // console.log('sidebarjs is visible?', changes.isVisible);
-//         },
-//         nativeSwipe: false,
-//         position: 'right',
-//     });
-//
-//     const closeSidebar = function() {
-//         sidebarjs.close();
-//         $('body').removeClass('sidenav-active');
-//         $('.sidebar-backdrop').remove();
-//     };
-//
-//     const openSidebar = function() {
-//         sidebarjs.open();
-//         $('body').addClass('sidenav-active');
-//         $('[sidebarjs-backdrop]').before('<div class="sidebar-backdrop"></div>');
-//
-//         $('.sidebar-backdrop').click(function() {
-//             closeSidebar();
-//         });
-//
-//         $('.sidebar-backdrop').swipe({
-//             //Generic swipe handler for all directions
-//             swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-//                 // console.log("You swiped " + direction );
-//
-//                 if(direction === 'right') {
-//                     closeSidebar();
-//                 }
-//             }
-//         });
-//     };
-//
-//     $('.burger-menu-button').click(function() {
-//         if (sidebarjs.isVisible()) {
-//             closeSidebar();
-//         } else {
-//             openSidebar();
-//         }
-//     });
-//
-//     $('.sidenav-close-icon').click(function() {
-//         closeSidebar();
-//     });
-//
-//     // Close on Resize
-//     $( window ).resize(function() {
-//         closeSidebar();
-//     });
-//
-//     // Close on Resize
-//     $( window ).scroll(function() {
-//         closeSidebar();
-//     });
-// }
+
+
+if ($('[sidebarjs]').length > 0) {
+    // Init SidebarJS
+
+    const sidebarjs = new SidebarElement({
+        onOpen: function () {
+            // console.log('sidebarjs is open');
+            // $('html').addClass('sidenav-active');
+            // $('.burger-menu-icon').addClass('icon-close');
+        },
+        onClose: function () {
+            // console.log('sidebarjs is close');
+            // $('html').removeClass('sidenav-active');
+            // $('.burger-menu-icon').removeClass('icon-close');
+            // $('[sidebarjs-backdrop]').prepend( "<p>Test</p>" )
+        },
+        onChangeVisibility: function (changes) {
+            // console.log('sidebarjs is visible?', changes.isVisible);
+        },
+        nativeSwipe: false,
+        position: 'right',
+    });
+
+    const closeSidebar = function() {
+        sidebarjs.close();
+        $('body').removeClass('sidenav-active');
+        $('.sidebar-backdrop').remove();
+    };
+
+    const openSidebar = function() {
+        sidebarjs.open();
+        $('body').addClass('sidenav-active');
+
+        $('[sidebarjs-backdrop]').before('<div class="sidebar-backdrop"></div>');
+
+        $('.sidebar-backdrop').click(function() {
+            closeSidebar();
+        });
+
+        // $('.sidebar-backdrop').swipe({
+        //     //Generic swipe handler for all directions
+        //     swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+        //         // console.log("You swiped " + direction );
+        //
+        //         if(direction === 'right') {
+        //             closeSidebar();
+        //         }
+        //     }
+        // });
+    };
+
+    // $('.mobile-nav-clicker, .main-navigation').mouseover(function() {
+    //     if (!sidebarjs.isVisible()) {
+    //         openSidebar();
+    //         console.log('mouseover')
+    //     }
+    // });
+    //
+    // $('.mobile-nav-clicker, .main-navigation').mouseout(function() {
+    //     if (sidebarjs.isVisible()) {
+    //         closeSidebar();
+    //         console.log('mouseout')
+    //     }
+    // });
+
+    $('.mobile-nav-clicker, .mobile-nav-burger').click(function() {
+        if (sidebarjs.isVisible()) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    });
+
+    $('.sidenav-close-icon').click(function() {
+        closeSidebar();
+    });
+
+    // Close on Resize
+    $( window ).resize(function() {
+        closeSidebar();
+    });
+
+    // Close on Resize
+    $( window ).scroll(function() {
+        closeSidebar();
+    });
+}
+
+console.log($('.sidebar-wrapper .main-navigation').outerHeight());
+
+$(window).load(() => {
+    $('.mobile-nav-clicker').outerHeight($('.sidebar-wrapper .main-navigation').outerHeight())
+});
