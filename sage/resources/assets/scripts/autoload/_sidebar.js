@@ -91,8 +91,14 @@ if ($('[sidebarjs]').length > 0) {
     });
 }
 
-console.log($('.sidebar-wrapper .main-navigation').outerHeight());
+// console.log($('.sidebar-wrapper .main-navigation').outerHeight());
 
 $(window).load(() => {
-    $('.mobile-nav-clicker').outerHeight($('.sidebar-wrapper .main-navigation').outerHeight())
+    // console.log($('.sidebar-wrapper .main-navigation').height());
+    $('.mobile-nav-clicker').height($('.sidebar-wrapper .main-navigation').height())
+});
+
+$(window).resize(() => {
+    // console.log($('.sidebar-wrapper .main-navigation').height());
+    $('.mobile-nav-clicker').height($('.sidebar-wrapper .main-navigation').height())
 });
