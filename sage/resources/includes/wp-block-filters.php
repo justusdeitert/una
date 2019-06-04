@@ -7,22 +7,18 @@
 // https://wordpress.org/gutenberg/handbook/designers-developers/developers/filters/block-filters/#hiding-blocks-from-the-inserter
 add_filter( 'allowed_block_types', function($allowed_blocks) {
     return array(
-        'core/image',
-        'core/paragraph',
-        'core/heading',
-        'core/separator',
-        'core/list',
-        'core/file',
+        // 'core/image',
+        // 'core/paragraph',
+        // 'core/heading',
+        // 'core/separator',
+        // 'core/list',
+        // 'core/file',
         // 'core/button',
         // 'core/quote',
-        'core/columns',
+        // 'core/columns',
         // 'core/spacer',
         // 'core/html',
-        'acf/slider',
-        'acf/fittings',
-        'acf/categories',
-        'acf/content-elements',
-        'acf/formular'
+        'acf/image-section',
     );
 });
 

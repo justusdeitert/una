@@ -1,9 +1,9 @@
 {{--
-  Title: Slider
-  Description: Dies ist der Slider Block
+  Title: Image Section
+  Description: Dies ist der Image Section Block
   Category: common
   Icon: format-gallery
-  Keywords: text block
+  Keywords: images section block
 --}}
 
 @if(get_field('slider_gallery'))
