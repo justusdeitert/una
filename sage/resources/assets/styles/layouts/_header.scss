@@ -5,3 +5,18 @@
 .banner .nav a {
   @extend .nav-link;
 }
+
+.header-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+
+    .brand {
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        border-bottom: 2px solid rgb(0, 0, 0);
+    }
+}
+
