@@ -102,9 +102,9 @@ body:not(.role-administrator) {
     width: 100%;
 }
 
-//.wp-block {
-//    max-width: 1280px;
-//}
+.wp-block {
+    max-width: 100%;
+}
 
 @media (min-width: 600px) {
     .block-editor-block-list__block::before {
