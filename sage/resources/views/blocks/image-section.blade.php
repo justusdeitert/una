@@ -6,14 +6,17 @@
   Keywords: images section block
 --}}
 
-@if(get_field('slider_gallery'))
-    <section class="slider-block {!! $block['id'] !!}">
-        <div class="slider-inner">
-            @foreach(get_field('slider_gallery') as $slide)
-                <div data-type="parallax" data-speed="-2" class="slider-item {{--@if($i === 1){!! 'active' !!}@endif--}}" style="background-image:url({!! $slide['url'] !!})"></div>
-            @endforeach
-        </div>
-    </section>
+@if(get_field('image_section'))
+    <div class="section">
+        @while(has_sub_field('image_section'))
+            @if(get_row_layout() == 'image')
+                {{--@php--}}
+                    {{--var_dump(get_sub_field('image'));--}}
+                {{--@endphp--}}
+                <h1>lol</h1>
+            @endif
+        @endwhile
+    </div>
 @else
     <section class="empty-block">
         <p>{!! $block['title'] !!}</p>

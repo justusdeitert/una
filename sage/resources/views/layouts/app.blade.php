@@ -9,7 +9,9 @@
     <div class="wrap container" role="document">
         <div class="content">
             <main class="main">
-                @yield('content')
+                <div class="fullpage">
+                    @yield('content')
+                </div>
             </main>
             {{--@if (App\display_sidebar())--}}
                 {{--<aside class="sidebar">--}}
