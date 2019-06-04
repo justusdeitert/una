@@ -74,8 +74,6 @@ task('deploy', [
     'deploy:lock',
     'deploy:release',
     'deploy:update_code',
-    'npm:install',
-    'composer:install',
     'deploy:shared',
     'deploy:writable',
     'deploy:symlink',
@@ -83,6 +81,9 @@ task('deploy', [
     'cleanup',
     'success'
 ]);
+
+after('deploy:update_code', 'npm:install');
+after('deploy:update_code', 'composer:install');
 
 desc('Push Project DB & Uploads Folder');
 task('push', [
