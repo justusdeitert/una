@@ -3,48 +3,50 @@
     @include('partials.head')
     <body @php body_class() @endphp>
 
-    @php do_action('get_header') @endphp
-    @include('partials.header')
+    <div class="page-wrapper">
+        @php do_action('get_header') @endphp
+        @include('partials.header')
 
-    <div class="wrap container" role="document">
-        <div class="content">
-            <main class="main">
-                <div id="fullpage">
-                    @yield('content')
-                </div>
-            </main>
-            {{--@if (App\display_sidebar())--}}
+        <div class="wrap container" role="document">
+            <div class="content">
+                <main class="main">
+                    <div id="fullpage">
+                        @yield('content')
+                    </div>
+                </main>
+                {{--@if (App\display_sidebar())--}}
                 {{--<aside class="sidebar">--}}
-                    {{--@include('partials.sidebar')--}}
+                {{--@include('partials.sidebar')--}}
                 {{--</aside>--}}
-            {{--@endif--}}
+                {{--@endif--}}
+            </div>
         </div>
-    </div>
 
-    <div class="sidebar-desktop d-none d-md-block">
-        @if (has_nav_menu('primary_navigation'))
-            {!! wp_nav_menu([
-                'theme_location' => 'primary_navigation',
-                // 'menu_class' => 'nav',
-                'container_class' => 'main-navigation'
-            ]) !!}
-        @endif
-    </div>
+        <div class="sidebar-desktop d-none d-md-block">
+            @if (has_nav_menu('primary_navigation'))
+                {!! wp_nav_menu([
+                    'theme_location' => 'primary_navigation',
+                    // 'menu_class' => 'nav',
+                    'container_class' => 'main-navigation'
+                ]) !!}
+            @endif
+        </div>
 
-    <div class="mobile-nav-clicker d-block d-md-none"></div>
+        <div class="mobile-nav-clicker d-block d-md-none"></div>
 
-    <div class="mobile-nav-burger d-block d-md-none">
-        <i class="material-icons"></i>
-    </div>
+        <div class="mobile-nav-burger d-block d-md-none">
+            <i class="material-icons"></i>
+        </div>
 
-    <div sidebarjs class="sidebar-wrapper d-block d-md-none">
-        @if (has_nav_menu('primary_navigation'))
-            {!! wp_nav_menu([
-                'theme_location' => 'primary_navigation',
-                // 'menu_class' => 'nav',
-                'container_class' => 'main-navigation'
-            ]) !!}
-        @endif
+        <div sidebarjs class="sidebar-wrapper d-block d-md-none">
+            @if (has_nav_menu('primary_navigation'))
+                {!! wp_nav_menu([
+                    'theme_location' => 'primary_navigation',
+                    // 'menu_class' => 'nav',
+                    'container_class' => 'main-navigation'
+                ]) !!}
+            @endif
+        </div>
     </div>
 
     @php do_action('get_footer') @endphp
@@ -72,7 +74,7 @@
 
         const randColors = () => colors[Math.floor(Math.random() * colors.length)];
 
-        jQuery('a').hover(function() {
+        jQuery('.page-wrapper a').hover(function() {
             let currentRandomColor = randColors();
             jQuery(this).css( 'color', currentRandomColor );
             jQuery(this).css( 'border-color', currentRandomColor );
