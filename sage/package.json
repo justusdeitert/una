@@ -79,6 +79,10 @@
   "dependencies": {
     "bootstrap": "v4.3.1",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.7"
+    "jquery-touchswipe": "^1.6.19",
+    "popper.js": "^1.14.7",
+    "sidebarjs": "^6.0.0",
+    "slick-carousel": "^1.8.1",
+    "smartphoto": "^1.4.3"
   }
 }
