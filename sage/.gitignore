@@ -1,0 +1,19 @@
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+
+# Application
+.cache-loader
+
+# Distribution
+dist
+
+# System files & folders
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Composer
+/vendor
+
+# Webpack Merge in precedence
+resources/assets/config-local.json
