@@ -30,3 +30,10 @@ p {
 span, .span {
     font-weight: 400;
 }
+
+.wrap.container {
+    @include media-breakpoint-down(sm) {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

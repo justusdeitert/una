@@ -95,8 +95,6 @@
         @endwhile
     </div>
 
-    {{--@php var_dump(get_field('split_up_on_mobile')); @endphp--}}
-
     @if(!get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
         @while(has_sub_field('content_section'))
             @if(get_row_layout() === 'image')
