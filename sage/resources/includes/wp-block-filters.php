@@ -18,7 +18,7 @@ add_filter( 'allowed_block_types', function($allowed_blocks) {
         // 'core/columns',
         // 'core/spacer',
         // 'core/html',
-        'acf/image-section',
+        'acf/content-section',
     );
 });
 

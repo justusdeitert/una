@@ -45,22 +45,6 @@
 
 
             }
-
-            //a {
-            //    display: none;
-            //}
-            //
-            //a.active {
-            //    display: block;
-            //}
-            //
-            //a.next {
-            //    display: block;
-            //}
-            //
-            //a.prev {
-            //    display: block;
-            //}
         }
 
         li:only-child {
@@ -80,14 +64,6 @@
 #fullpage {
     position: relative;
     top: 0;
-
-    //.admin-bar & {
-    //    top: -32px;
-    //
-    //    @media screen and (max-width: 782px) {
-    //        top: -46px;
-    //    }
-    //}
 
     .image-wrapper {
         transition: all 0.2s linear;
@@ -115,7 +91,30 @@
             position: relative;
             display: inline-block;
         }
+    }
+}
 
+.section-desktop {
+    .caption {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-30%);
+    }
+}
+
+.section-mobile {
+    margin: 0 auto;
+
+    .caption {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+
+.section-mobile, .section-desktop {
+    .image-wrapper {
         .caption {
             position: absolute;
             width: 100%;
@@ -123,13 +122,10 @@
             justify-content: center;
             align-items: center;
             margin-top: 10px;
-            z-index: -1;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-30%);
+            z-index: 0;
             transition: opacity 0.2s linear, visibility 0.2s linear, transform 0.2s linear;
 
-            span {
+            .span {
                 color: #555 !important;
                 font-size: 13px;
                 max-width: 310px;
@@ -189,11 +185,11 @@
             transition: opacity 0.2s linear, visibility 0.2s linear, background-color 0.2s linear;
         }
 
-        .caption {
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: translateY(0) !important;
-        }
+        //.caption {
+        //    opacity: 1 !important;
+        //    visibility: visible !important;
+        //    transform: translateY(0) !important;
+        //}
 
         &.active {
             .hover-overlay {
