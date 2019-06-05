@@ -14,3 +14,13 @@ for (const key in changeMenuNames) {
         $(this).html(changeMenuNames[key]);
     })
 }
+
+// $('a').each(function() {
+//    // console.log(this)
+// });
+//
+// $('.editor-styles-wrapper a').click(function(event) {
+//     console.log('test');
+//     event.preventDefault();
+//     $(this).addClass('prevent-click');
+// });
