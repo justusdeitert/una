@@ -22,6 +22,12 @@
     }
 }
 
+body#tinymce {
+    margin: 12px !important;
+    align-items: flex-start;
+}
+
+
 body:not(.role-administrator) {
     #adminmenuwrap {
         #menu-tools,
@@ -117,15 +123,46 @@ body:not(.role-administrator) {
 }
 
 .section-mobile, .section-desktop {
-    height: auto;
-    padding: 50px 0 !important;
+    //height: auto;
+
+    //.image-section {
+    //    padding: 50px 0 !important;
+    //}
+
+    //.text-container {
+    //    padding: 50px 0 !important;
+    //}
 }
 
 .section-desktop {
     height: 90vh;
+    display: block;
+
+    .text-container {
+        padding: 50px 0 !important;
+    }
 
     @media screen and (max-width: 1400px) {
         height: 60vh;
+    }
+
+    // eauals media-breakpoint-down(sm)
+    @media (max-width: 859.98px) {
+        display: none;
+    }
+}
+
+.section-mobile {
+    display: none;
+    padding: 0 !important;
+
+    //.text-container {
+    //    padding: 0 !important;
+    //}
+
+    // eauals media-breakpoint-down(sm)
+    @media (max-width: 859.98px) {
+        display: block;
     }
 }
 
