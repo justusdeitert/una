@@ -1,5 +1,5 @@
 // Wordpress Admin Scripts
-console.log('is admin');
+// console.log('is admin');
 
 // Change WP Menu Labels with Javascript
 // Todo: Sure there is a way to to it in the Backend! But not figured it out for submenu items! yet
@@ -12,7 +12,7 @@ const changeMenuNames = {
 for (const key in changeMenuNames) {
     jQuery(`a:contains(${key})`).each(function() {
         $(this).html(changeMenuNames[key]);
-    })
+    });
 }
 
 // $('a').each(function() {

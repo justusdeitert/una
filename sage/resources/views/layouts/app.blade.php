@@ -87,14 +87,14 @@
         // });
 
         jQuery('.page-wrapper a').on('touchstart mouseover', function() {
-            console.log('touchsttouchstart mouseoverart');
+            // console.log('touchsttouchstart mouseoverart');
             let currentRandomColor = randColors();
             jQuery(this).css( 'color', currentRandomColor );
             jQuery(this).css( 'border-color', currentRandomColor );
         });
 
         jQuery('.page-wrapper a').on('touchend mouseout', function() {
-            console.log('touchend mouseout');
+            // console.log('touchend mouseout');
             jQuery(this).css( 'color', 'initial' );
             jQuery(this).css( 'border-color', 'initial' );
         });
