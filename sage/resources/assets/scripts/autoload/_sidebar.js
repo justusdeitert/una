@@ -28,23 +28,34 @@ if ($('[sidebarjs]').length > 0) {
     });
 
     const closeSidebar = function() {
-        sidebarjs.close();
-        $('body').removeClass('sidenav-active');
-        $('.sidebar-backdrop').remove();
+        if (sidebarjs.isVisible()) {
+            sidebarjs.close();
+            $('body').removeClass('sidenav-active');
+            $('.sidebar-backdrop').remove();
+
+        }
     };
 
     const openSidebar = function() {
-        sidebarjs.open();
-        $('body').addClass('sidenav-active');
+        if (!sidebarjs.isVisible()) {
 
-        $('[sidebarjs-backdrop]').before('<div class="sidebar-backdrop"></div>');
+            sidebarjs.open();
 
-        $('.sidebar-backdrop').click(function() {
-            closeSidebar();
-        });
+            $('body').addClass('sidenav-active');
+
+            $('[sidebarjs-backdrop]').before('<div class="sidebar-backdrop"></div>');
+
+            // $('.sidebar-backdrop').fadeIn('slow', function() { });
+
+            // $('<div class="sidebar-backdrop"></div>').hide().appendTo("[sidebarjs-backdrop]").fadeIn(1000);
+
+            $('.sidebar-backdrop').click(function() {
+                closeSidebar();
+            });
+        }
     };
 
-    $('.wrap, .mobile-nav-clicker').swipe({
+    $('.wrap, .mobile-nav-clicker, .sidebar-backdrop').swipe({
         //Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
             console.log("You swiped " + direction );
@@ -52,10 +63,14 @@ if ($('[sidebarjs]').length > 0) {
             if(direction === 'left') {
                 openSidebar();
             }
+
+            if(direction === 'right') {
+                closeSidebar();
+            }
         }
     });
 
-    $('.mobile-nav-clicker, .mobile-nav-burger').click(function() {
+    $('.mobile-nav-clicker').click(function() {
         if (sidebarjs.isVisible()) {
             closeSidebar();
         } else {
@@ -63,7 +78,7 @@ if ($('[sidebarjs]').length > 0) {
         }
     });
 
-    $('.sidenav-close-icon').click(function() {
+    $('.sidenav-close-icon, .sidebar-backdrop').click(function() {
         closeSidebar();
     });
 
