@@ -12,35 +12,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     window.storage.newSmartPhoto.on('open',function(){
-        // window.location.hash = '';
-        console.log(window.storage.newSmartPhoto);
         $('.smartphoto-img-wrap').dblclick(function() {
             window.storage.newSmartPhoto.hidePhoto();
         });
+
+        history.pushState(null, null, window.location.href.split('#')[0]);
+        $('body').addClass('smartphoto-is-open')
     });
 
-    // $(window).on('resize', function(e) {
-    //     delete storage.newSmartPhoto;
-    // });
+    window.storage.newSmartPhoto.on('close',function(){
+        history.pushState(null, null, window.location.href.split('#')[0]);
+        $('body').removeClass('smartphoto-is-open')
+    });
 
-    //
-    // newSmartPhoto.on('change',function(){
-    //     console.log('change');
-    //     // window.location = window.location.href.split('#')[0];
-    // });
+    window.storage.newSmartPhoto.on('change',function(){
+        history.pushState(null, null, window.location.href.split('#')[0]);
+    });
 
-    // $(window).scroll(() => {
-    //     window.storage.newSmartPhoto.hidePhoto();
-    // });
-
-    //
-    // $('body').click(() => {
-    //     console.log('bodyClick');
-    //     storage.newSmartPhoto = null;
-    //     delete storage.newSmartPhoto;
-    // });
-    // $('.smartphoto-img-wrap').dblclick(function() {
-    //     console.log('doubleclick');
-    // });
-
+    window.storage.newSmartPhoto.on('swipeend',function(){
+        history.pushState(null, null, window.location.href.split('#')[0]);
+        setTimeout(() => {
+            history.pushState(null, null, window.location.href.split('#')[0]);
+        }, 50)
+    });
 });
