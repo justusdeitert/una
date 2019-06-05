@@ -50,6 +50,15 @@
                         </div>
                     </div>
                 @endif
+                @if(get_row_layout() == 'column')
+                    <div class="column-container">
+                        @while(has_sub_field('column'))
+                            @if(get_row_layout() == 'text')
+                                {!! get_sub_field('text') !!}
+                            @endif
+                        @endwhile
+                    </div>
+                @endif
             @endwhile
         </div>
     </div>
