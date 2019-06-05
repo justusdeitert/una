@@ -132,10 +132,10 @@
             span {
                 color: #555 !important;
                 font-size: 13px;
-                max-width: 390px;
+                max-width: 310px;
                 display: inline-block;
                 text-align: center;
-                padding: 0 40px;
+                padding: 0 20px;
             }
         }
     }
@@ -158,21 +158,9 @@
 
     .section-mobile-inner {
         position: relative;
-        //height: calc(100vh - 70px);
-        //margin-top: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
-
-        //.admin-bar & {
-        //    height: calc(100vh - 70px - 32px);
-        //    margin-top: calc(70px + 32px);
-        //
-        //    @media screen and (max-width: 782px) {
-        //        height: calc(100vh - 70px - 46px);
-        //        margin-top: calc(70px + 46px);
-        //    }
-        //}
     }
 
     .image-wrapper {
@@ -199,6 +187,12 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.2s linear, visibility 0.2s linear, background-color 0.2s linear;
+        }
+
+        .caption {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
         }
 
         &.active {
