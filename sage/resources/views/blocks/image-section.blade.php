@@ -44,7 +44,7 @@
         @if(get_row_layout() == 'image')
 
             @if(get_sub_field('link'))
-                <div class="section-mobile fp-auto-height">
+                <div class="section-mobile {{--fp-auto-height--}}">
                     <div class="section-mobile-inner">
                         <a class="image-wrapper section-mobile-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
                             <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
@@ -55,7 +55,7 @@
 
             @else
                 {{--@php var_dump(get_sub_field('image')['caption']); @endphp--}}
-                <div class="section-mobile fp-auto-height">
+                <div class="section-mobile {{--fp-auto-height--}}">
                     <div class="section-mobile-inner">
                         <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="image-wrapper smart-photo section-mobile-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="mobile-group-{!! get_sub_field('image')['ID'] !!}">
                             <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
