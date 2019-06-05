@@ -40,7 +40,7 @@ task('npm:install', function () {
     if (has('previous_release')) {
         if (test('[ -d {{previous_release}}/sage/node_modules ]')) {
             writeln('Copy node_modules from old Release');
-            run('cp -R {{previous_release}}/theme/node_modules {{release_path}}');
+            run('cp -R {{previous_release}}/sage/node_modules {{release_path}}/sage');
         }
     }
     writeln('Run "npm install" to update node_modules');

@@ -38,7 +38,7 @@
             <i class="material-icons"></i>
         </div>
 
-        <div sidebarjs class="sidebar-wrapper d-block d-md-none">
+        <div sidebarjs class="sidebar-wrapper-mobile d-block d-md-none">
             @if (has_nav_menu('primary_navigation'))
                 {!! wp_nav_menu([
                     'theme_location' => 'primary_navigation',
