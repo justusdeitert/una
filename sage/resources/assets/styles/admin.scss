@@ -135,16 +135,20 @@ body:not(.role-administrator) {
 //}
 
 .section-desktop {
-    //height: 90vh;
     display: block;
+    min-height: 90vh;
+
+    @media screen and (max-width: 1400px) {
+        min-height: 60vh;
+    }
 
     .text-container {
         padding: 50px 0 !important;
     }
 
-    @media screen and (max-width: 1400px) {
-        height: 60vh;
-    }
+    //.image-section {
+    //
+    //}
 
     // eauals media-breakpoint-down(sm)
     @media (max-width: 859.98px) {

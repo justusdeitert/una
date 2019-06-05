@@ -7,6 +7,9 @@
 // import IScroll from 'fullpage.js/vendors/scrolloverflow';
 
 // Importing fullpage.js
+// import 'fullpage.js/vendors/easings';
+import 'fullpage.js/vendors/scrolloverflow';
+
 import fullpage from 'fullpage.js';
 
 const getSelectorOnResize = () => {
@@ -24,6 +27,9 @@ window.instance.fullPageInstance = new fullpage('#fullpage', {
     navigation: true,
     navigationPosition: 'left',
     responsiveHeight: 0,
+    scrollOverflow: true,
+    scrollHorizontally: true,
+    // autoScrolling: true,
     //Custom selectors
     sectionSelector: getSelectorOnResize(),
     licenseKey: 'REMOVED',
@@ -86,6 +92,8 @@ $(window).on('resize', function(e) {
         navigation: true,
         navigationPosition: 'left',
         responsiveHeight: 0,
+        scrollOverflow: true,
+        scrollHorizontally: true,
         //Custom selectors
         sectionSelector: getSelectorOnResize(),
         licenseKey: 'REMOVED',
