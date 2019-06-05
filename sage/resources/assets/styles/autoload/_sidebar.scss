@@ -9,13 +9,16 @@
 //
 [sidebarjs-backdrop] {
     //background-color: rgba(0, 0, 0, 0.9);
-    display: none;
-    pointer-events: none;
+    //display: none;
+    //pointer-events: none;
+    background-color: rgba(255, 255, 255, 1);
+    transition: opacity 0.3s ease;
 }
 //
 .sidebar-backdrop {
+    display: none;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
     top: 0;
     left: 0;
     width: 100%;
