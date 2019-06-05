@@ -50,7 +50,7 @@
     margin-bottom: 20px;
     /* background-color: #000; */
     cursor: pointer;
-    border-right: 20px solid #000;
+    border-right: 15px solid #000;
     //border-right-style: dashed;
     transform: translateX(0);
     transition: transform 0.3s linear, border 0.2s ease;
@@ -60,7 +60,7 @@
     }
 
     &:hover {
-        border-right: 30px solid #000;
+        border-right: 25px solid #000;
         //border-right-style: dashed;
     }
 

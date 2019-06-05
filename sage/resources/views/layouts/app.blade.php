@@ -74,21 +74,61 @@
 
         const randColors = () => colors[Math.floor(Math.random() * colors.length)];
 
-        jQuery('.page-wrapper a').hover(function() {
+        // jQuery('.page-wrapper a').mouseover(function() {
+        //     let currentRandomColor = randColors();
+        //     jQuery(this).css( 'color', currentRandomColor );
+        //     jQuery(this).css( 'border-color', currentRandomColor );
+        // //     let currentRandomColor = randColors();
+        // //     jQuery(this).css( 'color', currentRandomColor );
+        // //     jQuery(this).css( 'border-color', currentRandomColor );
+        // // }, function() {
+        // //     jQuery(this).css( 'color', 'initial' );
+        // //     jQuery(this).css( 'border-color', 'initial' );
+        // });
+
+        jQuery('.page-wrapper a').on('touchstart mouseover', function() {
+            console.log('touchsttouchstart mouseoverart');
             let currentRandomColor = randColors();
             jQuery(this).css( 'color', currentRandomColor );
             jQuery(this).css( 'border-color', currentRandomColor );
-        }, function() {
+        });
+
+        jQuery('.page-wrapper a').on('touchend mouseout', function() {
+            console.log('touchend mouseout');
             jQuery(this).css( 'color', 'initial' );
             jQuery(this).css( 'border-color', 'initial' );
         });
 
-        jQuery('.image-wrapper').hover(function() {
+        // jQuery('.page-wrapper a').mouseout(function() {
+        //     jQuery(this).css( 'color', 'initial' );
+        //     jQuery(this).css( 'border-color', 'initial' );
+        // });
+
+        jQuery('.image-wrapper').on('touchstart mouseover', function() {
+            console.log('touchstart mouseover');
             let currentRandomColor = randColors();
+            jQuery(this).addClass('active');
             jQuery(this).find('.hover-overlay').css( 'background-color', currentRandomColor );
-        }, function() {
+        });
+
+        jQuery('.image-wrapper').on('touchend mouseout', function() {
+            console.log('touchend mouseout');
+            jQuery(this).removeClass('active');
             jQuery(this).find('.hover-overlay').css( 'background-color', 'initial' );
         });
+
+        // jQuery('.image-wrapper').mouseover(function() {
+        //     let currentRandomColor = randColors();
+        //     jQuery(this).find('.hover-overlay').css( 'background-color', currentRandomColor );
+        // //     let currentRandomColor = randColors();
+        // //     jQuery(this).find('.hover-overlay').css( 'background-color', currentRandomColor );
+        // // }, function() {
+        // //     jQuery(this).find('.hover-overlay').css( 'background-color', 'initial' );
+        // });
+        //
+        // jQuery('.image-wrapper').mouseout(function() {
+        //     jQuery(this).find('.hover-overlay').css( 'background-color', 'initial' );
+        // });
 
 
     </script>
