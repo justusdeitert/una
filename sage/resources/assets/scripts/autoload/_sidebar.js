@@ -2,12 +2,13 @@
 // Bedrock Sage makes trouble with buble converting to es2015
 import {SidebarElement} from 'sidebarjs/lib/umd/sidebarjs';
 
+window.sidebarinstance = {};
 
 
 if ($('[sidebarjs]').length > 0) {
     // Init SidebarJS
 
-    const sidebarjs = new SidebarElement({
+    window.sidebarinstance.sidebarjs = new SidebarElement({
         onOpen: function () {
             // console.log('sidebarjs is open');
             // $('html').addClass('sidenav-active');
@@ -27,23 +28,40 @@ if ($('[sidebarjs]').length > 0) {
         position: 'right',
     });
 
-    const closeSidebar = function() {
-        if (sidebarjs.isVisible()) {
-            sidebarjs.close();
+    const sidebarJS = window.sidebarinstance.sidebarjs;
+
+
+    window.sidebarinstance.closeSidebar = function() {
+        if (sidebarJS.isVisible()) {
+            sidebarJS.close();
             $('body').removeClass('sidenav-active');
-            $('.sidebar-backdrop').remove();
+
+
+            let sidebarBackdrop = $('.sidebar-backdrop');
+
+            $(sidebarBackdrop).removeClass('active');
+
+            setTimeout(() => {
+                $(sidebarBackdrop).remove();
+            }, 200);
         }
     };
 
+    const closeSidebar = window.sidebarinstance.closeSidebar;
+
     const openSidebar = function() {
-        if (!sidebarjs.isVisible()) {
-            sidebarjs.open();
+        if (!sidebarJS.isVisible()) {
+            sidebarJS.open();
 
             $('body').addClass('sidenav-active');
 
             $('[sidebarjs-backdrop]').before('<div class="sidebar-backdrop"></div>');
 
             let sidebarBackdrop = $('.sidebar-backdrop');
+
+            setTimeout(() => {
+                $(sidebarBackdrop).addClass('active');
+            }, 100);
 
             $(sidebarBackdrop).click(function() {
                 closeSidebar();
@@ -78,7 +96,7 @@ if ($('[sidebarjs]').length > 0) {
     });
 
     $('.mobile-nav-clicker').click(function() {
-        if (sidebarjs.isVisible()) {
+        if (sidebarJS.isVisible()) {
             closeSidebar();
         } else {
             openSidebar();
