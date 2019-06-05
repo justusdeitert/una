@@ -1,19 +1,23 @@
 // Importing Compiled smartphoto from lib
 import SmartPhoto from 'smartphoto/js/smartphoto.js';
 
-let storage = {};
+window.storage = {};
 
 document.addEventListener('DOMContentLoaded', function() {
-    storage.newSmartPhoto = new SmartPhoto('.smart-photo', {
+    window.storage.newSmartPhoto = new SmartPhoto('.smart-photo', {
         resizeStyle: 'fit', // resize images to fill/fit on the screen
         arrows: false,
         nav: false,
         useOrientationApi: true
     });
 
-    // storage.newSmartPhoto.on('open',function(){
-    //     window.location.hash = '';
-    // });
+    window.storage.newSmartPhoto.on('open',function(){
+        // window.location.hash = '';
+        console.log(window.storage.newSmartPhoto);
+        $('.smartphoto-img-wrap').dblclick(function() {
+            window.storage.newSmartPhoto.hidePhoto();
+        });
+    });
 
     // $(window).on('resize', function(e) {
     //     delete storage.newSmartPhoto;
@@ -26,14 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // });
 
     // $(window).scroll(() => {
-    //     console.log('scrol');
-    //     storage.newSmartPhoto = null;
-    //     delete storage.newSmartPhoto;
+    //     window.storage.newSmartPhoto.hidePhoto();
     // });
+
     //
     // $('body').click(() => {
     //     console.log('bodyClick');
     //     storage.newSmartPhoto = null;
     //     delete storage.newSmartPhoto;
     // });
+    // $('.smartphoto-img-wrap').dblclick(function() {
+    //     console.log('doubleclick');
+    // });
+
 });

@@ -86,6 +86,13 @@ const initFullPageInstance = () => {
         licenseKey: 'REMOVED',
         afterLoad: afterLoad,
         afterRender: afterRender,
+        onLeave: function() {
+            console.log(window.storage.newSmartPhoto);
+            if(window.storage.newSmartPhoto) {
+                window.storage.newSmartPhoto.hidePhoto();
+            }
+        }
+        //    window.storage.newSmartPhoto.hidePhoto();
     });
 };
 
