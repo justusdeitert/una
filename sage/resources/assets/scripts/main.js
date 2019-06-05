@@ -21,4 +21,15 @@ const routes = new Router({
 });
 
 // Load Events
-jQuery(document).ready(() => routes.loadEvents());
+jQuery(document).ready(() => {
+    routes.loadEvents();
+
+    // Add Blank to All External Links
+    $('a').each(function() {
+        var a = new RegExp('/' + window.location.host + '/');
+        if (!a.test(this.href)) {
+            $(this).attr("target","_blank");
+        }
+    });
+});
+
