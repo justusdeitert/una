@@ -97,6 +97,7 @@ const initFullPageInstance = () => {
     });
 };
 
+
 // initFullPageInstance();
 
 $(window).on('load', function() {
@@ -106,27 +107,32 @@ $(window).on('load', function() {
 });
 
 $('.accordion').on('shown.bs.collapse', function() {
-    window.instance.fullPageInstance.destroy('all');
-    initFullPageInstance();
-    //console.log("shown");
+    window.instance.fullPageInstance.reBuild();
 });
 
 $('.accordion').on('hidden.bs.collapse', function() {
-    window.instance.fullPageInstance.destroy('all');
-    initFullPageInstance();
-    //console.log("shown");
+    window.instance.fullPageInstance.reBuild();
 });
 
 
-$('.accordion-header').click(function() {
-    window.instance.fullPageInstance.destroy('all');
-    initFullPageInstance();
+// Only when resize width
+// ----------------->
+window.windowInstance = {};
+window.windowInstance.width = 0;
+
+$( window ).load( function(){
+    window.windowInstance.width = $( window ).width();
 });
 
-// });
-// let resizeTimer;
+$( window ).resize( function(){
+    if( window.windowInstance.width != $( window ).width() ){
+        //Do something
+        // window.instance.fullPageInstance.destroy('all');
+        // initFullPageInstance();
 
-$(window).on('resize', function() {
-    window.instance.fullPageInstance.destroy('all');
-    initFullPageInstance();
+        window.instance.fullPageInstance.reBuild();
+
+        window.windowInstance.width = $( window ).width();
+        delete window.windowInstance.width;
+    }
 });
