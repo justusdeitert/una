@@ -20,7 +20,9 @@ $base-font-size-mobile: 16px;
         @include media-breakpoint-down(xs) {
             font-size: ($px / $base-font-size-mobile) * 1rem !important;
         }
-    } @else {
+    }
+
+ @else {
         font-size: ($px / $base-font-size) * 1rem;
 
         @include media-breakpoint-down(xs) {

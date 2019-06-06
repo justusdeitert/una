@@ -1,11 +1,11 @@
 const path = require('path');
 
 module.exports = (key, value) => {
-  if (typeof value === 'string') {
-    return value;
-  }
-  const manifest = value;
-  /**
+    if (typeof value === 'string') {
+        return value;
+    }
+    const manifest = value;
+    /**
    * Hack to prepend scripts/ or styles/ to manifest keys
    *
    * This might need to be reworked at some point.
@@ -21,14 +21,14 @@ module.exports = (key, value) => {
    *     "styles/main.css": "styles/main_abcdef.css"
    *   }
    */
-  Object.keys(manifest).forEach((src) => {
-    const sourcePath = path.basename(path.dirname(src));
-    const targetPath = path.basename(path.dirname(manifest[src]));
-    if (sourcePath === targetPath) {
-      return;
-    }
-    manifest[`${targetPath}/${src}`] = manifest[src];
-    delete manifest[src];
-  });
-  return manifest;
+    Object.keys(manifest).forEach((src) => {
+        const sourcePath = path.basename(path.dirname(src));
+        const targetPath = path.basename(path.dirname(manifest[src]));
+        if (sourcePath === targetPath) {
+            return;
+        }
+        manifest[`${targetPath}/${src}`] = manifest[src];
+        delete manifest[src];
+    });
+    return manifest;
 };

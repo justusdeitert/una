@@ -32,13 +32,11 @@ if ($('[sidebarjs]').length > 0) {
             sidebarjs.close();
             $('body').removeClass('sidenav-active');
             $('.sidebar-backdrop').remove();
-
         }
     };
 
     const openSidebar = function() {
         if (!sidebarjs.isVisible()) {
-
             sidebarjs.open();
 
             $('body').addClass('sidenav-active');
@@ -52,11 +50,11 @@ if ($('[sidebarjs]').length > 0) {
             });
 
             $(sidebarBackdrop).swipe({
-                //Generic swipe handler for all directions
+                // Generic swipe handler for all directions
                 swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
                     // console.log("You swiped " + direction );
 
-                    if(direction === 'right') {
+                    if (direction === 'right') {
                         closeSidebar();
                     }
                 }
@@ -65,15 +63,15 @@ if ($('[sidebarjs]').length > 0) {
     };
 
     $('.wrap, .mobile-nav-clicker').swipe({
-        //Generic swipe handler for all directions
+        // Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
             // console.log("You swiped " + direction );
 
-            if(direction === 'left') {
+            if (direction === 'left') {
                 openSidebar();
             }
 
-            if(direction === 'right') {
+            if (direction === 'right') {
                 closeSidebar();
             }
         }
@@ -106,10 +104,10 @@ if ($('[sidebarjs]').length > 0) {
 
 $(window).load(() => {
     // console.log($('.sidebar-wrapper .main-navigation').height());
-    $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height())
+    $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height());
 });
 
 $(window).resize(() => {
     // console.log($('.sidebar-wrapper .main-navigation').height());
-    $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height())
+    $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height());
 });

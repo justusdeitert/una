@@ -42,6 +42,7 @@
 
     .smartphoto-dismiss {
         @extend .material-icons;
+
         background-image: none;
         top: initial;
         outline: none;
@@ -65,8 +66,6 @@
         }
 
         .smartphoto-dismiss {
-
-
             &:after {
                 color: #FFF;
             }

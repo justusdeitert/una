@@ -1,9 +1,9 @@
 // Importing Compiled smartphoto from lib
-import SmartPhoto from 'smartphoto/js/smartphoto.js'
+import SmartPhoto from 'smartphoto/js/smartphoto.js';
 
 let storage = {};
 
-document.addEventListener('DOMContentLoaded',function() {
+document.addEventListener('DOMContentLoaded', function() {
     storage.newSmartPhoto = new SmartPhoto('.smart-photo', {
         resizeStyle: 'fit', // resize images to fill/fit on the screen
         arrows: false,
