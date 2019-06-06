@@ -84,19 +84,16 @@ const initFullPageInstance = () => {
         // Custom selectors
         sectionSelector: getSelectorOnResize(),
         licenseKey: 'REMOVED',
+        lazyLoading: true,
         afterLoad: afterLoad,
         afterRender: afterRender,
         onLeave: function() {
-            console.log(window.storage.newSmartPhoto);
-            if(window.storage.newSmartPhoto) {
+            if ($('body').hasClass('smartphoto-is-open')) {
                 window.storage.newSmartPhoto.hidePhoto();
             }
         }
-        //    window.storage.newSmartPhoto.hidePhoto();
     });
 };
-
-// console.log($('.fp-tableCell:has(.content-container)'));
 
 initFullPageInstance();
 
