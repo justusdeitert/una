@@ -99,7 +99,7 @@ const initFullPageInstance = () => {
 
 // initFullPageInstance();
 
-$(document).on('ready', function() {
+$(window).on('load', function() {
     // Init Another Time on Window load, because of a not found mobile bug
     // window.instance.fullPageInstance.destroy('all');
     initFullPageInstance();

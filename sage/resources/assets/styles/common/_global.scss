@@ -11,6 +11,10 @@ a {
     color: #000;
     font-size: 15px;
     word-break: break-word;
+
+    //@include media-breakpoint-down(sm) {
+    //    font-size: 12px;
+    //}
 }
 
 h1, h2, h3, h4 {
@@ -20,14 +24,26 @@ h1, h2, h3, h4 {
     color: #000;
     margin-top: 30px;
     margin-bottom: 15px;
+
+    @include media-breakpoint-down(sm) {
+        font-size: 15px;
+    }
 }
 
 p {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
 
+    //@include media-breakpoint-down(sm) {
+    //    font-size: 12px;
+    //}
+
     &.big {
         font-size: 20px;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 16px;
+        }
     }
 
     &.dark {
