@@ -124,15 +124,42 @@ $( window ).load( function(){
     window.windowInstance.width = $( window ).width();
 });
 
+
+
+// $('.section-desktop .image-wrapper').each(function() {
+//     console.log('lol');
+//     let hoverOverlay = $(this).children('.hover-overlay');
+//     let imageContainer = $(this).children('.image-container');
+//
+//     console.log($(hoverOverlay).offsetWidth);
+//     console.log($(image).width());
+//
+//     // Get on screen image
+//     var screenImage = $(image);
+//
+// // Create new offscreen image to test
+//     var theImage = new Image();
+//     theImage.src = screenImage.attr("src");
+//
+// // Get accurate measurements from that.
+//     var imageWidth = theImage.width;
+//     var imageHeight = theImage.height;
+//
+//     console.log(imageWidth);
+//
+// });
+
 $( window ).resize( function(){
+
     if( window.windowInstance.width != $( window ).width() ){
         //Do something
-        // window.instance.fullPageInstance.destroy('all');
-        // initFullPageInstance();
+        window.instance.fullPageInstance.destroy('all');
+        initFullPageInstance();
 
-        window.instance.fullPageInstance.reBuild();
+        // window.instance.fullPageInstance.reBuild();
 
         window.windowInstance.width = $( window ).width();
         delete window.windowInstance.width;
     }
 });
+
