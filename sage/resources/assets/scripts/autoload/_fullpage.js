@@ -97,11 +97,11 @@ const initFullPageInstance = () => {
 
 initFullPageInstance();
 
-$(window).on('load', function() {
-    // Init Another Time on Window load, because of a not found mobile bug
-    window.instance.fullPageInstance.destroy('all');
-    initFullPageInstance();
-});
+// $(window).on('load', function() {
+//     // Init Another Time on Window load, because of a not found mobile bug
+//     // window.instance.fullPageInstance.destroy('all');
+//     initFullPageInstance();
+// });
 
 $('.accordion').on('shown.bs.collapse', function() {
     window.instance.fullPageInstance.destroy('all');
