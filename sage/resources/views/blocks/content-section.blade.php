@@ -180,7 +180,7 @@
                                                                         @if($sub_column['acf_fc_layout'] === 'image')
                                                                             <div class="col-12">
                                                                                 <div class="row">
-                                                                                    <div class="col-6">
+                                                                                    <div class="col-8">
                                                                                         <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
                                                                                             <div class="image-container">
                                                                                                 <img src="{!! $sub_column['image']['sizes']['large'] !!}" >
@@ -194,7 +194,7 @@
                                                                         @if($sub_column['acf_fc_layout'] === 'text')
                                                                             <div class="col-12">
                                                                                 <div class="row">
-                                                                                    <div class="col-6">
+                                                                                    <div class="col-8">
                                                                                         {!! $sub_column['text'] !!}
                                                                                     </div>
                                                                                 </div>
@@ -203,10 +203,10 @@
                                                                         @if($sub_column['acf_fc_layout'] === 'text_and_image')
                                                                             <div class="col-12">
                                                                                 <div class="row text-and-image-container">
-                                                                                    <div class="col-6 col-sm-6">
+                                                                                    <div class="col-8 col-sm-8">
                                                                                         {!! $sub_column['text'] !!}
                                                                                     </div>
-                                                                                    <div class="col-5 offset-1 col-sm-4 offset-sm-2">
+                                                                                    <div class="col-4 col-sm-4 {{--offset-sm-1--}}">
                                                                                         <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
                                                                                             <div class="image-container">
                                                                                                 <img src="{!! $sub_column['image']['sizes']['large'] !!}" >
