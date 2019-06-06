@@ -13,8 +13,10 @@
                 <div class="image-section ">
                     @if(get_sub_field('link'))
                         <a class="admin-prevent-click image-wrapper section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
-                            <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
-                            <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                            <div class="image-container">
+                                <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
+                                <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                            </div>
                         </a>
                     @else
                         {{--@php var_dump(get_sub_field('image')['caption']); @endphp--}}
