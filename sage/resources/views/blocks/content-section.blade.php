@@ -8,6 +8,27 @@
 
 @if(get_field('content_section'))
     <div class="section-desktop fp-scrollable">
+
+        {{--@php--}}
+
+            {{--// var_dump(get_field('content_section'));--}}
+
+        {{--$images = [];--}}
+
+        {{--foreach (get_field('content_section') as $content_section) {--}}
+            {{--// var_dump($content_section['acf_fc_layout']);--}}
+
+            {{--if ($content_section['acf_fc_layout'] === 'image') {--}}
+                {{--// var_dump($content_section['image']);--}}
+                {{--array_push($images, $content_section['image']);--}}
+            {{--}--}}
+        {{--}--}}
+
+        {{--var_dump($images);--}}
+
+        {{--@endphp--}}
+
+
         @while(has_sub_field('content_section'))
             @if(get_row_layout() == 'image')
                 <div class="image-section ">
