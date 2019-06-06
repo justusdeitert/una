@@ -91,6 +91,8 @@ const initFullPageInstance = () => {
             if ($('body').hasClass('smartphoto-is-open')) {
                 window.storage.newSmartPhoto.hidePhoto();
             }
+            
+            window.sidebarinstance.closeSidebar();
         }
     });
 };
