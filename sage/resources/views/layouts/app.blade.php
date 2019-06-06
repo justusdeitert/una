@@ -90,16 +90,16 @@
             // console.log('touchsttouchstart mouseoverart');
             let currentRandomColor = randColors();
             jQuery(this).css( 'color', currentRandomColor );
-            jQuery(this).children('*').css( 'color', currentRandomColor );
+            jQuery(this).children('h3, i').css( 'color', currentRandomColor );
             jQuery(this).css( 'border-color', currentRandomColor );
         });
 
         jQuery('.page-wrapper a, .colored-hover').on('touchend mouseout', function() {
             // console.log('touchend mouseout');
             jQuery(this).css( 'color', 'initial' );
-            jQuery(this).children('*').css( 'color', 'initial' );
+            jQuery(this).children('h3, i').css( 'color', 'initial' );
             jQuery(this).css( 'border-color', 'initial' );
-            jQuery(this).children('*').css( 'border-color', 'initial' );
+            jQuery(this).children('h3, i').css( 'border-color', 'initial' );
         });
 
         // jQuery('.page-wrapper a').mouseout(function() {
