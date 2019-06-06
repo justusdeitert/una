@@ -105,14 +105,14 @@
         // });
 
         jQuery('.image-wrapper').on('touchstart mouseover', function() {
-            console.log('touchstart mouseover');
+            // console.log('touchstart mouseover');
             let currentRandomColor = randColors();
             jQuery(this).addClass('active');
             jQuery(this).find('.hover-overlay').css( 'background-color', currentRandomColor );
         });
 
         jQuery('.image-wrapper').on('touchend mouseout', function() {
-            console.log('touchend mouseout');
+            // console.log('touchend mouseout');
             jQuery(this).removeClass('active');
             jQuery(this).find('.hover-overlay').css( 'background-color', 'initial' );
         });

@@ -100,38 +100,39 @@
     @if(!get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
         @while(has_sub_field('content_section'))
             @if(get_row_layout() === 'image')
-                @if(get_sub_field('link'))
-                    @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
-                        <div class="section-mobile-inner">
-                            <a class="admin-prevent-click image-wrapper section-mobile-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
-                                <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
-                                <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
-                            </a>
-                        </div>
-                    @if(get_field('split_up_on_mobile'))</div>@endif
-                @else
-                    @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
-                        <div class="section-mobile-inner">
-                            <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="mobile-group-{!! get_sub_field('image')['ID'] !!}">
-                                <div class="image-container">
+                @if(!get_field('split_up_on_mobile'))<div class="image-section-mobile-wrapper">@endif
+                    @if(get_sub_field('link'))
+                        @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
+                            <div class="section-mobile-inner">
+                                <a class="admin-prevent-click image-wrapper section-mobile-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
+                                    <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
                                     <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
-                                    <div class="caption"><div class="span">{!! get_sub_field('image')['caption'] !!}</div></div>
-                                </div>
-                            </a>
-                        </div>
-                    @if(get_field('split_up_on_mobile'))</div>@endif
-                @endif
-
-                <style>
-                    .section-image-{!! get_sub_field('image')['ID'] !!} {
-                        position: absolute;
-                        @if(get_sub_field('image_width')) width: {!! get_sub_field('image_width') !!}%; @endif
-                                @if(get_sub_field('position_top')) top: {!! get_sub_field('position_top') !!}%; @endif
-                                @if(get_sub_field('position_right')) right: {!! get_sub_field('position_right') !!}%; @endif
-                                @if(get_sub_field('position_bottom')) bottom: {!! get_sub_field('position_bottom') !!}%; @endif
-                                @if(get_sub_field('position_left')) left: {!! get_sub_field('position_left') !!}%; @endif
-                            }
-                </style>
+                                </a>
+                            </div>
+                            @if(get_field('split_up_on_mobile'))</div>@endif
+                    @else
+                        @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
+                            <div class="section-mobile-inner">
+                                <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="mobile-group-{!! get_sub_field('image')['ID'] !!}">
+                                    <div class="image-container">
+                                        <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                                        <div class="caption"><div class="span">{!! get_sub_field('image')['caption'] !!}</div></div>
+                                    </div>
+                                </a>
+                            </div>
+                            @if(get_field('split_up_on_mobile'))</div>@endif
+                    @endif
+                    <style>
+                        .section-image-{!! get_sub_field('image')['ID'] !!} {
+                            position: absolute;
+                            @if(get_sub_field('image_width')) width: {!! get_sub_field('image_width') !!}%; @endif
+                            @if(get_sub_field('position_top')) top: {!! get_sub_field('position_top') !!}%; @endif
+                            @if(get_sub_field('position_right')) right: {!! get_sub_field('position_right') !!}%; @endif
+                            @if(get_sub_field('position_bottom')) bottom: {!! get_sub_field('position_bottom') !!}%; @endif
+                            @if(get_sub_field('position_left')) left: {!! get_sub_field('position_left') !!}%; @endif
+                        }
+                    </style>
+                    @if(!get_field('split_up_on_mobile'))</div>@endif
             @endif
             @if(get_row_layout() == 'text')
                 @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
