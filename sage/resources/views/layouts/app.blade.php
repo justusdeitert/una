@@ -86,17 +86,20 @@
         // //     jQuery(this).css( 'border-color', 'initial' );
         // });
 
-        jQuery('.page-wrapper a').on('touchstart mouseover', function() {
+        jQuery('.page-wrapper a, .colored-hover').on('touchstart mouseover', function() {
             // console.log('touchsttouchstart mouseoverart');
             let currentRandomColor = randColors();
             jQuery(this).css( 'color', currentRandomColor );
+            jQuery(this).children('*').css( 'color', currentRandomColor );
             jQuery(this).css( 'border-color', currentRandomColor );
         });
 
-        jQuery('.page-wrapper a').on('touchend mouseout', function() {
+        jQuery('.page-wrapper a, .colored-hover').on('touchend mouseout', function() {
             // console.log('touchend mouseout');
             jQuery(this).css( 'color', 'initial' );
+            jQuery(this).children('*').css( 'color', 'initial' );
             jQuery(this).css( 'border-color', 'initial' );
+            jQuery(this).children('*').css( 'border-color', 'initial' );
         });
 
         // jQuery('.page-wrapper a').mouseout(function() {

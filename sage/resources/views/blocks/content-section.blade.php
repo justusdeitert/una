@@ -169,7 +169,7 @@
                                                 @endphp
                                                 <div class="col-12">
                                                     <div class="column-text-container">
-                                                        <div class="accordion-header" data-toggle="collapse" data-target="#{!! $body_id !!}" id="{!! $header_id !!}">
+                                                        <div class="accordion-header colored-hover" data-toggle="collapse" data-target="#{!! $body_id !!}" id="{!! $header_id !!}">
                                                             <h3>{!! $column['headline'] !!}</h3>
                                                             <i class="material-icons"></i>
                                                         </div>
