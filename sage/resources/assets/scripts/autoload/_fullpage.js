@@ -91,19 +91,19 @@ const initFullPageInstance = () => {
             if ($('body').hasClass('smartphoto-is-open')) {
                 window.storage.newSmartPhoto.hidePhoto();
             }
-            
+
             window.sidebarinstance.closeSidebar();
         }
     });
 };
 
-initFullPageInstance();
+// initFullPageInstance();
 
-// $(window).on('load', function() {
-//     // Init Another Time on Window load, because of a not found mobile bug
-//     // window.instance.fullPageInstance.destroy('all');
-//     initFullPageInstance();
-// });
+$(document).on('ready', function() {
+    // Init Another Time on Window load, because of a not found mobile bug
+    // window.instance.fullPageInstance.destroy('all');
+    initFullPageInstance();
+});
 
 $('.accordion').on('shown.bs.collapse', function() {
     window.instance.fullPageInstance.destroy('all');
