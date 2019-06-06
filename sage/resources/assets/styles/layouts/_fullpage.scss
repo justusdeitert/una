@@ -9,7 +9,8 @@
 }
 
 #fp-nav {
-    display: flex;
+    //display: flex;
+    display: none;
     align-items: center;
     //height: 100%;
     top: 0;
@@ -96,7 +97,7 @@
         }
 
         &.active {
-            transform: scale(1.03);
+            //transform: scale(1.03);
 
             img {
                 box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
@@ -121,7 +122,8 @@
         .caption {
             position: absolute;
             width: 100%;
-            display: flex;
+            //display: flex;
+            display: none !important;
             justify-content: center;
             align-items: center;
             margin-top: 10px;
