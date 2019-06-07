@@ -24,6 +24,28 @@
             }
         }
     }
+
+    @include media-breakpoint-down(sm) {
+        ul {
+            li {
+                a {
+                    font-size: 18px;
+                    padding: 0 20px;
+                    height: 28px;
+                }
+            }
+        }
+    }
+}
+
+.sidebar-desktop {
+    @include media-breakpoint-down(sm) {
+        display: none;
+
+        .front-page-data & {
+            display: block;
+        }
+    }
 }
 
 .sidebar-wrapper-mobile {
@@ -57,6 +79,10 @@
 
     .sidenav-active & {
         transform: translateX(100%);
+    }
+
+    .front-page-data & {
+        display: none !important;
     }
 
     &:hover {

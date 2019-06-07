@@ -30,7 +30,6 @@ if ($('[sidebarjs]').length > 0) {
 
     const sidebarJS = window.sidebarinstance.sidebarjs;
 
-
     window.sidebarinstance.closeSidebar = function() {
         if (sidebarJS.isVisible()) {
             sidebarJS.close();
@@ -102,10 +101,6 @@ if ($('[sidebarjs]').length > 0) {
             openSidebar();
         }
     });
-
-    // $('.sidenav-close-icon').click(function() {
-    //     closeSidebar();
-    // });
 
     // Close on Resize
     $( window ).resize(function() {
