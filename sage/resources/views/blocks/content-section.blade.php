@@ -235,8 +235,10 @@
 
             @php $section_id++; @endphp
 
-            @if($section_id >= 1)
-                @break
+            @if(get_field('one_image_randomly_on_mobile'))
+                @if($section_id >= 1)
+                    @break
+                @endif
             @endif
 
         @endforeach
