@@ -5,6 +5,9 @@
 [sidebarjs] {
     z-index: 9000;
 
+    .front-page-data & {
+        display: none !important;
+    }
 }
 //
 [sidebarjs-backdrop] {

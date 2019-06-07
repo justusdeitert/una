@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="sidebar-desktop d-none d-md-block">
+        <div class="sidebar-desktop">
             @if (has_nav_menu('primary_navigation'))
                 {!! wp_nav_menu([
                     'theme_location' => 'primary_navigation',
