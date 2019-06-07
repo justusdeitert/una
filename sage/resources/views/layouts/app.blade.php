@@ -81,7 +81,9 @@
             jQuery(currentMenuItem).children('a').css( 'border-color', currentRandomColor );
         });
 
-        jQuery('.page-wrapper a:not(.current-menu-item a), .colored-hover').on('touchstart mouseover', function() {
+        var hoverElements = jQuery('.page-wrapper a:not(.current-menu-item a), #cookie-notice a, .colored-hover');
+
+        jQuery(hoverElements).on('touchstart mouseover', function() {
             // console.log('touchsttouchstart mouseoverart');
             var currentRandomColor = randColors();
             jQuery(this).css( 'color', currentRandomColor );
@@ -89,12 +91,12 @@
             jQuery(this).css( 'border-color', currentRandomColor );
         });
 
-        jQuery('.page-wrapper a:not(.current-menu-item a), .colored-hover').on('touchend mouseout', function() {
+        jQuery(hoverElements).on('touchend mouseout', function() {
             // console.log('touchend mouseout');
-            jQuery(this).css( 'color', 'initial' );
-            jQuery(this).children('h3, i').css( 'color', 'initial' );
-            jQuery(this).css( 'border-color', 'initial' );
-            jQuery(this).children('h3, i').css( 'border-color', 'initial' );
+            jQuery(this).css( 'color', '' );
+            jQuery(this).children('h3, i').css( 'color', '' );
+            jQuery(this).css( 'border-color', '' );
+            jQuery(this).children('h3, i').css( 'border-color', '' );
         });
 
 
@@ -108,7 +110,7 @@
         jQuery('.image-wrapper').on('touchend mouseout', function() {
             // console.log('touchend mouseout');
             jQuery(this).removeClass('active');
-            jQuery(this).find('.hover-overlay').css( 'background-color', 'initial' );
+            jQuery(this).find('.hover-overlay').css( 'background-color', '' );
         });
 
     </script>
