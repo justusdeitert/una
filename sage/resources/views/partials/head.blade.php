@@ -3,6 +3,11 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    {{--// Why is it Tricky as Fuck to change the WP Title--}}
+    @php function new_title() { echo str_replace(' ', '', wp_title('', false)); } @endphp
+    @php function new_description() { echo str_replace(' ', '', bloginfo('description')); } @endphp
+    <title>@php bloginfo('name'); @endphp | @php is_front_page() ? new_description() : new_title(); @endphp</title>
+
     @php wp_head() @endphp
 
     {{--Implementing Google Icons And Fonts--}}
@@ -21,4 +26,6 @@
         {{--https://mathiasbynens.be/notes/touch-icons--}}
         <link href="{!! get_field('touch_icon', 'option')['url'] !!}}" rel="apple-touch-icon-precomposed apple-touch-icon" />
     @endif
+
+
 </head>
