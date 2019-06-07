@@ -45,7 +45,10 @@ add_action('after_setup_theme', function () {
      * Enable plugins to manage the document title
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
      */
-    add_theme_support('title-tag');
+    // add_theme_support('title-tag');
+    //
+    // // Remove the Title Tag from wp_head
+    // remove_action( 'wp_head', '_wp_render_title_tag', 1 );
 
     /**
      * Register navigation menus
