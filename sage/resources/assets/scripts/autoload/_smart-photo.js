@@ -35,4 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
             history.pushState(null, null, window.location.href.split('#')[0]);
         }, 50)
     });
+
+    $('.smart-photo').click(function() {
+        history.pushState(null, null, window.location.href.split('#')[0]);
+        setTimeout(() => {
+            history.pushState(null, null, window.location.href.split('#')[0]);
+        }, 50)
+    });
 });
