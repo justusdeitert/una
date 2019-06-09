@@ -87,12 +87,18 @@ const initFullPageInstance = () => {
         lazyLoading: true,
         afterLoad: afterLoad,
         afterRender: afterRender,
-        onLeave: function() {
+        onLeave: function(origin, destination, direction) {
             if ($('body').hasClass('smartphoto-is-open')) {
                 window.storage.newSmartPhoto.hidePhoto();
             }
 
             window.sidebarinstance.closeSidebar();
+
+            if(destination.index === $(getSelectorOnResize()).length - 1) {
+                $('body').addClass('last-section')
+            } else {
+                $('body').removeClass('last-section')
+            }
         }
     });
 };
@@ -124,6 +130,9 @@ $( window ).load( function(){
     window.windowInstance.width = $( window ).width();
 });
 
+$('.back-to-top').click(() => {
+    window.instance.fullPageInstance.moveTo(1);
+});
 
 
 // $('.section-desktop .image-wrapper').each(function() {
