@@ -29,9 +29,11 @@
         ul {
             li {
                 a {
-                    font-size: 18px;
-                    padding: 0 20px;
-                    height: 28px;
+                    @media screen and (max-height: 800px) {
+                        font-size: 20px;
+                        padding: 0 20px;
+                        height: 34px;
+                    }
                 }
             }
         }
@@ -53,9 +55,11 @@
         ul {
             li {
                 a {
-                    font-size: 18px;
-                    padding: 0 20px;
-                    height: 28px;
+                    @media screen and (max-height: 800px) {
+                        font-size: 20px;
+                        padding: 0 20px;
+                        height: 34px;
+                    }
                 }
             }
         }
