@@ -266,6 +266,11 @@
         display: inline-block;
         margin-top: 20px;
 
+        .front-page-data & {
+            cursor: initial;
+            pointer-events: none;
+        }
+
         img {
             max-height: 70vh;
             max-width: 90vw;
@@ -283,7 +288,7 @@
             font-size: 16px;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.2s linear, visibility 0.2s linear, background-color 0.2s linear;
+            transition: opacity 0.1s linear, visibility 0.1s linear, background-color 0.1s linear;
         }
 
         &.active {
@@ -355,7 +360,7 @@
                 font-size: 16px;
                 opacity: 0;
                 visibility: hidden;
-                transition: opacity 0.2s linear, visibility 0.2s linear;
+                transition: opacity 0.1s linear, visibility 0.1s linear;
             }
 
             &.active {
@@ -394,9 +399,11 @@
             margin-bottom: 50px;
 
             .image-container {
+
                 img {
                     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3) !important;
                     transition: box-shadow 0.2s linear;
+                    max-width: 190px;
                 }
 
                 &:hover {
