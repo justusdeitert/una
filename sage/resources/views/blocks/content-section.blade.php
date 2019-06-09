@@ -110,6 +110,21 @@
             @endphp
         @endif
 
+        @php $top_on_mobile_sections = []; @endphp
+
+        @foreach($all_content_sections as $content_section)
+            @if(isset($content_section['top_on_mobile']) && $content_section['top_on_mobile'])
+                @php
+                    array_push($top_on_mobile_sections, $content_section);
+                    unset($all_content_sections[$loop->index]);
+                @endphp
+            @endif
+        @endforeach
+
+        @foreach($top_on_mobile_sections as $top_on_mobile_section)
+            @php array_unshift($all_content_sections, $top_on_mobile_section);   @endphp
+        @endforeach
+
         @foreach($all_content_sections as $content_section)
             @if($content_section['acf_fc_layout'] === 'image')
                 @if(!get_field('split_up_on_mobile'))<div class="image-section-mobile-wrapper">@endif

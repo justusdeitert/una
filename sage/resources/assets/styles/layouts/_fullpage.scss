@@ -401,14 +401,16 @@
             .image-container {
 
                 img {
-                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3) !important;
+                    //box-shadow: 0 0 2px rgba(0, 0, 0, 0.3) !important;
+                    box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.15);
                     transition: box-shadow 0.2s linear;
                     max-width: 190px;
                 }
 
                 &:hover {
                     img {
-                        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5) !important;
+                        //box-shadow: 0 0 2px rgba(0, 0, 0, 0.5) !important;
+                        box-shadow: 0 0 0 2px rgba(204, 204, 204, 1);
                     }
                 }
             }
