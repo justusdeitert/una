@@ -37,6 +37,7 @@
         {{--<div class="mobile-nav-burger d-block d-md-none">--}}
             {{--<i class="material-icons"></i>--}}
         {{--</div>--}}
+        <div class="back-to-top colored-hover"><span>Nach Oben</span></div>
 
         <div sidebarjs class="sidebar-wrapper-mobile d-block d-md-none">
             @if (has_nav_menu('primary_navigation'))

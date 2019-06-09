@@ -13,6 +13,10 @@ header {
     display: flex;
     align-items: center;
     justify-items: center;
+
+    // Fix for e.g. old Safari Versions
+    left: 50%;
+    transform: translateX(-50%);
     //width: 100%;
 
     .brand {
