@@ -1,12 +1,18 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
 
-@section('content')
-  @include('partials.page-header')
+{{--@section('content')--}}
+    {{--@include('partials.page-header')--}}
 
-  @if (!have_posts())
-    <div class="alert alert-warning">
-      {{ __('Sorry, but the page you were trying to view does not exist.', 'sage') }}
-    </div>
-    {!! get_search_form(false) !!}
-  @endif
-@endsection
+    {{--@if (!have_posts())--}}
+        {{--<div class="alert alert-warning">--}}
+            {{--{{ __('Sorry, but the page you were trying to view does not exist.', 'sage') }}--}}
+        {{--</div>--}}
+        {{--{!! get_search_form(false) !!}--}}
+    {{--@endif--}}
+{{--@endsection--}}
+
+@php
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: ".get_bloginfo('url'));
+    exit();
+@endphp
