@@ -42,6 +42,7 @@
 
 .sidebar-desktop {
     @include media-breakpoint-down(sm) {
+    //.is-mobile & {
         display: none;
 
         .front-page-data & {

@@ -13,11 +13,29 @@ import 'fullpage.js/vendors/scrolloverflow';
 import fullpage from 'fullpage.js';
 
 const getSelectorOnResize = () => {
-    if ($(window).width() < 859.98) {
+
+    if($(window).width() < $(window).height()) {
+        $('body').addClass('is-mobile');
+        $('body').removeClass('is-desktop');
         return '.section-mobile';
     } else {
-        return '.section-desktop';
+        if ($(window).width() < 859.98) {
+            $('body').addClass('is-mobile');
+            $('body').removeClass('is-desktop');
+            return '.section-mobile';
+        } else {
+            $('body').removeClass('is-mobile');
+            $('body').addClass('is-desktop');
+            return '.section-desktop';
+        }
     }
+
+
+    // if ($(window).width() < 859.98) {
+    //     return '.section-mobile';
+    // } else {
+    //     return '.section-desktop';
+    // }
 };
 
 window.instance = {};

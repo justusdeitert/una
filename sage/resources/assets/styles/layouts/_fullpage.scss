@@ -113,6 +113,12 @@
 
 .section-mobile, .section-desktop {
 
+    .fp-tableCell {
+        &.vertical-top {
+            vertical-align: top;
+        }
+    }
+
     .image-section, .section-mobile-inner {
         .image-wrapper {
             .admin-bar & {
@@ -162,14 +168,9 @@
         transform: translateY(0);
     }
 
-    @include media-breakpoint-down(sm) {
+    //@include media-breakpoint-down(sm) {
+    .is-mobile & {
         display: table !important;
-    }
-
-    .fp-tableCell {
-        &.vertical-top {
-            vertical-align: top;
-        }
     }
 
     .content-container {
@@ -301,7 +302,8 @@
 }
 
 .section-desktop {
-    @include media-breakpoint-down(sm) {
+    //@include media-breakpoint-down(sm) {
+    .is-mobile & {
         display: none !important;
     }
 
