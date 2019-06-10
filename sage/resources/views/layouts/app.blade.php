@@ -50,6 +50,42 @@
         </div>
     </div>
 
+    @php
+        $current_event = new WP_Query([
+            'post_type' => 'events',
+            'posts_per_page' => 1
+        ]);
+    @endphp
+
+    @if($current_event->post)
+        @php
+            $image = get_field('event_image', $current_event->post->ID);
+            $text = get_field('event_text', $current_event->post->ID);
+            $width = get_field('drag_and_drop_panel_width', $current_event->post->ID);
+        @endphp
+
+        <div id="draggable">
+            <i class="material-icons">close</i>
+            <a data-caption="{!! $image['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $image['ID'] !!}" href="{!! $image['url'] !!}"  data-group="mobile-group-{!! $image['ID'] !!}">
+                <div class="image-container">
+                    <img src="{!! $image['sizes']['large'] !!}" >
+                    {{--<div class="caption"><div class="span">{!! $image['caption'] !!}</div></div>--}}
+                </div>
+            </a>
+            <div class="text-container">
+                {!! $text !!}
+            </div>
+        </div>
+        @if($width)
+            <style>
+                #draggable {
+                    width: {!! $width !!}px !important;
+                }
+            </style>
+        @endif
+    @endif
+
+
     @php do_action('get_footer') @endphp
     {{--@include('partials.footer')--}}
     @php wp_footer() @endphp
