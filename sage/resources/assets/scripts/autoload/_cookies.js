@@ -35,3 +35,13 @@ window.cookieFunctions.getCookie = function(name) {
     }
     return '';
 };
+
+
+window.cookieFunctions.checkCookie = function() {
+    let cookieEnabled = navigator.cookieEnabled;
+    if (!cookieEnabled){
+        document.cookie = 'testcookie';
+        cookieEnabled = document.cookie.indexOf('testcookie') !== -1;
+    }
+    return cookieEnabled;
+};

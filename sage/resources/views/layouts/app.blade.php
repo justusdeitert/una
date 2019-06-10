@@ -109,20 +109,23 @@
             colors.push('{!! $color !!}');
         @endforeach
 
-        var cookieArray = colors;
-        // var cookieString = window.cookieFunctions.getCookie('colors');
+        if(window.cookieFunctions.checkCookie()) {
+            if(!window.cookieFunctions.getCookie('colors')) {
+                window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
+            } else {
+                if (JSON.parse(window.cookieFunctions.getCookie('colors')).length < 0) {
+                    window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
+                }
+            }
+        }
 
-        // if(!cookieString) {
-        //     window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
-        // } else {
-        //     if (JSON.parse(cookieString).length > 0) {
-        //         cookieArray = JSON.parse(cookieString);
-        //     } else {
-        //         window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
-        //     }
-        // }
+        console.log(window.cookieFunctions.checkCookie());
 
-        var randColors = () => cookieArray[Math.floor(Math.random() * cookieArray.length)];
+        if(window.cookieFunctions.checkCookie()) {
+            var randColors = () => JSON.parse(window.cookieFunctions.getCookie('colors'))[Math.floor(Math.random() * JSON.parse(window.cookieFunctions.getCookie('colors')).length)];
+        } else {
+            var randColors = () => colors[Math.floor(Math.random() * colors.length)];
+        }
 
         jQuery(document).ready(function() {
             var currentRandomColor = randColors();
@@ -140,18 +143,21 @@
             jQuery(this).children('h3, i').css( 'color', currentRandomColor );
             jQuery(this).css( 'border-color', currentRandomColor );
 
-            // if (JSON.parse(cookieString).length > 0) {
-            //     var index = cookieArray.indexOf(currentRandomColor);
-            //
-            //     if (index > -1) {
-            //         cookieArray.splice(index, 1);
-            //     }
-            //
-            //     window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
-            // } else {
-            //     window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
-            // }
+            if(window.cookieFunctions.checkCookie()) {
+                var cookieArray = JSON.parse(window.cookieFunctions.getCookie('colors'));
 
+                if (cookieArray.length > 1) {
+                    var index = cookieArray.indexOf(currentRandomColor);
+
+                    if (index > -1) {
+                        cookieArray.splice(index, 1);
+                    }
+
+                    window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
+                } else {
+                    window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
+                }
+            }
         });
 
         jQuery(hoverElements).on('touchend mouseout', function() {
@@ -162,12 +168,27 @@
             jQuery(this).children('h3, i').css( 'border-color', '' );
         });
 
-
         jQuery('.image-wrapper').on('touchstart mouseover', function() {
             // console.log('touchstart mouseover');
             var currentRandomColor = randColors();
             jQuery(this).addClass('active');
             jQuery(this).find('.hover-overlay').css( 'background-color', currentRandomColor );
+
+            if(window.cookieFunctions.checkCookie()) {
+                var cookieArray = JSON.parse(window.cookieFunctions.getCookie('colors'));
+
+                if (cookieArray.length > 1) {
+                    var index = cookieArray.indexOf(currentRandomColor);
+
+                    if (index > -1) {
+                        cookieArray.splice(index, 1);
+                    }
+
+                    window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
+                } else {
+                    window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
+                }
+            }
         });
 
         jQuery('.image-wrapper').on('touchend mouseout', function() {
