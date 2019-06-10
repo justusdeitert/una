@@ -303,6 +303,12 @@
 
 .section-desktop {
     //@include media-breakpoint-down(sm) {
+    display: none;
+
+    .is-desktop & {
+        display: block !important;
+    }
+
     .is-mobile & {
         display: none !important;
     }
