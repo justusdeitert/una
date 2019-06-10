@@ -81,6 +81,7 @@
     },
     "dependencies": {
         "bootstrap": "v4.3.1",
+        "draggable": "^4.2.0",
         "fullpage.js": "^3.0.5",
         "jquery": "^3.3.1",
         "jquery-touchswipe": "^1.6.19",
