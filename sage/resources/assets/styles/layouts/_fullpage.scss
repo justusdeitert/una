@@ -306,7 +306,7 @@
     display: none;
 
     .is-desktop & {
-        display: block !important;
+        display: table !important;
     }
 
     .is-mobile & {
