@@ -80,8 +80,9 @@ const initFullPageInstance = () => {
         navigationPosition: 'left',
         responsiveHeight: 0,
         scrollOverflow: true,
-        scrollOverflowOptions:{
-            preventDefault: false
+        scrollOverflowOptions: {
+            preventDefault: false,
+            // disablePointer: true,
         },
         // scrollHorizontally: true,
         // Custom selectors
