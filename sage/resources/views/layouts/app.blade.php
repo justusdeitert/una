@@ -103,13 +103,26 @@
 
     <script>
 
-        let colors = [];
+        var colors = [];
 
         @foreach($link_colors as $color)
             colors.push('{!! $color !!}');
         @endforeach
 
-        const randColors = () => colors[Math.floor(Math.random() * colors.length)];
+        var cookieArray = colors;
+        // var cookieString = window.cookieFunctions.getCookie('colors');
+
+        // if(!cookieString) {
+        //     window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
+        // } else {
+        //     if (JSON.parse(cookieString).length > 0) {
+        //         cookieArray = JSON.parse(cookieString);
+        //     } else {
+        //         window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
+        //     }
+        // }
+
+        var randColors = () => cookieArray[Math.floor(Math.random() * cookieArray.length)];
 
         jQuery(document).ready(function() {
             var currentRandomColor = randColors();
@@ -126,6 +139,19 @@
             jQuery(this).css( 'color', currentRandomColor );
             jQuery(this).children('h3, i').css( 'color', currentRandomColor );
             jQuery(this).css( 'border-color', currentRandomColor );
+
+            // if (JSON.parse(cookieString).length > 0) {
+            //     var index = cookieArray.indexOf(currentRandomColor);
+            //
+            //     if (index > -1) {
+            //         cookieArray.splice(index, 1);
+            //     }
+            //
+            //     window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
+            // } else {
+            //     window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
+            // }
+
         });
 
         jQuery(hoverElements).on('touchend mouseout', function() {
