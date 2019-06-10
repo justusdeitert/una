@@ -79,20 +79,20 @@ if ($('[sidebarjs]').length > 0) {
         }
     };
 
-    $('.wrap, .mobile-nav-clicker').swipe({
-        // Generic swipe handler for all directions
-        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-            // console.log("You swiped " + direction );
-
-            if (direction === 'left') {
-                openSidebar();
-            }
-
-            if (direction === 'right') {
-                closeSidebar();
-            }
-        }
-    });
+    // $('.wrap, .mobile-nav-clicker').swipe({
+    //     // Generic swipe handler for all directions
+    //     swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+    //         // console.log("You swiped " + direction );
+    //
+    //         if (direction === 'left') {
+    //             openSidebar();
+    //         }
+    //
+    //         if (direction === 'right') {
+    //             closeSidebar();
+    //         }
+    //     }
+    // });
 
     $('.mobile-nav-clicker').click(function() {
         if (sidebarJS.isVisible()) {
