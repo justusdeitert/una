@@ -1,7 +1,7 @@
 // https://github.com/bcherny/draggable
 // --------------------->
-import Draggable from 'Draggable';
-// const Draggable = require ('draggable/src/draggable.js');
+// import Draggable from 'Draggable';
+const Draggable = require ('draggable');
 
 let element = document.getElementById('draggable');
 
