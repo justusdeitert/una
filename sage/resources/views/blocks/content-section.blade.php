@@ -55,6 +55,30 @@
                     </div>
                 </div>
             @endif
+            @if(get_row_layout() === '2_column_text')
+                @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
+                    <div class="content-container">
+                        <div class="text-container">
+                            <div class="row">
+                                <div class="col-12 col-md-11">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            @if(get_sub_field('first_column'))
+                                                <p>{!! get_sub_field('first_column') !!}</p>
+                                            @endif
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            @if(get_sub_field('second_column'))
+                                                <p>{!! get_sub_field('second_column') !!}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @if(get_field('split_up_on_mobile'))</div>@endif
+            @endif
             @if(get_row_layout() == 'columns')
                 <div class="content-container">
                     <div class="column-container">
@@ -165,6 +189,30 @@
                                     @if($content_section['text'])
                                         <p>{!! $content_section['text'] !!}</p>
                                     @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @if(get_field('split_up_on_mobile'))</div>@endif
+            @endif
+            @if($content_section['acf_fc_layout'] === '2_column_text')
+                @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
+                    <div class="content-container">
+                        <div class="text-container">
+                            <div class="row">
+                                <div class="col-12 col-md-11">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            @if($content_section['first_column'])
+                                                <p>{!! $content_section['first_column'] !!}</p>
+                                            @endif
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            @if($content_section['second_column'])
+                                                <p>{!! $content_section['second_column'] !!}</p>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

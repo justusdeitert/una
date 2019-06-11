@@ -237,6 +237,54 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_5cffb270059d5": {
+                    "key": "layout_5cffb270059d5",
+                    "name": "2_column_text",
+                    "label": "2 Column Text",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5cffb270059d6",
+                            "label": "First Column",
+                            "name": "first_column",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_5cffb289059d7",
+                            "label": "Second Column",
+                            "name": "second_column",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_5cf7b6ed63a5c": {
                     "key": "layout_5cf7b6ed63a5c",
                     "name": "columns",
@@ -464,5 +512,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1560159904
+    "modified": 1560261367
 }
