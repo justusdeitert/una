@@ -126,6 +126,11 @@
         @endforeach
 
         @foreach($all_content_sections as $content_section)
+            @php
+            /*var_dump($content_section['image']['ID']);
+            var_dump($content_section['image']['url']);
+            var_dump(wp_get_attachment_metadata($content_section['image']['ID']));*/
+            @endphp
             @if($content_section['acf_fc_layout'] === 'image')
                 @if(!get_field('split_up_on_mobile'))<div class="image-section-mobile-wrapper">@endif
                     @if($content_section['link'])
