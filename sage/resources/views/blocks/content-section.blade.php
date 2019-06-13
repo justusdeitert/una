@@ -17,14 +17,14 @@
                         <a class="admin-prevent-click image-wrapper section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
                             <div class="image-container">
                                 <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
-                                <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                                <img src="{!! get_sub_field('image')['url']  !!}" alt="{!! get_sub_field('image')['caption'] !!}">
                             </div>
                         </a>
                     @else
                         {{--@php var_dump(get_sub_field('image')['caption']); @endphp--}}
                         <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="desktop-group-{!! get_sub_field('image')['ID'] !!}">
                             <div class="image-container">
-                                <img src="{!! get_sub_field('image')['sizes']['large'] !!}" >
+                                <img src="{!! get_sub_field('image')['url']  !!}" title="{!! get_sub_field('image')['caption'] !!}">
                                 <div class="caption"><div class="span">{!! get_sub_field('image')['caption'] !!}</div></div>
                             </div>
                         </a>
@@ -94,7 +94,7 @@
                                                         @if($sub_column['acf_fc_layout'] === 'image')
                                                             <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
                                                                 <div class="image-container">
-                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" >
+                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}">
                                                                 </div>
                                                             </a>
                                                         @endif
@@ -105,7 +105,7 @@
                                                             {!! $sub_column['text'] !!}
                                                             <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
                                                                 <div class="image-container">
-                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" >
+                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}">
                                                                 </div>
                                                             </a>
                                                         @endif
@@ -162,7 +162,7 @@
                             <div class="section-mobile-inner">
                                 <a class="admin-prevent-click image-wrapper section-mobile-image-{!! $content_section['image']['ID'] !!}" href="{!! $content_section['link']['url'] !!}">
                                     <div class="hover-overlay">{!! $content_section['link']['title'] !!}</div>
-                                    <img src="{!! $content_section['image']['sizes']['large'] !!}" >
+                                    <img src="{!! $content_section['image']['sizes']['large'] !!}" title="{!! $content_section['image']['caption'] !!}">
                                 </a>
                             </div>
                         @if(get_field('split_up_on_mobile'))</div>@endif
@@ -171,7 +171,7 @@
                             <div class="section-mobile-inner">
                                 <a data-caption="{!! $content_section['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $content_section['image']['ID'] !!}" href="{!! $content_section['image']['url'] !!}"  data-group="mobile-group-{!! $content_section['image']['ID'] !!}">
                                     <div class="image-container">
-                                        <img src="{!! $content_section['image']['sizes']['large'] !!}" >
+                                        <img src="{!! $content_section['image']['sizes']['large'] !!}" title="{!! $content_section['image']['caption'] !!}">
                                         <div class="caption"><div class="span">{!! $content_section['image']['caption'] !!}</div></div>
                                     </div>
                                 </a>
@@ -252,7 +252,7 @@
                                                                                         <div class="col-8">
                                                                                             <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
                                                                                                 <div class="image-container">
-                                                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" >
+                                                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}" >
                                                                                                 </div>
                                                                                             </a>
                                                                                         </div>
@@ -278,7 +278,7 @@
                                                                                         <div class="col-4">
                                                                                             <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
                                                                                                 <div class="image-container">
-                                                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" >
+                                                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}">
                                                                                                 </div>
                                                                                             </a>
                                                                                         </div>
