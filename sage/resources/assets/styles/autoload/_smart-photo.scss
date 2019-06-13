@@ -3,7 +3,7 @@
 
 .smartphoto-img {
     //box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0);
 }
 
 .smartphoto {
@@ -79,107 +79,3 @@
         }
     }
 }
-
-//.smartphoto-arrow-left {
-//    left: 50px;
-//    background-color: transparent;
-//
-//    @include media-breakpoint-down(sm) {
-//        left: 25px;
-//    }
-//
-//    a {
-//        background-image: url(../images/smartphoto-arrow-left.svg);
-//        height: 50px;
-//        width: 28px;
-//    }
-//}
-//
-//.smartphoto-arrow-right {
-//    right: 50px;
-//    background-color: transparent;
-//
-//    @include media-breakpoint-down(sm) {
-//        right: 25px;
-//    }
-//
-//    a {
-//        background-image: url(../images/smartphoto-arrow-right.svg);
-//        height: 50px;
-//        width: 28px;
-//    }
-//}
-//
-//.smartphoto-dismiss {
-//    background-image: url(../images/smartphoto-icon-close.svg);
-//    z-index: 1000;
-//    height: 40px;
-//    width: 40px;
-//    top: 50px;
-//    right: 50px;
-//
-//    @include media-breakpoint-down(sm) {
-//        right: 25px;
-//    }
-//}
-//
-//.smartphoto {
-//    font-family: 'proxima-nova', sans-serif;
-//    z-index: 100000;
-//    background-color: rgba(0, 0, 0, 0.7);
-//}
-//
-//.smartphoto-content {
-//    display: none;
-//}
-//
-//.smartphoto-img {
-//    display: inline;
-//}
-//
-//.smartphoto-count {
-//    z-index: 1000;
-//    @include fontSize(25px);
-//    color: #FEC000;
-//    position: absolute;
-//    top: 40px;
-//    left: 50px;
-//    letter-spacing: 2px;
-//
-//    @include media-breakpoint-down(sm) {
-//        left: 25px;
-//    }
-//}
-//
-//.smartphoto-header {
-//    height: 100%;
-//    z-index: initial;
-//    position: absolute;
-//    cursor: initial;
-//
-//    .smartphoto-caption {
-//        line-height: initial;
-//        background-color: rgba(61, 61, 61, 0.85);
-//        z-index: 1000;
-//        text-overflow: initial;
-//        white-space: initial;
-//        bottom: 0;
-//        height: auto;
-//        padding: 20px;
-//        top: auto;
-//        @include fontSize(23px);
-//        color: #FFFFFF;
-//        letter-spacing: 0;
-//    }
-//}
-//
-//.smartphoto-nav {
-//    display: none;
-//}
-//
-//.smartphoto-loader {
-//    border: 6px solid #FEC000;
-//    border-right-color: transparent;
-//    width: 40px;
-//    height: 40px;
-//}
