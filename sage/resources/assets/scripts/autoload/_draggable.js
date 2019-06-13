@@ -13,6 +13,10 @@ if(element) {
     drag.set(50, 50);
 }
 
-$('#draggable i').click(() => {
+// $('#draggable i').click(() => {
+//     $('#draggable').addClass('hide');
+// });
+
+$('#draggable i').on('click touchstart', function () {
     $('#draggable').addClass('hide');
 });
