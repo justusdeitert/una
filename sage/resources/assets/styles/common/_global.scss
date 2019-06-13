@@ -7,7 +7,7 @@ body {
 
 a {
     transition: color 0.2s ease, border-color 0.2s ease;
-    font-family: 'ApercuMedium', sans-serif;
+    font-family: 'ApercuBold', sans-serif;
     //font-weight: 500;
     color: #000;
     font-size: 15px;
@@ -54,6 +54,11 @@ p {
     &.dark {
         color: #000;
     }
+}
+
+b, strong {
+    font-family: 'ApercuBold', sans-serif;
+    font-weight: normal;
 }
 
 span, .span {
