@@ -5,8 +5,8 @@
 
 .search-form label {
     @extend .form-group;
-
-    font-weight: normal;
+    font-family: 'ApercuRegular', sans-serif;
+    //font-weight: normal;
 }
 
 .search-form .search-field {
