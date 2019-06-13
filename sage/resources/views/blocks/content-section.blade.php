@@ -60,7 +60,7 @@
                     <div class="content-container">
                         <div class="two-column-text-container">
                             <div class="row">
-                                <div class="col-12 col-md-11">
+                                <div class="col-12 col-md-10">
                                     <div class="row">
                                         <div class="col-12 col-sm-6">
                                             @if(get_sub_field('first_column'))
@@ -83,10 +83,10 @@
                 <div class="content-container">
                     <div class="column-container">
                         <div class="row">
-                            <div class="col-12 col-md-11">
+                            <div class="col-12 col-md-10">
                                 <div class="row">
                                     @foreach(get_sub_field('column') as $column )
-                                        <div class="col-4 col-lg-3">
+                                        <div class="col">
                                             <div class="column-text-container">
                                                 <h3>{!! $column['headline'] !!}</h3>
                                                 @if($column['column'])
