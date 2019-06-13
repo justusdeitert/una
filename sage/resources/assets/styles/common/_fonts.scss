@@ -30,6 +30,15 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'ApercuBold';
+    src: url('../fonts/apercu_bold.woff2') format('woff2'),
+    url('../fonts/apercu_bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 //@font-face {
 //    font-family: 'apercubold';
 //    src: url('apercu_bold-webfont.woff2') format('woff2'),
