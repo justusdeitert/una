@@ -12,8 +12,7 @@ import 'fullpage.js/vendors/scrolloverflow';
 
 import fullpage from 'fullpage.js';
 
-const getSelectorOnResize = () => {
-
+const getSelectorOnWindowSize = () => {
     if($(window).width() < $(window).height()) {
         $('body').addClass('is-mobile');
         $('body').removeClass('is-desktop');
@@ -26,11 +25,11 @@ const getSelectorOnResize = () => {
         } else {
             $('body').removeClass('is-mobile');
             $('body').addClass('is-desktop');
+            // console.log(window.instance.fullPageInstance.sectionSelector);
             return '.section-desktop';
+
         }
     }
-
-
     // if ($(window).width() < 859.98) {
     //     return '.section-mobile';
     // } else {
@@ -104,7 +103,7 @@ const initFullPageInstance = () => {
         },
         // scrollHorizontally: true,
         // Custom selectors
-        sectionSelector: getSelectorOnResize(),
+        sectionSelector: getSelectorOnWindowSize(),
         licenseKey: 'REMOVED',
         lazyLoading: true,
         afterLoad: afterLoad,
@@ -116,7 +115,7 @@ const initFullPageInstance = () => {
 
             window.sidebarinstance.closeSidebar();
 
-            if(destination.index === $(getSelectorOnResize()).length - 1) {
+            if(destination.index === $(getSelectorOnWindowSize()).length - 1) {
                 $('body').addClass('last-section')
             } else {
                 $('body').removeClass('last-section')
@@ -156,41 +155,49 @@ $('.back-to-top').click(() => {
     window.instance.fullPageInstance.moveTo(1);
 });
 
+$(window).on('resize', () => {
 
-// $('.section-desktop .image-wrapper').each(function() {
-//     console.log('lol');
-//     let hoverOverlay = $(this).children('.hover-overlay');
-//     let imageContainer = $(this).children('.image-container');
-//
-//     console.log($(hoverOverlay).offsetWidth);
-//     console.log($(image).width());
-//
-//     // Get on screen image
-//     var screenImage = $(image);
-//
-// // Create new offscreen image to test
-//     var theImage = new Image();
-//     theImage.src = screenImage.attr("src");
-//
-// // Get accurate measurements from that.
-//     var imageWidth = theImage.width;
-//     var imageHeight = theImage.height;
-//
-//     console.log(imageWidth);
-//
-// });
+    let sectionSelector = window.instance.fullPageInstance.getFullpageData().sectionSelector;
 
-$( window ).resize( function(){
+    if($(window).width() < $(window).height()) {
 
-    if( window.windowInstance.width != $( window ).width() ){
-        //Do something
-        window.instance.fullPageInstance.destroy('all');
-        initFullPageInstance();
+        if (sectionSelector === '.section-desktop') {
+            window.instance.fullPageInstance.destroy('all');
+            initFullPageInstance();
+        }
 
-        // window.instance.fullPageInstance.reBuild();
+    } else {
+        if ($(window).width() < 859.98) {
+            if (sectionSelector === '.section-desktop') {
+                window.instance.fullPageInstance.destroy('all');
+                initFullPageInstance();
+            }
 
-        window.windowInstance.width = $( window ).width();
-        delete window.windowInstance.width;
+        } else {
+            if (sectionSelector === '.section-mobile') {
+                window.instance.fullPageInstance.destroy('all');
+                initFullPageInstance();
+            }
+        }
     }
+
+    // Only on width change
+    // ------------>
+    // if(window.windowInstance.width != $( window ).width()) {
+    //
+    //     // console.log(getSelectorOnWindowSize());
+    //
+    //
+    //
+    //
+    //     //Do something
+    //     // window.instance.fullPageInstance.destroy('all');
+    //     // initFullPageInstance();
+    //
+    //     // window.instance.fullPageInstance.reBuild();
+    //
+    //     window.windowInstance.width = $( window ).width();
+    //     delete window.windowInstance.width;
+    // }
 });
 
