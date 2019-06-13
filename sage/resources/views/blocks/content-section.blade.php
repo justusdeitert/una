@@ -58,9 +58,9 @@
             @if(get_row_layout() === '2_column_text')
                 @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
                     <div class="content-container">
-                        <div class="text-container">
+                        <div class="two-column-text-container">
                             <div class="row">
-                                <div class="col-12 col-md-10">
+                                <div class="col-12 col-md-11">
                                     <div class="row">
                                         <div class="col-12 col-sm-6">
                                             @if(get_sub_field('first_column'))
@@ -86,7 +86,7 @@
                             <div class="col-12 col-md-11">
                                 <div class="row">
                                     @foreach(get_sub_field('column') as $column )
-                                        <div class="col-3">
+                                        <div class="col-4 col-lg-3">
                                             <div class="column-text-container">
                                                 <h3>{!! $column['headline'] !!}</h3>
                                                 @if($column['column'])
