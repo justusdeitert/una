@@ -413,12 +413,22 @@
         }
     }
 
-    .two-column-text-container {
+    .column-container,
+    .two-column-text-container,
+    .text-container {
         max-width: 1100px;
+
+        &.full-width {
+            max-width: initial;
+        }
     }
 
+    //.two-column-text-container {
+    //    max-width: 1100px;
+    //}
+
     .column-container {
-        max-width: 1100px;
+        //max-width: 1100px;
 
         .column-text-container {
             margin-bottom: 10px;

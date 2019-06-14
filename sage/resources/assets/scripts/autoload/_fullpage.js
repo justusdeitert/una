@@ -115,7 +115,7 @@ const initFullPageInstance = () => {
 
             window.sidebarinstance.closeSidebar();
 
-            if(destination.index === $(getSelectorOnWindowSize()).length - 1) {
+            if(destination.index >= 1) {
                 $('body').addClass('last-section')
             } else {
                 $('body').removeClass('last-section')

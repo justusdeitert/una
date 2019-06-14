@@ -12,39 +12,41 @@
         @while(has_sub_field('content_section'))
 
             @if(get_row_layout() == 'image')
-                <div class="image-section ">
-                    @if(get_sub_field('link'))
-                        <a class="admin-prevent-click image-wrapper section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
-                            <div class="image-container">
-                                <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
-                                <img src="{!! get_sub_field('image')['url']  !!}" alt="{!! get_sub_field('image')['caption'] !!}">
-                            </div>
-                        </a>
-                    @else
-                        {{--@php var_dump(get_sub_field('image')['caption']); @endphp--}}
-                        <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="desktop-group-{!! get_sub_field('image')['ID'] !!}">
-                            <div class="image-container">
-                                <img src="{!! get_sub_field('image')['url']  !!}" title="{!! get_sub_field('image')['caption'] !!}">
-                                <div class="caption"><div class="span">{!! get_sub_field('image')['caption'] !!}</div></div>
-                            </div>
-                        </a>
-                    @endif
+                @if(!get_sub_field('hide_on_desktop'))
+                    <div class="image-section ">
+                        @if(get_sub_field('link'))
+                            <a class="admin-prevent-click image-wrapper section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
+                                <div class="image-container">
+                                    <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
+                                    <img src="{!! get_sub_field('image')['url']  !!}" alt="{!! get_sub_field('image')['caption'] !!}">
+                                </div>
+                            </a>
+                        @else
+                            {{--@php var_dump(get_sub_field('image')['caption']); @endphp--}}
+                            <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="desktop-group-{!! get_sub_field('image')['ID'] !!}">
+                                <div class="image-container">
+                                    <img src="{!! get_sub_field('image')['url']  !!}" title="{!! get_sub_field('image')['caption'] !!}">
+                                    <div class="caption"><div class="span">{!! get_sub_field('image')['caption'] !!}</div></div>
+                                </div>
+                            </a>
+                        @endif
 
-                    <style>
-                        .section-image-{!! get_sub_field('image')['ID'] !!} {
-                            position: absolute;
-                            @if(get_sub_field('image_width')) width: {!! get_sub_field('image_width') !!}%; @endif
-                            @if(get_sub_field('position_top')) top: {!! get_sub_field('position_top') !!}%; @endif
-                            @if(get_sub_field('position_right')) right: {!! get_sub_field('position_right') !!}%; @endif
-                            @if(get_sub_field('position_bottom')) bottom: {!! get_sub_field('position_bottom') !!}%; @endif
-                            @if(get_sub_field('position_left')) left: {!! get_sub_field('position_left') !!}%; @endif
-                        }
-                    </style>
-                </div>
+                        <style>
+                            .section-image-{!! get_sub_field('image')['ID'] !!} {
+                                position: absolute;
+                                @if(get_sub_field('image_width')) width: {!! get_sub_field('image_width') !!}%; @endif
+                                @if(get_sub_field('position_top')) top: {!! get_sub_field('position_top') !!}%; @endif
+                                @if(get_sub_field('position_right')) right: {!! get_sub_field('position_right') !!}%; @endif
+                                @if(get_sub_field('position_bottom')) bottom: {!! get_sub_field('position_bottom') !!}%; @endif
+                                @if(get_sub_field('position_left')) left: {!! get_sub_field('position_left') !!}%; @endif
+                            }
+                        </style>
+                    </div>
+                @endif
             @endif
             @if(get_row_layout() == 'text')
                 <div class="content-container">
-                    <div class="text-container">
+                    <div class="text-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
                         <div class="row">
                             <div class="col-12 col-md-10">
                                 @if(get_sub_field('text'))
@@ -58,7 +60,7 @@
             @if(get_row_layout() === '2_column_text')
                 @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
                     <div class="content-container">
-                        <div class="two-column-text-container">
+                        <div class="two-column-text-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
                             <div class="row">
                                 <div class="col-12 col-md-10">
                                     <div class="row">
@@ -81,7 +83,7 @@
             @endif
             @if(get_row_layout() == 'columns')
                 <div class="content-container">
-                    <div class="column-container">
+                    <div class="column-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
                         <div class="row">
                             <div class="col-12 col-md-10">
                                 <div class="row">
