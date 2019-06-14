@@ -226,6 +226,10 @@
                     @include media-breakpoint-down(sm) {
                         font-size: 18px;
                     }
+
+                    .is-mobile & {
+                        font-size: 18px;
+                    }
                 }
 
                 i {
@@ -403,6 +407,10 @@
 
     &:first-child {
         padding-top: 100px;
+    }
+
+    &:last-child {
+        padding-bottom: 50px;
     }
 
     .image-container {
