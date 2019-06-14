@@ -31,5 +31,9 @@ jQuery(document).ready(() => {
             $(this).attr("target","_blank");
         }
     });
+
+    $('p:empty').remove();
+    $('span:empty').remove();
+    $('h3:empty').remove();
 });
 

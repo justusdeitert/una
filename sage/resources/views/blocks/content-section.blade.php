@@ -45,8 +45,37 @@
                 @endif
             @endif
             @if(get_row_layout() == 'text')
-                <div class="content-container">
-                    <div class="text-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
+                <div class="content-container text-container-accordion">
+                    @php
+                        $accordion_class = '';
+                        $accordion_id = '';
+                        $accordion_height = 200;
+                    @endphp
+                    @if(get_sub_field('accordion'))
+                        @php
+                            $accordion_class = 'collapse';
+                            $accordion_id = get_sub_field_object('accordion')['key'];
+                            $accordion_height = get_sub_field('accordion_height');
+                        @endphp
+
+                        <style>
+                            .{!! $accordion_id !!}.collapse {
+                                display: block;
+                                overflow: hidden;
+                                height: {!! $accordion_height !!}px;
+                            }
+
+                            .{!! $accordion_id !!}.collapse.show {
+                                height: auto;
+                            }
+
+                            .{!! $accordion_id !!}.collapsing {
+                                height: {!! $accordion_height !!}px;
+                            }
+                        </style>
+                    @endif
+                    {{--<div class="text-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">--}}
+                    <div id="{!! $accordion_id !!}" class="text-container {!! $accordion_id !!} {!! $accordion_class !!} @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
                         <div class="row">
                             <div class="col-12 col-md-10">
                                 @if(get_sub_field('text'))
@@ -55,14 +84,53 @@
                             </div>
                         </div>
                     </div>
+                    @if(get_sub_field('accordion'))
+                        <div class="row">
+                            <div class="col-12 col-md-10">
+                                <a role="button" class="accordion-button-bottom collapsed" data-toggle="collapse" href="#{!! $accordion_id !!}" aria-expanded="false" aria-controls="collapseExample"></a>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             @endif
             @if(get_row_layout() === '2_column_text')
                 @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
-                    <div class="content-container">
-                        <div class="two-column-text-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
+                    <div class="content-container text-container-accordion">
+                        @php
+                            $accordion_class = '';
+                            $accordion_id = '';
+                            $accordion_height = 200;
+                        @endphp
+                        @if(get_sub_field('accordion'))
+
+                            @php
+                                $accordion_class = 'collapse';
+                                $accordion_id = get_sub_field_object('accordion')['key'];
+                                $accordion_height = get_sub_field('accordion_height');
+                            @endphp
+
+                            <style>
+                                .{!! $accordion_id !!}.collapse {
+                                    display: block;
+                                    overflow: hidden;
+                                    height: {!! $accordion_height !!}px;
+                                }
+
+                                .{!! $accordion_id !!}.collapse.show {
+                                    height: auto;
+                                }
+
+                                .{!! $accordion_id !!}.collapsing {
+                                    height: {!! $accordion_height !!}px;
+                                }
+                            </style>
+                        @endif
+                        <div id="{!! $accordion_id !!}" class="two-column-text-container {!! $accordion_id !!} {!! $accordion_class !!} @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
                             <div class="row">
                                 <div class="col-12 col-md-10">
+                                    @if(get_sub_field('headline'))
+                                        <h3>{!! get_sub_field('headline') !!}</h3>
+                                    @endif
                                     <div class="row">
                                         <div class="col-12 col-sm-6">
                                             @if(get_sub_field('first_column'))
@@ -78,6 +146,13 @@
                                 </div>
                             </div>
                         </div>
+                        @if(get_sub_field('accordion'))
+                            <div class="row">
+                                <div class="col-12 col-md-10">
+                                    <a role="button" class="accordion-button-bottom collapsed" data-toggle="collapse" href="#{!! $accordion_id !!}" aria-expanded="false" aria-controls="collapseExample"></a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 @if(get_field('split_up_on_mobile'))</div>@endif
             @endif
@@ -184,8 +259,32 @@
             @endif
             @if($content_section['acf_fc_layout'] === 'text')
                 @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
-                    <div class="content-container">
-                        <div class="text-container">
+                    <div class="content-container text-container-accordion">
+                        @if($content_section['accordion'])
+                            @php
+                                $accordion_class = 'collapse';
+                                $accordion_id = 'accordion-mobile-text-' . $loop->index;
+                                $accordion_height = $content_section['accordion_height'];
+                            @endphp
+
+                            <style>
+                                .{!! $accordion_id !!}.collapse {
+                                    display: block;
+                                    overflow: hidden;
+                                    height: {!! $accordion_height !!}px;
+                                }
+
+                                .{!! $accordion_id !!}.collapse.show {
+                                    height: auto;
+                                }
+
+                                .{!! $accordion_id !!}.collapsing {
+                                    height: {!! $accordion_height !!}px;
+                                }
+                            </style>
+                        @endif
+                        {{--<div class="text-container">--}}
+                        <div id="{!! $accordion_id !!}" class="text-container {!! $accordion_id !!} {!! $accordion_class !!}">
                             <div class="row">
                                 <div class="col-12 col-md-11">
                                     @if($content_section['text'])
@@ -194,15 +293,47 @@
                                 </div>
                             </div>
                         </div>
+                        @if($content_section['accordion'])
+                            <div class="row">
+                                <div class="col-12 col-md-10">
+                                    <a role="button" class="accordion-button-bottom collapsed" data-toggle="collapse" href="#{!! $accordion_id !!}" aria-expanded="false" aria-controls="collapseExample"></a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 @if(get_field('split_up_on_mobile'))</div>@endif
             @endif
             @if($content_section['acf_fc_layout'] === '2_column_text')
                 @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
-                    <div class="content-container">
-                        <div class="text-container">
+                    <div class="content-container text-container-accordion">
+                        @if($content_section['accordion'])
+                            @php
+                                $accordion_class = 'collapse';
+                                $accordion_id = 'accordion-mobile-column-text-' . $loop->index;
+                                $accordion_height = $content_section['accordion_height'];
+                            @endphp
+                            <style>
+                                .{!! $accordion_id !!}.collapse {
+                                    display: block;
+                                    overflow: hidden;
+                                    height: {!! $accordion_height !!}px;
+                                }
+
+                                .{!! $accordion_id !!}.collapse.show {
+                                    height: auto;
+                                }
+
+                                .{!! $accordion_id !!}.collapsing {
+                                    height: {!! $accordion_height !!}px;
+                                }
+                            </style>
+                        @endif
+                        <div id="{!! $accordion_id !!}" class="two-column-text-container {!! $accordion_id !!} {!! $accordion_class !!}">
                             <div class="row">
                                 <div class="col-12 col-md-11">
+                                    @if($content_section['headline'])
+                                        <h3>{!! $content_section['headline'] !!}</h3>
+                                    @endif
                                     <div class="row">
                                         <div class="col-12 col-sm-6">
                                             @if($content_section['first_column'])
@@ -218,6 +349,13 @@
                                 </div>
                             </div>
                         </div>
+                        @if($content_section['accordion'])
+                            <div class="row">
+                                <div class="col-12 col-md-10">
+                                    <a role="button" class="accordion-button-bottom collapsed" data-toggle="collapse" href="#{!! $accordion_id !!}" aria-expanded="false" aria-controls="collapseExample"></a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 @if(get_field('split_up_on_mobile'))</div>@endif
             @endif

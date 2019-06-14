@@ -141,6 +141,15 @@ $('.accordion').on('hidden.bs.collapse', function() {
     window.instance.fullPageInstance.reBuild();
 });
 
+$('.text-container-accordion .collapse').on('shown.bs.collapse', function() {
+    window.instance.fullPageInstance.reBuild();
+});
+
+$('.text-container-accordion .collapse').on('hidden.bs.collapse', function() {
+    window.instance.fullPageInstance.reBuild();
+});
+
+
 
 // Only when resize width
 // ----------------->
@@ -199,5 +208,6 @@ $(window).on('resize', () => {
     //     window.windowInstance.width = $( window ).width();
     //     delete window.windowInstance.width;
     // }
+
 });
 
