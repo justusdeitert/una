@@ -440,19 +440,19 @@
 
         .accordion-button-bottom {
             display: flex;
-            height: 50px;
+            height: 40px;
             width: 100%;
             align-items: center;
         }
 
          a.collapsed:before  {
-            content: '+ Mehr zeigen';
+            content: 'Mehr zeigen';
             z-index: 100;
             position: relative;
         }
 
         a:not(.collapsed):before {
-            content: '- Weniger zeigen';
+            content: 'Weniger zeigen';
             z-index: 100;
             position: relative;
         }
@@ -506,6 +506,10 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s linear, hidden 0.2s linear;
+
+    p {
+        margin: 0;
+    }
 
     .last-section & {
         opacity: 1;
