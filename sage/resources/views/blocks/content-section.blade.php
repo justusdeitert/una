@@ -74,8 +74,12 @@
                             }
                         </style>
                     @endif
-                    {{--<div class="text-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">--}}
-                    <div id="{!! $accordion_id !!}" class="text-container {!! $accordion_id !!} {!! $accordion_class !!} @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
+
+                    @if(get_sub_field('accordion'))
+                        <div id="{!! $accordion_id !!}" class="text-container {!! $accordion_id !!} {!! $accordion_class !!} @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
+                    @else
+                        <div class="text-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
+                    @endif
                         <div class="row">
                             <div class="col-12 col-md-10">
                                 @if(get_sub_field('text'))
@@ -125,7 +129,11 @@
                                 }
                             </style>
                         @endif
-                        <div id="{!! $accordion_id !!}" class="two-column-text-container {!! $accordion_id !!} {!! $accordion_class !!} @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
+                        @if(get_sub_field('accordion'))
+                            <div id="{!! $accordion_id !!}" class="two-column-text-container {!! $accordion_id !!} {!! $accordion_class !!} @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
+                        @else
+                            <div class="two-column-text-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
+                        @endif
                             <div class="row">
                                 <div class="col-12 col-md-10">
                                     @if(get_sub_field('headline'))
@@ -283,8 +291,12 @@
                                 }
                             </style>
                         @endif
-                        {{--<div class="text-container">--}}
-                        <div id="{!! $accordion_id !!}" class="text-container {!! $accordion_id !!} {!! $accordion_class !!}">
+
+                        @if($content_section['accordion'])
+                            <div id="{!! $accordion_id !!}" class="text-container {!! $accordion_id !!} {!! $accordion_class !!}">
+                        @else
+                            <div class="text-container">
+                        @endif
                             <div class="row">
                                 <div class="col-12 col-md-11">
                                     @if($content_section['text'])
@@ -328,7 +340,11 @@
                                 }
                             </style>
                         @endif
-                        <div id="{!! $accordion_id !!}" class="two-column-text-container {!! $accordion_id !!} {!! $accordion_class !!}">
+                        @if($content_section['accordion'])
+                            <div id="{!! $accordion_id !!}" class="two-column-text-container {!! $accordion_id !!} {!! $accordion_class !!}">
+                        @else
+                            <div class="two-column-text-container">
+                        @endif
                             <div class="row">
                                 <div class="col-12 col-md-11">
                                     @if($content_section['headline'])
