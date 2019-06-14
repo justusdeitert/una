@@ -119,7 +119,7 @@
             }
         }
 
-        console.log(window.cookieFunctions.checkCookie());
+        // console.log(window.cookieFunctions.checkCookie());
 
         if(window.cookieFunctions.checkCookie()) {
             var randColors = () => JSON.parse(window.cookieFunctions.getCookie('colors'))[Math.floor(Math.random() * JSON.parse(window.cookieFunctions.getCookie('colors')).length)];
