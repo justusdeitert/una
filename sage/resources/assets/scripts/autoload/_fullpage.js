@@ -144,7 +144,9 @@ $('.accordion').on('hidden.bs.collapse', function() {
 let scrollerPosition = 0;
 
 $('.text-container-accordion .collapse').on('show.bs.collapse', function() {
-    scrollerPosition = $('.fp-section.active .fp-scroller').position().top;
+    if ($('.fp-section.active .fp-scroller').position()) {
+        scrollerPosition = $('.fp-section.active .fp-scroller').position().top;
+    }
 });
 
 $('.text-container-accordion .collapse').on('shown.bs.collapse', function() {
