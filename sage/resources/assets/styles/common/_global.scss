@@ -14,7 +14,8 @@ a {
     font-family: 'ApercuBold', sans-serif;
     //font-weight: 500;
     color: #000;
-    font-size: 15px;
+    font-size: 16px;
+    letter-spacing: -0.2px;
     line-height: 1.4;
     word-break: break-word;
 
@@ -43,8 +44,9 @@ h1, h2, h3, h4 {
 
 p {
     font-family: 'ApercuRegular', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.4;
+    letter-spacing: -0.2px;
 
     //@include media-breakpoint-down(sm) {
     //    font-size: 12px;
