@@ -190,7 +190,7 @@
         }
 
         &:last-child {
-            padding-bottom: 50px;
+            padding-bottom: 25px;
         }
 
         .text-and-image-container {
@@ -514,5 +514,11 @@
     .last-section & {
         opacity: 1;
         visibility: visible;
+    }
+}
+
+.fp-scroller {
+    &.slide-up {
+        transition-duration: 300ms !important;
     }
 }
