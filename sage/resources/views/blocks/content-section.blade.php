@@ -171,7 +171,7 @@
                             <div class="col-12 col-md-10">
                                 <div class="row">
                                     @foreach(get_sub_field('column') as $column )
-                                        <div class="col">
+                                        <div class="col-3">
                                             <div class="column-text-container">
                                                 <h3>{!! $column['headline'] !!}</h3>
                                                 @if($column['column'])
