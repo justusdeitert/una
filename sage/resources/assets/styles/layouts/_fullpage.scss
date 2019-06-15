@@ -193,6 +193,18 @@
             padding-bottom: 25px;
         }
 
+        .admin-bar & {
+            &:last-child {
+                padding-bottom: 25px + 32px;
+            }
+
+            @media screen and (max-width: 782px) {
+                &:last-child {
+                    padding-bottom: 25px + 46px;
+                }
+            }
+        }
+
         .text-and-image-container {
             margin-bottom: 30px;
 
