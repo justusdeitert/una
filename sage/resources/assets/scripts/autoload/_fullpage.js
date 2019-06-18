@@ -127,20 +127,13 @@ const initFullPageInstance = () => {
 
 // initFullPageInstance();
 
-$(document).on('ready', function() {
-    // Init Another Time on Window load, because of a not found mobile bug
-    // window.instance.fullPageInstance.destroy('all');
+$(document).ready(() => {
     initFullPageInstance();
 });
 
-$(window).on('load', function() {
-
-    // Rebuild instance because of a Bug!
-    // ---------------->
+$(window).load(() => {
     window.instance.fullPageInstance.reBuild();
 });
-
-// initFullPageInstance();
 
 let scrollerPosition = 0;
 
