@@ -133,6 +133,13 @@ $(document).on('ready', function() {
     initFullPageInstance();
 });
 
+$(window).on('load', function() {
+
+    // Rebuild instance because of a Bug!
+    // ---------------->
+    window.instance.fullPageInstance.reBuild();
+});
+
 // initFullPageInstance();
 
 let scrollerPosition = 0;
