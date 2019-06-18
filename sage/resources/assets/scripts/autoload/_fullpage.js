@@ -131,9 +131,9 @@ $(document).ready(() => {
     initFullPageInstance();
 });
 
-$(window).load(() => {
-    window.instance.fullPageInstance.reBuild();
-});
+// $(window).load(() => {
+//     window.instance.fullPageInstance.reBuild();
+// });
 
 let scrollerPosition = 0;
 
