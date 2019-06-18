@@ -32,6 +32,8 @@ jQuery(document).ready(() => {
         }
     });
 
+    // console.log(window.location);
+
     $('p:empty').remove();
     $('span:empty').remove();
     $('h3:empty').remove();
@@ -53,7 +55,7 @@ jQuery(document).ready(() => {
         if (this.href === window.location.origin) {
             $(this).click(function(e) {
                 e.preventDefault();
-                window.location.replace(window.location.origin);
+                window.location.assign(window.location.origin);
                 // location.reload(true);
             });
         }
