@@ -169,6 +169,12 @@ body:not(.role-administrator) {
     }
 }
 
+.image-wrapper {
+    .caption {
+        display: none;
+    }
+}
+
 .editor-inner-blocks {
     width: 100%;
 }
@@ -210,3 +216,4 @@ body:not(.role-administrator) {
         display: none;
     }
 }
+
