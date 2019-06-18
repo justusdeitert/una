@@ -135,12 +135,8 @@ $(window).on('load', function() {
 
 let scrollerPosition = 0;
 
-
-
 $('.accordion').on('show.bs.collapse', function() {
     // window.instance.fullPageInstance.reBuild();
-
-    console.log('show');
 });
 
 $('.accordion').on('shown.bs.collapse', function() {
@@ -151,14 +147,12 @@ $('.accordion').on('shown.bs.collapse', function() {
     $('.fp-section.active .fp-scroller').css({
         'transform' : 'translate(0px, '+ 0 +'px)',
     });
-    console.log('shown');
 });
 
 $('.accordion').on('hide.bs.collapse', function() {
     // --------------------->
     // Adjust Accordion Behaviour!
     // --------------------->
-    console.log('hide');
 
     $('.fp-section.active .fp-scroller').css({
         'transform' : 'translate(0px, '+ 0 +'px)',
@@ -170,8 +164,6 @@ $('.accordion').on('hide.bs.collapse', function() {
 $('.accordion').on('hidden.bs.collapse', function() {
     // $('.fp-section.active .fp-scroller').removeClass('slide-up');
     window.instance.fullPageInstance.reBuild();
-
-    console.log('hidden');
 });
 
 
@@ -203,8 +195,6 @@ $('.text-container-accordion .collapse').on('hidden.bs.collapse', function() {
         window.instance.fullPageInstance.reBuild();
     }, 200);
 });
-
-
 
 // Only when resize width
 // ----------------->

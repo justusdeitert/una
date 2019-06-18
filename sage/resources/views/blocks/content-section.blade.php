@@ -235,15 +235,15 @@
         @endforeach
 
         @foreach($all_content_sections as $content_section)
+
             @php
-            /*var_dump($content_section['image']['ID']);
-            var_dump($content_section['image']['url']);
-            var_dump(wp_get_attachment_metadata($content_section['image']['ID']));*/
+                $d_none_class = '';
             @endphp
+
             @if($content_section['acf_fc_layout'] === 'image')
                 @if(!get_field('split_up_on_mobile'))<div class="image-section-mobile-wrapper">@endif
                     @if($content_section['link'])
-                        @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
+                        @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable d-none">@endif
                             <div class="section-mobile-inner">
                                 <a class="admin-prevent-click image-wrapper section-mobile-image-{!! $content_section['image']['ID'] !!}" href="{!! $content_section['link']['url'] !!}">
                                     <div class="hover-overlay">{!! $content_section['link']['title'] !!}</div>
@@ -252,7 +252,7 @@
                             </div>
                         @if(get_field('split_up_on_mobile'))</div>@endif
                     @else
-                        @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable">@endif
+                        @if(get_field('split_up_on_mobile'))<div class="section-mobile fp-scrollable d-none">@endif
                             <div class="section-mobile-inner">
                                 <a data-caption="{!! $content_section['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $content_section['image']['ID'] !!}" href="{!! $content_section['image']['url'] !!}"  data-group="mobile-group-{!! $content_section['image']['ID'] !!}">
                                     <div class="image-container">
@@ -382,76 +382,75 @@
                         <div class="column-container">
                             <div class="row">
                                 <div class="col-12 col-md-11">
+                                    @php $iterator = 0; @endphp
+                                    <div id="accordion-{!! $section_id !!}" class="accordion">
+                                        <div class="row">
+                                            @foreach($content_section['column'] as $column)
+                                                @php
+                                                    $iterator++;
+                                                    $header_id = 'accordion-header-' . $section_id . '-' . $iterator;
+                                                    $body_id = 'accordion-body-' . $section_id . '-' . $iterator;
+                                                @endphp
+                                                <div class="col-12">
+                                                    <div class="column-text-container">
+                                                        <div class="accordion-header colored-hover" data-toggle="collapse" data-target="#{!! $body_id !!}" id="{!! $header_id !!}">
+                                                            <h3>{!! $column['headline'] !!}</h3>
+                                                            <i class="material-icons"></i>
+                                                        </div>
+                                                        <div class="accordion-body collapse" aria-labelledby="{!! $header_id !!}" id="{!! $body_id !!}" data-parent=".accordion">
+                                                            <div class="accordion-body-wrapper">
+                                                                <div class="row">
+                                                                    @if($column['column'])
+                                                                        @foreach($column['column'] as $sub_column)
+                                                                            @if($sub_column['acf_fc_layout'] === 'image')
+                                                                                <div class="col-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-8">
+                                                                                            <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
+                                                                                                <div class="image-container">
+                                                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}" >
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
 
-                                        @php $iterator = 0; @endphp
-                                        <div id="accordion-{!! $section_id !!}" class="accordion">
-                                            <div class="row">
-                                                @foreach($content_section['column'] as $column)
-                                                    @php
-                                                        $iterator++;
-                                                        $header_id = 'accordion-header-' . $section_id . '-' . $iterator;
-                                                        $body_id = 'accordion-body-' . $section_id . '-' . $iterator;
-                                                    @endphp
-                                                    <div class="col-12">
-                                                        <div class="column-text-container">
-                                                            <div class="accordion-header colored-hover" data-toggle="collapse" data-target="#{!! $body_id !!}" id="{!! $header_id !!}">
-                                                                <h3>{!! $column['headline'] !!}</h3>
-                                                                <i class="material-icons"></i>
-                                                            </div>
-                                                            <div class="accordion-body collapse" aria-labelledby="{!! $header_id !!}" id="{!! $body_id !!}" data-parent=".accordion">
-                                                                <div class="accordion-body-wrapper">
-                                                                    <div class="row">
-                                                                        @if($column['column'])
-                                                                            @foreach($column['column'] as $sub_column)
-                                                                                @if($sub_column['acf_fc_layout'] === 'image')
-                                                                                    <div class="col-12">
-                                                                                        <div class="row">
-                                                                                            <div class="col-8">
-                                                                                                <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
-                                                                                                    <div class="image-container">
-                                                                                                        <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}" >
-                                                                                                    </div>
-                                                                                                </a>
-                                                                                            </div>
+                                                                            @endif
+                                                                            @if($sub_column['acf_fc_layout'] === 'text')
+                                                                                <div class="col-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-8">
+                                                                                            {!! $sub_column['text'] !!}
                                                                                         </div>
                                                                                     </div>
-
-                                                                                @endif
-                                                                                @if($sub_column['acf_fc_layout'] === 'text')
-                                                                                    <div class="col-12">
-                                                                                        <div class="row">
-                                                                                            <div class="col-8">
-                                                                                                {!! $sub_column['text'] !!}
-                                                                                            </div>
+                                                                                </div>
+                                                                            @endif
+                                                                            @if($sub_column['acf_fc_layout'] === 'text_and_image')
+                                                                                <div class="col-12">
+                                                                                    <div class="row text-and-image-container">
+                                                                                        <div class="col-8">
+                                                                                            {!! $sub_column['text'] !!}
+                                                                                        </div>
+                                                                                        <div class="col-4">
+                                                                                            <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
+                                                                                                <div class="image-container">
+                                                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}">
+                                                                                                </div>
+                                                                                            </a>
                                                                                         </div>
                                                                                     </div>
-                                                                                @endif
-                                                                                @if($sub_column['acf_fc_layout'] === 'text_and_image')
-                                                                                    <div class="col-12">
-                                                                                        <div class="row text-and-image-container">
-                                                                                            <div class="col-8">
-                                                                                                {!! $sub_column['text'] !!}
-                                                                                            </div>
-                                                                                            <div class="col-4">
-                                                                                                <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
-                                                                                                    <div class="image-container">
-                                                                                                        <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}">
-                                                                                                    </div>
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endif
-                                                                    </div>
+                                                                                </div>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endforeach
-                                            </div>
+                                                </div>
+                                            @endforeach
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
