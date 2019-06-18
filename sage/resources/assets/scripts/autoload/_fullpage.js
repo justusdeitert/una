@@ -133,16 +133,26 @@ $(window).on('load', function() {
     initFullPageInstance();
 });
 
+let scrollerPosition = 0;
+
 $('.accordion').on('shown.bs.collapse', function() {
     window.instance.fullPageInstance.reBuild();
 });
 
+$('.accordion').on('hide.bs.collapse', function() {
+    // --------------------->
+    // Adjust Accordion Behaviour!
+    // --------------------->
+});
+
 $('.accordion').on('hidden.bs.collapse', function() {
+    $('.fp-section.active .fp-scroller').removeClass('slide-up');
     window.instance.fullPageInstance.reBuild();
 });
 
-let scrollerPosition = 0;
 
+// Accordion Text Container!!
+// ---------------------------->
 $('.text-container-accordion .collapse').on('show.bs.collapse', function() {
     if ($('.fp-section.active .fp-scroller').position()) {
         scrollerPosition = $('.fp-section.active .fp-scroller').position().top;
@@ -163,9 +173,11 @@ $('.text-container-accordion .collapse').on('hide.bs.collapse', function() {
 });
 
 $('.text-container-accordion .collapse').on('hidden.bs.collapse', function() {
-
     $('.fp-section.active .fp-scroller').removeClass('slide-up');
-    window.instance.fullPageInstance.reBuild();
+
+    setTimeout(() => {
+        window.instance.fullPageInstance.reBuild();
+    }, 200);
 });
 
 
