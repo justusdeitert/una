@@ -37,12 +37,27 @@ jQuery(document).ready(() => {
     $('h3:empty').remove();
 
     $('a').each(function() {
+        let a = new RegExp('/' + window.location.host + '/');
+
+        if (!a.test(this.href)) {
+            $(this).attr("target","_blank");
+        }
+
         if (this.href === window.location.href) {
             $(this).click(function(e) {
                 e.preventDefault();
                 location.reload(true);
             });
         }
+
+        if (this.href === window.location.origin) {
+            $(this).click(function(e) {
+                e.preventDefault();
+                window.location.replace(window.location.origin);
+                // location.reload(true);
+            });
+        }
+
     });
 });
 
