@@ -39,7 +39,6 @@ jQuery(document).ready(() => {
     $('a').each(function() {
         if (this.href === window.location.href) {
             $(this).click(function(e) {
-                console.log('prevent default!');
                 e.preventDefault();
                 location.reload(true);
             });
