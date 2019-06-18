@@ -26,7 +26,7 @@ jQuery(document).ready(() => {
 
     // Add Blank to All External Links
     $('a').each(function() {
-        var a = new RegExp('/' + window.location.host + '/');
+        let a = new RegExp('/' + window.location.host + '/');
         if (!a.test(this.href)) {
             $(this).attr("target","_blank");
         }
@@ -35,5 +35,13 @@ jQuery(document).ready(() => {
     $('p:empty').remove();
     $('span:empty').remove();
     $('h3:empty').remove();
+
+    $('a').each(function() {
+        if (this.href === window.location.href) {
+            $(this).click(() => {
+                location.reload(true);
+            });
+        }
+    });
 });
 
