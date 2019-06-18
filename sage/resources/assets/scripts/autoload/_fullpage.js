@@ -125,13 +125,13 @@ const initFullPageInstance = () => {
 };
 
 
-initFullPageInstance();
+// initFullPageInstance();
 
-// $(window).on('load', function() {
-//     // Init Another Time on Window load, because of a not found mobile bug
-//     // window.instance.fullPageInstance.destroy('all');
-//     initFullPageInstance();
-// });
+$(document).on('ready', function() {
+    // Init Another Time on Window load, because of a not found mobile bug
+    // window.instance.fullPageInstance.destroy('all');
+    initFullPageInstance();
+});
 
 // initFullPageInstance();
 
