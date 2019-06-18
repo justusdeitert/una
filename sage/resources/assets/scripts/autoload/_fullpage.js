@@ -128,12 +128,14 @@ const initFullPageInstance = () => {
 // initFullPageInstance();
 
 $(document).ready(() => {
-    initFullPageInstance();
+    // initFullPageInstance();
+    // TÜÜT TÜÜT
 });
 
-// $(window).load(() => {
-//     window.instance.fullPageInstance.reBuild();
-// });
+$(window).load(() => {
+    // window.instance.fullPageInstance.reBuild();
+    initFullPageInstance();
+});
 
 let scrollerPosition = 0;
 
