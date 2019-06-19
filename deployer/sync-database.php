@@ -4,7 +4,11 @@
 // --------------------------------->
 
 namespace Deployer;
-// use Dotenv;
+
+set('bin/wp', function () {
+    // return run('which composer');
+    return 'php ~/wp-cli.phar';
+});
 
 set('local_path', dirname(__FILE__, 2));
 
@@ -15,7 +19,7 @@ task('pull:db', function () {
     $exportFilename = '_db_export_' . date('Y-m-d_H-i-s') . '.sql';
     $exportAbsFile = get('deploy_path') . '/' . $exportFilename;
     writeln("<comment>Exporting server DB to {$exportAbsFile}</comment>");
-    run("cd {{current_path}}/bedrock && wp db export {$exportAbsFile}");
+    run("cd {{current_path}}/bedrock && {{bin/wp}} db export {$exportAbsFile}");
 
     // Download db export
     $downloadedExport = get('local_path') . '/' . $exportFilename;
@@ -99,15 +103,15 @@ task('push:db', function () {
     $backupAbsFile = get('deploy_path') . '/backups/' . $backupFilename;
     writeln("<comment>Making backup of DB on server to {$backupAbsFile}</comment>");
     writeln("cd {{current_path}}/bedrock && wp db export {$backupAbsFile}");
-    run("cd {{current_path}}/bedrock && wp db export {$backupAbsFile}");
+    run("cd {{current_path}}/bedrock && {{bin/wp}} db export {$backupAbsFile}");
 
     // Empty server DB
     writeln("<comment>Reset server DB</comment>");
-    run("cd {{current_path}}/bedrock && wp db reset");
+    run("cd {{current_path}}/bedrock && {{bin/wp}} db reset");
 
     // Import export file
     writeln("<comment>Importing {$uploadedExport}</comment>");
-    run("cd {{current_path}}/bedrock && wp db import {$uploadedExport}");
+    run("cd {{current_path}}/bedrock && {{bin/wp}} db import {$uploadedExport}");
 
     // Update URL in DB
     // In a multisite environment, the DOMAIN_CURRENT_SITE in the .env file uses the new remote domain.
@@ -116,7 +120,7 @@ task('push:db', function () {
     writeln("<comment>Updating URLs in the DB</comment>");
 
     foreach (get('sites') as $key => $value) {
-        run("cd {{current_path}}/bedrock && wp search-replace '{$key}' '{$value}' --skip-themes --url='{$key}' --network");
+        run("cd {{current_path}}/bedrock && {{bin/wp}} search-replace '{$key}' '{$value}' --skip-themes --url='{$key}' --network");
     }
 
     // Cleanup uploaded file
