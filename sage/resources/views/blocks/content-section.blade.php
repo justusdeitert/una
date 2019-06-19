@@ -7,13 +7,13 @@
 --}}
 
 @if(get_field('content_section'))
-    <div class="section-desktop fp-scrollable">
+    <div class="section-desktop fp-scrollable" itemscope itemtype="http://schema.org/ImageGallery">
 
         @while(has_sub_field('content_section'))
 
             @if(get_row_layout() == 'image')
                 @if(!get_sub_field('hide_on_desktop'))
-                    <div class="image-section" itemscope itemtype="http://schema.org/ImageGallery">
+                    <div class="image-section">
                         @if(get_sub_field('link'))
                             <a class="admin-prevent-click image-wrapper section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
                                 <div class="image-container" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -169,10 +169,10 @@
                     <div class="column-container @if(get_sub_field('full_width')){!! 'full-width' !!}@endif">
                         <div class="row">
                             <div class="col-12 col-md-10">
-                                <div class="row">
+                                <div class="row" itemscope itemtype="http://schema.org/ImageGallery">
                                     @foreach(get_sub_field('column') as $column )
                                         <div class="col-3">
-                                            <div class="column-text-container" itemscope itemtype="http://schema.org/ImageGallery">
+                                            <div class="column-text-container">
                                                 <h3>{!! $column['headline'] !!}</h3>
                                                 @if($column['column'])
                                                     @foreach($column['column'] as $sub_column)
