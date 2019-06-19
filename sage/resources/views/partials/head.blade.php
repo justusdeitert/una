@@ -30,6 +30,4 @@
         {{--https://mathiasbynens.be/notes/touch-icons--}}
         <link href="{!! get_field('touch_icon', 'option')['url'] !!}}" rel="apple-touch-icon-precomposed apple-touch-icon" />
     @endif
-
-
 </head>
