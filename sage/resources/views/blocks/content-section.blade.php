@@ -13,20 +13,20 @@
 
             @if(get_row_layout() == 'image')
                 @if(!get_sub_field('hide_on_desktop'))
-                    <div class="image-section ">
+                    <div class="image-section" itemscope itemtype="http://schema.org/ImageGallery">
                         @if(get_sub_field('link'))
                             <a class="admin-prevent-click image-wrapper section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('link')['url'] !!}">
-                                <div class="image-container">
+                                <div class="image-container" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                                     <div class="hover-overlay">{!! get_sub_field('link')['title'] !!}</div>
-                                    <img src="{!! get_sub_field('image')['url']  !!}" alt="{!! get_sub_field('image')['caption'] !!}">
+                                    <img src="{!! get_sub_field('image')['url']  !!}" alt="{!! get_sub_field('image')['caption'] !!}" itemprop="contentUrl">
                                 </div>
                             </a>
                         @else
                             {{--@php var_dump(get_sub_field('image')['caption']); @endphp--}}
                             <a data-caption="{!! get_sub_field('image')['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-image-{!! get_sub_field('image')['ID'] !!}" href="{!! get_sub_field('image')['url'] !!}"  data-group="desktop-group-{!! get_sub_field('image')['ID'] !!}">
-                                <div class="image-container">
-                                    <img src="{!! get_sub_field('image')['url']  !!}" title="{!! get_sub_field('image')['caption'] !!}">
-                                    <div class="caption"><div class="span">{!! get_sub_field('image')['caption'] !!}</div></div>
+                                <div class="image-container" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                    <img src="{!! get_sub_field('image')['url']  !!}" title="{!! get_sub_field('image')['caption'] !!}" itemprop="contentUrl">
+                                    <div class="caption"><div class="span" itemprop="description">{!! get_sub_field('image')['caption'] !!}</div></div>
                                 </div>
                             </a>
                         @endif
@@ -172,14 +172,14 @@
                                 <div class="row">
                                     @foreach(get_sub_field('column') as $column )
                                         <div class="col-3">
-                                            <div class="column-text-container">
+                                            <div class="column-text-container" itemscope itemtype="http://schema.org/ImageGallery">
                                                 <h3>{!! $column['headline'] !!}</h3>
                                                 @if($column['column'])
                                                     @foreach($column['column'] as $sub_column)
                                                         @if($sub_column['acf_fc_layout'] === 'image')
-                                                            <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
+                                                            <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                                                                 <div class="image-container">
-                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}">
+                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}" itemprop="contentUrl">
                                                                 </div>
                                                             </a>
                                                         @endif
@@ -188,9 +188,9 @@
                                                         @endif
                                                         @if($sub_column['acf_fc_layout'] === 'text_and_image')
                                                             {!! $sub_column['text'] !!}
-                                                            <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}">
+                                                            <a data-caption="{!! $sub_column['image']['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-{!! $sub_column['image']['ID'] !!}" href="{!! $sub_column['image']['url'] !!}"  data-group="mobile-group-{!! $sub_column['image']['ID'] !!}" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                                                                 <div class="image-container">
-                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}">
+                                                                    <img src="{!! $sub_column['image']['sizes']['large'] !!}" title="{!! $sub_column['image']['caption'] !!}" itemprop="contentUrl">
                                                                 </div>
                                                             </a>
                                                         @endif
