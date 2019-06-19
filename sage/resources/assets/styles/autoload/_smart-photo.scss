@@ -37,7 +37,7 @@
         color: #000;
         top: initial;
         bottom: 0;
-        left: initial;
+        left: 0;
         position: fixed;
         height: initial;
         text-overflow: initial;
@@ -49,12 +49,13 @@
 
     .smartphoto-dismiss {
         @extend .material-icons;
-
         background-image: none;
         top: initial;
         outline: none;
         width: 30px;
         height: 30px;
+        padding: 10px;
+        box-sizing: content-box;
 
         &:after {
             content: 'close';
