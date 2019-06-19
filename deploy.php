@@ -54,7 +54,7 @@ set('shared_dirs', [
 set('default_stage', 'production');
 
 // Hosts
-host('justusdeitert.de')
+host('una-moehrke.justusdeitert.de')
     ->stage('staging')
     ->set('deploy_path', '~/una-moehrke.justusdeitert.de')
     ->set( 'sites', [
@@ -63,7 +63,7 @@ host('justusdeitert.de')
 
 host('una-moehrke.de')
     ->stage('production')
-    ->set('deploy_path', '~/una-moehrke.de')
+    ->set('deploy_path', '/www/una-moehrke.de')
     ->set( 'sites', [
         'una-moehrke.main' => 'una-moehrke.de',
     ]);
@@ -118,7 +118,7 @@ set('slack_webhook', 'SLACK_WEBHOOK_REMOVED');
 set('slack_title', ''); // We don't need to show title in this channel
 set('slack_text', '_{{user}}_ deploying `{{branch}}` to *{{target}}*');
 set('slack_success_text', 'Deploy to *{{target}}* successful');
-set('slack_success_text', 'Successfully Deployed to *{{application}}.{{target}}*');
+set('slack_success_text', 'Successfully Deployed to *{{target}}*');
 set('slack_failure_text', 'Deploy to *{{target}}* failed');
 
 // Fire Slack Notifications on

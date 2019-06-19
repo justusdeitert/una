@@ -4,7 +4,7 @@ namespace Deployer;
 
 set('bin/composer', function () {
     // return run('which composer');
-    return 'composer';
+    return 'php ~/composer.phar';
 });
 
 // TODO: Define Multiple Array for Composer Paths in the Future!
