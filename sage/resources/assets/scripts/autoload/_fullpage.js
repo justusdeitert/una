@@ -10,7 +10,7 @@
 // import 'fullpage.js/vendors/easings';
 import 'fullpage.js/vendors/scrolloverflow';
 
-import fullpage from 'fullpage.js';
+import fullpage from 'fullpage.js/dist/fullpage';
 
 const getSelectorOnWindowSize = () => {
     if($(window).width() < $(window).height()) {
@@ -135,6 +135,7 @@ $(document).ready(() => {
 $(window).load(() => {
     // window.instance.fullPageInstance.reBuild();
     initFullPageInstance();
+    hoverOverlayWidth();
 });
 
 let scrollerPosition = 0;
@@ -209,6 +210,12 @@ $('.text-container-accordion .collapse').on('hidden.bs.collapse', function() {
     // console.log('lols');
 });
 
+const hoverOverlayWidth = () => {
+    return $('.hover-overlay').each(function() {
+        $(this).width($(this).next().width())
+    });
+};
+
 // Only when resize width
 // ----------------->
 window.windowInstance = {};
@@ -223,6 +230,8 @@ $('.back-to-top').click(() => {
 });
 
 $(window).on('resize', () => {
+
+    hoverOverlayWidth();
 
     let sectionSelector = window.instance.fullPageInstance.getFullpageData().sectionSelector;
 

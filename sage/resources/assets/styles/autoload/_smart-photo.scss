@@ -35,16 +35,19 @@
     .smartphoto-caption {
         //display: none;
         color: #000;
-        top: initial;
+        top: auto;
         bottom: 0;
         left: 0;
         position: fixed;
-        height: initial;
         text-overflow: initial;
         white-space: initial;
         font-size: 12px;
         line-height: 18px;
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        justify-content: center;
     }
 
     .smartphoto-dismiss {
