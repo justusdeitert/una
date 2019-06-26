@@ -54,7 +54,7 @@ set('shared_dirs', [
 set('default_stage', 'production');
 
 // Hosts
-host('una-moehrke.justusdeitert.de')
+host('justusdeitert.de')
     ->stage('staging')
     ->set('deploy_path', '~/una-moehrke.justusdeitert.de')
     ->set( 'sites', [
