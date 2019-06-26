@@ -89,7 +89,7 @@ task('deploy', [
 // after('deploy:update_code', 'npm:install');
 
 after('upload:repository', 'upload:dist'); // New Upload Task with local production Build for Server without Node.js!!
-after('upload:repository', 'composer:install');
+after('upload:shared', 'composer:install'); // Composer after shared because of .env variables
 
 // Push and Pull DB Commands!
 // ----------------->
