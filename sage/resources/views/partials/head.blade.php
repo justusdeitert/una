@@ -6,7 +6,8 @@
     {{--// Why is it Tricky as Fuck to change the WP Title--}}
     @php function new_title() { echo str_replace(' ', '', wp_title('', false)); } @endphp
     @php function new_description() { echo str_replace(' ', '', bloginfo('description')); } @endphp
-    <title>@php bloginfo('name'); @endphp | @php is_front_page() ? new_description() : new_title(); @endphp</title>
+
+    <title>@php bloginfo('name'); @endphp: @php is_front_page() ? new_description() : new_title(); @endphp</title>
 
     @php wp_head() @endphp
 
