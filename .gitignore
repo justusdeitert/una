@@ -13,3 +13,6 @@ backups
 
 # Composer
 /vendor
+
+# Deploy
+release.zip

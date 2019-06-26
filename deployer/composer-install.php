@@ -3,7 +3,8 @@
 namespace Deployer;
 
 set('bin/composer', function () {
-    return run('which composer');
+    // return run('which composer');
+    return 'composer';
 });
 
 // TODO: Define Multiple Array for Composer Paths in the Future!
@@ -16,7 +17,7 @@ task('composer:install:bedrock', function () {
             run('cp -R {{previous_release}}/bedrock/vendor {{release_path}}/bedrock');
         }
     }
-    run("cd {{release_path}}/bedrock && {{bin/composer}} update");
+    run("cd {{release_path}}/bedrock && {{bin/composer}} install");
 });
 
 desc('Install Composer packages in Sage');
@@ -27,7 +28,7 @@ task('composer:install:sage', function () {
             run('cp -R {{previous_release}}/sage/vendor {{release_path}}/sage');
         }
     }
-    run("cd {{release_path}}/sage && {{bin/composer}} update");
+    run("cd {{release_path}}/sage && {{bin/composer}} install");
 });
 
 desc('Composer install');

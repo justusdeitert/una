@@ -63,7 +63,7 @@ host('justusdeitert.de')
 
 host('una-moehrke.de')
     ->stage('production')
-    ->set('deploy_path', '~/una-moehrke.justusdeitert.de')
+    ->set('deploy_path', '~/una-moehrke.de')
     ->set( 'sites', [
         'una-moehrke.main' => 'una-moehrke.de',
     ]);
@@ -76,7 +76,8 @@ task('deploy', [
     'deploy:prepare',
     'deploy:lock',
     'deploy:release',
-    'deploy:update_code',
+    // 'deploy:update_code',
+    'upload:repository',
     'deploy:shared',
     'deploy:writable',
     'deploy:symlink',
@@ -86,9 +87,9 @@ task('deploy', [
 ]);
 
 // after('deploy:update_code', 'npm:install');
-after('deploy:update_code', 'upload'); // New Upload Task with local production Build for Server without Node.js!!
-after('deploy:update_code', 'composer:install');
 
+after('upload:repository', 'upload:dist'); // New Upload Task with local production Build for Server without Node.js!!
+after('upload:repository', 'composer:install');
 
 // Push and Pull DB Commands!
 // ----------------->
