@@ -76,7 +76,8 @@
         "wpackagist-plugin/redirection":"4.3.1",
         "wpackagist-plugin/google-sitemap-generator":"4.1.0",
         "wpackagist-plugin/enable-media-replace":"3.3.1",
-        "wpackagist-plugin/clean-image-filenames":"1.2.1"
+        "wpackagist-plugin/clean-image-filenames":"1.2.1",
+        "wpackagist-plugin/google-analytics-dashboard-for-wp":"5.3.8"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0.2",
