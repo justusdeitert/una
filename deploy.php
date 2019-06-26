@@ -12,14 +12,6 @@ foreach (new \DirectoryIterator(dirname(__FILE__) . '/deployer') as $fileinfo) {
     }
 }
 
-// Set DNS Hosts for Database update
-// More Hosts For Multisite
-// deployer/sync-database.php
-// ----------------->
-set( 'sites', [
-    'una-moehrke.main' => 'una-moehrke.justusdeitert.de',
-]);
-
 // Uploads all files (and directories) from local machine to remote server.
 // Overwrites existing files on server with updated local files and uploads new files.
 // Locally deleted files are not deleted on server.
@@ -55,15 +47,26 @@ set('shared_dirs', [
     'bedrock/web/app/uploads'
 ]);
 
-// set('use_relative_symlink', true);
-
 // Writable dirs by web server
 // set('writable_dirs', []);
 // set('allow_anonymous_stats', false);
 
+set('default_stage', 'production');
+
 // Hosts
 host('justusdeitert.de')
-    ->set('deploy_path', '~/una-moehrke.justusdeitert.de');
+    ->stage('staging')
+    ->set('deploy_path', '~/una-moehrke.justusdeitert.de')
+    ->set( 'sites', [
+        'una-moehrke.main' => 'una-moehrke.justusdeitert.de',
+    ]);
+
+host('una-moehrke.de')
+    ->stage('production')
+    ->set('deploy_path', '~/una-moehrke.justusdeitert.de')
+    ->set( 'sites', [
+        'una-moehrke.main' => 'una-moehrke.de',
+    ]);
 
 // Tasks
 // https://deployer.org/docs/advanced/deploy-strategies.html
@@ -82,9 +85,13 @@ task('deploy', [
     'success'
 ]);
 
-after('deploy:update_code', 'npm:install');
+// after('deploy:update_code', 'npm:install');
+after('deploy:update_code', 'upload'); // New Upload Task with local production Build for Server without Node.js!!
 after('deploy:update_code', 'composer:install');
 
+
+// Push and Pull DB Commands!
+// ----------------->
 desc('Push Project DB & Uploads Folder');
 task('push', [
     'push:db',
