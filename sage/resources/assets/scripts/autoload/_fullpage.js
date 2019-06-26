@@ -152,8 +152,6 @@ $('.accordion').on('shown.bs.collapse', function() {
         window.instance.fullPageInstance.destroy('all');
         initFullPageInstance();
     }, 200);
-    // console.log('shown');
-
 });
 
 $('.accordion').on('hide.bs.collapse', function() {
@@ -176,7 +174,6 @@ $('.accordion').on('hidden.bs.collapse', function() {
         initFullPageInstance();
     }, 200);
 });
-
 
 // Accordion Text Container!!
 // ---------------------------->
@@ -256,10 +253,7 @@ $(window).on('resize', () => {
     // if(window.windowInstance.width != $( window ).width()) {
     //
     //     // console.log(getSelectorOnWindowSize());
-    //
-    //
-    //
-    //
+
     //     //Do something
     //     // window.instance.fullPageInstance.destroy('all');
     //     // initFullPageInstance();
