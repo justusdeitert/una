@@ -9,6 +9,9 @@
 
     <title>@php bloginfo('name'); @endphp: @php is_front_page() ? new_description() : new_title(); @endphp</title>
 
+    {{--Google Site Verification - Confir   m ownership--}}
+    <meta name="google-site-verification" content="ciWuq4bh-v2OypfzSbKRdhCO10qDmoRUncd1O1rX6fs" />
+
     @php wp_head() @endphp
 
     {{--Implementing Google Icons And Fonts--}}
