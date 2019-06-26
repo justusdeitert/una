@@ -12,22 +12,25 @@ set('bin/composer', function () {
 desc('Install Composer packages in Bedrock');
 task('composer:install:bedrock', function () {
     writeln('Install Composer packages in Bedrock');
-    if (has('previous_release')) {
-        if (test('[ -d {{previous_release}}/bedrock/vendor ]')) {
-            run('cp -R {{previous_release}}/bedrock/vendor {{release_path}}/bedrock');
-        }
-    }
+
+    // TODO: Makes Error
+    // ------------------------------->
+    // if (has('previous_release')) {
+    //     if (test('[ -d {{previous_release}}/bedrock/vendor ]')) {
+    //         run('cp -R {{previous_release}}/bedrock/vendor {{release_path}}/bedrock');
+    //     }
+    // }
     run("cd {{release_path}}/bedrock && {{bin/composer}} install");
 });
 
 desc('Install Composer packages in Sage');
 task('composer:install:sage', function () {
     writeln('Install Composer packages in Sage');
-    if (has('previous_release')) {
-        if (test('[ -d {{previous_release}}/sage/vendor ]')) {
-            run('cp -R {{previous_release}}/sage/vendor {{release_path}}/sage');
-        }
-    }
+    // if (has('previous_release')) {
+    //     if (test('[ -d {{previous_release}}/sage/vendor ]')) {
+    //         run('cp -R {{previous_release}}/sage/vendor {{release_path}}/sage');
+    //     }
+    // }
     run("cd {{release_path}}/sage && {{bin/composer}} install");
 });
 
