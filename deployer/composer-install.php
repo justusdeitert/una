@@ -26,6 +26,7 @@ task('composer:install:bedrock', function () {
 desc('Install Composer packages in Sage');
 task('composer:install:sage', function () {
     writeln('Install Composer packages in Sage');
+
     // if (has('previous_release')) {
     //     if (test('[ -d {{previous_release}}/sage/vendor ]')) {
     //         run('cp -R {{previous_release}}/sage/vendor {{release_path}}/sage');

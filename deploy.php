@@ -79,17 +79,19 @@ task('deploy', [
     // 'deploy:update_code',
     'upload:repository',
     'deploy:shared',
-    'deploy:writable',
+    // 'deploy:writable',
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
     'success'
 ]);
 
-// after('deploy:update_code', 'npm:install');
+// New Upload Task with local production Build for Server without Node.js!!
+after('upload:repository', 'upload:dist');
 
-after('upload:repository', 'upload:dist'); // New Upload Task with local production Build for Server without Node.js!!
-after('deploy:shared', 'composer:install'); // Composer after shared because of .env variables
+// Composer after deploy:shared because of .env variables
+// ----------->
+after('deploy:shared', 'composer:install');
 
 // Push and Pull DB Commands!
 // ----------------->
