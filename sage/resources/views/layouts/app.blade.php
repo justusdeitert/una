@@ -122,9 +122,13 @@
         // console.log(window.cookieFunctions.checkCookie());
 
         if(window.cookieFunctions.checkCookie()) {
-            var randColors = () => JSON.parse(window.cookieFunctions.getCookie('colors'))[Math.floor(Math.random() * JSON.parse(window.cookieFunctions.getCookie('colors')).length)];
+            var randColors = function() {
+                return JSON.parse(window.cookieFunctions.getCookie('colors'))[Math.floor(Math.random() * JSON.parse(window.cookieFunctions.getCookie('colors')).length)];
+            }
         } else {
-            var randColors = () => colors[Math.floor(Math.random() * colors.length)];
+            var randColors = function() {
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
         }
 
         jQuery(document).ready(function() {
