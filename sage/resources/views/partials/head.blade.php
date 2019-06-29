@@ -28,7 +28,7 @@
     @endif
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ get_bloginfo('name') }}" />
+    <meta property="og:title" content="{{ get_bloginfo('name') }}: @php new_description(); @endphp" />
     <meta property="og:url" content="{{ get_home_url() }}" />
 
     @if(get_field('open_graph_images', 'option'))
