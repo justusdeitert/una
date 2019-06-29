@@ -25,12 +25,12 @@ jQuery(document).ready(() => {
     routes.loadEvents();
 
     // Add Blank to All External Links
-    $('a').each(function() {
-        let a = new RegExp('/' + window.location.host + '/');
-        if (!a.test(this.href)) {
-            $(this).attr("target","_blank");
-        }
-    });
+    // $('a').each(function() {
+    //     let a = new RegExp('/' + window.location.host + '/');
+    //     if (!a.test(this.href)) {
+    //         $(this).attr("target","_blank");
+    //     }
+    // });
 
     $('p:empty').remove();
     $('span:empty').remove();

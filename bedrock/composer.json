@@ -78,7 +78,8 @@
         "wpackagist-plugin/enable-media-replace":"3.3.1",
         "wpackagist-plugin/clean-image-filenames":"1.2.1",
         "wpackagist-plugin/google-analytics-dashboard-for-wp":"5.3.8",
-        "wpackagist-plugin/pc-robotstxt":"1.9"
+        "wpackagist-plugin/pc-robotstxt":"1.9",
+        "wpackagist-plugin/disable-comments":"1.9.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0.2",
@@ -94,7 +95,8 @@
                 "wpackagist-plugin/metronet-profile-picture",
                 "wpackagist-plugin/dashboard-server-specs",
                 "wpackagist-plugin/simple-history",
-                "wpackagist-plugin/imsanity"
+                "wpackagist-plugin/imsanity",
+                "wpackagist-plugin/disable-comments"
             ],
             "web/app/plugins/{$name}/": [
                 "type:wordpress-plugin"
