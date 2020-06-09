@@ -1,4 +1,5 @@
 <?php
+
 namespace Deployer;
 
 require 'recipe/common.php';
@@ -22,7 +23,7 @@ set('sync_dirs', [
 ]);
 
 // Configure Theme Path
-set( 'theme_path', 'theme' );
+set('theme_path', 'theme');
 
 // Project name
 set('application', 'una-moehrke');
@@ -57,14 +58,14 @@ set('default_stage', 'production');
 host('justusdeitert.de')
     ->stage('staging')
     ->set('deploy_path', '~/una-moehrke.justusdeitert.de')
-    ->set( 'sites', [
+    ->set('sites', [
         'una-moehrke.main' => 'una-moehrke.justusdeitert.de',
     ]);
 
 host('una-moehrke.de')
     ->stage('production')
     ->set('deploy_path', '/www/una-moehrke.de')
-    ->set( 'sites', [
+    ->set('sites', [
         'una-moehrke.main' => 'una-moehrke.de',
     ]);
 
