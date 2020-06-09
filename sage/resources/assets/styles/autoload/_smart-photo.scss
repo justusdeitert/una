@@ -4,6 +4,16 @@
 .smartphoto-img {
     //box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0);
+    cursor: url('../images/icon-magnifying-glass.png'), zoom-in;
+
+    &.smartphoto-img-onmove {
+        cursor: url('../images/icon-minifying-glass.png'), zoom-out;
+    }
+}
+
+.smartphoto-content {
+    //cursor: zoom-out;
+    cursor: url('../images/icon-x.png'), zoom-out;
 }
 
 .smartphoto {
