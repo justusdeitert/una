@@ -77,7 +77,8 @@
         "wpackagist-plugin/enable-media-replace":"3.3.1",
         "wpackagist-plugin/clean-image-filenames":"1.2.1",
         "wpackagist-plugin/pc-robotstxt":"1.9",
-        "wpackagist-plugin/disable-comments":"1.10.2"
+        "wpackagist-plugin/disable-comments":"1.10.2",
+        "wpackagist-plugin/google-site-kit":"1.6.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0.2",
