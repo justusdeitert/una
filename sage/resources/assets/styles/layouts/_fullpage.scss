@@ -458,13 +458,13 @@
         }
 
          a.collapsed:before  {
-            content: 'Mehr zeigen';
+            content: 'show more';
             z-index: 100;
             position: relative;
         }
 
         a:not(.collapsed):before {
-            content: 'Weniger zeigen';
+            content: 'show less';
             z-index: 100;
             position: relative;
         }
