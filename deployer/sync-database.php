@@ -5,10 +5,10 @@
 
 namespace Deployer;
 
-set('bin/wp', function () {
-    // return run('which composer');
-    return 'php ~/wp-cli.phar';
-});
+// set('bin/wp', function () {
+//     // return run('which composer');
+//     return 'php ~/wp-cli.phar';
+// });
 
 set('local_path', dirname(__FILE__, 2));
 

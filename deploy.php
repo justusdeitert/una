@@ -48,6 +48,11 @@ set('shared_dirs', [
     'bedrock/web/app/uploads'
 ]);
 
+set('composer_paths', [
+    'bedrock',
+    'sage'
+]);
+
 // Writable dirs by web server
 // set('writable_dirs', []);
 // set('allow_anonymous_stats', false);
@@ -58,6 +63,8 @@ set('default_stage', 'production');
 host('justusdeitert.de')
     ->stage('staging')
     ->set('deploy_path', '~/una-moehrke.justusdeitert.de')
+    ->set('bin/composer', 'composer')
+    ->set('bin/wp', 'wp')
     ->set('sites', [
         'una-moehrke.main' => 'una-moehrke.justusdeitert.de',
     ]);
@@ -65,6 +72,8 @@ host('justusdeitert.de')
 host('una-moehrke.de')
     ->stage('production')
     ->set('deploy_path', '/www/una-moehrke.de')
+    ->set('bin/composer', 'php ~/composer.phar')
+    ->set('bin/wp', 'php ~/wp-cli.phar')
     ->set('sites', [
         'una-moehrke.main' => 'una-moehrke.de',
     ]);
