@@ -87,15 +87,7 @@
     "extra": {
         "installer-paths": {
             "web/app/mu-plugins/{$name}/": [
-                "type:wordpress-muplugin",
-                "wpackagist-plugin/svg-support",
-                "wpackagist-plugin/user-switching",
-                "wpackagist-plugin/tinymce-advanced",
-                "wpackagist-plugin/metronet-profile-picture",
-                "wpackagist-plugin/dashboard-server-specs",
-                "wpackagist-plugin/simple-history",
-                "wpackagist-plugin/imsanity",
-                "wpackagist-plugin/disable-comments"
+                "type:wordpress-muplugin"
             ],
             "web/app/plugins/{$name}/": [
                 "type:wordpress-plugin"

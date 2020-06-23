@@ -50,7 +50,7 @@ task('composer:install', function () {
 
         // if (has('previous_release')) {
         //     if (test("[ -d {{previous_release}}/{$value}/vendor ]")) {
-        //         writeln("Copy Composer Packages in from {{previous_release}}/{$value}/vendor to {{release_path}}/{$value}");
+        //         writeln("Copy Composer Packages in from {{previous_release}}/{$value}/vendor to {{release_path}}/{$lue}");
         //         run("cp -R {{previous_release}}/{$value}/vendor {{release_path}}/{$value}", ['timeout' => 600]);
         //     }
         // }
