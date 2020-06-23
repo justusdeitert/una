@@ -60,18 +60,26 @@
     @if($current_event->post)
         @php
             $image = get_field('event_image', $current_event->post->ID);
+            $image_link_url = get_field('image_link_url', $current_event->post->ID);
             $text = get_field('event_text', $current_event->post->ID);
             $width = get_field('drag_and_drop_panel_width', $current_event->post->ID);
+
         @endphp
 
         <div id="draggable">
             <i class="material-icons">close</i>
-            <a data-caption="{!! $image['caption'] !!}" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-{!! $image['ID'] !!}" href="{!! $image['url'] !!}"  data-group="mobile-group-{!! $image['ID'] !!}">
+            @if($image_link_url)
+                <a href="{!! $image_link_url !!}">
+            @endif
+            <div class="image-wrapper">
                 <div class="image-container">
                     <img src="{!! $image['sizes']['large'] !!}" >
                     {{--<div class="caption"><div class="span">{!! $image['caption'] !!}</div></div>--}}
                 </div>
-            </a>
+            </div>
+            @if($image_link_url)
+                </a>
+            @endif
             <div class="text-container">
                 {!! $text !!}
             </div>
