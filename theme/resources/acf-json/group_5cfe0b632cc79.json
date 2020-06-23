@@ -27,6 +27,22 @@
             "mime_types": ""
         },
         {
+            "key": "field_5ef1f86ef8e54",
+            "label": "Image Link Url",
+            "name": "image_link_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
             "key": "field_5cfe0b86fd7df",
             "label": "Event Text",
             "name": "event_text",
@@ -84,5 +100,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1560159916
+    "modified": 1592916318
 }
