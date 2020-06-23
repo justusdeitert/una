@@ -50,7 +50,7 @@ set('shared_dirs', [
 
 set('composer_paths', [
     'bedrock',
-    'sage'
+    'theme'
 ]);
 
 // Writable dirs by web server
