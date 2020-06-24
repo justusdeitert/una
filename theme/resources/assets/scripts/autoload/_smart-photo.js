@@ -42,4 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
             history.pushState(null, null, window.location.href.split('#')[0]);
         }, 50)
     });
+
+    $('.smartphoto-header').click(function() {
+        window.storage.newSmartPhoto.hidePhoto()
+    });
 });

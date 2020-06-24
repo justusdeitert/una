@@ -25,9 +25,15 @@
         align-items: center;
         justify-content: center;
         padding: 0;
-        height: 70px;
+        //height: 70px;
         background-color: transparent;
-        cursor: initial;
+        //cursor: initial;
+        cursor: url('../images/icon-x.png'), zoom-out;
+
+        right: 0;
+        left: initial;
+        height: 300px;
+        width: 300px;
 
         .admin-bar & {
             top: 32px;
@@ -61,6 +67,10 @@
     }
 
     .smartphoto-dismiss {
+        display: none !important;
+        left: initial;
+        right: 0;
+
         @extend .material-icons;
         background-image: none;
         top: initial;
