@@ -91,7 +91,7 @@ task('deploy', [
     'deploy:shared',
     // 'deploy:writable',
     'deploy:symlink',
-    'flush_cache',
+    // 'flush_cache',
     'deploy:unlock',
     'cleanup',
     'success'
