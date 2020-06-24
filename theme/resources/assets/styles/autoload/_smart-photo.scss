@@ -4,16 +4,30 @@
 .smartphoto-img {
     //box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0);
+    //cursor: url('../images/icon-magnifying-glass.png'), zoom-in;
+
     cursor: url('../images/icon-magnifying-glass.png'), zoom-in;
+    cursor: -webkit-image-set(
+            url('../images/icon-magnifying-glass.png') 1x,
+            url('../images/icon-magnifying-glass@2x.png') 2x
+    ), zoom-in;
 
     &.smartphoto-img-onmove {
         cursor: url('../images/icon-minifying-glass.png'), zoom-out;
+        cursor: -webkit-image-set(
+                url('../images/icon-minifying-glass.png') 1x,
+                url('../images/icon-minifying-glass@2x.png') 2x
+        ), zoom-out;
     }
 }
 
 .smartphoto-content {
     //cursor: zoom-out;
-    cursor: url('../images/icon-x.png'), zoom-out;
+    cursor: url('../images/icon-x.png'), crosshair;
+    cursor: -webkit-image-set(
+            url('../images/icon-x.png') 1x,
+            url('../images/icon-x@2x.png') 2x
+    ), crosshair;
 }
 
 .smartphoto {
@@ -28,7 +42,11 @@
         //height: 70px;
         background-color: transparent;
         //cursor: initial;
-        cursor: url('../images/icon-x.png'), zoom-out;
+        cursor: url('../images/icon-x.png'), crosshair;
+        cursor: -webkit-image-set(
+                url('../images/icon-x.png') 1x,
+                url('../images/icon-x@2x.png') 2x
+        ), crosshair;
 
         right: 0;
         left: initial;
@@ -46,7 +64,11 @@
 
         &-close {
             position: absolute;
-            cursor: url('../images/icon-x.png'), zoom-out;
+            cursor: url('../images/icon-x.png'), crosshair;
+            cursor: -webkit-image-set(
+                    url('../images/icon-x.png') 1x,
+                    url('../images/icon-x@2x.png') 2x
+            ), crosshair;
             z-index: 1000;
 
             &.top {
