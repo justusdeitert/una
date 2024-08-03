@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
     nginx:
         image: nginx:latest
@@ -7,7 +5,7 @@ services:
             - "8080:80"
         volumes:
             - ./nginx/conf.d:/etc/nginx/conf.d
-            - ./app:/var/www/html
+            - ./wordpress:/var/www/html
         depends_on:
             - php
             - wordpress
@@ -15,9 +13,33 @@ services:
             - app-network
 
     php:
-        image: php:7.4-fpm
+        build:
+            context: .
+            dockerfile: devops/php/Dockerfile
         volumes:
-            - ./app:/var/www/html
+            - ./wordpress:/var/www/html
+        networks:
+            - app-network
+
+    wordpress:
+        build:
+            context: .
+            dockerfile: devops/wordpress/Dockerfile
+        environment:
+            WORDPRESS_DB_USER: root
+            WORDPRESS_DB_PASSWORD: rootpassword
+            WORDPRESS_DB_NAME: wordpress
+            WORDPRESS_DB_HOST: mysql
+            WORDPRESS_URL: http://localhost:8080
+            WORDPRESS_TITLE: "Wordpress Purified"
+            WORDPRESS_ADMIN_USER: admin
+            WORDPRESS_ADMIN_PASSWORD: password
+            WORDPRESS_ADMIN_EMAIL: admin@example.com
+            WORDPRESS_THEME: wordpress-purified
+        volumes:
+            - ./wordpress:/var/www/html
+        depends_on:
+            - mysql
         networks:
             - app-network
 
@@ -33,32 +55,10 @@ services:
         networks:
             - app-network
 
-    wordpress:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        environment:
-            WORDPRESS_DB_USER: root
-            WORDPRESS_DB_PASSWORD: rootpassword
-            WORDPRESS_DB_NAME: wordpress
-            WORDPRESS_DB_HOST: mysql
-            WORDPRESS_URL: http://localhost:8080
-            WORDPRESS_TITLE: "Wordpress Purified"
-            WORDPRESS_ADMIN_USER: admin
-            WORDPRESS_ADMIN_PASSWORD: password
-            WORDPRESS_ADMIN_EMAIL: admin@example.com
-            WORDPRESS_THEME: wordpress-purified
-        volumes:
-            - ./app:/var/www/html
-        depends_on:
-            - mysql
-        networks:
-            - app-network
-
     node:
         image: node:latest
         volumes:
-            - ./app:/usr/src/app
+            - ./wordpress:/usr/src/app
         working_dir: /usr/src/app
         command: npm start
         ports:

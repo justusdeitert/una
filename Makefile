@@ -1,4 +1,4 @@
-DOCKER_COMPOSE:=docker-compose -f docker-compose.yml
+DOCKER_COMPOSE:=docker compose -f docker-compose.yml
 
 install: .STOP .BUILD .START
 
