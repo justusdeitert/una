@@ -19,3 +19,6 @@ app/
 .env
 .env.local
 .env.*.local
+
+# Ignore specific folders
+/wordpress/

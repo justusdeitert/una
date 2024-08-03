@@ -10,7 +10,7 @@ ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.s
 RUN chmod +x /usr/local/bin/wait-for-it.sh
 
 # Copy the setup script into the container
-COPY setup-wordpress.sh /usr/local/bin/setup-wordpress.sh
+COPY devops/wordpress/setup-wordpress.sh /usr/local/bin/setup-wordpress.sh
 
 # Make the script executable
 RUN chmod +x /usr/local/bin/setup-wordpress.sh
