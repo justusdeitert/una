@@ -8,7 +8,7 @@ if [ ! -f wp-config.php ]; then
     echo "wp core download"
     wp core download --version=6.1.1 --allow-root
     echo "wp config create"
-    wp config create --dbname="$WORDPRESS_DB_NAME" --dbuser="$WORDPRESS_DB_USER" --dbhost="$WORDPRESS_DB_HOST" --dbpass="$WORDPRESS_DB_PASSWORD" --allow-root
+    wp config create --dbname="$MYSQL_DATABASE" --dbuser="$MYSQL_USER" --dbhost="$MYSQL_HOST" --dbpass="$MYSQL_PASSWORD" --allow-root
     echo "wp core install"
     wp core install --url="$WORDPRESS_URL" --title="$WORDPRESS_TITLE" --admin_user="$WORDPRESS_ADMIN_USER" --admin_password="$WORDPRESS_ADMIN_PASSWORD" --admin_email="$WORDPRESS_ADMIN_EMAIL" --allow-root
 fi
