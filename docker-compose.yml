@@ -1,14 +1,13 @@
-leanuservices:
+services:
     nginx:
         image: nginx:latest
         ports:
             - "8080:80"
         volumes:
-            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./devops/nginx/conf.d:/etc/nginx/conf.d
             - ./wordpress:/var/www/html
         depends_on:
             - php
-            - wordpress
         networks:
             - app-network
 
@@ -18,17 +17,8 @@ leanuservices:
             dockerfile: devops/php/Dockerfile
         volumes:
             - ./wordpress:/var/www/html
-        networks:
-            - app-network
-
-    wordpress:
-        build:
-            context: .
-            dockerfile: devops/wordpress/Dockerfile
         env_file:
             - .env
-        volumes:
-            - ./wordpress:/var/www/html
         depends_on:
             - mysql
         networks:
@@ -40,6 +30,17 @@ leanuservices:
             - .env
         volumes:
             - mysql-data:/var/lib/mysql
+        networks:
+            - app-network
+
+    phpmyadmin:
+        image: phpmyadmin:latest
+        ports:
+            - "8081:80"
+        env_file:
+            - .env
+        depends_on:
+            - mysql
         networks:
             - app-network
 

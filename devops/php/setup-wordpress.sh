@@ -37,3 +37,6 @@ for plugin in "${plugins[@]}"; do
     IFS=":" read -r plugin_slug plugin_version <<< "$plugin"
     wp plugin install "$plugin_slug" --version="$plugin_version" --activate --allow-root
 done
+
+# Start PHP-FPM to keep the container running
+php-fpm
