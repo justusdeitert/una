@@ -22,3 +22,6 @@ app/
 
 # Ignore specific folders
 /wordpress/
+
+# Ignore dump files
+*.sql
