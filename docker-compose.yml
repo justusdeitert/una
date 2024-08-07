@@ -6,6 +6,8 @@ services:
         volumes:
             - ./devops/nginx/conf.d:/etc/nginx/conf.d
             - ./wordpress:/var/www/html
+            - ./theme:/var/www/html/wp-content/themes/una-moehrke-theme
+            - ./uploads:/var/www/html/wp-content/uploads
         depends_on:
             - php
         networks:
@@ -17,6 +19,9 @@ services:
             dockerfile: devops/php/Dockerfile
         volumes:
             - ./wordpress:/var/www/html
+            - ./devops/php/php.ini:/usr/local/etc/php/php.ini
+            - ./theme:/var/www/html/wp-content/themes/una-moehrke-theme
+            - ./uploads:/var/www/html/wp-content/uploads
         env_file:
             - .env
         depends_on:
