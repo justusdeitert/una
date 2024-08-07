@@ -8,6 +8,8 @@ stop: .STOP
 
 enter: .ENTER
 
+enter_phpmyadmin: .ENTER_PHPMYADMIN
+
 build: .BUILD
 
 clean_install: .STOP .CLEAN .BUILD .START
@@ -26,3 +28,6 @@ clean_install: .STOP .CLEAN .BUILD .START
 
 .ENTER:
 	@$(DOCKER_COMPOSE) exec -w / php /bin/sh
+
+.ENTER_PHPMYADMIN:
+	@$(DOCKER_COMPOSE) exec -w / phpmyadmin /bin/sh
