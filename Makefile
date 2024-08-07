@@ -10,6 +10,8 @@ enter: .ENTER
 
 build: .BUILD
 
+clean_install: .STOP .CLEAN .BUILD .START
+
 .BUILD:
 	@$(DOCKER_COMPOSE) build
 
@@ -17,7 +19,10 @@ build: .BUILD
 	@$(DOCKER_COMPOSE) up -d
 
 .STOP:
-	@$(DOCKER_COMPOSE) stop
+	@$(DOCKER_COMPOSE) down
+
+.CLEAN:
+	@docker network prune -f
 
 .ENTER:
-	@$(DOCKER_COMPOSE) exec php-fpm /bin/sh
+	@$(DOCKER_COMPOSE) exec -w / php /bin/sh
