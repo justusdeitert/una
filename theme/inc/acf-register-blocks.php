@@ -20,7 +20,7 @@ add_action('acf/init', function () {
 
         foreach ($dir as $fileinfo) {
 
-            if (!$fileinfo->isDot()) {
+            if ($fileinfo->isFile()) {
 
                 $slug = str_replace('.php', '', $fileinfo->getFilename());
                 $file_path = locate_template("acf-blocks/${slug}.php");
