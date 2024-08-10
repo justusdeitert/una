@@ -1,0 +1,522 @@
+.page-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+#fp-nav {
+	display: none;
+	align-items: center;
+	top: 0;
+	margin-top: 20px !important;
+	opacity: 0;
+	visibility: hidden;
+
+	.admin-bar & {
+		top: 32px;
+
+		@media screen and (max-width: 782px) {
+			top: 46px;
+		}
+	}
+
+	&.is-visible {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	ul {
+		li {
+			visibility: hidden;
+			opacity: 0;
+			height: 0;
+			margin-top: 0;
+			margin-bottom: 0;
+			transition: visibility 0.2s linear, height 0.2s linear, opacity 0.2s linear, margin-top 0.2s linear,
+				margin-bottom 0.2s linear;
+
+			a.active {
+				span {
+					height: 10px;
+					width: 10px;
+					margin: -5px 0 0 -5px;
+				}
+			}
+
+			&.visible,
+			&.next,
+			&.prev {
+				display: block;
+				opacity: 1;
+				visibility: visible;
+				height: 15px;
+				margin-top: 2px;
+				margin-bottom: 2px;
+			}
+		}
+
+		li:only-child {
+			display: none;
+		}
+	}
+
+	&.fp-left {
+		left: 15px;
+
+		@include media-breakpoint-down(xs) {
+			left: 3px;
+		}
+	}
+}
+
+#fullpage {
+	position: relative;
+	top: 0;
+
+	.image-wrapper {
+		transition: all 0.2s linear;
+
+		img {
+			box-shadow: 0 0 0 2px rgba(204, 204, 204, 0);
+			transition: all 0.1s linear;
+			//object-fit: contain;
+		}
+
+		&.active {
+			img {
+				box-shadow: 0 0 0 2px rgba(204, 204, 204, 1);
+			}
+
+			.caption {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+		}
+
+		.image-container {
+			position: relative;
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.section-mobile,
+.section-desktop {
+	.fp-tableCell {
+		&.vertical-top {
+			vertical-align: top;
+		}
+	}
+
+	.image-section,
+	.section-mobile-inner {
+		.image-wrapper {
+			.admin-bar & {
+				margin-bottom: 32px;
+
+				@media screen and (max-width: 782px) {
+					margin-bottom: 46px;
+				}
+			}
+		}
+	}
+
+	.image-wrapper {
+		.caption {
+			position: absolute;
+			width: 100%;
+			//display: flex;
+			display: none !important;
+			justify-content: center;
+			align-items: center;
+			margin-top: 10px;
+			z-index: 0;
+			transition: opacity 0.2s linear, visibility 0.2s linear, transform 0.2s linear;
+
+			.span {
+				color: #555 !important;
+				font-size: 13px;
+				max-width: 310px;
+				display: inline-block;
+				text-align: center;
+				padding: 0 20px;
+			}
+		}
+	}
+}
+
+.section-mobile {
+	display: none !important;
+	position: relative;
+	box-sizing: border-box;
+	margin: 0 auto;
+	//margin-top: -30px;
+
+	.caption {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	//@include media-breakpoint-down(sm) {
+	.is-mobile & {
+		display: table !important;
+	}
+
+	.content-container {
+		&:first-child {
+			padding-top: 100px;
+		}
+
+		&:last-child {
+			padding-bottom: 25px;
+		}
+
+		.admin-bar & {
+			&:last-child {
+				padding-bottom: 25px + 32px;
+			}
+
+			@media screen and (max-width: 782px) {
+				&:last-child {
+					padding-bottom: 25px + 46px;
+				}
+			}
+		}
+
+		.text-and-image-container {
+			margin-bottom: 30px;
+
+			.image-wrapper {
+				margin: 0 !important;
+			}
+		}
+	}
+
+	.column-container {
+		//max-width: 920px;
+
+		.column-text-container {
+			margin: 0 !important;
+
+			.accordion-header {
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				//padding-top: 8px;
+				//padding-bottom: 10px;
+				height: 40px;
+				border-top: 1px solid #000;
+
+				h3 {
+					font-family: 'ApercuRegular', sans-serif;
+					//font-weight: normal;
+					font-size: 22px;
+					margin: 0;
+
+					@include media-breakpoint-down(sm) {
+						font-size: 18px;
+					}
+
+					.is-mobile & {
+						font-size: 18px;
+					}
+				}
+
+				i {
+					margin-left: auto;
+					//font-size: 28px;
+					font-size: 22px;
+
+					&:after {
+						content: 'keyboard_arrow_up';
+					}
+				}
+
+				&[aria-expanded='true'] {
+					i {
+						&:after {
+							content: 'close';
+						}
+					}
+				}
+			}
+
+			.accordion-body-wrapper {
+				padding: 20px 0;
+			}
+		}
+	}
+
+	.image-section-mobile-wrapper {
+		//padding: 50px 0;
+		padding: 30px 0;
+
+		&:first-child {
+			padding-top: 100px;
+		}
+
+		&:last-child {
+			padding-bottom: 100px;
+		}
+	}
+
+	.section-mobile-inner {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.image-wrapper {
+		position: relative;
+		display: inline-block;
+		margin-top: 20px;
+
+		.front-page-data & {
+			cursor: initial;
+			pointer-events: none;
+		}
+
+		img {
+			max-height: 70vh;
+			max-width: 90vw;
+		}
+
+		.hover-overlay {
+			position: absolute;
+			z-index: 100;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #000;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.1s linear, visibility 0.1s linear, background-color 0.1s linear;
+			//font-size: 16px;
+			font-size: 23px;
+			letter-spacing: 0.6px;
+		}
+
+		&.active {
+			.hover-overlay {
+				opacity: 0.7;
+				visibility: visible;
+			}
+		}
+	}
+}
+
+.section-desktop {
+	//@include media-breakpoint-down(sm) {
+	display: none;
+
+	.is-desktop & {
+		display: table !important;
+	}
+
+	.is-mobile & {
+		display: none !important;
+	}
+
+	.caption {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-30%);
+	}
+
+	.content-container {
+		padding-left: 7%;
+	}
+
+	.slide-content {
+		position: relative;
+		//height: 100%;
+
+		height: 100%;
+		margin-bottom: 0;
+		//margin-top: 70px;
+
+		.admin-bar & {
+			height: calc(100% - 32px);
+			margin-bottom: 32px;
+
+			@media screen and (max-width: 782px) {
+				height: calc(100% - 46px);
+				margin-bottom: 46px;
+			}
+		}
+	}
+
+	.image-section {
+		a {
+			z-index: 100;
+			//max-width: 90%;
+			//width: auto;
+
+			img {
+				//width: 100%;
+				//max-height: 100vh;
+				max-height: 80vh;
+				max-width: 100%;
+				width: auto;
+				//width: 100%;
+			}
+
+			.hover-overlay {
+				position: absolute;
+				z-index: 10;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #000;
+				//font-size: 16px;
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity 0.1s linear, visibility 0.1s linear;
+				font-size: 23px;
+				letter-spacing: 0.6px;
+			}
+
+			&.active {
+				.hover-overlay {
+					opacity: 0.7;
+					visibility: visible;
+				}
+			}
+		}
+	}
+}
+
+.content-container {
+	padding: 0 50px 25px 50px;
+
+	@include media-breakpoint-down(sm) {
+		padding: 0 25px 25px;
+	}
+
+	&:first-child {
+		padding-top: 100px;
+	}
+
+	&:last-child {
+		padding-bottom: 50px;
+	}
+
+	.image-container {
+		margin-bottom: 35px;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.column-container,
+	.two-column-text-container,
+	.text-container {
+		max-width: 1100px;
+
+		&.full-width {
+			max-width: initial;
+		}
+	}
+
+	&.text-container-accordion {
+		.collapse {
+			display: block;
+			overflow: hidden;
+		}
+
+		.accordion-button-bottom {
+			display: flex;
+			height: 40px;
+			width: 100%;
+			align-items: center;
+		}
+
+		a.collapsed:before {
+			content: 'show more';
+			z-index: 100;
+			position: relative;
+		}
+
+		a:not(.collapsed):before {
+			content: 'show less';
+			z-index: 100;
+			position: relative;
+		}
+	}
+
+	//.two-column-text-container {
+	//    max-width: 1100px;
+	//}
+
+	.column-container {
+		//max-width: 1100px;
+
+		.column-text-container {
+			margin-bottom: 10px;
+
+			.image-container {
+				img {
+					//box-shadow: 0 0 2px rgba(0, 0, 0, 0.3) !important;
+					box-shadow: 0 0 0 2px rgba(204, 204, 204, 0);
+					transition: box-shadow 0.2s linear;
+					max-width: 175px;
+				}
+
+				&:hover {
+					img {
+						//box-shadow: 0 0 2px rgba(0, 0, 0, 0.5) !important;
+						box-shadow: 0 0 0 2px rgba(204, 204, 204, 1);
+					}
+				}
+			}
+		}
+	}
+}
+
+.iScrollVerticalScrollbar {
+	display: none;
+}
+
+.back-to-top {
+	z-index: 100;
+	position: fixed;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s linear, hidden 0.2s linear;
+
+	p {
+		margin: 0;
+	}
+
+	.last-section & {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.fp-scroller {
+	&.slide-up {
+		transition-duration: 200ms !important;
+	}
+}
+
+.fp-tableCell {
+	width: 100vw;
+}

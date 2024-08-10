@@ -1,0 +1,31 @@
+.banner .nav li {
+	@extend .nav-item;
+}
+
+.banner .nav a {
+	@extend .nav-link;
+}
+
+header {
+	z-index: 100;
+	position: fixed;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+
+	// Fix for e.g. old Safari Versions
+	left: 50%;
+	transform: translateX(-50%);
+
+	.brand {
+		font-family: 'ApercuMedium', sans-serif;
+		font-size: 25px;
+		white-space: nowrap;
+		line-height: 32px;
+		//font-weight: 500;
+		letter-spacing: 0.8px;
+		color: black;
+		border-bottom: 2px solid rgb(0, 0, 0);
+	}
+}

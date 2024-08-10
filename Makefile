@@ -6,9 +6,11 @@ start: .START
 
 stop: .STOP
 
-enter: .ENTER
+enter_php: .ENTER_PHP
 
 enter_phpmyadmin: .ENTER_PHPMYADMIN
+
+enter_node: .ENTER_NODE
 
 build: .BUILD
 
@@ -26,8 +28,11 @@ clean_install: .STOP .CLEAN .BUILD .START
 .CLEAN:
 	@docker network prune -f
 
-.ENTER:
-	@$(DOCKER_COMPOSE) exec -w / php /bin/sh
+.ENTER_PHP:
+	@$(DOCKER_COMPOSE) exec -w /var/www/html php /bin/zsh
 
 .ENTER_PHPMYADMIN:
 	@$(DOCKER_COMPOSE) exec -w / phpmyadmin /bin/sh
+
+.ENTER_NODE:
+	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node /bin/zsh

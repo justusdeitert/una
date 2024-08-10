@@ -1,0 +1,135 @@
+// Import Bootstrap functions
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/mixins';
+
+// User Functions, Mixins
+$base-font-size: 16px;
+$base-font-size-mobile: 16px;
+
+// Calculate rem from $base-font-size
+@function rem($px) {
+	@return ($px / $base-font-size) * 1rem;
+}
+
+@mixin fontSize($px, $important: false) {
+	@if $important {
+		font-size: ($px / $base-font-size) * 1rem !important;
+
+		@include media-breakpoint-down(xs) {
+			font-size: ($px / $base-font-size-mobile) * 1rem !important;
+		}
+	} @else {
+		font-size: ($px / $base-font-size) * 1rem;
+
+		@include media-breakpoint-down(xs) {
+			font-size: ($px / $base-font-size-mobile) * 1rem;
+		}
+	}
+}
+
+// User Variables
+//$black: #3F3F3F;
+$black: #000;
+$white: #fff;
+$blue: #0887b4;
+$dark-blue: #127598;
+$light-text-color: #757575;
+
+// Body
+//
+// Settings for the `<body>` element.
+$body-bg: $white;
+$body-color: $black;
+
+// Links
+//
+// Style anchor elements.
+$link-color: #757575;
+//$link-decoration:                       underline rgba(170, 170, 170, 0.8);
+$link-decoration: none;
+$link-hover-color: #757575;
+$link-hover-decoration: none;
+// Darken percentage for links with `.text-*` class (e.g. `.text-success`)
+$emphasized-link-hover-darken-percentage: 15% !default;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: (
+	xs: 0,
+	sm: 460px,
+	md: 860px,
+	lg: 1200px,
+	xl: 1440px,
+);
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+	sm: 100%,
+	md: 100%,
+	lg: 100%,
+	xl: 100%,
+);
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+$grid-columns: 12;
+$grid-gutter-width: 40px;
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+$border-width: 1px !default;
+//$border-color:                $gray-300 !default;
+$border-radius: 3px;
+$box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+// stylelint-disable value-keyword-case
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+	sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default;
+$font-family-base: ' ', sans-serif;
+// stylelint-enable value-keyword-case
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-weight-base: normal;
+$line-height-base: 1.5 !default;
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+$input-btn-padding-y: 2px;
+// $input-btn-padding-x:         0.75rem !default;
+$input-btn-padding-x: 1rem;
+$input-btn-font-family: null !default;
+//$input-btn-font-size:         $font-size-base !default;
+$input-btn-font-size: 16px;
+$input-btn-line-height: $line-height-base !default;
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius: $border-radius !default;
+
+// Only for Forms
+$input-bg: $white !default;
+$input-border-radius: none;
+$input-border-color: #d3d3d3;
+$input-border-width: 1px;
+//$input-box-shadow:                      1px 1px 2px 1px rgba(0,0,0,0.04);
+$input-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08);
+//$input-focus-box-shadow:                0 0 0 3px rgba(8, 135, 180, 0.25);
+//$input-focus-border-color:              lighten($component-active-bg, 25%) !default;
+$input-focus-border-color: #fec000;
+// $input-focus-box-shadow:                0 0 4px 1px rgba(8, 135, 180, 0.25);
+$input-focus-box-shadow: 0 0 4px 1px rgba(254, 192, 0, 0.25);

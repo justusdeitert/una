@@ -1,12 +1,14 @@
 #!/bin/bash
 
+# wp search-replace 'una-moehrke.de' 'localhost:8080' --allow-root
+
 # Wait for the database to be ready
 /usr/local/bin/wait-for-it.sh mysql:3306 --timeout=30 --strict -- echo "Database is up"
 
 # Install WordPress
 if [ ! -f wp-config.php ]; then
     echo "wp core download"
-    wp core download --version=6.1.1 --allow-root
+    wp core download --version=6.5 --allow-root
     echo "wp config create"
     wp config create --dbname="$MYSQL_DATABASE" --dbuser="$MYSQL_USER" --dbhost="$MYSQL_HOST" --dbpass="$MYSQL_PASSWORD" --allow-root
     echo "wp core install"

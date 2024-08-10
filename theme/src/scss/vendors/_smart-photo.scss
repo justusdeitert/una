@@ -1,0 +1,158 @@
+// Smart Photo Styles
+@import 'smartphoto/scss/smartphoto.scss';
+
+.smartphoto {
+	background-color: #fff;
+	z-index: 300;
+
+	&-img {
+		box-shadow: 0 0 2px rgba(0, 0, 0, 0);
+		cursor: url('@/images/icon-magnifying-glass.png'), zoom-in;
+		cursor: -webkit-image-set(
+				url('@/images/icon-magnifying-glass.png') 1x,
+				url('@/images/icon-magnifying-glass@2x.png') 2x
+			),
+			zoom-in;
+
+		&-onmove {
+			cursor: url('@/images/icon-minifying-glass.png'), zoom-out;
+			cursor: -webkit-image-set(
+					url('@/images/icon-minifying-glass.png') 1x,
+					url('@/images/icon-minifying-glass@2x.png') 2x
+				),
+				zoom-out;
+		}
+	}
+
+	&-content {
+		cursor: url('@/images/icon-x.png'), crosshair;
+		cursor: -webkit-image-set(
+			url('@/images/icon-x.png') 1x,
+			url('@/images/icon-x@2x.png') 2x
+		), crosshair;
+	}
+
+	&-header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		background-color: transparent;
+		cursor: url('@/images/icon-x.png'), crosshair;
+		cursor: -webkit-image-set(
+			url('@/images/icon-x.png') 1x,
+			url('@/images/icon-x@2x.png') 2x
+		), crosshair;
+		right: 0;
+		left: initial;
+		height: 300px;
+		width: 300px;
+		position: initial;
+
+		.admin-bar & {
+			top: 32px;
+
+			@media screen and (max-width: 782px) {
+				top: 46px;
+			}
+		}
+
+		&-close {
+			position: absolute;
+			cursor: url('@/images/icon-x.png'), crosshair;
+			cursor: -webkit-image-set(
+				url('@/images/icon-x.png') 1x,
+				url('@/images/icon-x@2x.png') 2x
+			), crosshair;
+			z-index: 1000;
+
+			&.top,
+			&.bottom {
+				left: 0;
+				width: 100%;
+			}
+
+			&.top {
+				top: 0;
+				height: 13%;
+			}
+
+			&.bottom {
+				bottom: 0;
+				height: 13%;
+			}
+
+			&.right,
+			&.left {
+				top: 0;
+				height: 100%;
+				width: 13%;
+			}
+
+			&.right {
+				right: 0;
+			}
+
+			&.left {
+				left: 0;
+			}
+		}
+	}
+
+	&-count {
+		display: none;
+	}
+
+	&-caption {
+        pointer-events: none;
+		color: #000;
+		top: auto;
+		bottom: 0;
+		left: 0;
+		position: fixed;
+		text-overflow: initial;
+		white-space: initial;
+		font-size: 12px;
+		line-height: 18px;
+		margin-bottom: 10px;
+		display: flex;
+		align-items: center;
+		height: 50px;
+		justify-content: center;
+	}
+
+	&-dismiss {
+		display: none !important;
+		left: initial;
+		right: 0;
+		@extend .material-icons;
+		background-image: none;
+		top: initial;
+		outline: none;
+		width: 30px;
+		height: 30px;
+		padding: 10px;
+		box-sizing: content-box;
+
+		&:after {
+			content: 'close';
+			font-size: 30px;
+			display: inline-block;
+			color: #000;
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		background-color: rgba(0, 0, 0, 0.8);
+
+		&-caption {
+			color: #fff;
+		}
+
+		&-dismiss {
+			&:after {
+				color: #fff;
+			}
+		}
+	}
+}
