@@ -7,12 +7,8 @@ Thumbs.db
 .idea/
 
 # Ignore build artifacts
-# build/
 dist/
 node_modules/
-app/
-assets/
-views/
 
 # Ignore log files
 *.log
@@ -25,6 +21,7 @@ views/
 # Ignore specific folders
 /wordpress/
 /uploads/
+/theme/assets/
 
 # Ignore dump files
 *.sql

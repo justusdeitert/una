@@ -18,19 +18,15 @@ fi
 # Define an array of plugin slugs with versions
 plugins=(
     "wordpress-seo:19.5"
-    "contact-form-7:5.6.1"
-    "w3-total-cache:2.2.4"
-    "jetpack:11.1"
-    "akismet:4.2.2"
-    "clean-image-filenames:1.3"
-    "disable-blog:0.5.1"
-    "enable-media-replace:4.0.1"
-    "google-sitemap-generator:4.1.7"
+    "jetpack:13.7"
+    "clean-image-filenames:1.5"
+    "disable-blog:0.5.4"
+    "enable-media-replace:4.1.5"
     "imsanity:2.8.2"
-    "disable-comments:2.4.2"
-    "phoenix-media-rename:3.8.8"
-    "svg-support:2.5.5"
-    "user-switching:1.7.0"
+    "disable-comments:2.4.6"
+    "phoenix-media-rename:3.11.8"
+    "svg-support:2.5.8"
+    "user-switching:1.8.0"
     "pc-robotstxt:1.10"
 )
 

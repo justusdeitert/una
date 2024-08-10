@@ -4,6 +4,8 @@ function theme_enqueue_styles_scripts() {
     $assets_path = get_template_directory() . '/assets';
     $theme_version = wp_get_theme()->get('Version');
 
+    wp_enqueue_script('jquery');
+
     if (!file_exists($assets_path)) {
         wp_enqueue_script_module('vite-js', 'http://localhost:5173/@vite/client', [], null, true);
         wp_enqueue_script_module('theme-main-script', 'http://localhost:5173/js/main.js', [], null, true);
