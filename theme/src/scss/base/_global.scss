@@ -1,0 +1,84 @@
+body {
+    font-family: 'ApercuRegular', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    * {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+a {
+    font-family: 'ApercuBold', sans-serif;
+    color: #000;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    line-height: 1.4;
+    word-break: break-word;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'ApercuMedium', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: #000;
+    margin-top: 30px;
+    margin-bottom: 15px;
+
+    @include media-breakpoint-down(sm) {
+        font-size: 17px;
+    }
+
+    .is-mobile & {
+        font-size: 17px;
+    }
+}
+
+p {
+    font-family: 'ApercuRegular', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+
+    &.big {
+        font-size: 22px;
+        line-height: 1.4;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 16px;
+        }
+
+        .is-mobile & {
+            font-size: 16px;
+        }
+    }
+
+    &.dark {
+        color: #000;
+    }
+}
+
+b,
+strong {
+    font-family: 'ApercuBold', sans-serif;
+    font-weight: normal;
+}
+
+span,
+.span {
+    font-family: 'ApercuRegular', sans-serif;
+}
+
+.wrap.container {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.empty-block {
+    display: none;
+}
