@@ -8,7 +8,7 @@
 # Install WordPress
 if [ ! -f wp-config.php ]; then
     echo "wp core download"
-    wp core download --version=6.5 --allow-root
+    wp core download --version=6.6.1 --allow-root
     echo "wp config create"
     wp config create --dbname="$MYSQL_DATABASE" --dbuser="$MYSQL_USER" --dbhost="$MYSQL_HOST" --dbpass="$MYSQL_PASSWORD" --allow-root
     echo "wp core install"
