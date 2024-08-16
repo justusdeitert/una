@@ -109,7 +109,7 @@ const initFullPageInstance = () => {
 
 $(window).on('load', function() {
 	initFullPageInstance();
-	hoverOverlayWidth();
+	// hoverOverlayWidth();
 });
 
 let scrollerPosition = 0;
@@ -178,11 +178,11 @@ $('.text-container-accordion .collapse').on('hidden.bs.collapse', function () {
 	// console.log('lols');
 });
 
-const hoverOverlayWidth = () => {
-	return $('.hover-overlay').each(function () {
-		$(this).width($(this).next().width());
-	});
-};
+// const hoverOverlayWidth = () => {
+// 	return $('.hover-overlay').each(function () {
+// 		$(this).width($(this).next().width());
+// 	});
+// };
 
 // Only when resize width
 // ----------------->
@@ -191,6 +191,7 @@ window.windowInstance.width = 0;
 
 $(window).on('load', function() {
 	window.windowInstance.width = $(window).width();
+    // hoverOverlayWidth();
 });
 
 $('.back-to-top').click(() => {
@@ -198,7 +199,7 @@ $('.back-to-top').click(() => {
 });
 
 $(window).on('resize', () => {
-	hoverOverlayWidth();
+	// hoverOverlayWidth();
 
 	let sectionSelector = window.instance.fullPageInstance.getFullpageData().sectionSelector;
 
