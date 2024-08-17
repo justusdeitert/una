@@ -11,16 +11,13 @@ function my_acf_block_render_callback($block) {
     }
 }
 
-// TODO: Have a look at the old ACF 5.8 Documentation
-// https://www.advancedcustomfields.com/resources/acf_register_block_type/
 add_action('acf/init', function () {
     if (function_exists('acf_register_block_type')) {
 
         $dir = new DirectoryIterator(locate_template("acf-blocks/"));
 
         foreach ($dir as $fileinfo) {
-
-            if ($fileinfo->isFile()) {
+            if ($fileinfo->isFile() && $fileinfo->getExtension() === 'php') {
 
                 $slug = str_replace('.php', '', $fileinfo->getFilename());
                 $file_path = locate_template("acf-blocks/${slug}.php");
