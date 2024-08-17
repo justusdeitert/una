@@ -12,8 +12,7 @@
             href="<?= $args['link']['url']; ?>">
             <div class="hover-overlay"><?= $args['link']['title']; ?></div>
             <img data-src="<?= $args['image']['sizes']['large']; ?>"
-                title="<?= $args['image']['caption']; ?>"
-                loading="lazy">
+                title="<?= $args['image']['caption']; ?>">
         </a>
     </div>
 
@@ -32,8 +31,7 @@
             data-group="mobile-group-<?= $args['image']['ID']; ?>">
             <div class="image-container">
                 <img data-src="<?= $args['image']['sizes']['large']; ?>"
-                    title="<?= $args['image']['caption']; ?>"
-                    loading="lazy">
+                    title="<?= $args['image']['caption']; ?>">
                 <div class="caption">
                     <div class="span">
                         <?= $args['image']['caption']; ?>
