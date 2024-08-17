@@ -19,21 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('a').each(function () {
         const anchor = $(this);
-        const currentHref = this.href;
-        const hostPattern = new RegExp(`/${window.location.host}/`);
+        const linkHostname = new URL(this.href).hostname;
 
-        if (!hostPattern.test(currentHref)) {
+        if (linkHostname !== window.location.hostname) {
             anchor.attr('target', '_blank');
         }
 
-        if (currentHref === window.location.href) {
+        if (this.href === window.location.href) {
             anchor.on('click', (event) => {
                 event.preventDefault();
                 window.location.reload();
             });
         }
 
-        if (currentHref === window.location.origin) {
+        if (this.href === window.location.origin) {
             anchor.on('click', (event) => {
                 event.preventDefault();
                 window.location.assign(window.location.origin);

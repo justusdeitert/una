@@ -7,8 +7,7 @@
                         <div class="hover-overlay"><?= get_sub_field('link')['title']; ?></div>
                         <img data-src="<?= get_sub_field('image')['sizes']['large']; ?>"
                             alt="<?= get_sub_field('image')['caption']; ?>"
-                            itemprop="contentUrl"
-                            loading="lazy">
+                            itemprop="contentUrl">
                     </div>
                 </a>
             <?php } else { ?>
@@ -19,8 +18,7 @@
                     <div class="image-container" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                         <img data-src="<?= get_sub_field('image')['sizes']['large']; ?>"
                             title="<?= get_sub_field('image')['caption']; ?>"
-                            itemprop="contentUrl"
-                            loading="lazy">
+                            itemprop="contentUrl">
                         <div class="caption">
                             <div class="span" itemprop="description">
                                 <?= get_sub_field('image')['caption']; ?>
