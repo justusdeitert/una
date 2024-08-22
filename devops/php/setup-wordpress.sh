@@ -28,6 +28,8 @@ plugins=(
     "svg-support:2.5.8"
     "user-switching:1.8.0"
     "pc-robotstxt:1.10"
+    "converter-for-media:5.13.1"
+    "cache-enabler:1.8.15"
 )
 
 # Install plugins
