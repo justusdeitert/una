@@ -25,3 +25,4 @@ require_once get_template_directory() . '/inc/editor-color-palette.php';
 require_once get_template_directory() . '/inc/generic-template-functions.php';
 require_once get_template_directory() . '/inc/register-post-types.php';
 require_once get_template_directory() . '/inc/wp-block-filters.php';
+require_once get_template_directory() . '/inc/unregistger-block-scripts.php';
