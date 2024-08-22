@@ -11,8 +11,7 @@
         <a class="admin-prevent-click image-wrapper section-mobile-image-<?= $args['image']['ID']; ?>"
             href="<?= $args['link']['url']; ?>">
             <div class="hover-overlay"><?= $args['link']['title']; ?></div>
-            <img data-src="<?= $args['image']['sizes']['large']; ?>"
-                title="<?= $args['image']['caption']; ?>">
+            <img data-src="<?= $args['image']['sizes']['large']; ?>" title="<?= $args['image']['caption']; ?>">
         </a>
     </div>
 
@@ -30,8 +29,7 @@
             href="<?= $args['image']['url']; ?>"
             data-group="mobile-group-<?= $args['image']['ID']; ?>">
             <div class="image-container">
-                <img data-src="<?= $args['image']['sizes']['large']; ?>"
-                    title="<?= $args['image']['caption']; ?>">
+                <img data-src="<?= $args['image']['sizes']['large']; ?>" title="<?= $args['image']['caption']; ?>">
                 <div class="caption">
                     <div class="span">
                         <?= $args['image']['caption']; ?>

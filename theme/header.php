@@ -51,8 +51,6 @@
 
     <?php wp_head(); ?>
 
-    <!-- Implementing Google Icons And Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&text=close,keyboard_arrow_up" rel="stylesheet">
 </head>
 <body <?php body_class(); ?>>
