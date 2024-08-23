@@ -12,7 +12,7 @@
                                         <?php if ($sub_column['acf_fc_layout'] === 'image') { ?>
                                             <a data-caption="<?= $sub_column['image']['caption']; ?>" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-<?= $sub_column['image']['ID']; ?>" href="<?= $sub_column['image']['url']; ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                                                 <div class="image-container">
-                                                    <img src="<?= $sub_column['image']['sizes']['large']; ?>" title="<?= $sub_column['image']['caption']; ?>" itemprop="contentUrl">
+                                                    <img src="<?= $sub_column['image']['sizes']['medium']; ?>" title="<?= $sub_column['image']['caption']; ?>" itemprop="contentUrl">
                                                 </div>
                                             </a>
                                         <?php } ?>
@@ -23,7 +23,7 @@
                                             <?= $sub_column['text']; ?>
                                             <a data-caption="<?= $sub_column['image']['caption']; ?>" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-<?= $sub_column['image']['ID']; ?>" href="<?= $sub_column['image']['url']; ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                                                 <div class="image-container">
-                                                    <img src="<?= $sub_column['image']['sizes']['large']; ?>" title="<?= $sub_column['image']['caption']; ?>" itemprop="contentUrl">
+                                                    <img src="<?= $sub_column['image']['sizes']['medium']; ?>" title="<?= $sub_column['image']['caption']; ?>" itemprop="contentUrl">
                                                 </div>
                                             </a>
                                         <?php } ?>

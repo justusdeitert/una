@@ -28,7 +28,7 @@
                                                                     <div class="col-8">
                                                                         <a data-caption="<?= $sub_column['image']['caption']; ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= $sub_column['image']['url']; ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
                                                                             <div class="image-container">
-                                                                                <img src="<?= $sub_column['image']['sizes']['large']; ?>" title="<?= $sub_column['image']['caption']; ?>">
+                                                                                <img src="<?= $sub_column['image']['sizes']['medium']; ?>" title="<?= $sub_column['image']['caption']; ?>">
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -53,7 +53,7 @@
                                                                     <div class="col-4">
                                                                         <a data-caption="<?= $sub_column['image']['caption']; ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= $sub_column['image']['url']; ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
                                                                             <div class="image-container">
-                                                                                <img src="<?= $sub_column['image']['sizes']['large']; ?>" title="<?= $sub_column['image']['caption']; ?>">
+                                                                                <img src="<?= $sub_column['image']['sizes']['medium']; ?>" title="<?= $sub_column['image']['caption']; ?>">
                                                                             </div>
                                                                         </a>
                                                                     </div>
