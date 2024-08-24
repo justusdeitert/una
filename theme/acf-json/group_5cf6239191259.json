@@ -3,76 +3,10 @@
     "title": "Option: Info",
     "fields": [
         {
-            "key": "field_5cf6239932bb0",
-            "label": "Favicon",
-            "name": "favicon",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_5cf6239f32bb1",
-            "label": "Touch Icon",
-            "name": "touch_icon",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_5cf623b232bb2",
-            "label": "Page Description",
-            "name": "page_description",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": 3,
-            "new_lines": ""
-        },
-        {
             "key": "field_5cf63928afcad",
             "label": "Link Colors",
             "name": "link_colors",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -86,12 +20,13 @@
             "min": 0,
             "max": 0,
             "layout": "table",
-            "button_label": "",
+            "button_label": "Eintrag hinzufügen",
             "sub_fields": [
                 {
                     "key": "field_5cf63938afcae",
                     "label": "Color",
                     "name": "color",
+                    "aria-label": "",
                     "type": "color_picker",
                     "instructions": "",
                     "required": 0,
@@ -101,34 +36,13 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": ""
+                    "default_value": "",
+                    "enable_opacity": false,
+                    "return_format": "string",
+                    "parent_repeater": "field_5cf63928afcad"
                 }
-            ]
-        },
-        {
-            "key": "field_5d1b444c35fa3",
-            "label": "Open Graph Images",
-            "name": "open_graph_images",
-            "type": "gallery",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "min": "",
-            "max": "",
-            "insert": "append",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
+            ],
+            "rows_per_page": 20
         }
     ],
     "location": [
@@ -146,7 +60,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1562068063
+    "show_in_rest": 0,
+    "modified": 1725086995
 }
