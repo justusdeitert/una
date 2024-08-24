@@ -37,11 +37,15 @@ RUN chmod +x /usr/local/bin/wait-for-it.sh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
     && chsh -s $(which zsh)
 
-# Copy the setup script into the container
+# Copy scripts
 COPY devops/php/setup-wordpress.sh /usr/local/bin/setup-wordpress.sh
+COPY devops/php/search-replace-export-db.sh /usr/local/bin/search-replace-export-db.sh
+COPY devops/php/search-replace-import-db.sh /usr/local/bin/search-replace-import-db.sh
 
-# Make the script executable
+# Make the scripts executable
 RUN chmod +x /usr/local/bin/setup-wordpress.sh
+RUN chmod +x /usr/local/bin/search-replace-export-db.sh
+RUN chmod +x /usr/local/bin/search-replace-import-db.sh
 
 # Set the working directory
 WORKDIR /var/www/html
