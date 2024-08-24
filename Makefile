@@ -20,6 +20,10 @@ dev: .DEV
 
 build: .BUILD
 
+export_db: .EXPORT_DB
+
+import_db: .IMPORT_DB
+
 .BUILD_CONTAINER:
 	@$(DOCKER_COMPOSE) build
 
@@ -46,3 +50,9 @@ build: .BUILD
 
 .BUILD:
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node yarn build
+
+.EXPORT_DB:
+	@$(DOCKER_COMPOSE) exec php /usr/local/bin/search-replace-export-db.sh
+
+.IMPORT_DB:
+	@$(DOCKER_COMPOSE) exec php /usr/local/bin/search-replace-import-db.sh

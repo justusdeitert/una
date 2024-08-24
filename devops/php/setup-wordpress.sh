@@ -3,6 +3,12 @@
 # Wait for the database to be ready
 /usr/local/bin/wait-for-it.sh mysql:3306 --timeout=30 --strict -- echo "Database is up"
 
+# Ensure the wp-cli is installed and available
+if ! command -v wp &> /dev/null; then
+    echo "wp-cli could not be found. Please install it first."
+    exit 1
+fi
+
 # Install WordPress
 if [ ! -f wp-config.php ]; then
     echo "wp core download"
