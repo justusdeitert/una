@@ -38,11 +38,13 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && chsh -s $(which zsh)
 
 # Copy scripts
+COPY devops/php/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY devops/php/setup-wordpress.sh /usr/local/bin/setup-wordpress.sh
 COPY devops/php/search-replace-export-db.sh /usr/local/bin/search-replace-export-db.sh
 COPY devops/php/search-replace-import-db.sh /usr/local/bin/search-replace-import-db.sh
 
 # Make the scripts executable
+RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/setup-wordpress.sh
 RUN chmod +x /usr/local/bin/search-replace-export-db.sh
 RUN chmod +x /usr/local/bin/search-replace-import-db.sh
@@ -51,7 +53,4 @@ RUN chmod +x /usr/local/bin/search-replace-import-db.sh
 WORKDIR /var/www/html
 
 # Set the entrypoint to the setup script
-ENTRYPOINT ["/usr/local/bin/setup-wordpress.sh"]
-
-# Set Zsh as the default shell
-CMD ["zsh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

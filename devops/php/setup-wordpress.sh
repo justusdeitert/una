@@ -46,6 +46,3 @@ for plugin in "${plugins[@]}"; do
         wp plugin install "$plugin_slug" --version="$plugin_version" --allow-root
     fi
 done
-
-# Start PHP-FPM to keep the container running
-php-fpm
