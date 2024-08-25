@@ -20,6 +20,8 @@ dev: .DEV
 
 build: .BUILD
 
+setup_wordpress: .SETUP_WORDPRESS
+
 export_db: .EXPORT_DB
 
 import_db: .IMPORT_DB
@@ -50,6 +52,9 @@ import_db: .IMPORT_DB
 
 .BUILD:
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node yarn build
+
+.SETUP_WORDPRESS:
+	@$(DOCKER_COMPOSE) exec php /usr/local/bin/setup-wordpress.sh
 
 .EXPORT_DB:
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/search-replace-export-db.sh

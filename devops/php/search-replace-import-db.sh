@@ -44,3 +44,14 @@ else
     echo "Search-replace operation failed. Please check for errors."
     exit 1
 fi
+
+# NOTE: Not necessary if the site URL is already correct
+echo "Updating WordPress Address (URL) and Site Address (URL) to $NEW_URL..."
+wp option update siteurl "http://$SEARCH_STRING" --allow-root
+
+if [ $? -eq 0 ]; then
+    echo "WordPress Address (URL) updated successfully to http://$SEARCH_STRING"
+else
+    echo "Failed to update WordPress Address (URL). Please check for errors."
+    exit 1
+fi
