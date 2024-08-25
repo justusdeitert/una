@@ -37,6 +37,9 @@ Here are the available make commands to manage the development environment:
 `make build`
 - Runs the build script using Yarn inside the Node.js container.
 
+`make setup_wordpress`
+- Setup the wordpress using custom script.
+
 `make export_db`
 - Exports the database using a custom script.
 
