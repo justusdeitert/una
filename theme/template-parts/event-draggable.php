@@ -16,25 +16,25 @@ if ($current_event->have_posts()) {
     <div id="draggable">
         <i class="material-icons">close</i>
         <?php if ($image_link_url) { ?>
-            <a href="<?php echo $image_link_url; ?>">
+            <a href="<?= $image_link_url; ?>">
         <?php } ?>
         <div class="image-wrapper">
             <div class="image-container">
-                <img src="<?php echo $image['sizes']['large']; ?>">
+                <img src="<?= $image['sizes']['large']; ?>">
             </div>
         </div>
         <?php if ($image_link_url) { ?>
             </a>
         <?php } ?>
         <div class="text-container">
-            <?php echo $text; ?>
+            <?= $text; ?>
         </div>
     </div>
 
     <?php if ($width) { ?>
         <style>
             #draggable {
-                width: <?php echo $width; ?>px !important;
+                width: <?= $width; ?>px !important;
             }
         </style>
     <?php }

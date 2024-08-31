@@ -17,12 +17,10 @@ function theme_enqueue_styles_scripts() {
 
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles_scripts');
 
-require_once get_template_directory() . '/inc/acf-options-page.php';
+require_once get_template_directory() . '/inc/acf-add-options-page.php';
 require_once get_template_directory() . '/inc/acf-register-blocks.php';
-require_once get_template_directory() . '/inc/add-theme-support.php';
-require_once get_template_directory() . '/inc/adjust-wp-wysiwyg.php';
-require_once get_template_directory() . '/inc/editor-color-palette.php';
-require_once get_template_directory() . '/inc/generic-template-functions.php';
-require_once get_template_directory() . '/inc/register-post-types.php';
-require_once get_template_directory() . '/inc/wp-block-filters.php';
-require_once get_template_directory() . '/inc/unregistger-block-scripts.php';
+require_once get_template_directory() . '/inc/after-theme-setup.php';
+require_once get_template_directory() . '/inc/allowed-block-types-all.php';
+require_once get_template_directory() . '/inc/init.php';
+require_once get_template_directory() . '/inc/template-functions.php';
+require_once get_template_directory() . '/inc/tiny-mce-before-init.php';

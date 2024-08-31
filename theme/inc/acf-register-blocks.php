@@ -1,11 +1,10 @@
 <?php
 
-function my_acf_block_render_callback($block) {
+function acf_block_render_callback($block) {
     $slug = str_replace('acf/', '', $block['name']);
     $block['slug'] = $slug;
     $block['classes'] = implode(' ', [$block['slug'], $block['align']]);
 
-    // Ensure the block is loaded and render it with the correct context
     if (file_exists(locate_template("acf-blocks/${slug}.php"))) {
         include(locate_template("acf-blocks/${slug}.php"));
     }
@@ -13,6 +12,13 @@ function my_acf_block_render_callback($block) {
 
 add_action('acf/init', function () {
     if (function_exists('acf_register_block_type')) {
+
+        $template_path = locate_template("acf-blocks/");
+
+        if (!is_dir($template_path)) {
+            error_log('ACF blocks directory does not exist: ' . $template_path);
+            return;
+        }
 
         $dir = new DirectoryIterator(locate_template("acf-blocks/"));
 
@@ -50,7 +56,7 @@ add_action('acf/init', function () {
                     'category' => $file_headers['category'],
                     'icon' => $file_headers['icon'],
                     'keywords' => explode(' ', $file_headers['keywords']),
-                    'render_callback'  => 'my_acf_block_render_callback',
+                    'render_callback'  => 'acf_block_render_callback',
                     'mode' => 'preview',
                     'supports' => [
                         'align' => false,
