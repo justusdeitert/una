@@ -1,51 +1,33 @@
 
 # WordPress Development Environment
 
-This repository sets up a WordPress development environment using Docker.
+This repository sets up a WordPress development environment using Docker. To Install the docker environment simply running the following command:
 
-## Commands
+## Install
 
-Here are the available make commands to manage the development environment:
+This will stop any running containers, builds the containers new, and starts the environment.
 
-`make install`
-- Stops any running containers, builds the containers, and starts the environment.
+```
+make install
+```
 
-`make start`
-- Starts the Docker containers.
+## Start Development
 
-`make stop`
-- Stops the Docker containers.
+Runs the development script using Yarn inside the Node.js container.
 
-`make enter_php`
-- Opens a shell in the PHP container.
+```
+make dev
+```
 
-`make enter_phpmyadmin`
-- Opens a shell in the phpMyAdmin container.
+## Build for Production
 
-`make enter_node`
-- Opens a shell in the Node.js container.
+Runs the build script using Yarn inside the Node.js container.
 
-`make build_container`
-- Builds the Docker containers.
+```
+make build
+```
 
-`make clean_install`
-- Stops any running containers, cleans up the network, rebuilds the containers, and starts the environment.
-
-`make dev`
-- Runs the development script using Yarn inside the Node.js container.
-
-`make build`
-- Runs the build script using Yarn inside the Node.js container.
-
-`make setup_wordpress`
-- Setup the wordpress using custom script.
-
-`make export_db`
-- Exports the database using a custom script.
-
-`make import_db`
-- Imports the database using a custom script.
 
 ## Usage
 
-Run these commands using `make <command>` to control the Docker environment for your WordPress development.
+Run `make help` to see all available commands.
