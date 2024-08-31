@@ -10,7 +10,7 @@ Here are the available make commands to manage the development environment:
 `make install`
 - Stops any running containers, builds the containers, and starts the environment.
 
-`make start`:
+`make start`
 - Starts the Docker containers.
 
 `make stop`
