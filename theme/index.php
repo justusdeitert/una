@@ -1,51 +1,24 @@
-<?php get_header(); ?>
+<!doctype html>
+<html <?php language_attributes(); ?>>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div class="page-wrapper">
-    <header>
-        <a class="brand" href="<?php echo home_url('/'); ?>">
-            <?php echo get_bloginfo('name', 'display'); ?>
-        </a>
-    </header>
+        <?php wp_head(); ?>
 
-    <div class="wrap container" role="document">
-        <div class="content">
-            <main class="main">
-                <div id="fullpage">
-                    <?php the_content(); ?>
-                </div>
-            </main>
-        </div>
-    </div>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons&text=close,keyboard_arrow_up" rel="stylesheet">
+    </head>
 
-    <div class="sidebar-desktop">
-        <?php if (has_nav_menu('primary_navigation')) { ?>
-            <?= wp_nav_menu([
-                'theme_location' => 'primary_navigation',
-                'container_class' => 'main-navigation',
-            ]) ?>
-        <?php } ?>
-    </div>
+    <body <?php body_class(); ?>>
+        <?php wp_body_open(); ?>
 
-    <div class="mobile-nav-clicker d-block d-md-none"></div>
+        <?php get_template_part('template-parts/page-wrapper'); ?>
 
-    <div class="back-to-top colored-hover">
-        <p>go up</p>
-    </div>
+        <?php if (is_front_page()) get_template_part('template-parts/event-draggable'); ?>
 
-    <div sidebarjs class="sidebar-wrapper-mobile d-block d-md-none">
-        <?php if (has_nav_menu('primary_navigation')): ?>
-            <?= wp_nav_menu([
-                'theme_location' => 'primary_navigation',
-                'container_class' => 'main-navigation',
-            ]); ?>
-        <?php endif; ?>
-    </div>
-</div>
+        <?php get_template_part('template-parts/colors-script'); ?>
 
-<?php if (is_front_page()) { ?>
-    <?php get_template_part('template-parts/event-draggable'); ?>
-<?php } ?>
+        <?php wp_footer(); ?>
+    </body>
+</html>
 
-<?php get_footer(); ?>
-
-<?php get_template_part('template-parts/colors-script'); ?>
