@@ -1,63 +1,42 @@
-DOCKER_COMPOSE:=docker compose -f docker-compose.yml
+DOCKER_COMPOSE := docker compose
 
-install: .STOP .BUILD_CONTAINER .START
+.PHONY: install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build setup_wordpress export_db import_db
 
-start: .START
+install: stop build_container start
+clean_install: stop clean build_container start
 
-stop: .STOP
-
-enter_php: .ENTER_PHP
-
-enter_phpmyadmin: .ENTER_PHPMYADMIN
-
-enter_node: .ENTER_NODE
-
-build_container: .BUILD_CONTAINER
-
-clean_install: .STOP .CLEAN .BUILD_CONTAINER .START
-
-dev: .DEV
-
-build: .BUILD
-
-setup_wordpress: .SETUP_WORDPRESS
-
-export_db: .EXPORT_DB
-
-import_db: .IMPORT_DB
-
-.BUILD_CONTAINER:
-	@$(DOCKER_COMPOSE) build
-
-.START:
+start:
 	@$(DOCKER_COMPOSE) up -d
 
-.STOP:
+stop:
 	@$(DOCKER_COMPOSE) down
 
-.CLEAN:
+build_container:
+	@$(DOCKER_COMPOSE) build
+
+clean:
 	@docker network prune -f
 
-.ENTER_PHP:
+enter_php:
 	@$(DOCKER_COMPOSE) exec -w /var/www/html php /bin/zsh
 
-.ENTER_PHPMYADMIN:
+enter_phpmyadmin:
 	@$(DOCKER_COMPOSE) exec -w / phpmyadmin /bin/sh
 
-.ENTER_NODE:
+enter_node:
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node /bin/zsh
 
-.DEV:
+dev:
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node yarn dev
 
-.BUILD:
+build:
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node yarn build
 
-.SETUP_WORDPRESS:
+setup_wordpress:
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/setup-wordpress.sh
 
-.EXPORT_DB:
+export_db:
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/search-replace-export-db.sh
 
-.IMPORT_DB:
+import_db:
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/search-replace-import-db.sh
