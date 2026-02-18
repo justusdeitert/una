@@ -1,0 +1,10 @@
+.git
+.github
+.vscode
+.DS_Store
+*.md
+*.sql
+wordpress
+uploads
+theme/node_modules
+theme/assets

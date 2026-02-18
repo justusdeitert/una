@@ -1,17 +1,16 @@
 services:
     nginx:
-        image: nginx:latest
+        image: nginx:1.27-alpine
         ports:
             - "8080:80"
         volumes:
-            - ./devops/nginx/conf.d:/etc/nginx/conf.d
+            - ./devops/nginx/conf.d:/etc/nginx/conf.d:ro
             - ./wordpress:/var/www/html
             - ./theme:/var/www/html/wp-content/themes/una-moehrke-theme
             - ./uploads:/var/www/html/wp-content/uploads
         depends_on:
-            - php
-        networks:
-            - app-network
+            php:
+                condition: service_healthy
 
     php:
         build:
@@ -19,35 +18,48 @@ services:
             dockerfile: devops/php/Dockerfile
         volumes:
             - ./wordpress:/var/www/html
-            - ./devops/php/php.ini:/usr/local/etc/php/php.ini
+            - ./devops/php/php.ini:/usr/local/etc/php/php.ini:ro
             - ./theme:/var/www/html/wp-content/themes/una-moehrke-theme
             - ./uploads:/var/www/html/wp-content/uploads
         env_file:
             - .env
         depends_on:
-            - mysql
-        networks:
-            - app-network
+            mysql:
+                condition: service_healthy
+        healthcheck:
+            test: ["CMD-SHELL", "php -r 'exit(0);' && kill -0 1"]
+            interval: 10s
+            timeout: 5s
+            retries: 3
+            start_period: 120s
 
     mysql:
-        image: mysql:latest
+        image: mariadb:10.11
         env_file:
             - .env
+        environment:
+            MARIADB_USER: ${MYSQL_USER}
+            MARIADB_DATABASE: ${MYSQL_DATABASE}
+            MARIADB_PASSWORD: ${MYSQL_PASSWORD}
+            MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         volumes:
             - mysql-data:/var/lib/mysql
-        networks:
-            - app-network
+        healthcheck:
+            test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 15s
 
     phpmyadmin:
-        image: phpmyadmin:latest
+        image: phpmyadmin:5
         ports:
             - "8081:80"
         env_file:
             - .env
         depends_on:
-            - mysql
-        networks:
-            - app-network
+            mysql:
+                condition: service_healthy
 
     node:
         build:
@@ -57,14 +69,8 @@ services:
             - ./theme:/usr/src/theme
         ports:
             - "5173:5173"
-        networks:
-            - app-network
         depends_on:
             - php
 
 volumes:
     mysql-data:
-
-networks:
-    app-network:
-        driver: bridge
