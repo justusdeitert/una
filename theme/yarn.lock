@@ -202,10 +202,10 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.5.tgz#a6ce3e556e00fd9895dd872dd172ad0d4bd687f4"
   integrity sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==
 
-a-template@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/a-template/-/a-template-0.6.1.tgz#da2c33b2f34778f13fa2dc29113860b7038c4024"
-  integrity sha512-2v4pdCjZewuwp98JXeVv+4ZmPmCtHz7EiEd8ft/lRF03C7VTs9DI0cYZtI1iI4HCtd75D56FR0FrRRrXCa1blA==
+a-template@^0.5.4:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/a-template/-/a-template-0.5.5.tgz#2eea6e4a2c148a0d3a5896e2324000724f777f90"
+  integrity sha512-Ny7NbjrHc4YQk2UwV4GtKh/9jbKPgUDvkW1Qsy+uu7BwZHpAiRbawaSLX6GbKIeUjSC6RgMf0DX4wfmZRfhgOg==
   dependencies:
     delegate "^3.1.2"
     ie-array-find-polyfill "^1.1.0"
@@ -312,7 +312,7 @@ fsevents@~2.3.2, fsevents@~2.3.3:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
-fullpage.js@^3.0.5:
+fullpage.js@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-3.1.2.tgz#ee6289f52edb2a9f9c25d09c4022043b701d3cc0"
   integrity sha512-hv7z6xhbg2StTp1UDq2hi+0oHjhT7cW3zCL3qCIJ3ood5pN0FRBQ2YKIOUobhsp4ATSQlr6sZ2TOcS+Ha+T7Cg==
@@ -353,7 +353,7 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
-jquery-touchswipe@^1.6.19:
+jquery-touchswipe@1.6.19:
   version "1.6.19"
   resolved "https://registry.yarnpkg.com/jquery-touchswipe/-/jquery-touchswipe-1.6.19.tgz#dfd5ddaec0b78212dd500d29707129b9c7fd6cd4"
   integrity sha512-b0BGje9reNRU3u6ksAK9QqnX7yBRgLNe/wYG7DOfyDlhBlYjayIT8bSOHmcuvptIDW/ubM9CTW/mnZf9Rohuow==
@@ -446,17 +446,17 @@ sidebarjs@6.0.0:
   resolved "https://registry.yarnpkg.com/sidebarjs/-/sidebarjs-6.0.0.tgz#3ac068e5dbba6e772d89759b79fba0e4e12fd67f"
   integrity sha512-gbOXiyZ+/bBKPVjwLiPHbKA9q1vYblq0TwHJtZTKwkjRiJztEjxqnXbEj34iBNKCe3O95hwLQP4TsIm3vzWjpA==
 
-slick-carousel@^1.8.1:
+slick-carousel@1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/slick-carousel/-/slick-carousel-1.8.1.tgz#a4bfb29014887bb66ce528b90bd0cda262cc8f8d"
   integrity sha512-XB9Ftrf2EEKfzoQXt3Nitrt/IPbT+f1fgqBdoxO3W/+JYvtEOW6EgxnWfr9GH6nmULv7Y2tPmEX3koxThVmebA==
 
-smartphoto@^1.4.3:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/smartphoto/-/smartphoto-1.6.5.tgz#d8ebd9180a652244c654c36a95a88107c079fd7f"
-  integrity sha512-dtMpzrNnD3q76AMxqmz07WN/dpy8tRmXf5V2h+Rt6ccbGMbrdu2js9s/szRvC47G9ntSEh/G1R0Wl4TmIyGWpw==
+smartphoto@1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/smartphoto/-/smartphoto-1.4.3.tgz#de063d51ca148e1cbb4f6565045e36089714971d"
+  integrity sha512-MPtxbIRiGzsL6dLbXlgcJVr+hnr/TxZFCy1wep1rhTrZ9aq+0BcVxhkifItXDWwjwFvZ4MMd1a34nT7Hvj+nKA==
   dependencies:
-    a-template "^0.6.1"
+    a-template "^0.5.4"
     custom-event-polyfill "^0.3.0"
     es6-promise-polyfill "^1.2.0"
 
