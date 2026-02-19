@@ -1,6 +1,7 @@
 services:
     nginx:
         image: nginx:1.27-alpine
+        restart: unless-stopped
         ports:
             - "8080:80"
         volumes:
@@ -16,6 +17,7 @@ services:
         build:
             context: .
             dockerfile: devops/php/Dockerfile
+        restart: unless-stopped
         volumes:
             - ./wordpress:/var/www/html
             - ./devops/php/php.ini:/usr/local/etc/php/php.ini:ro
@@ -27,7 +29,7 @@ services:
             mysql:
                 condition: service_healthy
         healthcheck:
-            test: ["CMD-SHELL", "php -r 'exit(0);' && kill -0 1"]
+            test: ["CMD-SHELL", "kill -0 1 && php-fpm -t"]
             interval: 10s
             timeout: 5s
             retries: 3
@@ -35,6 +37,7 @@ services:
 
     mysql:
         image: mariadb:10.11
+        restart: unless-stopped
         env_file:
             - .env
         environment:
