@@ -1,7 +1,5 @@
 // External dependencies
 import $ from 'jquery';
-import 'slick-carousel';
-import 'jquery-touchswipe';
 import 'bootstrap/js/dist/collapse';
 
 // Internal dependencies
