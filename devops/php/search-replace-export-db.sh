@@ -7,7 +7,7 @@ if ! command -v wp &> /dev/null; then
 fi
 
 echo "Exporting the database to $DB_EXPORT_FILE..."
-wp search-replace "$SEARCH_STRING" "$REPLACE_STRING" --export="$DB_EXPORT_FILE" --allow-root
+wp search-replace "$LOCAL_DOMAIN" "$PRODUCTION_DOMAIN" --export="$DB_EXPORT_FILE" --allow-root
 
 if [ -f "$DB_EXPORT_FILE" ]; then
     echo "Database export completed successfully: $DB_EXPORT_FILE"
