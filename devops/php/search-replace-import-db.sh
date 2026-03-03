@@ -17,11 +17,11 @@ wp db reset --yes --allow-root
 echo "Importing the database from $DB_IMPORT_FILE..."
 wp db import "$DB_IMPORT_FILE" --allow-root
 
-echo "Replacing '$REPLACE_STRING' with '$SEARCH_STRING'..."
-wp search-replace "$REPLACE_STRING" "$SEARCH_STRING" --allow-root
+echo "Replacing '$PRODUCTION_DOMAIN' with '$LOCAL_DOMAIN'..."
+wp search-replace "$PRODUCTION_DOMAIN" "$LOCAL_DOMAIN" --allow-root
 
 echo "Updating siteurl and home options..."
-wp option update siteurl "http://$SEARCH_STRING" --allow-root
-wp option update home "http://$SEARCH_STRING" --allow-root
+wp option update siteurl "http://$LOCAL_DOMAIN" --allow-root
+wp option update home "http://$LOCAL_DOMAIN" --allow-root
 
 echo "Database import completed successfully."
