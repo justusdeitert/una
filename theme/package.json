@@ -9,19 +9,19 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "sass": "1.32.13",
-        "typescript": "5.5.4",
-        "vite": "5.4.2"
+        "sass": "^1.99.0",
+        "typescript": "^6.0.2",
+        "vite": "^6.3.3"
     },
     "dependencies": {
-        "bootstrap": "4.3.1",
+        "bootstrap": "4.6.2",
         "draggable": "4.2.0",
         "fullpage.js": "3.1.2",
-        "jquery": "3.6.3",
+        "jquery": "3.7.1",
         "jquery-touchswipe": "1.6.19",
-        "popper.js": "1.14.7",
-        "sidebarjs": "6.0.0",
+        "popper.js": "1.16.1",
+        "sidebarjs": "10.0.0",
         "slick-carousel": "1.8.1",
-        "smartphoto": "1.4.3"
+        "smartphoto": "1.6.5"
     }
 }
