@@ -466,11 +466,6 @@ is-glob@^4.0.3:
   dependencies:
     is-extglob "^2.1.1"
 
-jquery-touchswipe@1.6.19:
-  version "1.6.19"
-  resolved "https://registry.yarnpkg.com/jquery-touchswipe/-/jquery-touchswipe-1.6.19.tgz#dfd5ddaec0b78212dd500d29707129b9c7fd6cd4"
-  integrity sha512-b0BGje9reNRU3u6ksAK9QqnX7yBRgLNe/wYG7DOfyDlhBlYjayIT8bSOHmcuvptIDW/ubM9CTW/mnZf9Rohuow==
-
 jquery@3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
@@ -569,11 +564,6 @@ sidebarjs@10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/sidebarjs/-/sidebarjs-10.0.0.tgz#ae5459c65e21451be423d49260f88cf77047649d"
   integrity sha512-S3O6p5Bg086IStupCHoD/jMtcLgh6jBaB8KhAmmJb4Y4Z0MwF1TpPZ1lM+fdDbWSL4u5wSuQQijbz9eYKxNN2w==
-
-slick-carousel@1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/slick-carousel/-/slick-carousel-1.8.1.tgz#a4bfb29014887bb66ce528b90bd0cda262cc8f8d"
-  integrity sha512-XB9Ftrf2EEKfzoQXt3Nitrt/IPbT+f1fgqBdoxO3W/+JYvtEOW6EgxnWfr9GH6nmULv7Y2tPmEX3koxThVmebA==
 
 smartphoto@1.6.5:
   version "1.6.5"

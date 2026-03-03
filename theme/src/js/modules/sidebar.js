@@ -56,15 +56,15 @@ if ($('[sidebarjs]').length > 0) {
 				closeSidebar();
 			});
 
-			$(sidebarBackdrop).swipe({
-				// Generic swipe handler for all directions
-				swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
-					// console.log("You swiped " + direction );
+			sidebarBackdrop[0].addEventListener('touchstart', function (e) {
+				this._touchStartX = e.touches[0].clientX;
+			});
 
-					if (direction === 'right') {
-						closeSidebar();
-					}
-				},
+			sidebarBackdrop[0].addEventListener('touchend', function (e) {
+				const deltaX = e.changedTouches[0].clientX - this._touchStartX;
+				if (deltaX > 50) {
+					closeSidebar();
+				}
 			});
 		}
 	};

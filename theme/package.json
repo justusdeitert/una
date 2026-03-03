@@ -18,10 +18,8 @@
         "draggable": "4.2.0",
         "fullpage.js": "3.1.2",
         "jquery": "3.7.1",
-        "jquery-touchswipe": "1.6.19",
         "popper.js": "1.16.1",
         "sidebarjs": "10.0.0",
-        "slick-carousel": "1.8.1",
         "smartphoto": "1.6.5"
     }
 }
