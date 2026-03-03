@@ -106,12 +106,12 @@ $line-height-base: 1.5 !default;
 //
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
-$input-btn-padding-y: 2px;
+$input-btn-padding-y: 0.125rem;
 // $input-btn-padding-x:         0.75rem !default;
 $input-btn-padding-x: 1rem;
 $input-btn-font-family: null !default;
 //$input-btn-font-size:         $font-size-base !default;
-$input-btn-font-size: 16px;
+$input-btn-font-size: 1rem;
 $input-btn-line-height: $line-height-base !default;
 
 // Buttons

@@ -49,6 +49,12 @@ export default defineConfig(async ({ mode }) => {
         },
         css: {
             devSourcemap: true,
+            preprocessorOptions: {
+                scss: {
+                    silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
+                    quietDeps: true,
+                },
+            },
         },
         server: {
             host: '0.0.0.0',
