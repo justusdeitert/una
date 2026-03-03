@@ -22,9 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Wrap mariadb client to add --skip-ssl (WP-CLI uses --no-defaults which ignores config files)
-RUN mv /usr/bin/mariadb /usr/bin/mariadb-real \
-    && printf '#!/bin/sh\nif [ "$1" = "--no-defaults" ]; then\n  shift\n  exec /usr/bin/mariadb-real --no-defaults --skip-ssl "$@"\nelse\n  exec /usr/bin/mariadb-real --skip-ssl "$@"\nfi\n' > /usr/bin/mariadb \
-    && chmod +x /usr/bin/mariadb
+RUN mv /usr/bin/mariadb /usr/bin/mariadb-real
+COPY --chmod=755 devops/php/mariadb-wrapper.sh /usr/bin/mariadb
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
