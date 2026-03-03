@@ -30,6 +30,7 @@ if [ ! -f wp-config.php ]; then
         "imsanity:2.9.0:activate"
         "jetpack:15.7"
         "phoenix-media-rename:3.13.1:activate"
+        "secure-custom-fields:6.8.2:activate"
         "svg-support:2.5.14:activate"
         "user-switching:1.11.2:activate"
         "webp-converter-for-media:6.5.5:activate"
