@@ -15,6 +15,7 @@ build_container:
 	@$(DOCKER_COMPOSE) build
 
 clean:
+	@$(DOCKER_COMPOSE) down -v
 	@docker network prune -f
 
 enter_php:
