@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 // Importing Compiled smartphoto from lib
 import SmartPhoto from 'smartphoto/js/smartphoto.js';
 
@@ -16,9 +14,12 @@ const clearUrlHash = () => {
 };
 
 const rebuildCloseButtons = () => {
-	$('.smartphoto-header-close').remove();
-	$('.smartphoto-header').append(closeButtonsHtml);
-	$('.smartphoto-header-close').click(() => smartPhoto.hidePhoto());
+	document.querySelectorAll('.smartphoto-header-close').forEach(el => el.remove());
+	const header = document.querySelector('.smartphoto-header');
+	if (header) header.insertAdjacentHTML('beforeend', closeButtonsHtml);
+	document.querySelectorAll('.smartphoto-header-close').forEach(el => {
+		el.addEventListener('click', () => smartPhoto.hidePhoto());
+	});
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -30,24 +31,26 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	smartPhoto.on('open', function () {
-		$('.smartphoto-img-wrap').dblclick(() => smartPhoto.hidePhoto());
+		document.querySelectorAll('.smartphoto-img-wrap').forEach(el => {
+			el.addEventListener('dblclick', () => smartPhoto.hidePhoto());
+		});
 		clearUrlHash();
-		$('body').addClass('smartphoto-is-open');
+		document.body.classList.add('smartphoto-is-open');
 	});
 
 	smartPhoto.on('zoomin', function () {
 		rebuildCloseButtons();
-		$('body').addClass('smartphoto-zoomed-in');
+		document.body.classList.add('smartphoto-zoomed-in');
 	});
 
 	smartPhoto.on('zoomout', function () {
-		$('.smartphoto-header-close').remove();
-		$('body').removeClass('smartphoto-zoomed-in');
+		document.querySelectorAll('.smartphoto-header-close').forEach(el => el.remove());
+		document.body.classList.remove('smartphoto-zoomed-in');
 	});
 
 	smartPhoto.on('close', function () {
 		clearUrlHash();
-		$('body').removeClass('smartphoto-is-open');
+		document.body.classList.remove('smartphoto-is-open');
 	});
 
 	smartPhoto.on('change', clearUrlHash);
@@ -57,13 +60,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		setTimeout(clearUrlHash, 50);
 	});
 
-	$('.smart-photo').click(function () {
-		clearUrlHash();
-		setTimeout(clearUrlHash, 50);
+	document.querySelectorAll('.smart-photo').forEach(el => {
+		el.addEventListener('click', function () {
+			clearUrlHash();
+			setTimeout(clearUrlHash, 50);
+		});
 	});
 
-	$(window).resize(function () {
-		if ($('body').hasClass('smartphoto-zoomed-in')) {
+	window.addEventListener('resize', function () {
+		if (document.body.classList.contains('smartphoto-zoomed-in')) {
 			setTimeout(rebuildCloseButtons, 200);
 		}
 	});

@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import 'fullpage.js/vendors/scrolloverflow';
 import fullpage from 'fullpage.js/dist/fullpage';
 import { smartPhoto } from '@/js/modules/smart-photo';
@@ -9,10 +8,10 @@ const BREAKPOINT_MD = 859.98;
 let resizeTimer = null;
 
 const getSelectorOnWindowSize = () => {
-	const isMobile = $(window).width() < $(window).height() || $(window).width() < BREAKPOINT_MD;
+	const isMobile = window.innerWidth < window.innerHeight || window.innerWidth < BREAKPOINT_MD;
 
-	$('body').toggleClass('is-mobile', isMobile);
-	$('body').toggleClass('is-desktop', !isMobile);
+	document.body.classList.toggle('is-mobile', isMobile);
+	document.body.classList.toggle('is-desktop', !isMobile);
 
 	return isMobile ? '.section-mobile' : '.section-desktop';
 };
@@ -21,25 +20,38 @@ export let fullPageInstance = null;
 
 const updateNavClasses = () => {
 	setTimeout(() => {
-		$('#fp-nav').addClass('is-visible');
+		const fpNav = document.getElementById('fp-nav');
+		if (fpNav) fpNav.classList.add('is-visible');
 	}, 300);
 
-	const all = $('#fp-nav li');
-	all.removeClass('prev next visible');
+	document.querySelectorAll('#fp-nav li').forEach(li => {
+		li.classList.remove('prev', 'next', 'visible');
+	});
 
-	const li = $('#fp-nav a.active').parent('li');
-	li.addClass('visible');
-	li.prev().addClass('prev');
-	li.next().addClass('next');
-	li.prev().prev().addClass('prev');
-	li.next().next().addClass('next');
+	const activeLink = document.querySelector('#fp-nav a.active');
+	if (activeLink) {
+		const li = activeLink.closest('li');
+		if (li) {
+			li.classList.add('visible');
+			const prev = li.previousElementSibling;
+			const next = li.nextElementSibling;
+			if (prev) {
+				prev.classList.add('prev');
+				if (prev.previousElementSibling) prev.previousElementSibling.classList.add('prev');
+			}
+			if (next) {
+				next.classList.add('next');
+				if (next.nextElementSibling) next.nextElementSibling.classList.add('next');
+			}
+		}
+	}
 };
 
 const afterLoad = () => {
 	updateNavClasses();
 
-	$('.fp-tableCell').each(function () {
-		$(this).toggleClass('vertical-top', $(this).has('.content-container').length > 0);
+	document.querySelectorAll('.fp-tableCell').forEach(cell => {
+		cell.classList.toggle('vertical-top', cell.querySelector('.content-container') !== null);
 	});
 };
 
@@ -58,13 +70,13 @@ const initFullPageInstance = () => {
 		afterLoad: afterLoad,
 		afterRender: updateNavClasses,
 		onLeave: function (origin, destination, direction) {
-			if ($('body').hasClass('smartphoto-is-open') && smartPhoto) {
+			if (document.body.classList.contains('smartphoto-is-open') && smartPhoto) {
 				smartPhoto.hidePhoto();
 			}
 
 			closeSidebar();
 
-			$('body').toggleClass('last-section', destination.index >= 1);
+			document.body.classList.toggle('last-section', destination.index >= 1);
 		},
 	});
 	return fullPageInstance;
@@ -77,67 +89,81 @@ const reinitFullPage = () => {
 	}, 200);
 };
 
-$(window).on('load', function() {
+window.addEventListener('load', function() {
 	initFullPageInstance();
 });
 
 let scrollerPosition = 0;
 
-$('.accordion').on('shown.bs.collapse', function () {
-	$('.fp-section.active .fp-scroller').removeClass('slide-up');
-	reinitFullPage();
-});
+const getActiveScroller = () => document.querySelector('.fp-section.active .fp-scroller');
 
-$('.accordion').on('hide.bs.collapse', function () {
-	$('.fp-section.active .fp-scroller').css({
-		transform: 'translate(0px, 0px)',
+document.querySelectorAll('.accordion').forEach(el => {
+	el.addEventListener('shown.bs.collapse', function () {
+		const scroller = getActiveScroller();
+		if (scroller) scroller.classList.remove('slide-up');
+		reinitFullPage();
 	});
-	$('.fp-section.active .fp-scroller').addClass('slide-up');
-});
 
-$('.accordion').on('hidden.bs.collapse', function () {
-	$('.fp-section.active .fp-scroller').removeClass('slide-up');
-	reinitFullPage();
-});
-
-$('.text-container-accordion .collapse').on('show.bs.collapse', function () {
-	if ($('.fp-section.active .fp-scroller').position()) {
-		scrollerPosition = $('.fp-section.active .fp-scroller').position().top;
-	}
-});
-
-$('.text-container-accordion .collapse').on('shown.bs.collapse', function () {
-	fullPageInstance.reBuild();
-});
-
-$('.text-container-accordion .collapse').on('hide.bs.collapse', function () {
-	$('.fp-section.active .fp-scroller').css({
-		transform: 'translate(0px, ' + scrollerPosition + 'px)',
+	el.addEventListener('hide.bs.collapse', function () {
+		const scroller = getActiveScroller();
+		if (scroller) {
+			scroller.style.transform = 'translate(0px, 0px)';
+			scroller.classList.add('slide-up');
+		}
 	});
-	$('.fp-section.active .fp-scroller').addClass('slide-up');
+
+	el.addEventListener('hidden.bs.collapse', function () {
+		const scroller = getActiveScroller();
+		if (scroller) scroller.classList.remove('slide-up');
+		reinitFullPage();
+	});
 });
 
-$('.text-container-accordion .collapse').on('hidden.bs.collapse', function () {
-	$('.fp-section.active .fp-scroller').removeClass('slide-up');
-	setTimeout(() => {
+document.querySelectorAll('.text-container-accordion .collapse').forEach(el => {
+	el.addEventListener('show.bs.collapse', function () {
+		const scroller = getActiveScroller();
+		if (scroller) {
+			scrollerPosition = scroller.offsetTop;
+		}
+	});
+
+	el.addEventListener('shown.bs.collapse', function () {
 		fullPageInstance.reBuild();
-	}, 200);
+	});
+
+	el.addEventListener('hide.bs.collapse', function () {
+		const scroller = getActiveScroller();
+		if (scroller) {
+			scroller.style.transform = 'translate(0px, ' + scrollerPosition + 'px)';
+			scroller.classList.add('slide-up');
+		}
+	});
+
+	el.addEventListener('hidden.bs.collapse', function () {
+		const scroller = getActiveScroller();
+		if (scroller) scroller.classList.remove('slide-up');
+		setTimeout(() => {
+			fullPageInstance.reBuild();
+		}, 200);
+	});
 });
 
-$('.back-to-top').click(() => {
-	fullPageInstance.moveTo(1);
+document.querySelectorAll('.back-to-top').forEach(el => {
+	el.addEventListener('click', () => {
+		fullPageInstance.moveTo(1);
+	});
 });
 
-$(window).on('resize', () => {
+window.addEventListener('resize', () => {
 	clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(() => {
 		const sectionSelector = fullPageInstance.getFullpageData().sectionSelector;
-		const shouldBeMobile = $(window).width() < $(window).height() || $(window).width() < BREAKPOINT_MD;
+		const shouldBeMobile = window.innerWidth < window.innerHeight || window.innerWidth < BREAKPOINT_MD;
 		const isMobile = sectionSelector === '.section-mobile';
 
 		if (shouldBeMobile !== isMobile) {
 			fullPageInstance.destroy('all');
 			initFullPageInstance();
 		}
-	}, 150);
+	}, 75);
 });

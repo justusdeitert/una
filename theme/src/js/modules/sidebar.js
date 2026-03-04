@@ -1,23 +1,22 @@
-import $ from 'jquery';
 import { SidebarElement } from 'sidebarjs/lib/umd/sidebarjs';
+import { fullPageInstance } from '@/js/modules/fullpage';
 
 let sidebarJS = null;
 
 export const closeSidebar = function () {
 	if (sidebarJS && sidebarJS.isVisible()) {
 		sidebarJS.close();
-		$('body').removeClass('sidenav-active');
+		document.body.classList.remove('sidenav-active');
 
-		let sidebarBackdrop = $('.custom-sidebar-backdrop');
-		$(sidebarBackdrop).removeClass('active');
-
-		setTimeout(() => {
-			$(sidebarBackdrop).remove();
-		}, 200);
+		const backdrop = document.querySelector('.custom-sidebar-backdrop');
+		if (backdrop) {
+			backdrop.classList.remove('active');
+			setTimeout(() => backdrop.remove(), 200);
+		}
 	}
 };
 
-if ($('[sidebarjs]').length > 0) {
+if (document.querySelector('[sidebarjs]')) {
 	sidebarJS = new SidebarElement({
 		backdropOpacity: 0.5,
 		nativeSwipe: false,
@@ -28,60 +27,104 @@ if ($('[sidebarjs]').length > 0) {
 		if (!sidebarJS.isVisible()) {
 			sidebarJS.open();
 
-			$('body').addClass('sidenav-active');
+			document.body.classList.add('sidenav-active');
 
-			$('[sidebarjs-backdrop]').before('<div class="custom-sidebar-backdrop"></div>');
+			const sidebarjsBackdrop = document.querySelector('[sidebarjs-backdrop]');
+			if (sidebarjsBackdrop) {
+				sidebarjsBackdrop.insertAdjacentHTML('beforebegin', '<div class="custom-sidebar-backdrop"></div>');
+			}
 
-			let sidebarBackdrop = $('.custom-sidebar-backdrop');
+			const backdrop = document.querySelector('.custom-sidebar-backdrop');
 
-			setTimeout(() => {
-				$(sidebarBackdrop).addClass('active');
-			}, 100);
+			if (backdrop) {
+				setTimeout(() => backdrop.classList.add('active'), 100);
 
-			$(sidebarBackdrop).click(function () {
-				closeSidebar();
-			});
+				backdrop.addEventListener('click', () => closeSidebar());
 
-			sidebarBackdrop[0].addEventListener('touchstart', function (e) {
-				this._touchStartX = e.touches[0].clientX;
-			});
+				backdrop.addEventListener('touchstart', function (e) {
+					this._touchStartX = e.touches[0].clientX;
+				});
 
-			sidebarBackdrop[0].addEventListener('touchend', function (e) {
-				const deltaX = e.changedTouches[0].clientX - this._touchStartX;
-				if (deltaX > 50) {
-					closeSidebar();
-				}
-			});
+				backdrop.addEventListener('touchend', function (e) {
+					const deltaX = e.changedTouches[0].clientX - this._touchStartX;
+					if (deltaX > 50) {
+						closeSidebar();
+					}
+				});
+			}
 		}
 	};
 
-	$('.mobile-nav-clicker').click(function () {
-		if (sidebarJS.isVisible()) {
-			closeSidebar();
-		} else {
-			openSidebar();
-		}
+	document.querySelectorAll('.mobile-nav-clicker').forEach(el => {
+		el.addEventListener('click', function () {
+			if (sidebarJS.isVisible()) {
+				closeSidebar();
+			} else {
+				openSidebar();
+			}
+		});
 	});
 
     let resizeTimer = null;
-    $(window).on('resize', function() {
+    window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(closeSidebar, 150);
+        resizeTimer = setTimeout(closeSidebar, 75);
     });
 
-    $(window).on('scroll', function() {
+    window.addEventListener('scroll', function() {
         closeSidebar();
     });
+
+    document.addEventListener('wheel', function(e) {
+        if (sidebarJS && sidebarJS.isVisible()) {
+            closeSidebar();
+            if (fullPageInstance) {
+                if (e.deltaY > 0) {
+                    fullPageInstance.moveSectionDown();
+                } else if (e.deltaY < 0) {
+                    fullPageInstance.moveSectionUp();
+                }
+            }
+        }
+    }, { passive: true });
+
+    let touchStartY = null;
+    document.addEventListener('touchstart', function(e) {
+        if (sidebarJS && sidebarJS.isVisible()) {
+            touchStartY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+        if (touchStartY !== null && sidebarJS && sidebarJS.isVisible()) {
+            const deltaY = e.touches[0].clientY - touchStartY;
+            if (Math.abs(deltaY) > 10) {
+                touchStartY = null;
+                closeSidebar();
+                if (fullPageInstance) {
+                    if (deltaY < 0) {
+                        fullPageInstance.moveSectionDown();
+                    } else {
+                        fullPageInstance.moveSectionUp();
+                    }
+                }
+            }
+        }
+    }, { passive: true });
 }
 
-let navResizeTimer = null;
-$(window).on('load', function() {
-    $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height());
-});
+const syncNavHeight = () => {
+    const nav = document.querySelector('.sidebar-wrapper-mobile .main-navigation');
+    const clicker = document.querySelector('.mobile-nav-clicker');
+    if (nav && clicker) {
+        clicker.style.height = nav.offsetHeight + 'px';
+    }
+};
 
-$(window).on('resize', function() {
+let navResizeTimer = null;
+window.addEventListener('load', syncNavHeight);
+
+window.addEventListener('resize', function() {
     clearTimeout(navResizeTimer);
-    navResizeTimer = setTimeout(() => {
-        $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height());
-    }, 150);
+    navResizeTimer = setTimeout(syncNavHeight, 75);
 });
