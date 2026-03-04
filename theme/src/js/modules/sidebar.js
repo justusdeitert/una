@@ -1,42 +1,28 @@
 import $ from 'jquery';
 import { SidebarElement } from 'sidebarjs/lib/umd/sidebarjs';
 
-window.sidebarinstance = {};
+let sidebarJS = null;
+
+export const closeSidebar = function () {
+	if (sidebarJS && sidebarJS.isVisible()) {
+		sidebarJS.close();
+		$('body').removeClass('sidenav-active');
+
+		let sidebarBackdrop = $('.custom-sidebar-backdrop');
+		$(sidebarBackdrop).removeClass('active');
+
+		setTimeout(() => {
+			$(sidebarBackdrop).remove();
+		}, 200);
+	}
+};
 
 if ($('[sidebarjs]').length > 0) {
-	window.sidebarinstance.sidebarjs = new SidebarElement({
-		onOpen: function () {
-			// console.log('sidebarjs onOpen');
-		},
-		onClose: function () {
-			// console.log('sidebarjs onClose');
-		},
-		onChangeVisibility: function (changes) {
-			// console.log('sidebarjs onChangeVisibility');
-		},
+	sidebarJS = new SidebarElement({
 		backdropOpacity: 0.5,
 		nativeSwipe: false,
 		position: 'right',
 	});
-
-	const sidebarJS = window.sidebarinstance.sidebarjs;
-
-	window.sidebarinstance.closeSidebar = function () {
-		if (sidebarJS.isVisible()) {
-			sidebarJS.close();
-			$('body').removeClass('sidenav-active');
-
-			let sidebarBackdrop = $('.custom-sidebar-backdrop');
-
-			$(sidebarBackdrop).removeClass('active');
-
-			setTimeout(() => {
-				$(sidebarBackdrop).remove();
-			}, 200);
-		}
-	};
-
-	const closeSidebar = window.sidebarinstance.closeSidebar;
 
 	const openSidebar = function () {
 		if (!sidebarJS.isVisible()) {

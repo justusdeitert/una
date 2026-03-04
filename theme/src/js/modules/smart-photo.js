@@ -3,77 +3,68 @@ import $ from 'jquery';
 // Importing Compiled smartphoto from lib
 import SmartPhoto from 'smartphoto/js/smartphoto.js';
 
-window.storage = {};
+export let smartPhoto = null;
+
+const closeButtonsHtml =
+	'<div class="smartphoto-header-close top"></div>' +
+	'<div class="smartphoto-header-close right"></div>' +
+	'<div class="smartphoto-header-close bottom"></div>' +
+	'<div class="smartphoto-header-close left"></div>';
+
+const clearUrlHash = () => {
+	history.pushState(null, null, window.location.href.split('#')[0]);
+};
+
+const rebuildCloseButtons = () => {
+	$('.smartphoto-header-close').remove();
+	$('.smartphoto-header').append(closeButtonsHtml);
+	$('.smartphoto-header-close').click(() => smartPhoto.hidePhoto());
+};
 
 document.addEventListener('DOMContentLoaded', function () {
-	window.storage.newSmartPhoto = new SmartPhoto('.smart-photo', {
-		resizeStyle: 'fit', // resize images to fill/fit on the screen
+	smartPhoto = new SmartPhoto('.smart-photo', {
+		resizeStyle: 'fit',
 		arrows: false,
 		nav: false,
 		useOrientationApi: true,
 	});
 
-	window.storage.newSmartPhoto.on('open', function () {
-		$('.smartphoto-img-wrap').dblclick(function () {
-			window.storage.newSmartPhoto.hidePhoto();
-		});
-
-		history.pushState(null, null, window.location.href.split('#')[0]);
-
+	smartPhoto.on('open', function () {
+		$('.smartphoto-img-wrap').dblclick(() => smartPhoto.hidePhoto());
+		clearUrlHash();
 		$('body').addClass('smartphoto-is-open');
 	});
 
-	window.storage.newSmartPhoto.on('zoomin', function () {
-		$('.smartphoto-header').append(
-			'<div class="smartphoto-header-close top"></div><div class="smartphoto-header-close right"></div><div class="smartphoto-header-close bottom"></div><div class="smartphoto-header-close left"></div>'
-		);
-		$('.smartphoto-header-close').click(function () {
-			window.storage.newSmartPhoto.hidePhoto();
-		});
+	smartPhoto.on('zoomin', function () {
+		rebuildCloseButtons();
 		$('body').addClass('smartphoto-zoomed-in');
 	});
 
-	window.storage.newSmartPhoto.on('zoomout', function () {
+	smartPhoto.on('zoomout', function () {
 		$('.smartphoto-header-close').remove();
 		$('body').removeClass('smartphoto-zoomed-in');
 	});
 
-	window.storage.newSmartPhoto.on('close', function () {
-		history.pushState(null, null, window.location.href.split('#')[0]);
+	smartPhoto.on('close', function () {
+		clearUrlHash();
 		$('body').removeClass('smartphoto-is-open');
 	});
 
-	window.storage.newSmartPhoto.on('change', function () {
-		history.pushState(null, null, window.location.href.split('#')[0]);
-	});
+	smartPhoto.on('change', clearUrlHash);
 
-	window.storage.newSmartPhoto.on('swipeend', function () {
-		history.pushState(null, null, window.location.href.split('#')[0]);
-		setTimeout(() => {
-			history.pushState(null, null, window.location.href.split('#')[0]);
-		}, 50);
+	smartPhoto.on('swipeend', function () {
+		clearUrlHash();
+		setTimeout(clearUrlHash, 50);
 	});
 
 	$('.smart-photo').click(function () {
-		history.pushState(null, null, window.location.href.split('#')[0]);
-		setTimeout(() => {
-			history.pushState(null, null, window.location.href.split('#')[0]);
-		}, 50);
+		clearUrlHash();
+		setTimeout(clearUrlHash, 50);
 	});
 
 	$(window).resize(function () {
 		if ($('body').hasClass('smartphoto-zoomed-in')) {
-			console.log('true');
-
-			setTimeout(() => {
-				$('.smartphoto-header-close').remove();
-				$('.smartphoto-header').append(
-					'<div class="smartphoto-header-close top"></div><div class="smartphoto-header-close right"></div><div class="smartphoto-header-close bottom"></div><div class="smartphoto-header-close left"></div>'
-				);
-				$('.smartphoto-header-close').click(function () {
-					window.storage.newSmartPhoto.hidePhoto();
-				});
-			}, 200);
+			setTimeout(rebuildCloseButtons, 200);
 		}
 	});
 });
