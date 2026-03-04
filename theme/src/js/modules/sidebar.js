@@ -63,8 +63,10 @@ if ($('[sidebarjs]').length > 0) {
 		}
 	});
 
+    let resizeTimer = null;
     $(window).on('resize', function() {
-        closeSidebar();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(closeSidebar, 150);
     });
 
     $(window).on('scroll', function() {
@@ -72,10 +74,14 @@ if ($('[sidebarjs]').length > 0) {
     });
 }
 
+let navResizeTimer = null;
 $(window).on('load', function() {
     $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height());
 });
 
 $(window).on('resize', function() {
-    $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height());
+    clearTimeout(navResizeTimer);
+    navResizeTimer = setTimeout(() => {
+        $('.mobile-nav-clicker').height($('.sidebar-wrapper-mobile .main-navigation').height());
+    }, 150);
 });

@@ -13,7 +13,7 @@ import '@/js/modules/smart-photo';
 import '@/scss/main.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
-    $('p:empty, span:empty, h3:empty').remove();
+    $('#fullpage').find('p:empty, span:empty, h3:empty').remove();
 
     $('a').each(function () {
         const anchor = $(this);

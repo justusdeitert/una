@@ -6,6 +6,8 @@ import { closeSidebar } from '@/js/modules/sidebar';
 
 const BREAKPOINT_MD = 859.98;
 
+let resizeTimer = null;
+
 const getSelectorOnWindowSize = () => {
 	const isMobile = $(window).width() < $(window).height() || $(window).width() < BREAKPOINT_MD;
 
@@ -127,12 +129,15 @@ $('.back-to-top').click(() => {
 });
 
 $(window).on('resize', () => {
-	const sectionSelector = fullPageInstance.getFullpageData().sectionSelector;
-	const shouldBeMobile = $(window).width() < $(window).height() || $(window).width() < BREAKPOINT_MD;
-	const isMobile = sectionSelector === '.section-mobile';
+	clearTimeout(resizeTimer);
+	resizeTimer = setTimeout(() => {
+		const sectionSelector = fullPageInstance.getFullpageData().sectionSelector;
+		const shouldBeMobile = $(window).width() < $(window).height() || $(window).width() < BREAKPOINT_MD;
+		const isMobile = sectionSelector === '.section-mobile';
 
-	if (shouldBeMobile !== isMobile) {
-		fullPageInstance.destroy('all');
-		initFullPageInstance();
-	}
+		if (shouldBeMobile !== isMobile) {
+			fullPageInstance.destroy('all');
+			initFullPageInstance();
+		}
+	}, 150);
 });

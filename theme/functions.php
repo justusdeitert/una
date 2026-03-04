@@ -1,5 +1,7 @@
 <?php
 
+define('VITE_DEV_SERVER', 'http://localhost:5173');
+
 function theme_enqueue_styles_scripts() {
     $assets_path = get_template_directory() . '/assets';
     $theme_version = wp_get_theme()->get('Version');
@@ -7,8 +9,8 @@ function theme_enqueue_styles_scripts() {
     wp_enqueue_script('jquery');
 
     if (!file_exists($assets_path)) {
-        wp_enqueue_script_module('vite-js', 'http://localhost:5173/@vite/client');
-        wp_enqueue_script_module('theme-main-script', 'http://localhost:5173/js/main.js');
+        wp_enqueue_script_module('vite-js', VITE_DEV_SERVER . '/@vite/client');
+        wp_enqueue_script_module('theme-main-script', VITE_DEV_SERVER . '/js/main.js');
     } else {
         wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/main.css', array(), $theme_version);
         wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', array(), $theme_version, true);
