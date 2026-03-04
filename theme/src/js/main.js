@@ -1,6 +1,3 @@
-// External dependencies
-import $ from 'jquery';
-
 // Internal dependencies
 import '@/js/modules/collapse';
 import '@/js/modules/cookies';
@@ -13,25 +10,24 @@ import '@/js/modules/smart-photo';
 import '@/scss/main.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
-    $('#fullpage').find('p:empty, span:empty, h3:empty').remove();
+    document.querySelectorAll('#fullpage p:empty, #fullpage span:empty, #fullpage h3:empty').forEach(el => el.remove());
 
-    $('a').each(function () {
-        const anchor = $(this);
-        const linkHostname = new URL(this.href).hostname;
+    document.querySelectorAll('a').forEach(anchor => {
+        const linkHostname = new URL(anchor.href).hostname;
 
         if (linkHostname !== window.location.hostname) {
-            anchor.attr('target', '_blank');
+            anchor.setAttribute('target', '_blank');
         }
 
-        if (this.href === window.location.href) {
-            anchor.on('click', (event) => {
+        if (anchor.href === window.location.href) {
+            anchor.addEventListener('click', (event) => {
                 event.preventDefault();
                 window.location.reload();
             });
         }
 
-        if (this.href === window.location.origin) {
-            anchor.on('click', (event) => {
+        if (anchor.href === window.location.origin) {
+            anchor.addEventListener('click', (event) => {
                 event.preventDefault();
                 window.location.assign(window.location.origin);
             });

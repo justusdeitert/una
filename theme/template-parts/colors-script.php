@@ -10,7 +10,7 @@ if ($colors) {
 ?>
 
 <script>
-    jQuery(document).ready(function() {
+    document.addEventListener('DOMContentLoaded', function() {
         var colors = <?= json_encode($link_colors); ?>;
 
         if (window.cookieFunctions.checkCookie()) {
@@ -36,67 +36,116 @@ if ($colors) {
         }
 
         var currentRandomColor = randColors();
-        var currentMenuItem = jQuery('.current-menu-item');
-        jQuery(currentMenuItem).children('a').css('color', currentRandomColor);
-        jQuery(currentMenuItem).children('a').css('border-color', currentRandomColor);
+        var currentMenuItem = document.querySelector('.current-menu-item');
+        if (currentMenuItem) {
+            currentMenuItem.querySelectorAll('a').forEach(function(a) {
+                a.style.color = currentRandomColor;
+                a.style.borderColor = currentRandomColor;
+            });
+        }
 
-        var hoverElements = jQuery('.page-wrapper a:not(.current-menu-item a), #cookie-notice a, .colored-hover');
+        var hoverElements = document.querySelectorAll('.page-wrapper a:not(.current-menu-item a), #cookie-notice a, .colored-hover');
 
-        jQuery(hoverElements).on('touchstart mouseover', function() {
-            var currentRandomColor = randColors();
-            jQuery(this).css('color', currentRandomColor);
-            jQuery(this).children('h3, i').css('color', currentRandomColor);
-            jQuery(this).css('border-color', currentRandomColor);
+        hoverElements.forEach(function(el) {
+            el.addEventListener('touchstart', applyHoverColor);
+            el.addEventListener('mouseover', applyHoverColor);
 
-            if (window.cookieFunctions.checkCookie()) {
-                var cookieArray = JSON.parse(window.cookieFunctions.getCookie('colors'));
+            function applyHoverColor() {
+                var currentRandomColor = randColors();
+                el.style.color = currentRandomColor;
+                el.querySelectorAll('h3, i').forEach(function(child) {
+                    child.style.color = currentRandomColor;
+                });
+                el.style.borderColor = currentRandomColor;
 
-                if (cookieArray.length > 1) {
-                    var index = cookieArray.indexOf(currentRandomColor);
+                if (window.cookieFunctions.checkCookie()) {
+                    var cookieArray = JSON.parse(window.cookieFunctions.getCookie('colors'));
 
-                    if (index > -1) {
-                        cookieArray.splice(index, 1);
+                    if (cookieArray.length > 1) {
+                        var index = cookieArray.indexOf(currentRandomColor);
+
+                        if (index > -1) {
+                            cookieArray.splice(index, 1);
+                        }
+
+                        window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
+                    } else {
+                        window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
                     }
-
-                    window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
-                } else {
-                    window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
                 }
+            }
+
+            el.addEventListener('touchend', removeHoverColor);
+            el.addEventListener('mouseout', removeHoverColor);
+
+            function removeHoverColor() {
+                el.style.color = '';
+                el.querySelectorAll('h3, i').forEach(function(child) {
+                    child.style.color = '';
+                    child.style.borderColor = '';
+                });
+                el.style.borderColor = '';
             }
         });
 
-        jQuery(hoverElements).on('touchend mouseout', function() {
-            jQuery(this).css('color', '');
-            jQuery(this).children('h3, i').css('color', '');
-            jQuery(this).css('border-color', '');
-            jQuery(this).children('h3, i').css('border-color', '');
-        });
+        document.querySelectorAll('.image-wrapper').forEach(function(el) {
+            el.addEventListener('touchstart', function() {
+                var currentRandomColor = randColors();
+                el.classList.add('active');
+                var overlay = el.querySelector('.hover-overlay');
+                if (overlay) overlay.style.backgroundColor = currentRandomColor;
 
-        jQuery('.image-wrapper').on('touchstart mouseover', function() {
-            var currentRandomColor = randColors();
-            jQuery(this).addClass('active');
-            jQuery(this).find('.hover-overlay').css('background-color', currentRandomColor);
+                if (window.cookieFunctions.checkCookie()) {
+                    var cookieArray = JSON.parse(window.cookieFunctions.getCookie('colors'));
 
-            if (window.cookieFunctions.checkCookie()) {
-                var cookieArray = JSON.parse(window.cookieFunctions.getCookie('colors'));
+                    if (cookieArray.length > 1) {
+                        var index = cookieArray.indexOf(currentRandomColor);
 
-                if (cookieArray.length > 1) {
-                    var index = cookieArray.indexOf(currentRandomColor);
+                        if (index > -1) {
+                            cookieArray.splice(index, 1);
+                        }
 
-                    if (index > -1) {
-                        cookieArray.splice(index, 1);
+                        window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
+                    } else {
+                        window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
                     }
-
-                    window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
-                } else {
-                    window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
                 }
-            }
-        });
+            });
 
-        jQuery('.image-wrapper').on('touchend mouseout', function() {
-            jQuery(this).removeClass('active');
-            jQuery(this).find('.hover-overlay').css('background-color', '');
+            el.addEventListener('mouseover', function() {
+                var currentRandomColor = randColors();
+                el.classList.add('active');
+                var overlay = el.querySelector('.hover-overlay');
+                if (overlay) overlay.style.backgroundColor = currentRandomColor;
+
+                if (window.cookieFunctions.checkCookie()) {
+                    var cookieArray = JSON.parse(window.cookieFunctions.getCookie('colors'));
+
+                    if (cookieArray.length > 1) {
+                        var index = cookieArray.indexOf(currentRandomColor);
+
+                        if (index > -1) {
+                            cookieArray.splice(index, 1);
+                        }
+
+                        window.cookieFunctions.setCookie('colors', JSON.stringify(cookieArray));
+                    } else {
+                        window.cookieFunctions.setCookie('colors', JSON.stringify(colors));
+                    }
+                }
+            });
+
+            el.addEventListener('touchend', function() {
+                el.classList.remove('active');
+                var overlay = el.querySelector('.hover-overlay');
+                if (overlay) overlay.style.backgroundColor = '';
+            });
+
+            el.addEventListener('mouseout', function() {
+                el.classList.remove('active');
+                var overlay = el.querySelector('.hover-overlay');
+                if (overlay) overlay.style.backgroundColor = '';
+            });
         });
     });
 </script>
