@@ -1,9 +1,10 @@
 .banner .nav li {
-	@extend .nav-item;
+	display: list-item;
 }
 
 .banner .nav a {
-	@extend .nav-link;
+	display: block;
+	padding: 0.5rem 1rem;
 }
 
 header {

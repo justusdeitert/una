@@ -1,0 +1,64 @@
+@use 'sass:math';
+
+// Grid settings
+$grid-columns: 12;
+$grid-gutter-width: 40px;
+
+// Container
+.container {
+	width: 100%;
+	max-width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: math.div($grid-gutter-width, 2);
+	padding-left: math.div($grid-gutter-width, 2);
+}
+
+// Row
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: math.div($grid-gutter-width, -2);
+	margin-left: math.div($grid-gutter-width, -2);
+}
+
+// Column base
+%col-base {
+	position: relative;
+	width: 100%;
+	padding-right: math.div($grid-gutter-width, 2);
+	padding-left: math.div($grid-gutter-width, 2);
+}
+
+// Generate column width
+@mixin make-col($size) {
+	flex: 0 0 math.percentage(math.div($size, $grid-columns));
+	max-width: math.percentage(math.div($size, $grid-columns));
+}
+
+// Default columns (no breakpoint)
+.col-3 { @extend %col-base; @include make-col(3); }
+.col-4 { @extend %col-base; @include make-col(4); }
+.col-6 { @extend %col-base; @include make-col(6); }
+.col-8 { @extend %col-base; @include make-col(8); }
+.col-12 { @extend %col-base; @include make-col(12); }
+
+// md columns
+@include media-breakpoint-up(md) {
+	.col-md-4 { @include make-col(4); }
+	.col-md-10 { @include make-col(10); }
+	.col-md-11 { @include make-col(11); }
+}
+
+// lg columns
+@include media-breakpoint-up(lg) {
+	.col-lg-3 { @include make-col(3); }
+}
+
+// Display utilities
+.d-block { display: block; }
+.d-none { display: none; }
+
+@include media-breakpoint-up(md) {
+	.d-md-none { display: none; }
+}
