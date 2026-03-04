@@ -51,7 +51,7 @@ export default defineConfig(async ({ mode }) => {
             devSourcemap: true,
             preprocessorOptions: {
                 scss: {
-                    silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
+                    silenceDeprecations: ['import'],
                     quietDeps: true,
                 },
             },

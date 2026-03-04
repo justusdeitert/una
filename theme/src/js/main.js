@@ -1,8 +1,8 @@
 // External dependencies
 import $ from 'jquery';
-import 'bootstrap/js/dist/collapse';
 
 // Internal dependencies
+import '@/js/modules/collapse';
 import '@/js/modules/cookies';
 import '@/js/modules/draggable';
 import '@/js/modules/fullpage';

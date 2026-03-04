@@ -1,4 +1,17 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
 body {
+    margin: 0;
+    line-height: 1.5;
     font-family: 'ApercuRegular', sans-serif;
     display: flex;
     flex-direction: column;
@@ -12,6 +25,7 @@ body {
 a {
     font-family: 'ApercuBold', sans-serif;
     color: #000;
+    text-decoration: none;
     font-size: 16px;
     letter-spacing: -0.2px;
     line-height: 1.4;
@@ -39,7 +53,13 @@ h4 {
     }
 }
 
+ul,
+ol {
+    margin-top: 0;
+}
+
 p {
+    margin-top: 0;
     font-family: 'ApercuRegular', sans-serif;
     font-size: 16px;
     line-height: 1.4;
