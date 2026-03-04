@@ -51,7 +51,7 @@ const initFullPageInstance = () => {
 			preventDefault: false,
 		},
 		sectionSelector: getSelectorOnWindowSize(),
-		licenseKey: 'REMOVED',
+		licenseKey: window.themeConfig?.fullpageLicenseKey || '',
 		lazyLoading: true,
 		afterLoad: afterLoad,
 		afterRender: updateNavClasses,
