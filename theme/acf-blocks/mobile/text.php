@@ -1,3 +1,4 @@
+<?php $section_id = $args['section_id']; ?>
 <?php if (get_field('split_up_on_mobile')) { ?>
     <div class="section-mobile fp-scrollable">
 <?php } ?>

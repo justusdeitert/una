@@ -2,7 +2,10 @@
     <div class="column-container">
         <div class="row">
             <div class="col-12 col-md-11">
-                <?php $iterator = 0; ?>
+                <?php
+                    $section_id = $args['section_id'];
+                    $iterator = 0;
+                ?>
                 <div id="accordion-<?= $section_id; ?>" class="accordion">
                     <div class="row">
                         <?php foreach ($args['column'] as $column) { ?>

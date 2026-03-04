@@ -45,6 +45,8 @@
         }
 
         foreach ($all_content_sections as $content_section) {
+            $content_section['section_id'] = $section_id;
+
             if ($content_section['acf_fc_layout'] === 'image') {
                 get_template_part('acf-blocks/mobile/image', '', $content_section);
             }
