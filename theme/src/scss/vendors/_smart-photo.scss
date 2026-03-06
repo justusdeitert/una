@@ -1,115 +1,108 @@
-// Smart Photo Styles
-@import 'smartphoto/scss/smartphoto.scss';
+// PhotoSwipe Lightbox Styles (base CSS imported in JS)
 
-.smartphoto {
-	background-color: #fff;
+.pswp {
+	--pswp-bg: #fff;
 	z-index: 300;
 
-	&-img {
-		box-shadow: 0 0 2px rgba(0, 0, 0, 0);
+	// Force background visible instantly during opening zoom animation
+	&--bg-instant .pswp__bg {
+		opacity: 1 !important;
+	}
+
+	// Hide default UI buttons
+	&__button--close,
+	&__button--zoom,
+	&__button--arrow,
+	&__counter {
+		display: none !important;
+	}
+
+	// Background/container cursor
+	&__bg,
+	&__scroll-wrap {
+		cursor: url('@/images/icon-x.png'), crosshair;
+		cursor: -webkit-image-set(
+			url('@/images/icon-x.png') 1x,
+			url('@/images/icon-x@2x.png') 2x
+		), crosshair;
+	}
+
+	// Image cursor: magnifying glass (zoom in)
+	&--click-to-zoom#{&}--zoom-allowed &__img {
 		cursor: url('@/images/icon-magnifying-glass.png'), zoom-in;
 		cursor: -webkit-image-set(
 				url('@/images/icon-magnifying-glass.png') 1x,
 				url('@/images/icon-magnifying-glass@2x.png') 2x
 			),
 			zoom-in;
-
-		&-onmove {
-			cursor: url('@/images/icon-minifying-glass.png'), zoom-out;
-			cursor: -webkit-image-set(
-					url('@/images/icon-minifying-glass.png') 1x,
-					url('@/images/icon-minifying-glass@2x.png') 2x
-				),
-				zoom-out;
-		}
 	}
 
-	&-content {
-		cursor: url('@/images/icon-x.png'), crosshair;
+	// When zoomed in: minifying glass (zoom out) on image
+	&--click-to-zoom#{&}--zoomed-in &__img,
+	&--no-mouse-drag#{&}--zoomed-in &__img {
+		cursor: url('@/images/icon-minifying-glass.png'), zoom-out;
 		cursor: -webkit-image-set(
-			url('@/images/icon-x.png') 1x,
-			url('@/images/icon-x@2x.png') 2x
-		), crosshair;
+				url('@/images/icon-minifying-glass.png') 1x,
+				url('@/images/icon-minifying-glass@2x.png') 2x
+			),
+			zoom-out;
 	}
 
-	&-header {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0;
-		background-color: transparent;
-		cursor: url('@/images/icon-x.png'), crosshair;
-		cursor: -webkit-image-set(
-			url('@/images/icon-x.png') 1x,
-			url('@/images/icon-x@2x.png') 2x
-		), crosshair;
-		right: 0;
-		left: initial;
-		height: 300px;
-		width: 300px;
-		position: initial;
-
-		.admin-bar & {
-			top: 32px;
-
-			@media screen and (max-width: 782px) {
-				top: 46px;
-			}
-		}
-
-		&-close {
-			position: absolute;
-			cursor: url('@/images/icon-x.png'), crosshair;
-			cursor: -webkit-image-set(
-				url('@/images/icon-x.png') 1x,
-				url('@/images/icon-x@2x.png') 2x
-			), crosshair;
-			z-index: 1000;
-
-			&.top,
-			&.bottom {
-				left: 0;
-				width: 100%;
-			}
-
-			&.top {
-				top: 0;
-				height: 13%;
-			}
-
-			&.bottom {
-				bottom: 0;
-				height: 13%;
-			}
-
-			&.right,
-			&.left {
-				top: 0;
-				height: 100%;
-				width: 13%;
-			}
-
-			&.right {
-				right: 0;
-			}
-
-			&.left {
-				left: 0;
-			}
-		}
-	}
-
-	&-count {
+	// Close zones (edges) visible only when zoomed in
+	&__close-zone {
 		display: none;
+		position: absolute;
+		cursor: url('@/images/icon-x.png'), crosshair;
+		cursor: -webkit-image-set(
+			url('@/images/icon-x.png') 1x,
+			url('@/images/icon-x@2x.png') 2x
+		), crosshair;
+		z-index: 1000;
+
+		&--top,
+		&--bottom {
+			left: 0;
+			width: 100%;
+		}
+
+		&--top {
+			top: 0;
+			height: 13%;
+		}
+
+		&--bottom {
+			bottom: 0;
+			height: 13%;
+		}
+
+		&--right,
+		&--left {
+			top: 0;
+			height: 100%;
+			width: 13%;
+		}
+
+		&--right {
+			right: 0;
+		}
+
+		&--left {
+			left: 0;
+		}
 	}
 
-	&-caption {
-        pointer-events: none;
+	&--zoomed-in &__close-zone {
+		display: block;
+	}
+
+	// Caption
+	&__caption {
+		pointer-events: none;
 		color: #000;
-		top: auto;
+		position: fixed;
 		bottom: 0;
 		left: 0;
-		position: fixed;
+		right: 0;
 		text-overflow: initial;
 		white-space: initial;
 		font-size: 12px;
@@ -119,40 +112,15 @@
 		align-items: center;
 		height: 50px;
 		justify-content: center;
+		z-index: 1;
 	}
 
-	&-dismiss {
-		display: none !important;
-		left: initial;
-		right: 0;
-		@extend .material-icons;
-		background-image: none;
-		top: initial;
-		outline: none;
-		width: 30px;
-		height: 30px;
-		padding: 10px;
-		box-sizing: content-box;
-
-		&:after {
-			content: 'close';
-			font-size: 30px;
-			display: inline-block;
-			color: #000;
-		}
-	}
-
+	// Mobile: dark overlay
 	@include media-breakpoint-down(sm) {
-		background-color: rgba(0, 0, 0, 0.8);
+		--pswp-bg: rgba(0, 0, 0, 0.8);
 
-		&-caption {
+		.pswp__caption {
 			color: #fff;
-		}
-
-		&-dismiss {
-			&:after {
-				color: #fff;
-			}
 		}
 	}
 }
