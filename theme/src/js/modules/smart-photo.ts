@@ -71,7 +71,7 @@ const openLightbox = (triggerEl: HTMLElement, src: string, caption: string): voi
 
 		pswp.on('uiRegister', () => {
 			// Hide default UI buttons
-			pswp.ui!.registerElement({
+			pswp.ui?.registerElement({
 				name: 'customCloseZones',
 				appendTo: 'wrapper',
 				onInit: (el) => {
@@ -84,7 +84,7 @@ const openLightbox = (triggerEl: HTMLElement, src: string, caption: string): voi
 
 			// Caption element
 			if (caption) {
-				pswp.ui!.registerElement({
+				pswp.ui?.registerElement({
 					name: 'customCaption',
 					appendTo: 'wrapper',
 					onInit: (el) => {
@@ -98,11 +98,11 @@ const openLightbox = (triggerEl: HTMLElement, src: string, caption: string): voi
 		// @ts-expect-error PhotoSwipe types missing 'opening' event
 		pswp.on('opening', () => {
 			document.body.classList.add('lightbox-is-open');
-			pswp.element!.classList.add('pswp--bg-instant');
+			pswp.element?.classList.add('pswp--bg-instant');
 		});
 
 		pswp.on('openingAnimationEnd', () => {
-			pswp.element!.classList.remove('pswp--bg-instant');
+			pswp.element?.classList.remove('pswp--bg-instant');
 			clearUrlHash();
 		});
 
@@ -122,15 +122,11 @@ const openLightbox = (triggerEl: HTMLElement, src: string, caption: string): voi
 	img.src = src;
 };
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
 	document.querySelectorAll<HTMLAnchorElement>('.smart-photo').forEach((trigger) => {
 		trigger.addEventListener('click', (e) => {
 			e.preventDefault();
-			openLightbox(
-				trigger,
-				trigger.getAttribute('href') || '',
-				trigger.dataset.caption || ''
-			);
+			openLightbox(trigger, trigger.getAttribute('href') || '', trigger.dataset.caption || '');
 		});
 	});
 });

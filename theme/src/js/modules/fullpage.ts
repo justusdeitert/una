@@ -1,7 +1,7 @@
 import 'fullpage.js/vendors/scrolloverflow';
 import fullpage from 'fullpage.js/dist/fullpage';
-import { closeLightboxFade, isLightboxOpen } from '@/js/modules/smart-photo';
 import { closeSidebar } from '@/js/modules/sidebar';
+import { closeLightboxFade, isLightboxOpen } from '@/js/modules/smart-photo';
 
 const BREAKPOINT_MD = 859.98;
 
@@ -24,7 +24,7 @@ const updateNavClasses = (): void => {
 		if (fpNav) fpNav.classList.add('is-visible');
 	}, 300);
 
-	document.querySelectorAll('#fp-nav li').forEach(li => {
+	document.querySelectorAll('#fp-nav li').forEach((li) => {
 		li.classList.remove('prev', 'next', 'visible');
 	});
 
@@ -50,7 +50,7 @@ const updateNavClasses = (): void => {
 const afterLoad = (): void => {
 	updateNavClasses();
 
-	document.querySelectorAll('.fp-tableCell').forEach(cell => {
+	document.querySelectorAll('.fp-tableCell').forEach((cell) => {
 		cell.classList.toggle('vertical-top', cell.querySelector('.content-container') !== null);
 	});
 };
@@ -69,7 +69,7 @@ const initFullPageInstance = (): fullpage => {
 		lazyLoading: true,
 		afterLoad: afterLoad,
 		afterRender: updateNavClasses,
-		onLeave: function (origin, destination, direction) {
+		onLeave: (_origin, destination, _direction) => {
 			if (isLightboxOpen()) {
 				closeLightboxFade();
 			}
@@ -89,7 +89,7 @@ const reinitFullPage = (): void => {
 	}, 200);
 };
 
-window.addEventListener('load', function() {
+window.addEventListener('load', () => {
 	initFullPageInstance();
 });
 
@@ -97,14 +97,14 @@ let scrollerPosition = 0;
 
 const getActiveScroller = (): HTMLElement | null => document.querySelector('.fp-section.active .fp-scroller');
 
-document.querySelectorAll('.accordion').forEach(el => {
-	el.addEventListener('shown.bs.collapse', function () {
+document.querySelectorAll('.accordion').forEach((el) => {
+	el.addEventListener('shown.bs.collapse', () => {
 		const scroller = getActiveScroller();
 		if (scroller) scroller.classList.remove('slide-up');
 		reinitFullPage();
 	});
 
-	el.addEventListener('hide.bs.collapse', function () {
+	el.addEventListener('hide.bs.collapse', () => {
 		const scroller = getActiveScroller();
 		if (scroller) {
 			scroller.style.transform = 'translate(0px, 0px)';
@@ -112,34 +112,34 @@ document.querySelectorAll('.accordion').forEach(el => {
 		}
 	});
 
-	el.addEventListener('hidden.bs.collapse', function () {
+	el.addEventListener('hidden.bs.collapse', () => {
 		const scroller = getActiveScroller();
 		if (scroller) scroller.classList.remove('slide-up');
 		reinitFullPage();
 	});
 });
 
-document.querySelectorAll('.text-container-accordion .collapse').forEach(el => {
-	el.addEventListener('show.bs.collapse', function () {
+document.querySelectorAll('.text-container-accordion .collapse').forEach((el) => {
+	el.addEventListener('show.bs.collapse', () => {
 		const scroller = getActiveScroller();
 		if (scroller) {
 			scrollerPosition = scroller.offsetTop;
 		}
 	});
 
-	el.addEventListener('shown.bs.collapse', function () {
+	el.addEventListener('shown.bs.collapse', () => {
 		fullPageInstance?.reBuild();
 	});
 
-	el.addEventListener('hide.bs.collapse', function () {
+	el.addEventListener('hide.bs.collapse', () => {
 		const scroller = getActiveScroller();
 		if (scroller) {
-			scroller.style.transform = 'translate(0px, ' + scrollerPosition + 'px)';
+			scroller.style.transform = `translate(0px, ${scrollerPosition}px)`;
 			scroller.classList.add('slide-up');
 		}
 	});
 
-	el.addEventListener('hidden.bs.collapse', function () {
+	el.addEventListener('hidden.bs.collapse', () => {
 		const scroller = getActiveScroller();
 		if (scroller) scroller.classList.remove('slide-up');
 		setTimeout(() => {
@@ -148,7 +148,7 @@ document.querySelectorAll('.text-container-accordion .collapse').forEach(el => {
 	});
 });
 
-document.querySelectorAll('.back-to-top').forEach(el => {
+document.querySelectorAll('.back-to-top').forEach((el) => {
 	el.addEventListener('click', () => {
 		fullPageInstance?.moveTo(1);
 	});
