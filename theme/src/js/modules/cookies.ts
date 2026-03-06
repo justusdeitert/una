@@ -1,10 +1,10 @@
-window.cookieFunctions = {};
+window.cookieFunctions = {} as CookieFunctions;
 
-window.cookieFunctions.deleteCookie = function(name) {
+window.cookieFunctions.deleteCookie = function(name: string): void {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax';
 };
 
-window.cookieFunctions.setCookie = function(name, value, exdays) {
+window.cookieFunctions.setCookie = function(name: string, value: string, exdays?: number): void {
     if (exdays === undefined) {
         exdays = 12;
     }
@@ -14,7 +14,7 @@ window.cookieFunctions.setCookie = function(name, value, exdays) {
     document.cookie = name + '=' + value + ';' + expires + ';path=/;SameSite=Lax';
 };
 
-window.cookieFunctions.getCookie = function(name) {
+window.cookieFunctions.getCookie = function(name: string): string {
     name = name + '=';
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
@@ -28,6 +28,6 @@ window.cookieFunctions.getCookie = function(name) {
     return '';
 };
 
-window.cookieFunctions.checkCookie = function() {
+window.cookieFunctions.checkCookie = function(): boolean {
     return navigator.cookieEnabled;
 };

@@ -5,11 +5,11 @@
 
 const TRANSITION_DURATION = 350;
 
-function dispatch(element, eventName) {
+function dispatch(element: HTMLElement, eventName: string): void {
     element.dispatchEvent(new CustomEvent(eventName, { bubbles: true }));
 }
 
-function show(target) {
+function show(target: HTMLElement): void {
     if (target.classList.contains('show') || target.classList.contains('collapsing')) return;
 
     dispatch(target, 'show.bs.collapse');
@@ -33,7 +33,7 @@ function show(target) {
     }, TRANSITION_DURATION);
 }
 
-function hide(target) {
+function hide(target: HTMLElement): void {
     if (!target.classList.contains('show') || target.classList.contains('collapsing')) return;
 
     dispatch(target, 'hide.bs.collapse');
@@ -57,7 +57,7 @@ function hide(target) {
     }, TRANSITION_DURATION);
 }
 
-function toggle(target) {
+function toggle(target: HTMLElement): void {
     if (target.classList.contains('show')) {
         hide(target);
     } else {
@@ -66,14 +66,15 @@ function toggle(target) {
 }
 
 // Handle click on [data-toggle="collapse"]
-document.addEventListener('click', function (e) {
-    const trigger = e.target.closest('[data-toggle="collapse"]');
+document.addEventListener('click', function (e: MouseEvent) {
+    const trigger = (e.target as HTMLElement).closest<HTMLElement>('[data-toggle="collapse"]');
     if (!trigger) return;
 
     e.preventDefault();
 
     const targetSelector = trigger.dataset.target || trigger.getAttribute('href');
-    const target = document.querySelector(targetSelector);
+    if (!targetSelector) return;
+    const target = document.querySelector<HTMLElement>(targetSelector);
 
     if (!target) return;
 
@@ -82,13 +83,13 @@ document.addEventListener('click', function (e) {
     if (parentSelector) {
         const parent = target.closest(parentSelector);
         if (parent) {
-            parent.querySelectorAll('.collapse.show').forEach(function (sibling) {
+            parent.querySelectorAll<HTMLElement>('.collapse.show').forEach(function (sibling) {
                 if (sibling === target) return;
                 hide(sibling);
                 // Update the trigger's collapsed state
                 const id = sibling.id;
                 if (id) {
-                    document.querySelectorAll('[data-target="#' + id + '"], [href="#' + id + '"]').forEach(function (t) {
+                    document.querySelectorAll<HTMLElement>('[data-target="#' + id + '"], [href="#' + id + '"]').forEach(function (t) {
                         t.classList.add('collapsed');
                         t.setAttribute('aria-expanded', 'false');
                     });

@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import type { UserConfig } from 'vite';
 import path from 'path';
 
 export default defineConfig(async ({ mode }) => {
@@ -17,28 +18,30 @@ export default defineConfig(async ({ mode }) => {
 
     return {
         root: 'src',
-        minify: 'esbuild',
         base: isProduction ? '/wp-content/themes/una-moehrke-theme/assets/' : '/',
         build: {
             outDir: path.resolve(__dirname, 'assets'),
             emptyOutDir: true,
             sourcemap: true,
+            minify: 'esbuild',
             rollupOptions: {
                 input: {
-                    main: 'src/js/main.js',
+                    main: 'src/js/main.ts',
                 },
                 output: {
                     entryFileNames: 'js/[name].js',
                     assetFileNames: (assetInfo) => {
-                        if (assetInfo.name.endsWith('.css')) {
+                        const name = assetInfo.name ?? '';
+
+                        if (name.endsWith('.css')) {
                             return 'css/[name][extname]';
                         }
 
-                        if (['.ttf', '.woff', '.woff2'].some((ext) => assetInfo.name.endsWith(ext))) {
+                        if (['.ttf', '.woff', '.woff2'].some((ext) => name.endsWith(ext))) {
                             return 'fonts/[name][extname]';
                         }
 
-                        if (['.png', '.jpg', '.jpeg', '.svg'].some((ext) => assetInfo.name.endsWith(ext))) {
+                        if (['.png', '.jpg', '.jpeg', '.svg'].some((ext) => name.endsWith(ext))) {
                             return 'images/[name][extname]';
                         }
 
@@ -70,5 +73,5 @@ export default defineConfig(async ({ mode }) => {
                 '@': path.resolve(__dirname, 'src'),
             },
         },
-    };
+    } satisfies UserConfig;
 });

@@ -1,20 +1,20 @@
 import PhotoSwipe from 'photoswipe';
 import 'photoswipe/style.css';
 
-let activePswp = null;
+let activePswp: PhotoSwipe | null = null;
 
-const clearUrlHash = () => {
-	history.pushState(null, null, window.location.href.split('#')[0]);
+const clearUrlHash = (): void => {
+	history.pushState(null, '', window.location.href.split('#')[0]);
 };
 
-export const closeLightboxFade = () => {
+export const closeLightboxFade = (): void => {
 	if (activePswp) {
 		activePswp.options.showHideAnimationType = 'fade';
 		activePswp.close();
 	}
 };
 
-export const isLightboxOpen = () => activePswp !== null;
+export const isLightboxOpen = (): boolean => activePswp !== null;
 
 const closeZonesHtml =
 	'<div class="pswp__close-zone pswp__close-zone--top"></div>' +
@@ -22,11 +22,11 @@ const closeZonesHtml =
 	'<div class="pswp__close-zone pswp__close-zone--bottom"></div>' +
 	'<div class="pswp__close-zone pswp__close-zone--left"></div>';
 
-const openLightbox = (triggerEl, src, caption) => {
+const openLightbox = (triggerEl: HTMLElement, src: string, caption: string): void => {
 	const img = new Image();
 	img.onload = () => {
 		const thumbEl = triggerEl.querySelector('img') || triggerEl;
-		const thumbSrc = thumbEl.src || thumbEl.getAttribute('data-src') || src;
+		const thumbSrc = (thumbEl as HTMLImageElement).src || thumbEl.getAttribute('data-src') || src;
 
 		const pswp = new PhotoSwipe({
 			dataSource: [
@@ -71,7 +71,7 @@ const openLightbox = (triggerEl, src, caption) => {
 
 		pswp.on('uiRegister', () => {
 			// Hide default UI buttons
-			pswp.ui.registerElement({
+			pswp.ui!.registerElement({
 				name: 'customCloseZones',
 				appendTo: 'wrapper',
 				onInit: (el) => {
@@ -84,7 +84,7 @@ const openLightbox = (triggerEl, src, caption) => {
 
 			// Caption element
 			if (caption) {
-				pswp.ui.registerElement({
+				pswp.ui!.registerElement({
 					name: 'customCaption',
 					appendTo: 'wrapper',
 					onInit: (el) => {
@@ -95,13 +95,14 @@ const openLightbox = (triggerEl, src, caption) => {
 			}
 		});
 
+		// @ts-expect-error PhotoSwipe types missing 'opening' event
 		pswp.on('opening', () => {
 			document.body.classList.add('lightbox-is-open');
-			pswp.element.classList.add('pswp--bg-instant');
+			pswp.element!.classList.add('pswp--bg-instant');
 		});
 
 		pswp.on('openingAnimationEnd', () => {
-			pswp.element.classList.remove('pswp--bg-instant');
+			pswp.element!.classList.remove('pswp--bg-instant');
 			clearUrlHash();
 		});
 
@@ -122,12 +123,12 @@ const openLightbox = (triggerEl, src, caption) => {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-	document.querySelectorAll('.smart-photo').forEach((trigger) => {
+	document.querySelectorAll<HTMLAnchorElement>('.smart-photo').forEach((trigger) => {
 		trigger.addEventListener('click', (e) => {
 			e.preventDefault();
 			openLightbox(
 				trigger,
-				trigger.getAttribute('href'),
+				trigger.getAttribute('href') || '',
 				trigger.dataset.caption || ''
 			);
 		});

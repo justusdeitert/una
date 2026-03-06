@@ -8,7 +8,7 @@ function theme_enqueue_styles_scripts() {
 
     if (!file_exists($assets_path)) {
         wp_enqueue_script_module('vite-js', VITE_DEV_SERVER . '/@vite/client');
-        wp_enqueue_script_module('theme-main-script', VITE_DEV_SERVER . '/js/main.js');
+        wp_enqueue_script_module('theme-main-script', VITE_DEV_SERVER . '/js/main.ts');
     } else {
         wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/main.css', array(), $theme_version);
         wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', array(), $theme_version, true);

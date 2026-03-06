@@ -1,9 +1,9 @@
 import { SidebarElement } from 'sidebarjs/lib/umd/sidebarjs';
 import { fullPageInstance } from '@/js/modules/fullpage';
 
-let sidebarJS = null;
+let sidebarJS: InstanceType<typeof SidebarElement> | null = null;
 
-export const closeSidebar = function () {
+export const closeSidebar = function (): void {
 	if (sidebarJS && sidebarJS.isVisible()) {
 		sidebarJS.close();
 		document.body.classList.remove('sidenav-active');
@@ -23,9 +23,9 @@ if (document.querySelector('[sidebarjs]')) {
 		position: 'right',
 	});
 
-	const openSidebar = function () {
-		if (!sidebarJS.isVisible()) {
-			sidebarJS.open();
+	const openSidebar = function (): void {
+		if (!sidebarJS?.isVisible()) {
+			sidebarJS?.open();
 
 			document.body.classList.add('sidenav-active');
 
@@ -41,12 +41,14 @@ if (document.querySelector('[sidebarjs]')) {
 
 				backdrop.addEventListener('click', () => closeSidebar());
 
-				backdrop.addEventListener('touchstart', function (e) {
-					this._touchStartX = e.touches[0].clientX;
+				let backdropTouchStartX = 0;
+
+				(backdrop as HTMLElement).addEventListener('touchstart', function (e: TouchEvent) {
+					backdropTouchStartX = e.touches[0].clientX;
 				});
 
-				backdrop.addEventListener('touchend', function (e) {
-					const deltaX = e.changedTouches[0].clientX - this._touchStartX;
+				(backdrop as HTMLElement).addEventListener('touchend', function (e: TouchEvent) {
+					const deltaX = e.changedTouches[0].clientX - backdropTouchStartX;
 					if (deltaX > 50) {
 						closeSidebar();
 					}
@@ -57,7 +59,7 @@ if (document.querySelector('[sidebarjs]')) {
 
 	document.querySelectorAll('.mobile-nav-clicker').forEach(el => {
 		el.addEventListener('click', function () {
-			if (sidebarJS.isVisible()) {
+			if (sidebarJS?.isVisible()) {
 				closeSidebar();
 			} else {
 				openSidebar();
@@ -65,9 +67,9 @@ if (document.querySelector('[sidebarjs]')) {
 		});
 	});
 
-    let resizeTimer = null;
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
     window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
+        if (resizeTimer) clearTimeout(resizeTimer);
         resizeTimer = setTimeout(closeSidebar, 75);
     });
 
@@ -75,7 +77,7 @@ if (document.querySelector('[sidebarjs]')) {
         closeSidebar();
     });
 
-    document.addEventListener('wheel', function(e) {
+    document.addEventListener('wheel', function(e: WheelEvent) {
         if (sidebarJS && sidebarJS.isVisible()) {
             closeSidebar();
             if (fullPageInstance) {
@@ -88,14 +90,14 @@ if (document.querySelector('[sidebarjs]')) {
         }
     }, { passive: true });
 
-    let touchStartY = null;
-    document.addEventListener('touchstart', function(e) {
+    let touchStartY: number | null = null;
+    document.addEventListener('touchstart', function(e: TouchEvent) {
         if (sidebarJS && sidebarJS.isVisible()) {
             touchStartY = e.touches[0].clientY;
         }
     }, { passive: true });
 
-    document.addEventListener('touchmove', function(e) {
+    document.addEventListener('touchmove', function(e: TouchEvent) {
         if (touchStartY !== null && sidebarJS && sidebarJS.isVisible()) {
             const deltaY = e.touches[0].clientY - touchStartY;
             if (Math.abs(deltaY) > 10) {
@@ -116,15 +118,15 @@ if (document.querySelector('[sidebarjs]')) {
 const syncNavHeight = () => {
     const nav = document.querySelector('.sidebar-wrapper-mobile .main-navigation');
     const clicker = document.querySelector('.mobile-nav-clicker');
-    if (nav && clicker) {
+    if (nav instanceof HTMLElement && clicker instanceof HTMLElement) {
         clicker.style.height = nav.offsetHeight + 'px';
     }
 };
 
-let navResizeTimer = null;
+let navResizeTimer: ReturnType<typeof setTimeout> | null = null;
 window.addEventListener('load', syncNavHeight);
 
 window.addEventListener('resize', function() {
-    clearTimeout(navResizeTimer);
+    if (navResizeTimer) clearTimeout(navResizeTimer);
     navResizeTimer = setTimeout(syncNavHeight, 75);
 });
