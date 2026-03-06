@@ -3,8 +3,6 @@ import fullpage from 'fullpage.js/dist/fullpage';
 import { closeLightboxFade, isLightboxOpen } from '@/js/modules/smart-photo';
 import { closeSidebar } from '@/js/modules/sidebar';
 
-import type fullpageType from 'fullpage.js/dist/fullpage';
-
 const BREAKPOINT_MD = 859.98;
 
 let resizeTimer: ReturnType<typeof setTimeout> | null = null;
@@ -18,7 +16,7 @@ const getSelectorOnWindowSize = (): string => {
 	return isMobile ? '.section-mobile' : '.section-desktop';
 };
 
-export let fullPageInstance: InstanceType<typeof fullpageType> | null = null;
+export let fullPageInstance: fullpage | null = null;
 
 const updateNavClasses = (): void => {
 	setTimeout(() => {
@@ -57,7 +55,7 @@ const afterLoad = (): void => {
 	});
 };
 
-const initFullPageInstance = (): InstanceType<typeof fullpageType> => {
+const initFullPageInstance = (): fullpage => {
 	fullPageInstance = new fullpage('#fullpage', {
 		navigation: true,
 		navigationPosition: 'left',
