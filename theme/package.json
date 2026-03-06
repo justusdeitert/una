@@ -15,7 +15,7 @@
     "dependencies": {
         "draggable": "4.2.0",
         "fullpage.js": "3.1.2",
-        "sidebarjs": "10.0.0",
-        "smartphoto": "1.6.5"
+        "photoswipe": "^5.4.4",
+        "sidebarjs": "10.0.0"
     }
 }

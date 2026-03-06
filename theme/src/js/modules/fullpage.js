@@ -1,6 +1,6 @@
 import 'fullpage.js/vendors/scrolloverflow';
 import fullpage from 'fullpage.js/dist/fullpage';
-import { smartPhoto } from '@/js/modules/smart-photo';
+import { closeLightboxFade, isLightboxOpen } from '@/js/modules/smart-photo';
 import { closeSidebar } from '@/js/modules/sidebar';
 
 const BREAKPOINT_MD = 859.98;
@@ -70,8 +70,8 @@ const initFullPageInstance = () => {
 		afterLoad: afterLoad,
 		afterRender: updateNavClasses,
 		onLeave: function (origin, destination, direction) {
-			if (document.body.classList.contains('smartphoto-is-open') && smartPhoto) {
-				smartPhoto.hidePhoto();
+			if (isLightboxOpen()) {
+				closeLightboxFade();
 			}
 
 			closeSidebar();

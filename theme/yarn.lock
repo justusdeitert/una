@@ -351,31 +351,12 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.8.tgz#958b91c991b1867ced318bedea0e215ee050726e"
   integrity sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==
 
-a-template@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/a-template/-/a-template-0.6.1.tgz#da2c33b2f34778f13fa2dc29113860b7038c4024"
-  integrity sha512-2v4pdCjZewuwp98JXeVv+4ZmPmCtHz7EiEd8ft/lRF03C7VTs9DI0cYZtI1iI4HCtd75D56FR0FrRRrXCa1blA==
-  dependencies:
-    delegate "^3.1.2"
-    ie-array-find-polyfill "^1.1.0"
-    morphdom "^2.3.1"
-
 chokidar@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-4.0.3.tgz#7be37a4c03c9aee1ecfe862a4a23b2c70c205d30"
   integrity sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==
   dependencies:
     readdirp "^4.0.1"
-
-custom-event-polyfill@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/custom-event-polyfill/-/custom-event-polyfill-0.3.0.tgz#99807839be62edb446b645832e0d80ead6fa1888"
-  integrity sha512-dgGyHwa3sJVUVgnF1IQmPnco4SdAJKllCDXL2W7wyw70vchJTSubthvyjlrxUagc4QZrHq31Dz7p6tzukJ0OgA==
-
-delegate@^3.1.2:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
-  integrity sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==
 
 detect-libc@^2.0.3:
   version "2.1.2"
@@ -386,11 +367,6 @@ draggable@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/draggable/-/draggable-4.2.0.tgz#149c0ca176df6d8b512048c8e451f499fc047b9a"
   integrity sha512-mu0FSsNY1Sb2q3EuAi3IBI6oVMV8l74y6xxYmloHq2/PJjOJEfpZCLGShzNUQKAF7JMfxA6ejxoGPyw5x6v8Ow==
-
-es6-promise-polyfill@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/es6-promise-polyfill/-/es6-promise-polyfill-1.2.0.tgz#f38925f23cb3e3e8ce6cda8ff774fcebbb090cde"
-  integrity sha512-HHb0vydCpoclpd0ySPkRXMmBw80MRt1wM4RBJBlXkux97K7gleabZdsR0gvE1nNPM9mgOZIBTzjjXiPxf4lIqQ==
 
 esbuild@^0.25.0:
   version "0.25.12"
@@ -439,11 +415,6 @@ fullpage.js@3.1.2:
   resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-3.1.2.tgz#ee6289f52edb2a9f9c25d09c4022043b701d3cc0"
   integrity sha512-hv7z6xhbg2StTp1UDq2hi+0oHjhT7cW3zCL3qCIJ3ood5pN0FRBQ2YKIOUobhsp4ATSQlr6sZ2TOcS+Ha+T7Cg==
 
-ie-array-find-polyfill@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ie-array-find-polyfill/-/ie-array-find-polyfill-1.1.0.tgz#5078e533f026831da22bd7476513d9460d65a142"
-  integrity sha512-g+GyhE5SmDaUdH1JM+obqFmD3B5hY9dReG1IlkPknwc/c3ZMCuwK9j9Ywt6HOVnI13b+eYYzkDe2SUs+K8wpvA==
-
 immutable@^5.1.5:
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-5.1.5.tgz#93ee4db5c2a9ab42a4a783069f3c5d8847d40165"
@@ -461,16 +432,6 @@ is-glob@^4.0.3:
   dependencies:
     is-extglob "^2.1.1"
 
-jquery@3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
-  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
-
-morphdom@^2.3.1:
-  version "2.7.4"
-  resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.7.4.tgz#c61d511e935cc25ca588dfaa752461f27865865e"
-  integrity sha512-ATTbWMgGa+FaMU3FhnFYB6WgulCqwf6opOll4CBzmVDTLvPMmUPrEv8CudmLPK0MESa64+6B89fWOxP3+YIlxQ==
-
 nanoid@^3.3.11:
   version "3.3.11"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.11.tgz#4f4f112cefbe303202f2199838128936266d185b"
@@ -480,6 +441,11 @@ node-addon-api@^7.0.0:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-7.1.1.tgz#1aba6693b0f255258a049d621329329322aad558"
   integrity sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==
+
+photoswipe@^5.4.4:
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/photoswipe/-/photoswipe-5.4.4.tgz#e045dc036453493188d5c8665b0e8f1000ac4d6e"
+  integrity sha512-WNFHoKrkZNnvFFhbHL93WDkW3ifwVOXSW3w1UuZZelSmgXpIGiZSNlZJq37rR8YejqME2rHs9EhH9ZvlvFH2NA==
 
 picocolors@^1.1.1:
   version "1.1.1"
@@ -554,15 +520,6 @@ sidebarjs@10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/sidebarjs/-/sidebarjs-10.0.0.tgz#ae5459c65e21451be423d49260f88cf77047649d"
   integrity sha512-S3O6p5Bg086IStupCHoD/jMtcLgh6jBaB8KhAmmJb4Y4Z0MwF1TpPZ1lM+fdDbWSL4u5wSuQQijbz9eYKxNN2w==
-
-smartphoto@1.6.5:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/smartphoto/-/smartphoto-1.6.5.tgz#d8ebd9180a652244c654c36a95a88107c079fd7f"
-  integrity sha512-dtMpzrNnD3q76AMxqmz07WN/dpy8tRmXf5V2h+Rt6ccbGMbrdu2js9s/szRvC47G9ntSEh/G1R0Wl4TmIyGWpw==
-  dependencies:
-    a-template "^0.6.1"
-    custom-event-polyfill "^0.3.0"
-    es6-promise-polyfill "^1.2.0"
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.2.1:
   version "1.2.1"
