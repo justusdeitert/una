@@ -1,7 +1,7 @@
 import { SidebarElement } from 'sidebarjs/lib/umd/sidebarjs';
 import { fullPageInstance } from '@/js/modules/fullpage';
 
-let sidebarJS: InstanceType<typeof SidebarElement> | null = null;
+let sidebarJS: SidebarElement | null = null;
 
 export const closeSidebar = function (): void {
 	if (sidebarJS && sidebarJS.isVisible()) {
@@ -67,66 +67,66 @@ if (document.querySelector('[sidebarjs]')) {
 		});
 	});
 
-    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
-    window.addEventListener('resize', function() {
-        if (resizeTimer) clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(closeSidebar, 75);
-    });
+	let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+	window.addEventListener('resize', function() {
+		if (resizeTimer) clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(closeSidebar, 75);
+	});
 
-    window.addEventListener('scroll', function() {
-        closeSidebar();
-    });
+	window.addEventListener('scroll', function() {
+		closeSidebar();
+	});
 
-    document.addEventListener('wheel', function(e: WheelEvent) {
-        if (sidebarJS && sidebarJS.isVisible()) {
-            closeSidebar();
-            if (fullPageInstance) {
-                if (e.deltaY > 0) {
-                    fullPageInstance.moveSectionDown();
-                } else if (e.deltaY < 0) {
-                    fullPageInstance.moveSectionUp();
-                }
-            }
-        }
-    }, { passive: true });
+	document.addEventListener('wheel', function(e: WheelEvent) {
+		if (sidebarJS && sidebarJS.isVisible()) {
+			closeSidebar();
+			if (fullPageInstance) {
+				if (e.deltaY > 0) {
+					fullPageInstance.moveSectionDown();
+				} else if (e.deltaY < 0) {
+					fullPageInstance.moveSectionUp();
+				}
+			}
+		}
+	}, { passive: true });
 
-    let touchStartY: number | null = null;
-    document.addEventListener('touchstart', function(e: TouchEvent) {
-        if (sidebarJS && sidebarJS.isVisible()) {
-            touchStartY = e.touches[0].clientY;
-        }
-    }, { passive: true });
+	let touchStartY: number | null = null;
+	document.addEventListener('touchstart', function(e: TouchEvent) {
+		if (sidebarJS && sidebarJS.isVisible()) {
+			touchStartY = e.touches[0].clientY;
+		}
+	}, { passive: true });
 
-    document.addEventListener('touchmove', function(e: TouchEvent) {
-        if (touchStartY !== null && sidebarJS && sidebarJS.isVisible()) {
-            const deltaY = e.touches[0].clientY - touchStartY;
-            if (Math.abs(deltaY) > 10) {
-                touchStartY = null;
-                closeSidebar();
-                if (fullPageInstance) {
-                    if (deltaY < 0) {
-                        fullPageInstance.moveSectionDown();
-                    } else {
-                        fullPageInstance.moveSectionUp();
-                    }
-                }
-            }
-        }
-    }, { passive: true });
+	document.addEventListener('touchmove', function(e: TouchEvent) {
+		if (touchStartY !== null && sidebarJS && sidebarJS.isVisible()) {
+			const deltaY = e.touches[0].clientY - touchStartY;
+			if (Math.abs(deltaY) > 10) {
+				touchStartY = null;
+				closeSidebar();
+				if (fullPageInstance) {
+					if (deltaY < 0) {
+						fullPageInstance.moveSectionDown();
+					} else {
+						fullPageInstance.moveSectionUp();
+					}
+				}
+			}
+		}
+	}, { passive: true });
 }
 
 const syncNavHeight = () => {
-    const nav = document.querySelector('.sidebar-wrapper-mobile .main-navigation');
-    const clicker = document.querySelector('.mobile-nav-clicker');
-    if (nav instanceof HTMLElement && clicker instanceof HTMLElement) {
-        clicker.style.height = nav.offsetHeight + 'px';
-    }
+	const nav = document.querySelector('.sidebar-wrapper-mobile .main-navigation');
+	const clicker = document.querySelector('.mobile-nav-clicker');
+	if (nav instanceof HTMLElement && clicker instanceof HTMLElement) {
+		clicker.style.height = nav.offsetHeight + 'px';
+	}
 };
 
 let navResizeTimer: ReturnType<typeof setTimeout> | null = null;
 window.addEventListener('load', syncNavHeight);
 
 window.addEventListener('resize', function() {
-    if (navResizeTimer) clearTimeout(navResizeTimer);
-    navResizeTimer = setTimeout(syncNavHeight, 75);
+	if (navResizeTimer) clearTimeout(navResizeTimer);
+	navResizeTimer = setTimeout(syncNavHeight, 75);
 });

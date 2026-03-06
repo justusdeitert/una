@@ -1,33 +1,29 @@
-window.cookieFunctions = {} as CookieFunctions;
+window.cookieFunctions = {
+    deleteCookie(name: string): void {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
+    },
 
-window.cookieFunctions.deleteCookie = function(name: string): void {
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax';
-};
+    setCookie(name: string, value: string, exdays = 12): void {
+        const d = new Date();
+        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+        document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+    },
 
-window.cookieFunctions.setCookie = function(name: string, value: string, exdays?: number): void {
-    if (exdays === undefined) {
-        exdays = 12;
-    }
-    let d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = 'expires='+ d.toUTCString();
-    document.cookie = name + '=' + value + ';' + expires + ';path=/;SameSite=Lax';
-};
+    getCookie(name: string): string {
+        const prefix = `${name}=`;
+        const cookies = decodeURIComponent(document.cookie).split(';');
 
-window.cookieFunctions.getCookie = function(name: string): string {
-    name = name + '=';
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i].trimStart();
-
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
+        for (const cookie of cookies) {
+            const trimmed = cookie.trimStart();
+            if (trimmed.startsWith(prefix)) {
+                return trimmed.substring(prefix.length);
+            }
         }
-    }
-    return '';
-};
 
-window.cookieFunctions.checkCookie = function(): boolean {
-    return navigator.cookieEnabled;
+        return '';
+    },
+
+    checkCookie(): boolean {
+        return navigator.cookieEnabled;
+    },
 };
