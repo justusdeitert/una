@@ -3,8 +3,8 @@ import { fullPageInstance } from '@/js/modules/fullpage';
 
 let sidebarJS: SidebarElement | null = null;
 
-export const closeSidebar = function (): void {
-	if (sidebarJS && sidebarJS.isVisible()) {
+export const closeSidebar = (): void => {
+	if (sidebarJS?.isVisible()) {
 		sidebarJS.close();
 		document.body.classList.remove('sidenav-active');
 
@@ -23,7 +23,7 @@ if (document.querySelector('[sidebarjs]')) {
 		position: 'right',
 	});
 
-	const openSidebar = function (): void {
+	const openSidebar = (): void => {
 		if (!sidebarJS?.isVisible()) {
 			sidebarJS?.open();
 
@@ -43,11 +43,11 @@ if (document.querySelector('[sidebarjs]')) {
 
 				let backdropTouchStartX = 0;
 
-				(backdrop as HTMLElement).addEventListener('touchstart', function (e: TouchEvent) {
+				(backdrop as HTMLElement).addEventListener('touchstart', (e: TouchEvent) => {
 					backdropTouchStartX = e.touches[0].clientX;
 				});
 
-				(backdrop as HTMLElement).addEventListener('touchend', function (e: TouchEvent) {
+				(backdrop as HTMLElement).addEventListener('touchend', (e: TouchEvent) => {
 					const deltaX = e.changedTouches[0].clientX - backdropTouchStartX;
 					if (deltaX > 50) {
 						closeSidebar();
@@ -57,8 +57,8 @@ if (document.querySelector('[sidebarjs]')) {
 		}
 	};
 
-	document.querySelectorAll('.mobile-nav-clicker').forEach(el => {
-		el.addEventListener('click', function () {
+	document.querySelectorAll('.mobile-nav-clicker').forEach((el) => {
+		el.addEventListener('click', () => {
 			if (sidebarJS?.isVisible()) {
 				closeSidebar();
 			} else {
@@ -68,65 +68,77 @@ if (document.querySelector('[sidebarjs]')) {
 	});
 
 	let resizeTimer: ReturnType<typeof setTimeout> | null = null;
-	window.addEventListener('resize', function() {
+	window.addEventListener('resize', () => {
 		if (resizeTimer) clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(closeSidebar, 75);
 	});
 
-	window.addEventListener('scroll', function() {
+	window.addEventListener('scroll', () => {
 		closeSidebar();
 	});
 
-	document.addEventListener('wheel', function(e: WheelEvent) {
-		if (sidebarJS && sidebarJS.isVisible()) {
-			closeSidebar();
-			if (fullPageInstance) {
-				if (e.deltaY > 0) {
-					fullPageInstance.moveSectionDown();
-				} else if (e.deltaY < 0) {
-					fullPageInstance.moveSectionUp();
-				}
-			}
-		}
-	}, { passive: true });
-
-	let touchStartY: number | null = null;
-	document.addEventListener('touchstart', function(e: TouchEvent) {
-		if (sidebarJS && sidebarJS.isVisible()) {
-			touchStartY = e.touches[0].clientY;
-		}
-	}, { passive: true });
-
-	document.addEventListener('touchmove', function(e: TouchEvent) {
-		if (touchStartY !== null && sidebarJS && sidebarJS.isVisible()) {
-			const deltaY = e.touches[0].clientY - touchStartY;
-			if (Math.abs(deltaY) > 10) {
-				touchStartY = null;
+	document.addEventListener(
+		'wheel',
+		(e: WheelEvent) => {
+			if (sidebarJS?.isVisible()) {
 				closeSidebar();
 				if (fullPageInstance) {
-					if (deltaY < 0) {
+					if (e.deltaY > 0) {
 						fullPageInstance.moveSectionDown();
-					} else {
+					} else if (e.deltaY < 0) {
 						fullPageInstance.moveSectionUp();
 					}
 				}
 			}
-		}
-	}, { passive: true });
+		},
+		{ passive: true },
+	);
+
+	let touchStartY: number | null = null;
+	document.addEventListener(
+		'touchstart',
+		(e: TouchEvent) => {
+			if (sidebarJS?.isVisible()) {
+				touchStartY = e.touches[0].clientY;
+			}
+		},
+		{ passive: true },
+	);
+
+	document.addEventListener(
+		'touchmove',
+		(e: TouchEvent) => {
+			if (touchStartY && sidebarJS?.isVisible()) {
+				const deltaY = e.touches[0].clientY - touchStartY;
+				if (Math.abs(deltaY) > 10) {
+					touchStartY = null;
+					closeSidebar();
+					if (fullPageInstance) {
+						if (deltaY < 0) {
+							fullPageInstance.moveSectionDown();
+						} else {
+							fullPageInstance.moveSectionUp();
+						}
+					}
+				}
+			}
+		},
+		{ passive: true },
+	);
 }
 
 const syncNavHeight = () => {
 	const nav = document.querySelector('.sidebar-wrapper-mobile .main-navigation');
 	const clicker = document.querySelector('.mobile-nav-clicker');
 	if (nav instanceof HTMLElement && clicker instanceof HTMLElement) {
-		clicker.style.height = nav.offsetHeight + 'px';
+		clicker.style.height = `${nav.offsetHeight}px`;
 	}
 };
 
 let navResizeTimer: ReturnType<typeof setTimeout> | null = null;
 window.addEventListener('load', syncNavHeight);
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', () => {
 	if (navResizeTimer) clearTimeout(navResizeTimer);
 	navResizeTimer = setTimeout(syncNavHeight, 75);
 });

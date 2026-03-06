@@ -8,10 +8,10 @@
         "isolatedModules": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "types": ["vite/client"],
+        "types": ["vite/client", "node"],
         "paths": {
             "@/*": ["./src/*"]
         }
     },
-    "include": ["src/**/*.ts", "src/types/**/*.d.ts"]
+    "include": ["src/**/*.ts", "src/types/**/*.d.ts", "vite.config.ts"]
 }
