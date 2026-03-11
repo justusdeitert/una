@@ -1,4 +1,9 @@
-<?php $section_id = $args['section_id']; ?>
+<?php
+    $section_id = $args['section_id'];
+    $accordion_class = '';
+    $accordion_id = '';
+    $accordion_height = 200;
+?>
 <?php if (get_field('split_up_on_mobile')) { ?>
     <div class="section-mobile fp-scrollable">
 <?php } ?>
@@ -14,7 +19,7 @@
             .<?= $accordion_id; ?>.collapse {
                 display: block;
                 overflow: hidden;
-                height: <?= $accordion_height; ?>px;
+                height: <?= intval($accordion_height); ?>px;
             }
 
             .<?= $accordion_id; ?>.collapse.show {
@@ -22,7 +27,7 @@
             }
 
             .<?= $accordion_id; ?>.collapsing {
-                height: <?= $accordion_height; ?>px;
+                height: <?= intval($accordion_height); ?>px;
             }
         </style>
     <?php } ?>

@@ -7,8 +7,10 @@ function theme_enqueue_styles_scripts() {
     $theme_version = wp_get_theme()->get('Version');
 
     if (!file_exists($assets_path)) {
-        wp_enqueue_script_module('vite-js', VITE_DEV_SERVER . '/@vite/client');
-        wp_enqueue_script_module('theme-main-script', VITE_DEV_SERVER . '/js/main.ts');
+        add_action('wp_head', function () {
+            echo '<script type="module" src="' . VITE_DEV_SERVER . '/@vite/client"></script>' . "\n";
+            echo '<script type="module" src="' . VITE_DEV_SERVER . '/js/main.ts"></script>' . "\n";
+        }, 2);
     } else {
         wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/main.css', array(), $theme_version);
         wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', array(), $theme_version, true);
@@ -31,5 +33,4 @@ require_once get_template_directory() . '/inc/acf-register-blocks.php';
 require_once get_template_directory() . '/inc/after-theme-setup.php';
 require_once get_template_directory() . '/inc/allowed-block-types-all.php';
 require_once get_template_directory() . '/inc/init.php';
-require_once get_template_directory() . '/inc/template-functions.php';
 require_once get_template_directory() . '/inc/tiny-mce-before-init.php';
