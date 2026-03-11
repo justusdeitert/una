@@ -1,7 +1,7 @@
 import 'fullpage.js/vendors/scrolloverflow';
 import fullpage from 'fullpage.js/dist/fullpage';
-import { closeSidebar } from '@/js/modules/sidebar';
-import { closeLightboxFade, isLightboxOpen } from '@/js/modules/smart-photo';
+import { closeSidebar } from '@/ts/modules/sidebar';
+import { closeLightboxFade, isLightboxOpen } from '@/ts/modules/smart-photo';
 
 const BREAKPOINT_MD = 859.98;
 

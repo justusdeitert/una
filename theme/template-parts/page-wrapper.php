@@ -1,7 +1,7 @@
 <div class="page-wrapper">
     <header>
-        <a class="brand" href="<?= home_url('/'); ?>">
-            <?= get_bloginfo('name', 'display'); ?>
+        <a class="brand" href="<?= esc_url(home_url('/')); ?>">
+            <?= esc_html(get_bloginfo('name', 'display')); ?>
         </a>
     </header>
 
