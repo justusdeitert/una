@@ -5,8 +5,6 @@ import { closeLightboxFade, isLightboxOpen } from '@/js/modules/smart-photo';
 
 const BREAKPOINT_MD = 859.98;
 
-let resizeTimer: ReturnType<typeof setTimeout> | null = null;
-
 const getSelectorOnWindowSize = (): string => {
 	const isMobile = window.innerWidth < window.innerHeight || window.innerWidth < BREAKPOINT_MD;
 
@@ -154,6 +152,7 @@ document.querySelectorAll('.back-to-top').forEach((el) => {
 	});
 });
 
+let resizeTimer: ReturnType<typeof setTimeout> | null = null;
 window.addEventListener('resize', () => {
 	if (resizeTimer) clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(() => {

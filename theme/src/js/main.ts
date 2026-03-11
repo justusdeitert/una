@@ -1,5 +1,6 @@
 // Internal dependencies
 import '@/js/modules/collapse';
+import '@/js/modules/colors';
 import '@/js/modules/cookies';
 import '@/js/modules/draggable';
 import '@/js/modules/fullpage';
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	document.querySelectorAll('a').forEach((anchor) => {
+		if (!anchor.href || !anchor.href.startsWith('http')) return;
+
 		const linkHostname = new URL(anchor.href).hostname;
 
 		if (linkHostname !== window.location.hostname) {

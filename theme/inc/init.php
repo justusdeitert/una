@@ -6,7 +6,7 @@ add_action('init', function() {
         'primary_navigation' => __('Primary Navigation', 'una'),
     ]);
 
-    register_post_type('Events', [
+    register_post_type('events', [
         'labels' => [
             'name' => __('Events', 'una'),
             'singular_name' => __('Event', 'una'),

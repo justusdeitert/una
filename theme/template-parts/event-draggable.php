@@ -16,11 +16,11 @@ if ($current_event->have_posts()) {
     <div id="draggable">
         <i class="material-icons">close</i>
         <?php if ($image_link_url) { ?>
-            <a href="<?= $image_link_url; ?>">
+            <a href="<?= esc_url($image_link_url); ?>">
         <?php } ?>
         <div class="image-wrapper">
             <div class="image-container">
-                <img src="<?= $image['sizes']['large']; ?>">
+                <img src="<?= esc_url($image['sizes']['large']); ?>" alt="<?= esc_attr($image['alt']); ?>">
             </div>
         </div>
         <?php if ($image_link_url) { ?>
@@ -34,7 +34,7 @@ if ($current_event->have_posts()) {
     <?php if ($width) { ?>
         <style>
             #draggable {
-                width: <?= $width; ?>px !important;
+                width: <?= intval($width); ?>px !important;
             }
         </style>
     <?php }
