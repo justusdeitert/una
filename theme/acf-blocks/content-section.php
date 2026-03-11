@@ -11,12 +11,12 @@
 <?php if (get_field('content_section')) { ?>
     <div class="section-desktop fp-scrollable" itemscope itemtype="http://schema.org/ImageGallery">
         <?php
-            while (has_sub_field('content_section')) {
+            while (have_rows('content_section')) { the_row();
                 $layout = get_row_layout();
 
                 if ($layout === 'image') get_template_part('acf-blocks/desktop/image');
-                elseif ($layout === 'text') get_template_part('acf-blocks/desktop/text');
-                elseif ($layout === 'columns') get_template_part('acf-blocks/desktop/columns');
+                if ($layout === 'text') get_template_part('acf-blocks/desktop/text');
+                if ($layout === 'columns') get_template_part('acf-blocks/desktop/columns');
             }
         ?>
     </div>
@@ -56,9 +56,11 @@
 
             if ($layout === 'image') {
                 get_template_part('acf-blocks/mobile/image', '', $content_section);
-            } elseif ($layout === 'text') {
+            }
+            if ($layout === 'text') {
                 get_template_part('acf-blocks/mobile/text', '', $content_section);
-            } elseif ($layout === 'columns') {
+            }
+            if ($layout === 'columns') {
                 get_template_part('acf-blocks/mobile/columns', '', $content_section);
             }
 

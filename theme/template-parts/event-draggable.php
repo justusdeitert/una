@@ -27,7 +27,7 @@ if ($current_event->have_posts()) {
             </a>
         <?php } ?>
         <div class="text-container">
-            <?= $text; ?>
+            <?= wp_kses_post($text); ?>
         </div>
     </div>
 
