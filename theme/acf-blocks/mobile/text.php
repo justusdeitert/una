@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-12 col-md-11">
                 <?php if ($args['text']) { ?>
-                    <p><?= $args['text']; ?></p>
+                    <p><?= wp_kses_post($args['text']); ?></p>
                 <?php } ?>
             </div>
         </div>

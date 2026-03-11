@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-12 col-md-10">
                 <?php if ($text) { ?>
-                    <p><?= $text; ?></p>
+                    <p><?= wp_kses_post($text); ?></p>
                 <?php } ?>
             </div>
         </div>

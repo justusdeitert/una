@@ -24,7 +24,7 @@ add_filter('tiny_mce_before_init', function($mce_init) {
         ],
     ];
 
-    $mce_init['style_formats'] = json_encode($style_formats);
+    $mce_init['style_formats'] = wp_json_encode($style_formats);
 
     return $mce_init;
 });

@@ -22,6 +22,7 @@ add_action('init', function() {
         'supports' => ['title', 'revisions'],
         'menu_icon' => 'dashicons-tag',
         'publicly_queryable' => true,
+        'show_in_rest' => true,
     ]);
 });
 

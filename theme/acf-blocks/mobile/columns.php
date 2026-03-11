@@ -42,7 +42,7 @@
                                                             <div class="col-12">
                                                                 <div class="row">
                                                                     <div class="col-8">
-                                                                        <?= $sub_column['text']; ?>
+                                                                        <?= wp_kses_post($sub_column['text']); ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -51,7 +51,7 @@
                                                             <div class="col-12">
                                                                 <div class="row text-and-image-container">
                                                                     <div class="col-8">
-                                                                        <?= $sub_column['text']; ?>
+                                                                        <?= wp_kses_post($sub_column['text']); ?>
                                                                     </div>
                                                                     <div class="col-4">
                                                                         <a data-caption="<?= esc_attr($sub_column['image']['caption']); ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= esc_url($sub_column['image']['url']); ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
