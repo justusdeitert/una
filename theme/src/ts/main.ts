@@ -1,11 +1,11 @@
 // Internal dependencies
-import '@/js/modules/collapse';
-import '@/js/modules/colors';
-import '@/js/modules/cookies';
-import '@/js/modules/draggable';
-import '@/js/modules/fullpage';
-import '@/js/modules/sidebar';
-import '@/js/modules/smart-photo';
+import '@/ts/modules/collapse';
+import '@/ts/modules/colors';
+import '@/ts/modules/cookies';
+import '@/ts/modules/draggable';
+import '@/ts/modules/fullpage';
+import '@/ts/modules/sidebar';
+import '@/ts/modules/smart-photo';
 
 // Styles
 import '@/scss/main.scss';

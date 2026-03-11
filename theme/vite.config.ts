@@ -26,7 +26,7 @@ export default defineConfig(async ({ mode }) => {
 			minify: 'esbuild',
 			rollupOptions: {
 				input: {
-					main: 'src/js/main.ts',
+					main: 'src/ts/main.ts',
 				},
 				output: {
 					entryFileNames: 'js/[name].js',

@@ -9,7 +9,7 @@ function theme_enqueue_styles_scripts() {
     if (!file_exists($assets_path)) {
         add_action('wp_head', function () {
             echo '<script type="module" src="' . VITE_DEV_SERVER . '/@vite/client"></script>' . "\n";
-            echo '<script type="module" src="' . VITE_DEV_SERVER . '/js/main.ts"></script>' . "\n";
+            echo '<script type="module" src="' . VITE_DEV_SERVER . '/ts/main.ts"></script>' . "\n";
         }, 2);
     } else {
         wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/main.css', array(), $theme_version);

@@ -1,5 +1,5 @@
 import { SidebarElement } from 'sidebarjs/lib/umd/sidebarjs';
-import { fullPageInstance } from '@/js/modules/fullpage';
+import { fullPageInstance } from '@/ts/modules/fullpage';
 
 let sidebarJS: SidebarElement | null = null;
 

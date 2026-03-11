@@ -71,6 +71,6 @@
     <?php } ?>
 <?php } else { ?>
     <section class="empty-block">
-        <p><?= $block['title']; ?></p>
+        <p><?= esc_html($block['title']); ?></p>
     </section>
 <?php } ?>

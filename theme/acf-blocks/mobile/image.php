@@ -9,9 +9,9 @@
 
     <div class="section-mobile-inner">
         <a class="admin-prevent-click image-wrapper section-mobile-image-<?= $args['image']['ID']; ?>"
-            href="<?= $args['link']['url']; ?>">
-            <div class="hover-overlay"><?= $args['link']['title']; ?></div>
-            <img data-src="<?= $args['image']['sizes']['large']; ?>" title="<?= $args['image']['caption']; ?>">
+            href="<?= esc_url($args['link']['url']); ?>">
+            <div class="hover-overlay"><?= esc_html($args['link']['title']); ?></div>
+            <img data-src="<?= esc_url($args['image']['sizes']['large']); ?>" title="<?= esc_attr($args['image']['caption']); ?>">
         </a>
     </div>
 
@@ -24,15 +24,15 @@
     <?php } ?>
 
     <div class="section-mobile-inner">
-        <a data-caption="<?= $args['image']['caption']; ?>"
+        <a data-caption="<?= esc_attr($args['image']['caption']); ?>"
             class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $args['image']['ID']; ?>"
-            href="<?= $args['image']['url']; ?>"
+            href="<?= esc_url($args['image']['url']); ?>"
             data-group="mobile-group-<?= $args['image']['ID']; ?>">
             <div class="image-container">
-                <img data-src="<?= $args['image']['sizes']['large']; ?>" title="<?= $args['image']['caption']; ?>">
+                <img data-src="<?= esc_url($args['image']['sizes']['large']); ?>" title="<?= esc_attr($args['image']['caption']); ?>">
                 <div class="caption">
                     <div class="span">
-                        <?= $args['image']['caption']; ?>
+                        <?= esc_html($args['image']['caption']); ?>
                     </div>
                 </div>
             </div>

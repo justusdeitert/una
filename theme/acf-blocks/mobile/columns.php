@@ -17,7 +17,7 @@
                             <div class="col-12">
                                 <div class="column-text-container">
                                     <div class="accordion-header colored-hover" data-toggle="collapse" data-target="#<?= $body_id; ?>" id="<?= $header_id; ?>">
-                                        <h3><?= $column['headline']; ?></h3>
+                                        <h3><?= esc_html($column['headline']); ?></h3>
                                         <i class="material-icons"></i>
                                     </div>
                                     <div class="accordion-body collapse" aria-labelledby="<?= $header_id; ?>" id="<?= $body_id; ?>" data-parent=".accordion">
@@ -29,9 +29,9 @@
                                                             <div class="col-12">
                                                                 <div class="row">
                                                                     <div class="col-8">
-                                                                        <a data-caption="<?= $sub_column['image']['caption']; ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= $sub_column['image']['url']; ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
+                                                                        <a data-caption="<?= esc_attr($sub_column['image']['caption']); ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= esc_url($sub_column['image']['url']); ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
                                                                             <div class="image-container">
-                                                                                <img src="<?= $sub_column['image']['sizes']['medium']; ?>" title="<?= $sub_column['image']['caption']; ?>">
+                                                                                <img src="<?= esc_url($sub_column['image']['sizes']['medium']); ?>" title="<?= esc_attr($sub_column['image']['caption']); ?>">
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -54,9 +54,9 @@
                                                                         <?= $sub_column['text']; ?>
                                                                     </div>
                                                                     <div class="col-4">
-                                                                        <a data-caption="<?= $sub_column['image']['caption']; ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= $sub_column['image']['url']; ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
+                                                                        <a data-caption="<?= esc_attr($sub_column['image']['caption']); ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= esc_url($sub_column['image']['url']); ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
                                                                             <div class="image-container">
-                                                                                <img src="<?= $sub_column['image']['sizes']['medium']; ?>" title="<?= $sub_column['image']['caption']; ?>">
+                                                                                <img src="<?= esc_url($sub_column['image']['sizes']['medium']); ?>" title="<?= esc_attr($sub_column['image']['caption']); ?>">
                                                                             </div>
                                                                         </a>
                                                                     </div>
