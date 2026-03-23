@@ -22,6 +22,7 @@ node_modules/
 /wordpress/
 /uploads/
 /theme/assets/
+/theme/stats.html
 
 # Ignore dump files
 *.sql

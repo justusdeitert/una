@@ -12,7 +12,7 @@
                                         <?php if ($sub_column['acf_fc_layout'] === 'image') { ?>
                                             <a data-caption="<?= esc_attr($sub_column['image']['caption']); ?>" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-<?= $sub_column['image']['ID']; ?>" href="<?= esc_url($sub_column['image']['url']); ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                                                 <div class="image-container">
-                                                    <img src="<?= esc_url($sub_column['image']['sizes']['medium']); ?>" title="<?= esc_attr($sub_column['image']['caption']); ?>" itemprop="contentUrl">
+                                                    <img src="<?= esc_url($sub_column['image']['sizes']['medium']); ?>" title="<?= esc_attr($sub_column['image']['caption']); ?>" loading="lazy" itemprop="contentUrl">
                                                 </div>
                                             </a>
                                         <?php } ?>
@@ -23,7 +23,7 @@
                                             <?= wp_kses_post($sub_column['text']); ?>
                                             <a data-caption="<?= esc_attr($sub_column['image']['caption']); ?>" class="admin-prevent-click image-wrapper smart-photo section-desktop-image-<?= $sub_column['image']['ID']; ?>" href="<?= esc_url($sub_column['image']['url']); ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                                                 <div class="image-container">
-                                                    <img src="<?= esc_url($sub_column['image']['sizes']['medium']); ?>" title="<?= esc_attr($sub_column['image']['caption']); ?>" itemprop="contentUrl">
+                                                    <img src="<?= esc_url($sub_column['image']['sizes']['medium']); ?>" title="<?= esc_attr($sub_column['image']['caption']); ?>" loading="lazy" itemprop="contentUrl">
                                                 </div>
                                             </a>
                                         <?php } ?>

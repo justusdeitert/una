@@ -1,6 +1,7 @@
 import path from 'node:path';
 import type { UserConfig } from 'vite';
 import { defineConfig } from 'vite';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig(async ({ mode }) => {
 	const isProduction = mode === 'production';
@@ -22,7 +23,7 @@ export default defineConfig(async ({ mode }) => {
 		build: {
 			outDir: path.resolve(__dirname, 'assets'),
 			emptyOutDir: true,
-			sourcemap: true,
+			sourcemap: false,
 			minify: 'esbuild',
 			rollupOptions: {
 				input: {
@@ -30,6 +31,10 @@ export default defineConfig(async ({ mode }) => {
 				},
 				output: {
 					entryFileNames: 'js/[name].js',
+					chunkFileNames: 'js/[name]-[hash].js',
+					manualChunks: {
+						vendor: ['fullpage.js', 'fullpage.js/vendors/scrolloverflow', 'photoswipe', 'sidebarjs'],
+					},
 					assetFileNames: (assetInfo) => {
 						const name = assetInfo.name ?? '';
 
@@ -74,5 +79,13 @@ export default defineConfig(async ({ mode }) => {
 				'@': path.resolve(__dirname, 'src'),
 			},
 		},
+		plugins: [
+			isProduction &&
+				visualizer({
+					filename: 'stats.html',
+					open: true,
+					gzipSize: true,
+				}),
+		],
 	} satisfies UserConfig;
 });
