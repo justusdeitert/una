@@ -1,6 +1,6 @@
 DOCKER_COMPOSE := docker compose
 
-.PHONY: install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build setup_wordpress export_db import_db
+.PHONY: install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db import_db
 
 install: stop build_container start
 clean_install: stop clean build_container start
@@ -32,6 +32,11 @@ dev:
 
 build:
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node yarn build
+
+analyze:
+	@$(DOCKER_COMPOSE) exec -e ANALYZE=1 -w /usr/src/theme node yarn build
+	@open theme/stats.html
+	@sleep 2 && rm -f theme/stats.html
 
 setup_wordpress:
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/setup-wordpress.sh

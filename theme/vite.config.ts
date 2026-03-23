@@ -80,10 +80,9 @@ export default defineConfig(async ({ mode }) => {
 			},
 		},
 		plugins: [
-			isProduction &&
+			!!process.env.ANALYZE &&
 				visualizer({
-					filename: 'stats.html',
-					open: true,
+					filename: path.resolve(__dirname, 'stats.html'),
 					gzipSize: true,
 				}),
 		],
