@@ -34,6 +34,22 @@ function theme_output_config() {
 
 add_action('wp_head', 'theme_output_config');
 
+function una_img_attrs( array|false $image, string $size = 'large', bool $fullpage_lazy = false ): string {
+    if ( ! $image ) {
+        return '';
+    }
+
+    $src    = esc_url( $image['sizes'][ $size ] );
+    $srcset = esc_attr( wp_get_attachment_image_srcset( $image['ID'], $size ) );
+    $sizes  = esc_attr( wp_get_attachment_image_sizes( $image['ID'], $size ) );
+
+    if ( $fullpage_lazy ) {
+        return "data-src=\"$src\" data-srcset=\"$srcset\" sizes=\"$sizes\" decoding=\"async\"";
+    }
+
+    return "src=\"$src\" srcset=\"$srcset\" sizes=\"$sizes\" loading=\"lazy\" decoding=\"async\"";
+}
+
 require_once get_template_directory() . '/inc/acf-add-options-page.php';
 require_once get_template_directory() . '/inc/acf-register-blocks.php';
 require_once get_template_directory() . '/inc/after-theme-setup.php';
