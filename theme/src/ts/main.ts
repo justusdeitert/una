@@ -2,13 +2,17 @@
 import '@/ts/modules/collapse';
 import '@/ts/modules/colors';
 import '@/ts/modules/cookies';
-import '@/ts/modules/draggable';
 import '@/ts/modules/fullpage';
 import '@/ts/modules/sidebar';
 import '@/ts/modules/smart-photo';
 
 // Styles
 import '@/scss/main.scss';
+
+// Lazy-load draggable only when the element exists
+if (document.getElementById('draggable')) {
+	import('@/ts/modules/draggable');
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 	document.querySelectorAll('#fullpage p:empty, #fullpage span:empty, #fullpage h3:empty').forEach((el) => {

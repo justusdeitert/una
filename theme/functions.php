@@ -14,6 +14,12 @@ function theme_enqueue_styles_scripts() {
     } else {
         wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/main.css', array(), $theme_version);
         wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', array(), $theme_version, true);
+        add_filter('script_loader_tag', function ($tag, $handle) {
+            if ($handle === 'main-script') {
+                return str_replace('<script ', '<script type="module" ', $tag);
+            }
+            return $tag;
+        }, 10, 2);
     }
 }
 
