@@ -45,12 +45,38 @@ const updateNavClasses = (): void => {
 	}
 };
 
+const rebuildAfterImages = (): void => {
+	const section = document.querySelector('.fp-section.active');
+	if (!section) return;
+
+	const images = section.querySelectorAll<HTMLImageElement>('img');
+	if (images.length === 0) return;
+
+	const pending = Array.from(images).filter((img) => !img.complete);
+	if (pending.length === 0) return;
+
+	let remaining = pending.length;
+	const onDone = (): void => {
+		remaining--;
+		if (remaining <= 0) {
+			fullPageInstance?.reBuild();
+		}
+	};
+
+	for (const img of pending) {
+		img.addEventListener('load', onDone, { once: true });
+		img.addEventListener('error', onDone, { once: true });
+	}
+};
+
 const afterLoad = (): void => {
 	updateNavClasses();
 
 	document.querySelectorAll('.fp-tableCell').forEach((cell) => {
 		cell.classList.toggle('vertical-top', cell.querySelector('.content-container') !== null);
 	});
+
+	rebuildAfterImages();
 };
 
 const initFullPageInstance = (): fullpage => {
@@ -66,7 +92,10 @@ const initFullPageInstance = (): fullpage => {
 		licenseKey: window.themeConfig?.fullpageLicenseKey || '',
 		lazyLoading: true,
 		afterLoad: afterLoad,
-		afterRender: updateNavClasses,
+		afterRender: () => {
+			updateNavClasses();
+			rebuildAfterImages();
+		},
 		onLeave: (_origin, destination, _direction) => {
 			if (isLightboxOpen()) {
 				closeLightboxFade();
