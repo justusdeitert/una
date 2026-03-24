@@ -11,7 +11,7 @@
         <a class="admin-prevent-click image-wrapper section-mobile-image-<?= $args['image']['ID']; ?>"
             href="<?= esc_url($args['link']['url']); ?>">
             <div class="hover-overlay"><?= esc_html($args['link']['title']); ?></div>
-            <img <?= una_img_attrs($args['image'], 'large', true); ?>
+            <img <?= una_img_attrs($args['image'], 'large', true, 'hero'); ?>
                 title="<?= esc_attr($args['image']['caption']); ?>">
         </a>
     </div>
@@ -30,7 +30,7 @@
             href="<?= esc_url($args['image']['url']); ?>"
             data-group="mobile-group-<?= $args['image']['ID']; ?>">
             <div class="image-container">
-                <img <?= una_img_attrs($args['image'], 'large', true); ?>
+                <img <?= una_img_attrs($args['image'], 'large', true, 'hero'); ?>
                     title="<?= esc_attr($args['image']['caption']); ?>">
                 <div class="caption">
                     <div class="span">

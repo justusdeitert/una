@@ -34,20 +34,37 @@ function theme_output_config() {
 
 add_action('wp_head', 'theme_output_config');
 
-function una_img_attrs( array|false $image, string $size = 'large', bool $fullpage_lazy = false ): string {
+function una_img_attrs( array|false $image, string $size = 'large', bool $fullpage_lazy = false, string $layout = '' ): string {
     if ( ! $image ) {
         return '';
     }
 
-    $src    = esc_url( $image['sizes'][ $size ] );
-    $srcset = esc_attr( wp_get_attachment_image_srcset( $image['ID'], $size ) );
-    $sizes  = esc_attr( wp_get_attachment_image_sizes( $image['ID'], $size ) );
+    $src    = esc_url( $image['sizes'][ $size ] ?? $image['url'] );
+    $srcset = wp_get_attachment_image_srcset( $image['ID'], $size );
+    $sizes  = una_img_sizes( $layout );
 
-    if ( $fullpage_lazy ) {
-        return "data-src=\"$src\" data-srcset=\"$srcset\" sizes=\"$sizes\" decoding=\"async\"";
+    $attrs  = $fullpage_lazy ? "data-src=\"$src\"" : "src=\"$src\"";
+    if ( $srcset ) {
+        $srcset = esc_attr( $srcset );
+        $attrs .= $fullpage_lazy ? " data-srcset=\"$srcset\"" : " srcset=\"$srcset\"";
+    }
+    $attrs .= " sizes=\"$sizes\"";
+    $attrs .= ' decoding="async"';
+    if ( ! $fullpage_lazy ) {
+        $attrs .= ' loading="lazy"';
     }
 
-    return "src=\"$src\" srcset=\"$srcset\" sizes=\"$sizes\" loading=\"lazy\" decoding=\"async\"";
+    return $attrs;
+}
+
+function una_img_sizes( string $layout ): string {
+    // 860px = fullpage.js responsive breakpoint
+    return match ( $layout ) {
+        'column'       => '(max-width: 860px) 60vw, 230px',
+        'column-small' => '(max-width: 860px) 30vw, 115px',
+        'hero'         => '(max-width: 860px) 90vw, 80vw',
+        default        => '100vw',
+    };
 }
 
 require_once get_template_directory() . '/inc/acf-add-options-page.php';
