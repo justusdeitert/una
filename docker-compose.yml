@@ -21,6 +21,7 @@ services:
         volumes:
             - ./wordpress:/var/www/html
             - ./devops/php/php.ini:/usr/local/etc/php/php.ini:ro
+            - ./devops/php/wp-debug.php:/usr/local/etc/php/wp-debug.php:ro
             - ./theme:/var/www/html/wp-content/themes/una-moehrke-theme
             - ./uploads:/var/www/html/wp-content/uploads
         env_file:
