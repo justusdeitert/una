@@ -1,17 +1,17 @@
 <?php
-    $accordion = get_sub_field('accordion');
-    $text = get_sub_field('text');
-    $full_width = get_sub_field('full_width');
-    $accordion_class = '';
-    $accordion_id = '';
-    $accordion_height = 200;
+$accordion = get_sub_field('accordion');
+$text = get_sub_field('text');
+$full_width = get_sub_field('full_width');
+$accordion_class = '';
+$accordion_id = '';
+$accordion_height = 200;
 ?>
 <div class="content-container text-container-accordion">
     <?php if ($accordion) { ?>
         <?php
             $accordion_class = 'collapse';
-            $accordion_id = get_sub_field_object('accordion')['key'];
-            $accordion_height = get_sub_field('accordion_height');
+        $accordion_id = get_sub_field_object('accordion')['key'];
+        $accordion_height = get_sub_field('accordion_height');
         ?>
         <style>
             .<?= $accordion_id; ?>.collapse {

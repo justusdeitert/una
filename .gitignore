@@ -23,6 +23,7 @@ node_modules/
 /uploads/
 /theme/assets/
 /theme/stats.html
+/theme/.php-cs-fixer.cache
 
 # Ignore dump files
 *.sql

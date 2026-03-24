@@ -1,8 +1,8 @@
 <?php
-    $section_id = $args['section_id'];
-    $accordion_class = '';
-    $accordion_id = '';
-    $accordion_height = 200;
+$section_id = $args['section_id'];
+$accordion_class = '';
+$accordion_id = '';
+$accordion_height = 200;
 ?>
 <?php if (get_field('split_up_on_mobile')) { ?>
     <div class="section-mobile fp-scrollable">
@@ -12,8 +12,8 @@
     <?php if ($args['accordion']) { ?>
         <?php
             $accordion_class = 'collapse';
-            $accordion_id = 'accordion-mobile-text-' . $section_id;
-            $accordion_height = $args['accordion_height'];
+        $accordion_id = 'accordion-mobile-text-' . $section_id;
+        $accordion_height = $args['accordion_height'];
         ?>
         <style>
             .<?= $accordion_id; ?>.collapse {

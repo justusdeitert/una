@@ -18,6 +18,7 @@ add_action('acf/init', function () {
 
     if (!is_dir($blocks_path)) {
         error_log('ACF blocks directory does not exist: ' . $blocks_path);
+
         return;
     }
 
