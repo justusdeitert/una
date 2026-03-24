@@ -20,31 +20,31 @@
 	// Background/container cursor
 	&__bg,
 	&__scroll-wrap {
-		cursor: url('@/images/icon-x.png'), crosshair;
+		cursor: url('@/images/icon-x.png') 20 20, crosshair;
 		cursor: -webkit-image-set(
 			url('@/images/icon-x.png') 1x,
 			url('@/images/icon-x@2x.png') 2x
-		), crosshair;
+		) 20 20, crosshair;
 	}
 
 	// Image cursor: magnifying glass (zoom in)
 	&--click-to-zoom#{&}--zoom-allowed &__img {
-		cursor: url('@/images/icon-magnifying-glass.png'), zoom-in;
+		cursor: url('@/images/icon-magnifying-glass.png') 15 15, zoom-in;
 		cursor: -webkit-image-set(
 				url('@/images/icon-magnifying-glass.png') 1x,
 				url('@/images/icon-magnifying-glass@2x.png') 2x
-			),
+			) 15 15,
 			zoom-in;
 	}
 
 	// When zoomed in: minifying glass (zoom out) on image
 	&--click-to-zoom#{&}--zoomed-in &__img,
 	&--no-mouse-drag#{&}--zoomed-in &__img {
-		cursor: url('@/images/icon-minifying-glass.png'), zoom-out;
+		cursor: url('@/images/icon-minifying-glass.png') 15 15, zoom-out;
 		cursor: -webkit-image-set(
 				url('@/images/icon-minifying-glass.png') 1x,
 				url('@/images/icon-minifying-glass@2x.png') 2x
-			),
+			) 15 15,
 			zoom-out;
 	}
 
@@ -52,11 +52,11 @@
 	&__close-zone {
 		display: none;
 		position: absolute;
-		cursor: url('@/images/icon-x.png'), crosshair;
+		cursor: url('@/images/icon-x.png') 20 20, crosshair;
 		cursor: -webkit-image-set(
 			url('@/images/icon-x.png') 1x,
 			url('@/images/icon-x@2x.png') 2x
-		), crosshair;
+		) 20 20, crosshair;
 		z-index: 1000;
 
 		&--top,
