@@ -1,6 +1,6 @@
 import { fullPageInstance } from '@/ts/modules/fullpage';
 
-const sidebarEl = document.querySelector<HTMLElement>('.sidebar-wrapper-mobile');
+const sidebarEl = document.querySelector<HTMLElement>('.sidebar-nav');
 let isOpen = false;
 
 export const closeSidebar = (): void => {
@@ -67,6 +67,10 @@ if (sidebarEl) {
 		closeSidebar();
 	});
 
+	document.addEventListener('keydown', (e: KeyboardEvent) => {
+		if (e.key === 'Escape') closeSidebar();
+	});
+
 	document.addEventListener(
 		'wheel',
 		(e: WheelEvent) => {
@@ -116,19 +120,3 @@ if (sidebarEl) {
 		{ passive: true },
 	);
 }
-
-const syncNavHeight = () => {
-	const nav = document.querySelector('.sidebar-wrapper-mobile .main-navigation');
-	const clicker = document.querySelector('.mobile-nav-clicker');
-	if (nav instanceof HTMLElement && clicker instanceof HTMLElement) {
-		clicker.style.height = `${nav.offsetHeight}px`;
-	}
-};
-
-let navResizeTimer: ReturnType<typeof setTimeout> | null = null;
-window.addEventListener('load', syncNavHeight);
-
-window.addEventListener('resize', () => {
-	if (navResizeTimer) clearTimeout(navResizeTimer);
-	navResizeTimer = setTimeout(syncNavHeight, 75);
-});

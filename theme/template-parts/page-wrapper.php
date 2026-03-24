@@ -24,13 +24,12 @@
         } ?>
     </div>
 
-    <div class="mobile-nav-clicker d-block d-md-none"></div>
-
     <div class="back-to-top colored-hover">
         <p>go up</p>
     </div>
 
-    <div class="sidebar-wrapper-mobile d-block d-md-none">
+    <div class="sidebar-nav d-block d-md-none">
+        <div class="mobile-nav-clicker"></div>
         <?php if (has_nav_menu('primary_navigation')) {
             wp_nav_menu([
                 'theme_location' => 'primary_navigation',
