@@ -31,7 +31,7 @@
                                                                     <div class="col-8">
                                                                         <a data-caption="<?= esc_attr($sub_column['image']['caption']); ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= esc_url($sub_column['image']['url']); ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
                                                                             <div class="image-container">
-                                                                                <img <?= una_img_attrs($sub_column['image'], 'medium'); ?>
+                                                                                <img <?= una_img_attrs($sub_column['image'], 'column', false, 'column'); ?>
                                                                                     title="<?= esc_attr($sub_column['image']['caption']); ?>">
                                                                             </div>
                                                                         </a>
@@ -57,7 +57,7 @@
                                                                     <div class="col-4">
                                                                         <a data-caption="<?= esc_attr($sub_column['image']['caption']); ?>" class="admin-prevent-click image-wrapper smart-photo section-mobile-image-<?= $sub_column['image']['ID']; ?>" href="<?= esc_url($sub_column['image']['url']); ?>" data-group="mobile-group-<?= $sub_column['image']['ID']; ?>">
                                                                             <div class="image-container">
-                                                                                <img <?= una_img_attrs($sub_column['image'], 'medium'); ?>
+                                                                                <img <?= una_img_attrs($sub_column['image'], 'column', false, 'column-small'); ?>
                                                                                     title="<?= esc_attr($sub_column['image']['caption']); ?>">
                                                                             </div>
                                                                         </a>

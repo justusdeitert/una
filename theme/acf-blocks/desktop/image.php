@@ -14,7 +14,7 @@
                 <a class="admin-prevent-click image-wrapper section-image-<?= $image['ID']; ?>" href="<?= esc_url($link['url']); ?>">
                     <div class="image-container" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                         <div class="hover-overlay"><?= esc_html($link['title']); ?></div>
-                        <img <?= una_img_attrs($image, 'large', true); ?>
+                        <img <?= una_img_attrs($image, 'large', true, 'hero'); ?>
                             alt="<?= esc_attr($image['caption']); ?>"
                             itemprop="contentUrl">
                     </div>
@@ -25,7 +25,7 @@
                     href="<?= esc_url($image['url']); ?>"
                     data-group="desktop-group-<?= $image['ID']; ?>">
                     <div class="image-container" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                        <img <?= una_img_attrs($image, 'large', true); ?>
+                        <img <?= una_img_attrs($image, 'large', true, 'hero'); ?>
                             title="<?= esc_attr($image['caption']); ?>"
                             itemprop="contentUrl">
                         <div class="caption">

@@ -52,4 +52,11 @@ add_action('after_setup_theme', function () {
 
     remove_theme_support('core-block-patterns');
     remove_theme_support('block-templates');
+
+    add_image_size('column', 480, 0, false);
+});
+
+add_filter('intermediate_image_sizes_advanced', function ( array $sizes ): array {
+    unset($sizes['thumbnail']);
+    return $sizes;
 });
