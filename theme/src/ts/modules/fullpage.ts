@@ -1,7 +1,7 @@
 import 'fullpage.js/vendors/scrolloverflow';
 import fullpage from 'fullpage.js/dist/fullpage';
 import { closeSidebar } from '@/ts/modules/sidebar';
-import { closeLightboxFade, isLightboxOpen } from '@/ts/modules/smart-photo';
+import { closeLightboxInstant, isLightboxOpen } from '@/ts/modules/photoswipe';
 
 const BREAKPOINT_MD = 859.98;
 
@@ -98,7 +98,7 @@ const initFullPageInstance = (): fullpage => {
 		},
 		onLeave: (_origin, destination, _direction) => {
 			if (isLightboxOpen()) {
-				closeLightboxFade();
+				closeLightboxInstant();
 			}
 
 			closeSidebar();

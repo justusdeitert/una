@@ -4,7 +4,7 @@ import '@/ts/modules/colors';
 import '@/ts/modules/cookies';
 import '@/ts/modules/fullpage';
 import '@/ts/modules/sidebar';
-import '@/ts/modules/smart-photo';
+import '@/ts/modules/photoswipe';
 
 // Styles
 import '@/scss/main.scss';

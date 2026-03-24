@@ -7,10 +7,30 @@ const clearUrlHash = (): void => {
 	history.pushState(null, '', window.location.href.split('#')[0]);
 };
 
-export const closeLightboxFade = (): void => {
-	if (activePswp) {
-		activePswp.options.showHideAnimationType = 'fade';
-		activePswp.close();
+const CLOSE_FADE_MS = 300;
+
+export const closeLightboxInstant = (): void => {
+	if (!activePswp) return;
+
+	const pswp = activePswp;
+	activePswp = null;
+
+	// Strip all DOM event listeners so PhotoSwipe can't interfere
+	pswp.events.removeAll();
+
+	// Clean up body classes and URL hash immediately
+	document.body.classList.remove('lightbox-is-open', 'lightbox-zoomed-in');
+	clearUrlHash();
+
+	const el = pswp.element;
+	if (el) {
+		// Fade out the element visually
+		el.style.pointerEvents = 'none';
+		el.style.transition = `opacity ${CLOSE_FADE_MS}ms ease`;
+		el.style.opacity = '0';
+
+		// Remove from DOM after fade, never call pswp.close() during fullpage transition
+		setTimeout(() => el.remove(), CLOSE_FADE_MS);
 	}
 };
 
@@ -104,6 +124,8 @@ const openLightbox = (triggerEl: HTMLElement, src: string, caption: string): voi
 		pswp.on('openingAnimationEnd', () => {
 			pswp.element?.classList.remove('pswp--bg-instant');
 			clearUrlHash();
+
+			pswp.element?.addEventListener('wheel', () => closeLightboxInstant(), { once: true });
 		});
 
 		pswp.on('zoomPanUpdate', ({ slide }) => {
