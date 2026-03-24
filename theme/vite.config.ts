@@ -33,7 +33,7 @@ export default defineConfig(async ({ mode }) => {
 					entryFileNames: 'js/[name].js',
 					chunkFileNames: 'js/[name]-[hash].js',
 					manualChunks: {
-						vendor: ['fullpage.js', 'fullpage.js/vendors/scrolloverflow', 'photoswipe', 'sidebarjs'],
+						vendor: ['fullpage.js', 'fullpage.js/vendors/scrolloverflow', 'photoswipe'],
 					},
 					assetFileNames: (assetInfo) => {
 						const name = assetInfo.name ?? '';
