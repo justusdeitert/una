@@ -1,65 +1,55 @@
-import { SidebarElement } from 'sidebarjs/lib/umd/sidebarjs';
 import { fullPageInstance } from '@/ts/modules/fullpage';
 
-let sidebarJS: SidebarElement | null = null;
+const sidebarEl = document.querySelector<HTMLElement>('.sidebar-wrapper-mobile');
+let isOpen = false;
 
 export const closeSidebar = (): void => {
-	if (sidebarJS?.isVisible()) {
-		sidebarJS.close();
-		document.body.classList.remove('sidenav-active');
+	if (!isOpen) return;
+	isOpen = false;
+	sidebarEl?.classList.remove('sidebar-open');
+	document.body.classList.remove('sidenav-active');
 
-		const backdrop = document.querySelector('.custom-sidebar-backdrop');
-		if (backdrop) {
-			backdrop.classList.remove('active');
-			setTimeout(() => backdrop.remove(), 200);
-		}
+	const backdrop = document.querySelector('.custom-sidebar-backdrop');
+	if (backdrop) {
+		backdrop.classList.remove('active');
+		setTimeout(() => backdrop.remove(), 200);
 	}
 };
 
-if (document.querySelector('[sidebarjs]')) {
-	sidebarJS = new SidebarElement({
-		backdropOpacity: 0.5,
-		nativeSwipe: false,
-		position: 'right',
-	});
-
+if (sidebarEl) {
 	const openSidebar = (): void => {
-		if (!sidebarJS?.isVisible()) {
-			sidebarJS?.open();
+		if (isOpen) return;
+		isOpen = true;
+		sidebarEl.classList.add('sidebar-open');
+		document.body.classList.add('sidenav-active');
 
-			document.body.classList.add('sidenav-active');
+		sidebarEl.insertAdjacentHTML('beforebegin', '<div class="custom-sidebar-backdrop"></div>');
 
-			const sidebarjsBackdrop = document.querySelector('[sidebarjs-backdrop]');
-			if (sidebarjsBackdrop) {
-				sidebarjsBackdrop.insertAdjacentHTML('beforebegin', '<div class="custom-sidebar-backdrop"></div>');
-			}
+		const backdrop = document.querySelector('.custom-sidebar-backdrop');
 
-			const backdrop = document.querySelector('.custom-sidebar-backdrop');
+		if (backdrop) {
+			setTimeout(() => backdrop.classList.add('active'), 100);
 
-			if (backdrop) {
-				setTimeout(() => backdrop.classList.add('active'), 100);
+			backdrop.addEventListener('click', () => closeSidebar());
 
-				backdrop.addEventListener('click', () => closeSidebar());
+			let backdropTouchStartX = 0;
 
-				let backdropTouchStartX = 0;
+			(backdrop as HTMLElement).addEventListener('touchstart', (e: TouchEvent) => {
+				backdropTouchStartX = e.touches[0].clientX;
+			});
 
-				(backdrop as HTMLElement).addEventListener('touchstart', (e: TouchEvent) => {
-					backdropTouchStartX = e.touches[0].clientX;
-				});
-
-				(backdrop as HTMLElement).addEventListener('touchend', (e: TouchEvent) => {
-					const deltaX = e.changedTouches[0].clientX - backdropTouchStartX;
-					if (deltaX > 50) {
-						closeSidebar();
-					}
-				});
-			}
+			(backdrop as HTMLElement).addEventListener('touchend', (e: TouchEvent) => {
+				const deltaX = e.changedTouches[0].clientX - backdropTouchStartX;
+				if (deltaX > 50) {
+					closeSidebar();
+				}
+			});
 		}
 	};
 
 	document.querySelectorAll('.mobile-nav-clicker').forEach((el) => {
 		el.addEventListener('click', () => {
-			if (sidebarJS?.isVisible()) {
+			if (isOpen) {
 				closeSidebar();
 			} else {
 				openSidebar();
@@ -80,7 +70,7 @@ if (document.querySelector('[sidebarjs]')) {
 	document.addEventListener(
 		'wheel',
 		(e: WheelEvent) => {
-			if (sidebarJS?.isVisible()) {
+			if (isOpen) {
 				closeSidebar();
 				if (fullPageInstance) {
 					if (e.deltaY > 0) {
@@ -98,7 +88,7 @@ if (document.querySelector('[sidebarjs]')) {
 	document.addEventListener(
 		'touchstart',
 		(e: TouchEvent) => {
-			if (sidebarJS?.isVisible()) {
+			if (isOpen) {
 				touchStartY = e.touches[0].clientY;
 			}
 		},
@@ -108,7 +98,7 @@ if (document.querySelector('[sidebarjs]')) {
 	document.addEventListener(
 		'touchmove',
 		(e: TouchEvent) => {
-			if (touchStartY && sidebarJS?.isVisible()) {
+			if (touchStartY && isOpen) {
 				const deltaY = e.touches[0].clientY - touchStartY;
 				if (Math.abs(deltaY) > 10) {
 					touchStartY = null;

@@ -697,11 +697,6 @@ sass@^1.99.0:
   optionalDependencies:
     "@parcel/watcher" "^2.4.1"
 
-sidebarjs@10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/sidebarjs/-/sidebarjs-10.0.0.tgz#ae5459c65e21451be423d49260f88cf77047649d"
-  integrity sha512-S3O6p5Bg086IStupCHoD/jMtcLgh6jBaB8KhAmmJb4Y4Z0MwF1TpPZ1lM+fdDbWSL4u5wSuQQijbz9eYKxNN2w==
-
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"

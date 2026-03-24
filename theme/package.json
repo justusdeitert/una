@@ -22,7 +22,6 @@
     "dependencies": {
         "draggable": "4.2.0",
         "fullpage.js": "3.1.2",
-        "photoswipe": "^5.4.4",
-        "sidebarjs": "10.0.0"
+        "photoswipe": "^5.4.4"
     }
 }
