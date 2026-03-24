@@ -1,4 +1,4 @@
 <?php
-    wp_redirect(home_url('/'));
-    exit;
-?>
+
+wp_redirect(home_url('/'));
+exit;

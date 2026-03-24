@@ -1,7 +1,7 @@
 <?php
 
 // https://developer.wordpress.org/reference/hooks/tiny_mce_before_init/
-add_filter('tiny_mce_before_init', function($mce_init) {
+add_filter('tiny_mce_before_init', function ($mce_init) {
     $block_formats = [
         'Paragraph=p',
         'Heading 3=h3',

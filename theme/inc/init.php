@@ -1,7 +1,7 @@
 <?php
 
 // https://developer.wordpress.org/reference/hooks/init/
-add_action('init', function() {
+add_action('init', function () {
     register_nav_menus([
         'primary_navigation' => __('Primary Navigation', 'una'),
     ]);
@@ -25,5 +25,3 @@ add_action('init', function() {
         'show_in_rest' => true,
     ]);
 });
-
-

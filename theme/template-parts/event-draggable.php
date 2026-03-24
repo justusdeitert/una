@@ -38,6 +38,6 @@ if ($current_event->have_posts()) {
             }
         </style>
     <?php }
-}
+    }
 
 wp_reset_postdata();

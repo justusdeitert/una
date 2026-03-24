@@ -17,7 +17,9 @@
 
         <?php get_template_part('template-parts/page-wrapper'); ?>
 
-        <?php if (is_front_page()) get_template_part('template-parts/event-draggable'); ?>
+        <?php if (is_front_page()) {
+            get_template_part('template-parts/event-draggable');
+        } ?>
 
         <?php get_template_part('template-parts/colors-script'); ?>
 

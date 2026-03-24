@@ -1,6 +1,6 @@
 DOCKER_COMPOSE := docker compose
 
-.PHONY: install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db import_db
+.PHONY: install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db import_db lint-php fix-php
 
 install: stop build_container start
 clean_install: stop clean build_container start
@@ -46,3 +46,9 @@ export_db:
 
 import_db:
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/search-replace-import-db.sh
+
+lint-php:
+	@$(DOCKER_COMPOSE) exec -w /var/www/html/wp-content/themes/una-moehrke-theme php php-cs-fixer fix --dry-run --diff
+
+fix-php:
+	@$(DOCKER_COMPOSE) exec -w /var/www/html/wp-content/themes/una-moehrke-theme php php-cs-fixer fix

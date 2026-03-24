@@ -4,15 +4,15 @@
             <div class="col-12 col-md-11">
                 <?php
                     $section_id = $args['section_id'];
-                    $iterator = 0;
+                $iterator = 0;
                 ?>
                 <div id="accordion-<?= $section_id; ?>" class="accordion">
                     <div class="row">
                         <?php foreach ($args['column'] as $column) { ?>
                             <?php
                                 $iterator++;
-                                $header_id = 'accordion-header-' . $section_id . '-' . $iterator;
-                                $body_id = 'accordion-body-' . $section_id . '-' . $iterator;
+                            $header_id = 'accordion-header-' . $section_id . '-' . $iterator;
+                            $body_id = 'accordion-body-' . $section_id . '-' . $iterator;
                             ?>
                             <div class="col-12">
                                 <div class="column-text-container">

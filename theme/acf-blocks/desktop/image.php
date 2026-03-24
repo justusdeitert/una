@@ -1,12 +1,12 @@
 <?php if (!get_sub_field('hide_on_desktop')) { ?>
     <?php
         $image = get_sub_field('image');
-        $link = get_sub_field('link');
-        $image_width = get_sub_field('image_width');
-        $position_top = get_sub_field('position_top');
-        $position_right = get_sub_field('position_right');
-        $position_bottom = get_sub_field('position_bottom');
-        $position_left = get_sub_field('position_left');
+    $link = get_sub_field('link');
+    $image_width = get_sub_field('image_width');
+    $position_top = get_sub_field('position_top');
+    $position_right = get_sub_field('position_right');
+    $position_bottom = get_sub_field('position_bottom');
+    $position_left = get_sub_field('position_left');
     ?>
     <div class="image-section">
         <?php if ($image) { ?>
