@@ -1,4 +1,5 @@
 DOCKER_COMPOSE := docker compose
+ENSURE_UP = @if [ -z "$$($(DOCKER_COMPOSE) ps --services --filter status=running | grep -x node)" ]; then $(DOCKER_COMPOSE) up -d; fi
 
 .PHONY: install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db import_db lint-php fix-php
 
@@ -28,12 +29,16 @@ enter_node:
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node /bin/zsh
 
 dev:
-	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node yarn dev
+	$(ENSURE_UP)
+	@HOST_LAN_IP=$$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null); \
+	$(DOCKER_COMPOSE) exec -e HOST_LAN_IP=$$HOST_LAN_IP -w /usr/src/theme node yarn dev
 
 build:
+	$(ENSURE_UP)
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node yarn build
 
 analyze:
+	$(ENSURE_UP)
 	@$(DOCKER_COMPOSE) exec -e ANALYZE=1 -w /usr/src/theme node yarn build
 	@open theme/stats.html
 	@sleep 2 && rm -f theme/stats.html

@@ -2,6 +2,7 @@ import path from 'node:path';
 import type { UserConfig } from 'vite';
 import { defineConfig } from 'vite';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { printWpUrls } from './vite-plugins/print-wp-urls';
 
 export default defineConfig(async ({ mode }) => {
 	const isProduction = mode === 'production';
@@ -68,9 +69,13 @@ export default defineConfig(async ({ mode }) => {
 			host: '0.0.0.0',
 			port: 5173,
 			strictPort: true,
-			origin: 'http://localhost:5173',
+			cors: true,
+			// Prefix asset URLs (fonts, images, etc.) with an absolute origin so
+			// they resolve against the Vite dev server instead of the WordPress
+			// page URL. Use the LAN IP when present so mobile/LAN clients work.
+			origin: `http://${process.env.HOST_LAN_IP || 'localhost'}:5173`,
 			hmr: {
-				host: 'localhost',
+				// Vite infers the HMR host from the browser when `host` is omitted.
 				port: 5173,
 			},
 		},
@@ -80,6 +85,7 @@ export default defineConfig(async ({ mode }) => {
 			},
 		},
 		plugins: [
+			printWpUrls(),
 			!!process.env.ANALYZE &&
 				visualizer({
 					filename: path.resolve(__dirname, 'stats.html'),

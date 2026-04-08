@@ -1,6 +1,12 @@
 <?php
 
-define('VITE_DEV_SERVER', 'http://localhost:5173');
+function una_vite_dev_server() {
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    // Strip any existing port, keep only the hostname/IP
+    $host = preg_replace('/:\d+$/', '', $host);
+
+    return 'http://' . $host . ':5173';
+}
 
 function theme_enqueue_styles_scripts() {
     $assets_path = get_template_directory() . '/assets';
@@ -8,8 +14,9 @@ function theme_enqueue_styles_scripts() {
 
     if (!file_exists($assets_path)) {
         add_action('wp_head', function () {
-            echo '<script type="module" src="' . VITE_DEV_SERVER . '/@vite/client"></script>' . "\n";
-            echo '<script type="module" src="' . VITE_DEV_SERVER . '/ts/main.ts"></script>' . "\n";
+            $dev_server = una_vite_dev_server();
+            echo '<script type="module" src="' . esc_url($dev_server) . '/@vite/client"></script>' . "\n";
+            echo '<script type="module" src="' . esc_url($dev_server) . '/ts/main.ts"></script>' . "\n";
         }, 2);
     } else {
         wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/main.css', [], $theme_version);
