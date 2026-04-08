@@ -2,6 +2,7 @@ import 'fullpage.js/vendors/scrolloverflow';
 import fullpage from 'fullpage.js/dist/fullpage';
 import { closeSidebar } from '@/ts/modules/sidebar';
 import { closeLightboxInstant, isLightboxOpen } from '@/ts/modules/photoswipe';
+import { initParallax, onSectionLeave } from '@/ts/modules/parallax';
 
 const BREAKPOINT_MD = 859.98;
 
@@ -95,8 +96,9 @@ const initFullPageInstance = (): fullpage => {
 		afterRender: () => {
 			updateNavClasses();
 			rebuildAfterImages();
+			initParallax();
 		},
-		onLeave: (_origin, destination, _direction) => {
+		onLeave: (origin, destination, direction) => {
 			if (isLightboxOpen()) {
 				closeLightboxInstant();
 			}
@@ -104,6 +106,12 @@ const initFullPageInstance = (): fullpage => {
 			closeSidebar();
 
 			document.body.classList.toggle('last-section', destination.index >= 1);
+
+			onSectionLeave(
+				(origin as { index: number }).index,
+				(destination as { index: number }).index,
+				direction as 'up' | 'down',
+			);
 		},
 	});
 	return fullPageInstance;
