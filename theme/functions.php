@@ -35,7 +35,7 @@ add_action('wp_enqueue_scripts', 'theme_enqueue_styles_scripts');
 
 function theme_output_config() {
     $config = [
-        'fullpageLicenseKey' => 'REMOVED',
+        'fullpageLicenseKey' => getenv('FULLPAGE_LICENSE_KEY') ?: '',
     ];
     echo '<script>window.themeConfig = ' . wp_json_encode($config) . ';</script>';
 }
