@@ -74,3 +74,7 @@ wordpress/             WordPress core (git-ignored, installed via make)
 
 - `make import_db` reads `db-import.sql`, imports it, and runs a search-replace from `PRODUCTION_DOMAIN` to `LOCAL_DOMAIN`.
 - `make export_db` dumps the current DB to `db-export.sql` with a reverse search-replace applied.
+
+## License
+
+Proprietary, all rights reserved. This repository is source-available but not open source. See [LICENSE](LICENSE) for details.

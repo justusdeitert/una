@@ -1,0 +1,35 @@
+Copyright (c) 2026 Justus Deitert and Una Moehrke. All rights reserved.
+
+This repository is source-available but not open source. The source code,
+templates, configuration, images, text, fonts, and all other assets in this
+repository are the exclusive property of the copyright holders.
+
+You may:
+
+- View and fork this repository on GitHub as permitted by the GitHub Terms
+  of Service.
+- Read the source code for personal, non-commercial reference and learning.
+
+You may not, without prior written permission from the copyright holders:
+
+- Copy, modify, or redistribute the source code or any portion of it.
+- Use the code, templates, or configuration to build a website or product,
+  whether personal or commercial.
+- Reuse, reproduce, or redistribute any of the images, text, fonts, or
+  other content assets.
+- Use the name "Una Moehrke", associated branding, or any visual identity
+  derived from this project.
+
+Third-party dependencies (including but not limited to WordPress,
+fullpage.js, PhotoSwipe, and Draggable) retain their own licenses. This
+license applies only to the original work contained in this repository.
+
+fullpage.js requires a commercial license for commercial use. A license
+key must be provided via the FULLPAGE_LICENSE_KEY environment variable.
+See https://alvarotrigo.com/fullPage/pricing/ for details.
+
+THIS REPOSITORY IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+OTHER LIABILITY ARISING FROM THE USE OF THIS REPOSITORY.
