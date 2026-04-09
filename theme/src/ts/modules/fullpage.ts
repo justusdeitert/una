@@ -8,7 +8,7 @@ const BREAKPOINT_MD = 859.98;
 const BACK_TO_TOP_MIN_DURATION = 1400;
 const BACK_TO_TOP_MAX_DURATION = 2200;
 const BACK_TO_TOP_PX_PER_MS = 1.2;
-const BACK_TO_TOP_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)';
+const BACK_TO_TOP_EASING = 'cubic-bezier(0.25, 1, 0.30, 1)';
 const DEFAULT_SCROLLING_SPEED = 700;
 const INNER_SCROLL_THRESHOLD = 150;
 
