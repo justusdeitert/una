@@ -495,19 +495,24 @@
 	justify-items: center;
 	left: 50%;
 	bottom: 0;
-	transform: translateX(-50%);
+	transform: translate(-50%, 10px);
 	cursor: pointer;
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity 0.2s linear, hidden 0.2s linear;
+	pointer-events: none;
+	transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0.4s;
 
 	p {
 		margin: 0;
 	}
 
-	.last-section & {
+	.last-section &,
+	.scrolled-in-section & {
 		opacity: 1;
 		visibility: visible;
+		pointer-events: auto;
+		transform: translate(-50%, 0);
+		transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0s;
 	}
 }
 

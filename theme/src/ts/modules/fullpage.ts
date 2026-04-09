@@ -5,6 +5,9 @@ import { closeLightboxInstant, isLightboxOpen } from '@/ts/modules/photoswipe';
 import { initParallax, onSectionLeave } from '@/ts/modules/parallax';
 
 const BREAKPOINT_MD = 859.98;
+const BACK_TO_TOP_DURATION = 1800;
+const BACK_TO_TOP_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)';
+const INNER_SCROLL_THRESHOLD = 150;
 
 const getSelectorOnWindowSize = (): string => {
 	const isMobile = window.innerWidth < window.innerHeight || window.innerWidth < BREAKPOINT_MD;
@@ -78,6 +81,7 @@ const afterLoad = (): void => {
 	});
 
 	rebuildAfterImages();
+	observeActiveScroller();
 };
 
 const initFullPageInstance = (): fullpage => {
@@ -97,6 +101,7 @@ const initFullPageInstance = (): fullpage => {
 			updateNavClasses();
 			rebuildAfterImages();
 			initParallax();
+			observeActiveScroller();
 		},
 		onLeave: (origin, destination, direction) => {
 			if (isLightboxOpen()) {
@@ -129,8 +134,33 @@ window.addEventListener('load', () => {
 });
 
 let scrollerPosition = 0;
+let activeScrollerObserver: MutationObserver | null = null;
 
 const getActiveScroller = (): HTMLElement | null => document.querySelector('.fp-section.active .fp-scroller');
+
+const getScrollerY = (scroller: HTMLElement): number => {
+	const match = scroller.style.transform.match(/translate\(?\s*-?\d+(?:\.\d+)?(?:px)?\s*,\s*(-?\d+(?:\.\d+)?)(?:px)?/);
+	return match ? parseFloat(match[1]) : 0;
+};
+
+const updateScrolledState = (): void => {
+	const scroller = getActiveScroller();
+	const scrolled = scroller ? getScrollerY(scroller) < -INNER_SCROLL_THRESHOLD : false;
+	document.body.classList.toggle('scrolled-in-section', scrolled);
+};
+
+const observeActiveScroller = (): void => {
+	activeScrollerObserver?.disconnect();
+	activeScrollerObserver = null;
+	const scroller = getActiveScroller();
+	if (!scroller) {
+		updateScrolledState();
+		return;
+	}
+	activeScrollerObserver = new MutationObserver(updateScrolledState);
+	activeScrollerObserver.observe(scroller, { attributes: true, attributeFilter: ['style'] });
+	updateScrolledState();
+};
 
 document.querySelectorAll('.accordion').forEach((el) => {
 	el.addEventListener('shown.bs.collapse', () => {
@@ -185,6 +215,18 @@ document.querySelectorAll('.text-container-accordion .collapse').forEach((el) =>
 
 document.querySelectorAll('.back-to-top').forEach((el) => {
 	el.addEventListener('click', () => {
+		const scroller = getActiveScroller();
+		if (scroller && getScrollerY(scroller) < 0) {
+			activeScrollerObserver?.disconnect();
+			scroller.style.transition = `transform ${BACK_TO_TOP_DURATION}ms ${BACK_TO_TOP_EASING}`;
+			scroller.style.transform = 'translate(0px, 0px)';
+			document.body.classList.remove('scrolled-in-section');
+			setTimeout(() => {
+				scroller.style.transition = '';
+				fullPageInstance?.reBuild();
+				observeActiveScroller();
+			}, BACK_TO_TOP_DURATION + 50);
+		}
 		fullPageInstance?.moveTo(1);
 	});
 });
