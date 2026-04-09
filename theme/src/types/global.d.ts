@@ -52,6 +52,7 @@ declare module 'fullpage.js/dist/fullpage' {
 		moveTo(section: number): void;
 		moveSectionDown(): void;
 		moveSectionUp(): void;
+		setScrollingSpeed(speed: number): void;
 		getFullpageData(): FullPageData;
 	}
 
