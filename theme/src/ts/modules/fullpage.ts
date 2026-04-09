@@ -5,8 +5,11 @@ import { closeLightboxInstant, isLightboxOpen } from '@/ts/modules/photoswipe';
 import { initParallax, onSectionLeave } from '@/ts/modules/parallax';
 
 const BREAKPOINT_MD = 859.98;
-const BACK_TO_TOP_DURATION = 1800;
+const BACK_TO_TOP_MIN_DURATION = 1400;
+const BACK_TO_TOP_MAX_DURATION = 2200;
+const BACK_TO_TOP_PX_PER_MS = 1.2;
 const BACK_TO_TOP_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)';
+const DEFAULT_SCROLLING_SPEED = 700;
 const INNER_SCROLL_THRESHOLD = 150;
 
 const getSelectorOnWindowSize = (): string => {
@@ -213,21 +216,43 @@ document.querySelectorAll('.text-container-accordion .collapse').forEach((el) =>
 	});
 });
 
+const getActiveSectionIndex = (): number => {
+	const active = document.querySelector('.fp-section.active');
+	const sections = active?.parentElement?.querySelectorAll('.fp-section');
+	return active && sections ? Array.from(sections).indexOf(active) : 0;
+};
+
+const clampDuration = (distance: number): number =>
+	Math.min(BACK_TO_TOP_MAX_DURATION, Math.max(BACK_TO_TOP_MIN_DURATION, distance / BACK_TO_TOP_PX_PER_MS));
+
 document.querySelectorAll('.back-to-top').forEach((el) => {
 	el.addEventListener('click', () => {
 		const scroller = getActiveScroller();
-		if (scroller && getScrollerY(scroller) < 0) {
+		const sectionIndex = getActiveSectionIndex();
+		const innerDistance = scroller ? Math.abs(getScrollerY(scroller)) : 0;
+		const totalDistance = innerDistance + sectionIndex * window.innerHeight;
+
+		if (totalDistance === 0) return;
+
+		const duration = clampDuration(totalDistance);
+
+		if (scroller && innerDistance > 0) {
 			activeScrollerObserver?.disconnect();
-			scroller.style.transition = `transform ${BACK_TO_TOP_DURATION}ms ${BACK_TO_TOP_EASING}`;
+			scroller.style.transition = `transform ${duration}ms ${BACK_TO_TOP_EASING}`;
 			scroller.style.transform = 'translate(0px, 0px)';
 			document.body.classList.remove('scrolled-in-section');
 			setTimeout(() => {
 				scroller.style.transition = '';
 				fullPageInstance?.reBuild();
 				observeActiveScroller();
-			}, BACK_TO_TOP_DURATION + 50);
+			}, duration + 50);
 		}
-		fullPageInstance?.moveTo(1);
+
+		if (sectionIndex > 0) {
+			fullPageInstance?.setScrollingSpeed(duration);
+			fullPageInstance?.moveTo(1);
+			setTimeout(() => fullPageInstance?.setScrollingSpeed(DEFAULT_SCROLLING_SPEED), duration + 100);
+		}
 	});
 });
 
