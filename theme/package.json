@@ -10,7 +10,8 @@
         "lint:fix": "biome check --fix",
         "format": "biome format --write"
     },
-    "license": "MIT",
+    "license": "SEE LICENSE IN ../LICENSE",
+    "private": true,
     "devDependencies": {
         "@biomejs/biome": "^2.4.12",
         "@types/node": "^25.6.0",
