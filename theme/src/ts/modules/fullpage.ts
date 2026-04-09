@@ -2,7 +2,7 @@ import 'fullpage.js/vendors/scrolloverflow';
 import fullpage from 'fullpage.js/dist/fullpage';
 import { closeSidebar } from '@/ts/modules/sidebar';
 import { closeLightboxInstant, isLightboxOpen } from '@/ts/modules/photoswipe';
-import { initParallax, onSectionLeave } from '@/ts/modules/parallax';
+import { initParallax, onSectionLeave, resetParallax } from '@/ts/modules/parallax';
 
 const BREAKPOINT_MD = 859.98;
 const BACK_TO_TOP_MIN_DURATION = 1400;
@@ -235,6 +235,7 @@ document.querySelectorAll('.back-to-top').forEach((el) => {
 		if (totalDistance === 0) return;
 
 		const duration = clampDuration(totalDistance);
+		resetParallax();
 
 		if (scroller && innerDistance > 0) {
 			activeScrollerObserver?.disconnect();

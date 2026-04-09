@@ -50,6 +50,12 @@ export const initParallax = (): void => {
 	document.querySelectorAll<HTMLImageElement>(IMG_SELECTOR).forEach(applyBaseStyles);
 };
 
+export const resetParallax = (): void => {
+	document.querySelectorAll<HTMLImageElement>(IMG_SELECTOR).forEach((img) => {
+		setWithoutTransition(img, transform(0, 1));
+	});
+};
+
 export const onSectionLeave = (
 	originIndex: number,
 	destinationIndex: number,
