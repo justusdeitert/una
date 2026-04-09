@@ -6,7 +6,7 @@
  */
 
 const TRANSITION_MS = 800;
-const EASING = 'cubic-bezier(0.65, 0, 0.35, 1)';
+const EASING = 'cubic-bezier(0.50, 0, 0.40, 1)';
 
 const DEPTH_VH_MIN = 18;
 const DEPTH_VH_MAX = 32;
