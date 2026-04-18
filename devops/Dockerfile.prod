@@ -53,26 +53,31 @@ WORKDIR /var/www/html
 RUN wp core download --version="${WORDPRESS_VERSION}" --allow-root --skip-content \
     && mkdir -p wp-content/themes wp-content/plugins wp-content/uploads
 
-# Install plugins (mirrors devops/php/setup-wordpress.sh)
+# Install plugins by downloading the zip directly from wordpress.org.
+# Versions are unpinned so we always ship the latest security patches; rebuild
+# the image to pick up plugin updates.
 RUN set -eux; \
     plugins=" \
-        autodescription:5.1.4 \
-        cache-enabler:1.8.16 \
-        clean-image-filenames:1.5 \
-        disable-blog:0.5.5 \
-        disable-comments:2.7.0 \
-        enable-media-replace:4.1.8 \
-        imsanity:2.9.0 \
-        jetpack:15.7 \
-        phoenix-media-rename:3.13.1 \
-        secure-custom-fields:6.8.2 \
-        svg-support:2.5.14 \
-        user-switching:1.11.2 \
-        webp-converter-for-media:6.5.5 \
+        autodescription \
+        cache-enabler \
+        clean-image-filenames \
+        disable-blog \
+        disable-comments \
+        enable-media-replace \
+        imsanity \
+        jetpack \
+        phoenix-media-rename \
+        secure-custom-fields \
+        svg-support \
+        user-switching \
+        webp-converter-for-media \
     "; \
-    for p in $plugins; do \
-        slug="${p%%:*}"; ver="${p##*:}"; \
-        wp plugin install "$slug" --version="$ver" --allow-root; \
+    cd wp-content/plugins; \
+    for slug in $plugins; do \
+        echo "==> Installing plugin: $slug"; \
+        curl -fsSL -o "${slug}.zip" "https://downloads.wordpress.org/plugin/${slug}.latest-stable.zip"; \
+        unzip -q "${slug}.zip"; \
+        rm "${slug}.zip"; \
     done
 
 # Copy theme source + built assets from stage 1
