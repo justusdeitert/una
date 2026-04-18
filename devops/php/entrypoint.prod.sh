@@ -25,22 +25,10 @@ chown -R www-data:www-data wp-content/uploads
             --skip-email \
             --allow-root
 
-        # Activate the plugins that are activated in the dev setup.
-        for plugin in \
-            autodescription \
-            clean-image-filenames \
-            disable-blog \
-            disable-comments \
-            enable-media-replace \
-            imsanity \
-            phoenix-media-rename \
-            secure-custom-fields \
-            svg-support \
-            user-switching \
-            webp-converter-for-media \
-        ; do
-            wp plugin activate "$plugin" --allow-root || true
-        done
+        # Activate plugins marked with :activate in plugins.txt
+        while IFS=: read -r slug _version action; do
+            [ "$action" = "activate" ] && wp plugin activate "$slug" --allow-root || true
+        done < /usr/local/etc/plugins.txt
 
         wp theme activate "${WORDPRESS_THEME:-una-moehrke-theme}" --allow-root || true
     fi
