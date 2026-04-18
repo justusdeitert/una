@@ -50,15 +50,16 @@
 ## Development
 
 - Runs via Docker Compose, controlled with `make` commands
-- `make install` - Build containers and start
-- `make start` / `make stop` - Start/stop containers
-- `make dev` - Start Vite dev server (HMR on port 5173)
-- `make build` - Production build via Vite
-- `make analyze` - Production build with bundle visualizer
-- `make enter_php` / `make enter_node` - Shell into containers
-- `make setup_wordpress` - Install WordPress and configure site
-- `make import_db` / `make export_db` - Database import/export with search-replace
-- `make lint-php` / `make fix-php` - Run php-cs-fixer against the theme
+- `make install` - Stop, build, and start all containers
+- `make start` / `make stop` - Start or stop the stack
+- `make clean_install` - Fresh install, removes volumes and network
+- `make dev` - Run Vite dev server inside the node container (HMR on port 5173)
+- `make build` - Production build of theme assets
+- `make analyze` - Build with bundle visualizer, opens stats.html
+- `make setup_wordpress` - Install WordPress core and activate the theme
+- `make import_db` / `make export_db` - DB import/export with domain search-replace
+- `make enter_php` / `make enter_node` / `make enter_phpmyadmin` - Shell into the given container
+- `make lint_php` / `make fix_php` - Run php-cs-fixer against the theme
 - WordPress: http://localhost:8080 | Vite HMR: http://localhost:5173 | phpMyAdmin: http://localhost:8081
 
 ## Code Patterns

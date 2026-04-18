@@ -1,15 +1,21 @@
 DOCKER_COMPOSE := docker compose
 ENSURE_UP = @if [ -z "$$($(DOCKER_COMPOSE) ps --services --filter status=running | grep -x node)" ]; then $(DOCKER_COMPOSE) up -d; fi
 
-.PHONY: install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db import_db lint-php fix-php
+.PHONY: help install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db import_db lint_php fix_php
 
-install: stop build_container start
-clean_install: stop clean build_container start
+.DEFAULT_GOAL := help
 
-start:
+help: ## Show this help
+	@echo "Usage: make <target>\n"
+	@grep -E '^[a-zA-Z_]+:.*##' $(MAKEFILE_LIST) | awk -F ':.*## ' '{printf "  %-18s %s\n", $$1, $$2}'
+
+install: stop build_container start ## Stop, build, and start all containers
+clean_install: stop clean build_container start ## Fresh install, removes volumes and network
+
+start: ## Start containers
 	@$(DOCKER_COMPOSE) up -d
 
-stop:
+stop: ## Stop containers
 	@$(DOCKER_COMPOSE) down
 
 build_container:
@@ -19,41 +25,41 @@ clean:
 	@$(DOCKER_COMPOSE) down -v
 	@docker network prune -f
 
-enter_php:
+enter_php: ## Shell into PHP container
 	@$(DOCKER_COMPOSE) exec -w /var/www/html php /bin/zsh
 
-enter_phpmyadmin:
+enter_phpmyadmin: ## Shell into phpMyAdmin container
 	@$(DOCKER_COMPOSE) exec -w / phpmyadmin /bin/sh
 
-enter_node:
+enter_node: ## Shell into Node container
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node /bin/zsh
 
-dev:
+dev: ## Run Vite dev server (HMR on port 5173)
 	$(ENSURE_UP)
 	@HOST_LAN_IP=$$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null); \
 	$(DOCKER_COMPOSE) exec -e HOST_LAN_IP=$$HOST_LAN_IP -w /usr/src/theme node yarn dev
 
-build:
+build: ## Production build of theme assets
 	$(ENSURE_UP)
 	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node yarn build
 
-analyze:
+analyze: ## Build with bundle visualizer
 	$(ENSURE_UP)
 	@$(DOCKER_COMPOSE) exec -e ANALYZE=1 -w /usr/src/theme node yarn build
 	@open theme/stats.html
 	@sleep 2 && rm -f theme/stats.html
 
-setup_wordpress:
+setup_wordpress: ## Install WordPress core and activate theme
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/setup-wordpress.sh
 
-export_db:
+export_db: ## Export DB with domain search-replace
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/search-replace-export-db.sh
 
-import_db:
+import_db: ## Import DB with domain search-replace
 	@$(DOCKER_COMPOSE) exec php /usr/local/bin/search-replace-import-db.sh
 
-lint-php:
+lint_php: ## Run php-cs-fixer (dry run)
 	@$(DOCKER_COMPOSE) exec -w /var/www/html/wp-content/themes/una-moehrke-theme php php-cs-fixer fix --dry-run --diff
 
-fix-php:
+fix_php: ## Run php-cs-fixer (apply fixes)
 	@$(DOCKER_COMPOSE) exec -w /var/www/html/wp-content/themes/una-moehrke-theme php php-cs-fixer fix
