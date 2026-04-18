@@ -30,10 +30,22 @@
   - `src/` - Frontend source (`ts/main.ts` + `ts/modules/`, SCSS, fonts, images)
   - `assets/` - Vite build output (production only, git-ignored)
   - `vite.config.ts` - Vite config and custom plugins
-- `devops/` - Docker configuration (nginx, PHP, node Dockerfiles and scripts)
+- `devops/` - Docker configuration
+  - `Dockerfile.prod` - Multi-stage production build (node builder, PHP-FPM, nginx targets)
+  - `plugins.txt` - Single source of truth for WordPress plugin slugs, versions, and activation state
+  - `nginx/conf.d/` - nginx site config (shared by dev and prod)
+  - `node/Dockerfile` - Dev-only node image (Vite HMR)
+  - `php/Dockerfile` - Dev-only PHP-FPM image
+  - `php/entrypoint.prod.sh` - Production entrypoint (DB wait, WP install, plugin activation)
+  - `php/wp-config.prod.php` - Production wp-config (env-driven, handles Traefik headers)
+  - `php/php.prod.ini` - Production PHP config
+  - `php/setup-wordpress.sh` - Dev WordPress setup script (reads `plugins.txt`)
 - `uploads/` - WordPress uploads directory
 - `wordpress/` - WordPress core (git-ignored, installed via setup script)
 - `.env` / `.env.dist` - Environment variables (DB credentials, WP setup, `FULLPAGE_LICENSE_KEY`)
+- `docker-compose.yml` - Local development stack
+- `docker-compose.staging.yml` - Staging deployment for Coolify
+- `.env.staging.dist` - Documents required Coolify environment variables
 
 ## Development
 
@@ -56,6 +68,18 @@
 - `window.themeConfig` is emitted in `wp_head` and carries runtime config like `fullpageLicenseKey` from the `.env` file.
 - `node_modules` lives inside Docker volumes. Run installs inside the node container (`make enter_node`).
 - TypeScript entry is `theme/src/ts/main.ts`, feature modules live in `theme/src/ts/modules/`.
+- Plugin slugs, versions, and activation flags are defined once in `devops/plugins.txt` (`slug:version[:activate]`). The dev setup script, prod Dockerfile, and prod entrypoint all read from this file.
+
+## Staging Deployment (Coolify)
+
+- Hosted on Coolify at `https://una.justusdeitert.de` (staging), deployed from the `staging` branch.
+- Coolify project type: Docker Compose, pointing to `docker-compose.staging.yml`.
+- `Dockerfile.prod` is a multi-stage build producing two targets: `php` (PHP-FPM with WordPress + plugins + theme) and `nginx` (static file server).
+- Environment variables are set in the Coolify UI (see `.env.staging.dist` for the full list).
+- Traefik handles SSL termination and reverse proxying via labels injected by Coolify.
+- `wp-config.prod.php` reads all credentials from env vars and trusts `X-Forwarded-Proto`/`X-Forwarded-Host` headers from Traefik.
+- Uploads and the MySQL database live in named Docker volumes on the server.
+- Server: `REDACTED` (SSH alias `hetzner`), DNS: `*.justusdeitert.de` wildcard A record.
 
 ## Installed Tools
 
