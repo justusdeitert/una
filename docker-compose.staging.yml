@@ -20,11 +20,6 @@ services:
             dockerfile: devops/Dockerfile.prod
             target: nginx
         restart: unless-stopped
-        environment:
-            # Coolify magic var: tells Coolify to expose this service publicly via Traefik
-            # on the given domain with automatic HTTPS. The user can override the domain
-            # in the Coolify UI.
-            - SERVICE_FQDN_NGINX_80=https://una.justusdeitert.de
         volumes:
             - uploads:/var/www/html/wp-content/uploads
             - uploads-webpc:/var/www/html/wp-content/uploads-webpc
