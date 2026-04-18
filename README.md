@@ -45,7 +45,7 @@ Run `make help` for the full list. Most used:
 - `make setup_wordpress`: install WordPress core and activate the theme.
 - `make import_db` / `make export_db`: DB import/export with domain search-replace.
 - `make enter_php` / `make enter_node` / `make enter_phpmyadmin`: shell into the given container.
-- `make lint-php` / `make fix-php`: run php-cs-fixer against the theme.
+- `make lint_php` / `make fix_php`: run php-cs-fixer against the theme.
 
 ## Project Structure
 
