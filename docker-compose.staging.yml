@@ -20,6 +20,8 @@ services:
             dockerfile: devops/Dockerfile.prod
             target: nginx
         restart: unless-stopped
+        expose:
+            - "80"
         volumes:
             - uploads:/var/www/html/wp-content/uploads
             - uploads-webpc:/var/www/html/wp-content/uploads-webpc
