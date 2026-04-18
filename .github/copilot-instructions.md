@@ -72,14 +72,14 @@
 
 ## Staging Deployment (Coolify)
 
-- Hosted on Coolify at `https://una.justusdeitert.de` (staging), deployed from the `staging` branch.
+- Hosted on Coolify at `https://una.justusdeitert.de` (staging), deployed from the `main` branch.
 - Coolify project type: Docker Compose, pointing to `docker-compose.staging.yml`.
 - `Dockerfile.prod` is a multi-stage build producing two targets: `php` (PHP-FPM with WordPress + plugins + theme) and `nginx` (static file server).
 - Environment variables are set in the Coolify UI (see `.env.staging.dist` for the full list).
 - Traefik handles SSL termination and reverse proxying via labels injected by Coolify.
 - `wp-config.prod.php` reads all credentials from env vars and trusts `X-Forwarded-Proto`/`X-Forwarded-Host` headers from Traefik.
 - Uploads and the MySQL database live in named Docker volumes on the server.
-- Server: `REDACTED` (SSH alias `hetzner`), DNS: `*.justusdeitert.de` wildcard A record.
+- DNS: `*.justusdeitert.de` wildcard A record pointing to the Coolify server.
 
 ## Installed Tools
 
