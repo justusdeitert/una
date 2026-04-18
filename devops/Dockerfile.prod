@@ -1,10 +1,5 @@
 # syntax=docker/dockerfile:1.7
-# Multi-stage production build for Coolify.
-# Targets:
-#   - php   : PHP-FPM image with WordPress core + plugins + theme + built assets
-#   - nginx : nginx image serving the same WordPress filesystem (static assets)
 
-# ---------- Stage 1: Build theme assets with Vite ----------
 FROM node:22-alpine AS theme-builder
 
 WORKDIR /theme
@@ -18,7 +13,6 @@ COPY theme/ ./
 RUN if [ -f yarn.lock ]; then yarn build; else npm run build; fi
 
 
-# ---------- Stage 2: Download WordPress core + plugins ----------
 FROM php:8.4-fpm AS wp-base
 
 ARG WORDPRESS_VERSION=6.9.4
@@ -40,22 +34,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# wait-for-it
 ADD --chmod=755 https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
 
-# wp-cli
 RUN curl -sSL -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x /usr/local/bin/wp
 
 WORKDIR /var/www/html
 
-# Download WordPress core
 RUN wp core download --version="${WORDPRESS_VERSION}" --allow-root --skip-content \
     && mkdir -p wp-content/themes wp-content/plugins wp-content/uploads
 
-# Install plugins by downloading the zip directly from wordpress.org.
-# Versions are unpinned so we always ship the latest security patches; rebuild
-# the image to pick up plugin updates.
 RUN set -eux; \
     plugins=" \
         autodescription \
@@ -80,30 +68,25 @@ RUN set -eux; \
         rm "${slug}.zip"; \
     done
 
-# Copy theme source + built assets from stage 1
 COPY theme/ wp-content/themes/una-moehrke-theme/
 COPY --from=theme-builder /theme/assets/ wp-content/themes/una-moehrke-theme/assets/
 
-# wp-config (env-driven) and php config
 COPY devops/php/wp-config.prod.php wp-config.php
 COPY devops/php/php.prod.ini /usr/local/etc/php/php.ini
 
 RUN chown -R www-data:www-data /var/www/html
 
 
-# ---------- Stage 3a: PHP-FPM final image ----------
 FROM wp-base AS php
 
 COPY --chmod=755 devops/php/entrypoint.prod.sh /usr/local/bin/entrypoint.sh
 
-# php-fpm master starts as root and drops worker processes to www-data via its default pool config.
 EXPOSE 9000
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["php-fpm"]
 
 
-# ---------- Stage 3b: nginx final image ----------
 FROM nginx:1.27-alpine AS nginx
 
 COPY devops/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
