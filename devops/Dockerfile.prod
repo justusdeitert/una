@@ -44,29 +44,16 @@ WORKDIR /var/www/html
 RUN wp core download --version="${WORDPRESS_VERSION}" --allow-root --skip-content \
     && mkdir -p wp-content/themes wp-content/plugins wp-content/uploads
 
+COPY devops/plugins.txt /usr/local/etc/plugins.txt
 RUN set -eux; \
-    plugins=" \
-        autodescription \
-        cache-enabler \
-        clean-image-filenames \
-        disable-blog \
-        disable-comments \
-        enable-media-replace \
-        imsanity \
-        jetpack \
-        phoenix-media-rename \
-        secure-custom-fields \
-        svg-support \
-        user-switching \
-        webp-converter-for-media \
-    "; \
     cd wp-content/plugins; \
-    for slug in $plugins; do \
-        echo "==> Installing plugin: $slug"; \
-        curl -fsSL -o "${slug}.zip" "https://downloads.wordpress.org/plugin/${slug}.latest-stable.zip"; \
+    while IFS=: read -r slug version _rest; do \
+        [ -z "$slug" ] && continue; \
+        echo "==> Installing plugin: $slug ($version)"; \
+        curl -fsSL -o "${slug}.zip" "https://downloads.wordpress.org/plugin/${slug}.${version}.zip"; \
         unzip -q "${slug}.zip"; \
         rm "${slug}.zip"; \
-    done
+    done < /usr/local/etc/plugins.txt
 
 COPY theme/ wp-content/themes/una-moehrke-theme/
 COPY --from=theme-builder /theme/assets/ wp-content/themes/una-moehrke-theme/assets/

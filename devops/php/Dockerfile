@@ -47,6 +47,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 # Copy scripts
 COPY --chmod=755 devops/php/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY --chmod=755 devops/php/setup-wordpress.sh /usr/local/bin/setup-wordpress.sh
+COPY devops/plugins.txt /usr/local/etc/plugins.txt
 COPY --chmod=755 devops/php/search-replace-export-db.sh /usr/local/bin/search-replace-export-db.sh
 COPY --chmod=755 devops/php/search-replace-import-db.sh /usr/local/bin/search-replace-import-db.sh
 
