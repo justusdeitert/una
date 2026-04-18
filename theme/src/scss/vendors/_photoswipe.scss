@@ -20,11 +20,11 @@
 	// Background/container cursor
 	&__bg,
 	&__scroll-wrap {
-		cursor: url('@/images/icon-x.png') 20 20, crosshair;
+		cursor: url('@/images/icon-close.png') 12 12, crosshair;
 		cursor: -webkit-image-set(
-			url('@/images/icon-x.png') 1x,
-			url('@/images/icon-x@2x.png') 2x
-		) 20 20, crosshair;
+			url('@/images/icon-close.png') 1x,
+			url('@/images/icon-close@2x.png') 2x
+		) 12 12, crosshair;
 	}
 
 	// Image cursor: magnifying glass (zoom in)
@@ -48,15 +48,25 @@
 			zoom-out;
 	}
 
+	// While actively dragging the zoomed image
+	&--click-to-zoom#{&}--zoomed-in &__img:active {
+		cursor: url('@/images/icon-grab-sm.png') 12 12, grabbing;
+		cursor: -webkit-image-set(
+				url('@/images/icon-grab-sm.png') 1x,
+				url('@/images/icon-grab-sm@2x.png') 2x
+			) 12 12,
+			grabbing;
+	}
+
 	// Close zones (edges) visible only when zoomed in
 	&__close-zone {
 		display: none;
 		position: absolute;
-		cursor: url('@/images/icon-x.png') 20 20, crosshair;
+		cursor: url('@/images/icon-close.png') 12 12, crosshair;
 		cursor: -webkit-image-set(
-			url('@/images/icon-x.png') 1x,
-			url('@/images/icon-x@2x.png') 2x
-		) 20 20, crosshair;
+			url('@/images/icon-close.png') 1x,
+			url('@/images/icon-close@2x.png') 2x
+		) 12 12, crosshair;
 		z-index: 1000;
 
 		&--top,
