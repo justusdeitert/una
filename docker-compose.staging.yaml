@@ -1,0 +1,110 @@
+# docker-compose.staging.yaml
+#
+# Staging deployment for Coolify (https://coolify.io).
+#
+# In Coolify:
+#   1. Create a new "Docker Compose" resource pointing to this repository.
+#   2. Set this file as the compose file path.
+#   3. Add the environment variables listed in .env.staging.dist (Coolify UI -> Environment Variables).
+#   4. Coolify reads SERVICE_FQDN_NGINX_80 below and configures Traefik + Let's Encrypt automatically.
+#   5. Deploy.
+#
+# After the first successful deploy:
+#   - Visit https://una.justusdeitert.de/wp-admin (admin user/pass come from env vars).
+#   - Import existing DB and rsync uploads/ into the named volumes (see README).
+
+services:
+    nginx:
+        build:
+            context: .
+            dockerfile: devops/Dockerfile.prod
+            target: nginx
+        restart: unless-stopped
+        environment:
+            # Coolify magic var: tells Coolify to expose this service publicly via Traefik
+            # on the given domain with automatic HTTPS. The user can override the domain
+            # in the Coolify UI.
+            - SERVICE_FQDN_NGINX_80=https://una.justusdeitert.de
+        volumes:
+            - uploads:/var/www/html/wp-content/uploads
+            - uploads-webpc:/var/www/html/wp-content/uploads-webpc
+        depends_on:
+            php:
+                condition: service_healthy
+
+    php:
+        build:
+            context: .
+            dockerfile: devops/Dockerfile.prod
+            target: php
+        restart: unless-stopped
+        environment:
+            # Database
+            MYSQL_HOST: mysql
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            # WordPress
+            WORDPRESS_URL: ${WORDPRESS_URL:-https://una.justusdeitert.de}
+            WORDPRESS_TITLE: ${WORDPRESS_TITLE:-Una Moehrke}
+            WORDPRESS_ADMIN_USER: ${WORDPRESS_ADMIN_USER}
+            WORDPRESS_ADMIN_PASSWORD: ${WORDPRESS_ADMIN_PASSWORD}
+            WORDPRESS_ADMIN_EMAIL: ${WORDPRESS_ADMIN_EMAIL}
+            WORDPRESS_THEME: ${WORDPRESS_THEME:-una-moehrke-theme}
+            WP_DEBUG: ${WP_DEBUG:-0}
+            WP_DISALLOW_FILE_MODS: ${WP_DISALLOW_FILE_MODS:-1}
+            # Theme runtime
+            FULLPAGE_LICENSE_KEY: ${FULLPAGE_LICENSE_KEY}
+            # WordPress salts (generate at https://api.wordpress.org/secret-key/1.1/salt/)
+            AUTH_KEY: ${AUTH_KEY}
+            SECURE_AUTH_KEY: ${SECURE_AUTH_KEY}
+            LOGGED_IN_KEY: ${LOGGED_IN_KEY}
+            NONCE_KEY: ${NONCE_KEY}
+            AUTH_SALT: ${AUTH_SALT}
+            SECURE_AUTH_SALT: ${SECURE_AUTH_SALT}
+            LOGGED_IN_SALT: ${LOGGED_IN_SALT}
+            NONCE_SALT: ${NONCE_SALT}
+        volumes:
+            - uploads:/var/www/html/wp-content/uploads
+            - uploads-webpc:/var/www/html/wp-content/uploads-webpc
+        depends_on:
+            mysql:
+                condition: service_healthy
+        healthcheck:
+            test: ["CMD-SHELL", "php-fpm -t"]
+            interval: 15s
+            timeout: 5s
+            retries: 5
+            start_period: 60s
+
+    mysql:
+        image: mariadb:10.11
+        restart: unless-stopped
+        environment:
+            MARIADB_DATABASE: ${MYSQL_DATABASE}
+            MARIADB_USER: ${MYSQL_USER}
+            MARIADB_PASSWORD: ${MYSQL_PASSWORD}
+            MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        volumes:
+            - mysql-data:/var/lib/mysql
+        healthcheck:
+            test:
+                [
+                    "CMD",
+                    "mariadb-admin",
+                    "ping",
+                    "-h",
+                    "localhost",
+                    "-u",
+                    "root",
+                    "-p${MYSQL_ROOT_PASSWORD}",
+                ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 30s
+
+volumes:
+    uploads:
+    uploads-webpc:
+    mysql-data:
