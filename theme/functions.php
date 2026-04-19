@@ -24,14 +24,7 @@ function theme_enqueue_styles_scripts() {
 
         $assets_uri = get_template_directory_uri() . '/assets/';
         wp_enqueue_style('main-style', $assets_uri . $entry['css'][0], [], null);
-        wp_enqueue_script('main-script', $assets_uri . $entry['file'], [], null, true);
-        add_filter('script_loader_tag', function ($tag, $handle) {
-            if ($handle === 'main-script') {
-                return str_replace('<script ', '<script type="module" ', $tag);
-            }
-
-            return $tag;
-        }, 10, 2);
+        wp_enqueue_script_module('main-script', $assets_uri . $entry['file']);
     }
 }
 
