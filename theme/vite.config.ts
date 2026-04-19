@@ -26,12 +26,13 @@ export default defineConfig(async ({ mode }) => {
 			emptyOutDir: true,
 			sourcemap: false,
 			minify: 'esbuild',
+			manifest: true,
 			rollupOptions: {
 				input: {
 					main: 'src/ts/main.ts',
 				},
 				output: {
-					entryFileNames: 'js/[name].js',
+					entryFileNames: 'js/[name]-[hash].js',
 					chunkFileNames: 'js/[name]-[hash].js',
 					manualChunks: {
 						vendor: ['fullpage.js', 'fullpage.js/vendors/scrolloverflow', 'photoswipe'],
@@ -40,18 +41,18 @@ export default defineConfig(async ({ mode }) => {
 						const name = assetInfo.name ?? '';
 
 						if (name.endsWith('.css')) {
-							return 'css/[name][extname]';
+							return 'css/[name]-[hash][extname]';
 						}
 
 						if (['.ttf', '.woff', '.woff2'].some((ext) => name.endsWith(ext))) {
-							return 'fonts/[name][extname]';
+							return 'fonts/[name]-[hash][extname]';
 						}
 
 						if (['.png', '.jpg', '.jpeg', '.svg'].some((ext) => name.endsWith(ext))) {
-							return 'images/[name][extname]';
+							return 'images/[name]-[hash][extname]';
 						}
 
-						return '[name][extname]';
+						return '[name]-[hash][extname]';
 					},
 				},
 			},
