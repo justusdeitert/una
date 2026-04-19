@@ -10,7 +10,6 @@ function una_vite_dev_server() {
 
 function theme_enqueue_styles_scripts() {
     $assets_path = get_template_directory() . '/assets';
-    $theme_version = wp_get_theme()->get('Version');
 
     if (!file_exists($assets_path)) {
         add_action('wp_head', function () {
@@ -19,8 +18,13 @@ function theme_enqueue_styles_scripts() {
             echo '<script type="module" src="' . esc_url($dev_server) . '/ts/main.ts"></script>' . "\n";
         }, 2);
     } else {
-        wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/main.css', [], $theme_version);
-        wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', [], $theme_version, true);
+        $manifest_path = $assets_path . '/.vite/manifest.json';
+        $manifest = json_decode(file_get_contents($manifest_path), true);
+        $entry = $manifest['ts/main.ts'];
+
+        $assets_uri = get_template_directory_uri() . '/assets/';
+        wp_enqueue_style('main-style', $assets_uri . $entry['css'][0], [], null);
+        wp_enqueue_script('main-script', $assets_uri . $entry['file'], [], null, true);
         add_filter('script_loader_tag', function ($tag, $handle) {
             if ($handle === 'main-script') {
                 return str_replace('<script ', '<script type="module" ', $tag);
