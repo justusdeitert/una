@@ -89,9 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			};
 
 			el.addEventListener('mouseover', onHover);
-			el.addEventListener('touchstart', onHover);
 			el.addEventListener('mouseout', onLeave);
-			el.addEventListener('touchend', onLeave);
 		});
 
 	// Hover overlay on image wrappers
@@ -111,8 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		};
 
 		el.addEventListener('mouseover', onHover);
-		el.addEventListener('touchstart', onHover);
 		el.addEventListener('mouseout', onLeave);
-		el.addEventListener('touchend', onLeave);
 	});
 });
