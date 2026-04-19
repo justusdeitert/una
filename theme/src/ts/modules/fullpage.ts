@@ -127,10 +127,10 @@ const initFullPageInstance = (): fullpage => {
 };
 
 const reinitFullPage = (): void => {
-	setTimeout(() => {
-		fullPageInstance?.destroy('all');
+	fullPageInstance?.destroy('all');
+	requestAnimationFrame(() => {
 		initFullPageInstance();
-	}, 200);
+	});
 };
 
 window.addEventListener('load', () => {
@@ -268,8 +268,7 @@ window.addEventListener('resize', () => {
 		const isMobile = sectionSelector === '.section-mobile';
 
 		if (shouldBeMobile !== isMobile) {
-			fullPageInstance.destroy('all');
-			initFullPageInstance();
+			reinitFullPage();
 		}
 	}, 75);
 });
