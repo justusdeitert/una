@@ -57,6 +57,33 @@ if (sidebarEl) {
 		});
 	});
 
+	// Open sidebar with a left-swipe from the right edge of the screen
+	const EDGE_ZONE = 40;
+	const SWIPE_THRESHOLD = 50;
+	let edgeSwipeStartX: number | null = null;
+
+	document.addEventListener(
+		'touchstart',
+		(e: TouchEvent) => {
+			const startX = e.touches[0].clientX;
+			edgeSwipeStartX = startX >= window.innerWidth - EDGE_ZONE && !isOpen ? startX : null;
+		},
+		{ passive: true },
+	);
+
+	document.addEventListener(
+		'touchend',
+		(e: TouchEvent) => {
+			if (edgeSwipeStartX === null) return;
+			const deltaX = edgeSwipeStartX - e.changedTouches[0].clientX;
+			edgeSwipeStartX = null;
+			if (deltaX > SWIPE_THRESHOLD) {
+				openSidebar();
+			}
+		},
+		{ passive: true },
+	);
+
 	let resizeTimer: ReturnType<typeof setTimeout> | null = null;
 	window.addEventListener('resize', () => {
 		if (resizeTimer) clearTimeout(resizeTimer);
