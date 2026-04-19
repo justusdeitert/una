@@ -105,6 +105,7 @@ const initFullPageInstance = (): fullpage => {
 			rebuildAfterImages();
 			initParallax();
 			observeActiveScroller();
+			document.dispatchEvent(new CustomEvent('fullpage:afterRender'));
 		},
 		onLeave: (origin, destination, direction) => {
 			if (isLightboxOpen()) {

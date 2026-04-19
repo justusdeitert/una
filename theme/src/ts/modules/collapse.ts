@@ -186,11 +186,17 @@ document.addEventListener('click', (e: MouseEvent) => {
 // Set collapsed height for text accordions based on line count
 function updateCollapseHeights(): void {
 	document.querySelectorAll<HTMLElement>('[data-collapse-lines]').forEach((el) => {
+		// Skip hidden elements (e.g. inside display:none desktop/mobile sections)
+		if (!el.offsetHeight && !el.offsetWidth) return;
 		if (!el.classList.contains('show') && !el.classList.contains('collapsing')) {
 			el.style.height = getCollapseHeight(el);
 		}
 	});
 }
 
-updateCollapseHeights();
-window.addEventListener('resize', updateCollapseHeights);
+// Recalculate after fullpage.js renders (fires after window.load, fonts are ready by then)
+document.addEventListener('fullpage:afterRender', updateCollapseHeights);
+
+window.addEventListener('resize', () => {
+	requestAnimationFrame(updateCollapseHeights);
+});
