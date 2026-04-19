@@ -4,6 +4,10 @@
 	--pswp-bg: #fff;
 	z-index: 300;
 
+	.is-mobile & {
+		z-index: 10001;
+	}
+
 	// Force background visible instantly during opening zoom animation
 	&--bg-instant .pswp__bg {
 		opacity: 1 !important;
@@ -125,12 +129,4 @@
 		z-index: 1;
 	}
 
-	// Mobile: dark overlay
-	@include media-breakpoint-down(sm) {
-		--pswp-bg: rgba(0, 0, 0, 0.8);
-
-		.pswp__caption {
-			color: #fff;
-		}
-	}
 }

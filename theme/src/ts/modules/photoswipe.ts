@@ -70,7 +70,9 @@ const openLightbox = (triggerEl: HTMLElement, src: string, caption: string): voi
 			doubleTapAction: 'close',
 			closeOnVerticalDrag: true,
 			pinchToClose: true,
-			padding: { top: 60, bottom: 80, left: 60, right: 60 },
+			padding: document.body.classList.contains('is-mobile')
+				? { top: 10, bottom: 10, left: 10, right: 10 }
+				: { top: 60, bottom: 80, left: 60, right: 60 },
 			counter: false,
 			zoom: false,
 			arrowKeys: false,
