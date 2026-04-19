@@ -2,7 +2,7 @@
 $section_id = $args['section_id'];
 $accordion_class = '';
 $accordion_id = '';
-$accordion_height = 200;
+$accordion_lines = 8;
 ?>
 <?php if (get_field('split_up_on_mobile')) { ?>
     <div class="section-mobile fp-scrollable">
@@ -13,25 +13,10 @@ $accordion_height = 200;
         <?php
             $accordion_class = 'collapse';
         $accordion_id = 'accordion-mobile-text-' . $section_id;
-        $accordion_height = $args['accordion_height'];
+        $accordion_lines = $args['accordion_lines'] ?? 8;
         ?>
-        <style>
-            .<?= $accordion_id; ?>.collapse {
-                display: block;
-                overflow: hidden;
-                height: <?= intval($accordion_height); ?>px;
-            }
-
-            .<?= $accordion_id; ?>.collapse.show {
-                height: auto;
-            }
-
-            .<?= $accordion_id; ?>.collapsing {
-                height: <?= intval($accordion_height); ?>px;
-            }
-        </style>
     <?php } ?>
-    <div id="<?= $accordion_id; ?>" class="text-container <?= $accordion_id; ?> <?= $accordion_class; ?>">
+    <div id="<?= $accordion_id; ?>" class="text-container <?= $accordion_id; ?> <?= $accordion_class; ?>" <?php if ($args['accordion']) { ?>data-collapse-lines="<?= intval($accordion_lines); ?>" style="height: <?= round((intval($accordion_lines) + 0.5) * 16 * 1.4); ?>px"<?php } ?>>
         <div class="row">
             <div class="col-12 col-md-11">
                 <?php if ($args['text']) { ?>

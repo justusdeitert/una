@@ -4,32 +4,17 @@ $text = get_sub_field('text');
 $full_width = get_sub_field('full_width');
 $accordion_class = '';
 $accordion_id = '';
-$accordion_height = 200;
+$accordion_lines = 8;
 ?>
 <div class="content-container text-container-accordion">
     <?php if ($accordion) { ?>
         <?php
             $accordion_class = 'collapse';
         $accordion_id = get_sub_field_object('accordion')['key'];
-        $accordion_height = get_sub_field('accordion_height');
+        $accordion_lines = get_sub_field('accordion_lines') ?: 8;
         ?>
-        <style>
-            .<?= $accordion_id; ?>.collapse {
-                display: block;
-                overflow: hidden;
-                height: <?= intval($accordion_height); ?>px;
-            }
-
-            .<?= $accordion_id; ?>.collapse.show {
-                height: auto;
-            }
-
-            .<?= $accordion_id; ?>.collapsing {
-                height: <?= intval($accordion_height); ?>px;
-            }
-        </style>
     <?php } ?>
-    <div id="<?= $accordion_id; ?>" class="text-container <?= $accordion_id; ?> <?= $accordion_class; ?> <?php if ($full_width) { ?>full-width<?php } ?>">
+    <div id="<?= $accordion_id; ?>" class="text-container <?= $accordion_id; ?> <?= $accordion_class; ?> <?php if ($full_width) { ?>full-width<?php } ?>" <?php if ($accordion) { ?>data-collapse-lines="<?= intval($accordion_lines); ?>" style="height: <?= round((intval($accordion_lines) + 0.5) * 16 * 1.4); ?>px"<?php } ?>>
         <div class="row">
             <div class="col-12 col-md-10">
                 <?php if ($text) { ?>
