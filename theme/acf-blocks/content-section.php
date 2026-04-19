@@ -42,7 +42,13 @@
     $one_random = get_field('one_image_randomly_on_mobile');
 
     if ($one_random) {
-        $all_content_sections = [$all_content_sections[array_rand($all_content_sections)]];
+        $image_sections = array_values(array_filter($all_content_sections, function ($section) {
+            return $section['acf_fc_layout'] === 'image';
+        }));
+
+        if ($image_sections) {
+            $all_content_sections = [$image_sections[array_rand($image_sections)]];
+        }
     } else {
         // Move items marked "top_on_mobile" to the front
         $top = [];
