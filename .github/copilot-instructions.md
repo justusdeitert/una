@@ -3,6 +3,7 @@
 ## Style
 
 - Do not use em dashes (`—`, `U+2014`). Rephrase instead of substituting with hyphens.
+- Never push code (`git push`) without explicit user confirmation.
 
 ## Overview
 
