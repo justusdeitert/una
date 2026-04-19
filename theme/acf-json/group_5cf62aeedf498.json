@@ -286,8 +286,8 @@
                         },
                         {
                             "key": "field_5d036b2e60739",
-                            "label": "Accordion Height",
-                            "name": "accordion_height",
+                            "label": "Accordion Lines",
+                            "name": "accordion_lines",
                             "aria-label": "",
                             "type": "number",
                             "instructions": "",
@@ -306,13 +306,13 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 200,
+                            "default_value": 8,
                             "placeholder": "",
                             "prepend": "",
-                            "append": "px",
-                            "min": "",
+                            "append": "lines",
+                            "min": 1,
                             "max": "",
-                            "step": ""
+                            "step": 1
                         },
                         {
                             "key": "field_5cf7a6ac5539d",

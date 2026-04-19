@@ -3,6 +3,12 @@
 	&:not(.show) {
 		display: none;
 	}
+
+	// Text accordions with data-collapse-lines show truncated content instead of hiding
+	&[data-collapse-lines]:not(.show) {
+		display: block;
+		overflow: hidden;
+	}
 }
 
 .collapsing {
