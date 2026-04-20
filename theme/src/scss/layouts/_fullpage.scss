@@ -1,3 +1,5 @@
+$back-to-top-height: 60px;
+
 .page-wrapper {
 	display: flex;
 	justify-content: center;
@@ -171,17 +173,17 @@
 		}
 
 		&:last-child {
-			padding-bottom: 25px;
+			padding-bottom: $back-to-top-height;
 		}
 
 		.admin-bar & {
 			&:last-child {
-				padding-bottom: 25px + 32px;
+				padding-bottom: 32px + $back-to-top-height;
 			}
 
 			@media screen and (max-width: 782px) {
 				&:last-child {
-					padding-bottom: 25px + 46px;
+					padding-bottom: 46px + $back-to-top-height;
 				}
 			}
 		}
@@ -261,7 +263,7 @@
 		}
 
 		&:last-child {
-			padding-bottom: 100px;
+			padding-bottom: 100px + $back-to-top-height;
 		}
 	}
 
@@ -408,7 +410,7 @@
 	}
 
 	&:last-child {
-		padding-bottom: 50px;
+		padding-bottom: 50px + $back-to-top-height;
 	}
 
 	.image-container {
@@ -497,7 +499,7 @@
 .back-to-top {
 	z-index: 100;
 	position: fixed;
-	height: 70px;
+	height: $back-to-top-height;
 	display: flex;
 	align-items: center;
 	justify-items: center;
