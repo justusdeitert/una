@@ -4,11 +4,11 @@
     border: 1px solid #808080;
     box-shadow: 2px 2px 17px #a6a6a6;
     background-color: #FFF;
-    cursor: url('@/images/icon-grab.png') 15 15, move;
+    cursor: url('@/images/icon-grab-sm.png') 12 12, move;
     cursor: -webkit-image-set(
-        url('@/images/icon-grab.png') 1x,
-        url('@/images/icon-grab@2x.png') 2x
-    ) 15 15, move;
+        url('@/images/icon-grab-sm.png') 1x,
+        url('@/images/icon-grab-sm@2x.png') 2x
+    ) 12 12, move;
     flex-direction: column;
     z-index: 100;
     // opacity: 0;
