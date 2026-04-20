@@ -115,6 +115,7 @@
 		color: #000;
 		position: fixed;
 		bottom: 0;
+        background-color: #fff;
 		left: 0;
 		right: 0;
 		text-overflow: initial;
@@ -123,9 +124,10 @@
 		line-height: 18px;
 		display: flex;
 		align-items: center;
-		height: 50px;
 		justify-content: center;
 		z-index: 1;
+        padding: 10px 80px;
+        text-align: center;
 	}
 
 }

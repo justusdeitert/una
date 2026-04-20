@@ -158,6 +158,13 @@ const observeActiveScroller = (): void => {
 	updateScrolledState();
 };
 
+const rebuildAndRefreshScrollerObserver = (): void => {
+	fullPageInstance?.reBuild();
+	requestAnimationFrame(() => {
+		observeActiveScroller();
+	});
+};
+
 document.querySelectorAll('.accordion').forEach((el) => {
 	el.addEventListener('shown.bs.collapse', () => {
 		const scroller = getActiveScroller();
@@ -189,7 +196,7 @@ document.querySelectorAll('.text-container-accordion .collapse').forEach((el) =>
 	});
 
 	el.addEventListener('shown.bs.collapse', () => {
-		fullPageInstance?.reBuild();
+		rebuildAndRefreshScrollerObserver();
 	});
 
 	el.addEventListener('hide.bs.collapse', () => {
@@ -204,7 +211,7 @@ document.querySelectorAll('.text-container-accordion .collapse').forEach((el) =>
 		const scroller = getActiveScroller();
 		if (scroller) scroller.classList.remove('slide-up');
 		setTimeout(() => {
-			fullPageInstance?.reBuild();
+			rebuildAndRefreshScrollerObserver();
 		}, 200);
 	});
 });
