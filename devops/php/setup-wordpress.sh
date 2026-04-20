@@ -31,4 +31,6 @@ if [ ! -f wp-config.php ]; then
 
     echo "Activating theme $WORDPRESS_THEME"
     wp theme activate "$WORDPRESS_THEME" --allow-root
+
+    wp plugin delete hello-dolly akismet --allow-root 2>/dev/null || true
 fi
