@@ -83,5 +83,6 @@ require_once get_template_directory() . '/inc/acf-add-options-page.php';
 require_once get_template_directory() . '/inc/acf-register-blocks.php';
 require_once get_template_directory() . '/inc/after-theme-setup.php';
 require_once get_template_directory() . '/inc/allowed-block-types-all.php';
+require_once get_template_directory() . '/inc/disable-comments.php';
 require_once get_template_directory() . '/inc/init.php';
 require_once get_template_directory() . '/inc/tiny-mce-before-init.php';
