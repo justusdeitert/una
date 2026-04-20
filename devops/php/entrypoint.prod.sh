@@ -31,6 +31,8 @@ chown -R www-data:www-data wp-content/uploads
         done < /usr/local/etc/plugins.txt
 
         wp theme activate "${WORDPRESS_THEME:-una-moehrke-theme}" --allow-root || true
+
+        wp plugin delete hello-dolly akismet --allow-root 2>/dev/null || true
     fi
 
     # Make sure the configured theme is active even on subsequent boots (after DB import etc.).
