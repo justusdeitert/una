@@ -65,7 +65,7 @@ p {
     line-height: 1.4;
     letter-spacing: -0.2px;
 
-    &.big {
+    &.medium {
         font-size: 22px;
         line-height: 1.4;
 
@@ -78,8 +78,17 @@ p {
         }
     }
 
-    &.dark {
-        color: #000;
+    &.big {
+        font-size: 28px;
+        line-height: 1.3;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 22px;
+        }
+
+        .is-mobile & {
+            font-size: 22px;
+        }
     }
 }
 

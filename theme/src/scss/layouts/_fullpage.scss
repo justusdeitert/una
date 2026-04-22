@@ -169,10 +169,6 @@ $back-to-top-height: 60px;
 	}
 
 	.content-container {
-		&:first-child {
-			padding-top: 100px;
-		}
-
 		&:last-child {
 			padding-bottom: $back-to-top-height;
 		}
@@ -336,6 +332,12 @@ $back-to-top-height: 60px;
 
 	.content-container {
 		padding-left: 7%;
+		padding-right: 7%;
+
+		&.content-container-narrow {
+			padding-left: 12%;
+			padding-right: 12%;
+		}
 	}
 
 	.slide-content {
@@ -415,7 +417,7 @@ $back-to-top-height: 60px;
 }
 
 .content-container {
-	padding: 0 50px 25px 50px;
+	padding: 0 50px 25px;
 
 	@include media-breakpoint-down(sm) {
 		padding: 0 25px 25px;

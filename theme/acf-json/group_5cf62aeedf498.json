@@ -8,7 +8,7 @@
             "name": "split_up_on_mobile",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "",
+            "instructions": "Render each content item as its own scrollable mobile slide instead of stacking them in one section.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -28,7 +28,7 @@
             "name": "one_image_randomly_on_mobile",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "",
+            "instructions": "On mobile, show only one randomly chosen image from this section instead of all of them.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -448,16 +448,69 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_6806a1b0c0101",
+                            "label": "Width",
+                            "name": "width",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Column width on desktop.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "Default (10\/12)",
+                                "wide": "Wide (12\/12)",
+                                "narrow": "Narrow (8\/12)"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_6806a1b0c0102",
+                            "label": "Container Padding",
+                            "name": "container_padding",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Horizontal padding on desktop.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "Default (7%)",
+                                "narrow": "Narrow (12%)"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
                             "key": "field_5d0363919de40",
                             "label": "Full Width",
                             "name": "full_width",
                             "aria-label": "",
                             "type": "true_false",
-                            "instructions": "",
+                            "instructions": "Remove the 1100px max-width cap so the text fills the selected column.",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "33",
+                                "width": "25",
                                 "class": "",
                                 "id": ""
                             },
@@ -473,11 +526,11 @@
                             "name": "accordion",
                             "aria-label": "",
                             "type": "true_false",
-                            "instructions": "",
+                            "instructions": "Collapse long text behind a show more / show less toggle.",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "33",
+                                "width": "25",
                                 "class": "",
                                 "id": ""
                             },
@@ -493,7 +546,7 @@
                             "name": "accordion_lines",
                             "aria-label": "",
                             "type": "number",
-                            "instructions": "",
+                            "instructions": "Number of lines visible before the show more toggle appears.",
                             "required": 0,
                             "conditional_logic": [
                                 [
@@ -505,7 +558,7 @@
                                 ]
                             ],
                             "wrapper": {
-                                "width": "33",
+                                "width": "25",
                                 "class": "",
                                 "id": ""
                             },
@@ -523,7 +576,7 @@
                             "name": "text",
                             "aria-label": "",
                             "type": "wysiwyg",
-                            "instructions": "",
+                            "instructions": "The text content for this section.",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {

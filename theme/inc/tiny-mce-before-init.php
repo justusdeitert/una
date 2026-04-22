@@ -4,6 +4,8 @@
 add_filter('tiny_mce_before_init', function ($mce_init) {
     $block_formats = [
         'Paragraph=p',
+        'Heading 1=h1',
+        'Heading 2=h2',
         'Heading 3=h3',
     ];
 
@@ -11,9 +13,9 @@ add_filter('tiny_mce_before_init', function ($mce_init) {
 
     $style_formats = [
         [
-            'title' => 'Dark Text',
+            'title' => 'Medium Text',
             'block' => 'p',
-            'classes' => 'dark',
+            'classes' => 'medium',
             'wrapper' => false,
         ],
         [
@@ -27,6 +29,16 @@ add_filter('tiny_mce_before_init', function ($mce_init) {
     $mce_init['style_formats'] = wp_json_encode($style_formats);
 
     return $mce_init;
+});
+
+// Add the "Formats" (styleselect) dropdown to the WYSIWYG toolbar so the
+// custom style_formats above are selectable in the editor.
+add_filter('mce_buttons_2', function ($buttons) {
+    if (!in_array('styleselect', $buttons, true)) {
+        array_unshift($buttons, 'styleselect');
+    }
+
+    return $buttons;
 });
 
 // Strip non-breaking spaces and empty inline tags from WYSIWYG fields on save
