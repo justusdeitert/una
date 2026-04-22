@@ -1,3 +1,14 @@
+<?php
+/*
+ * Legacy top-level "Image" layout.
+ *
+ * Kept for backwards compatibility with existing pages that use
+ * multiple sibling `image` rows sharing one fullpage section as
+ * their positioning context. For new pages prefer the `image_group`
+ * layout which establishes its own 100vh positioning context and
+ * can be mixed with text and columns in the same section.
+ */
+?>
 <?php if (!get_sub_field('hide_on_desktop')) { ?>
     <?php
         $image = get_sub_field('image');

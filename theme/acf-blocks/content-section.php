@@ -19,6 +19,10 @@
                     get_template_part('acf-blocks/desktop/image');
                 }
 
+                if ($layout === 'image_group') {
+                    get_template_part('acf-blocks/desktop/image-group');
+                }
+
                 if ($layout === 'text') {
                     get_template_part('acf-blocks/desktop/text');
                 }
@@ -41,20 +45,43 @@
     $all_content_sections = get_field('content_section');
     $one_random = get_field('one_image_randomly_on_mobile');
 
+    /*
+     * Normalise the mobile list: expand every `image_group` row into
+     * its individual images so each one renders as its own mobile
+     * entry. Text and column layouts pass through untouched.
+     */
+    $mobile_items = [];
+
+    foreach ($all_content_sections as $content_section) {
+        $layout = $content_section['acf_fc_layout'];
+
+        if ($layout === 'image_group') {
+            $images = $content_section['images'] ?? [];
+            foreach ($images as $image_row) {
+                $mobile_items[] = array_merge($image_row, [
+                    'acf_fc_layout' => 'image',
+                ]);
+            }
+            continue;
+        }
+
+        $mobile_items[] = $content_section;
+    }
+
     if ($one_random) {
-        $image_sections = array_values(array_filter($all_content_sections, function ($section) {
+        $image_sections = array_values(array_filter($mobile_items, function ($section) {
             return $section['acf_fc_layout'] === 'image';
         }));
 
         if ($image_sections) {
-            $all_content_sections = [$image_sections[array_rand($image_sections)]];
+            $mobile_items = [$image_sections[array_rand($image_sections)]];
         }
     } else {
         // Move items marked "top_on_mobile" to the front
         $top = [];
         $rest = [];
 
-        foreach ($all_content_sections as $content_section) {
+        foreach ($mobile_items as $content_section) {
             if (!empty($content_section['top_on_mobile'])) {
                 $top[] = $content_section;
             } else {
@@ -62,10 +89,10 @@
             }
         }
 
-        $all_content_sections = array_merge($top, $rest);
+        $mobile_items = array_merge($top, $rest);
     }
 
-    foreach ($all_content_sections as $content_section) {
+    foreach ($mobile_items as $content_section) {
         $content_section['section_id'] = $section_id;
         $layout = $content_section['acf_fc_layout'];
 

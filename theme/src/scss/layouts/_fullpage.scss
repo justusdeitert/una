@@ -113,6 +113,7 @@ $back-to-top-height: 60px;
 	}
 
 	.image-section,
+	.image-group,
 	.section-mobile-inner {
 		.image-wrapper {
 			.admin-bar & {
@@ -356,7 +357,22 @@ $back-to-top-height: 60px;
 		}
 	}
 
-	.image-section {
+	.image-group {
+		position: relative;
+		width: 100%;
+		height: 100vh;
+
+		.admin-bar & {
+			height: calc(100vh - 32px);
+
+			@media screen and (max-width: 782px) {
+				height: calc(100vh - 46px);
+			}
+		}
+	}
+
+	.image-section,
+	.image-group {
 		a {
 			z-index: 100;
 			//max-width: 90%;
