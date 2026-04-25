@@ -10,10 +10,17 @@
 ?>
 <div class="image-group">
     <?php
+    $group_caption_text = get_sub_field('caption_text');
+    $group_caption_link = get_sub_field('caption_link');
+    $is_first_visible = true;
+
     if (have_rows('images')) {
         while (have_rows('images')) {
             the_row();
-            get_template_part('acf-blocks/desktop/image-item', '', [
+
+            $hide_on_desktop = get_sub_field('hide_on_desktop');
+
+            $args = [
                 'image' => get_sub_field('image'),
                 'link' => get_sub_field('link'),
                 'image_width' => get_sub_field('image_width'),
@@ -21,8 +28,18 @@
                 'position_right' => get_sub_field('position_right'),
                 'position_bottom' => get_sub_field('position_bottom'),
                 'position_left' => get_sub_field('position_left'),
-                'hide_on_desktop' => get_sub_field('hide_on_desktop'),
-            ]);
+                'hide_on_desktop' => $hide_on_desktop,
+                'caption_text' => '',
+                'caption_link' => null,
+            ];
+
+            if (!$hide_on_desktop && $is_first_visible) {
+                $args['caption_text'] = $group_caption_text;
+                $args['caption_link'] = $group_caption_link;
+                $is_first_visible = false;
+            }
+
+            get_template_part('acf-blocks/desktop/image-item', '', $args);
         }
     }
     ?>

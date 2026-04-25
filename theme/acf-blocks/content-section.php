@@ -57,9 +57,17 @@
 
         if ($layout === 'image_group') {
             $images = $content_section['images'] ?? [];
-            foreach ($images as $image_row) {
+            $group_caption_text = $content_section['caption_text'] ?? '';
+            $group_caption_link = $content_section['caption_link'] ?? null;
+            $last_index = count($images) - 1;
+
+            foreach ($images as $index => $image_row) {
+                $is_last = $index === $last_index;
                 $mobile_items[] = array_merge($image_row, [
                     'acf_fc_layout' => 'image',
+                    'from_image_group' => true,
+                    'caption_text' => $is_last ? $group_caption_text : '',
+                    'caption_link' => $is_last ? $group_caption_link : null,
                 ]);
             }
             continue;
