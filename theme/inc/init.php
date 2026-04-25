@@ -24,4 +24,26 @@ add_action('init', function () {
         'publicly_queryable' => true,
         'show_in_rest' => true,
     ]);
+
+    register_post_type('performance', [
+        'labels' => [
+            'name' => __('Performances', 'una'),
+            'singular_name' => __('Performance', 'una'),
+            'menu_name' => __('Performances', 'una'),
+            'add_new_item' => __('Add New Performance', 'una'),
+        ],
+        'public' => true,
+        'capability_type' => 'post',
+        'has_archive' => false,
+        'show_in_nav_menus' => false,
+        'hierarchical' => false,
+        'supports' => ['title', 'revisions'],
+        'menu_icon' => 'dashicons-format-image',
+        'publicly_queryable' => true,
+        'show_in_rest' => true,
+        'rewrite' => [
+            'slug' => 'performance',
+            'with_front' => false,
+        ],
+    ]);
 });

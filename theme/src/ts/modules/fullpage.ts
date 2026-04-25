@@ -20,6 +20,39 @@ const getSelectorOnWindowSize = (): string => {
 	return isMobile ? '.section-mobile' : '.section-desktop';
 };
 
+// fullpage.js (and its scrolloverflow vendor) uses sibling index inside
+// the container to compute section positions. Our content blocks output
+// `.section-desktop` and `.section-mobile` as siblings inside `#fullpage`,
+// so the inactive ones throw the index off. We move them into a hidden
+// stash sibling before init and swap them back when the active mode
+// changes (e.g. on reinit after resize).
+const STASH_ID = 'fullpage-stash';
+
+const syncActiveSections = (selector: string): void => {
+	const container = document.getElementById('fullpage');
+	if (!container) return;
+
+	let stash = document.getElementById(STASH_ID);
+	if (!stash) {
+		stash = document.createElement('div');
+		stash.id = STASH_ID;
+		stash.hidden = true;
+		container.parentNode?.insertBefore(stash, container.nextSibling);
+	}
+
+	const inactiveSelector = selector === '.section-desktop' ? '.section-mobile' : '.section-desktop';
+
+	// Move stashed sections matching the active selector back into the container.
+	for (const el of Array.from(stash.querySelectorAll<HTMLElement>(`:scope > ${selector}`))) {
+		container.appendChild(el);
+	}
+
+	// Move inactive siblings out of the container.
+	for (const el of Array.from(container.querySelectorAll<HTMLElement>(`:scope > ${inactiveSelector}`))) {
+		stash.appendChild(el);
+	}
+};
+
 export let fullPageInstance: fullpage | null = null;
 
 const updateNavClasses = (): void => {
@@ -87,6 +120,8 @@ const afterLoad = (): void => {
 };
 
 const initFullPageInstance = (): fullpage => {
+	const selector = getSelectorOnWindowSize();
+	syncActiveSections(selector);
 	fullPageInstance = new fullpage('#fullpage', {
 		navigation: true,
 		navigationPosition: 'left',
@@ -95,7 +130,7 @@ const initFullPageInstance = (): fullpage => {
 		scrollOverflowOptions: {
 			preventDefault: false,
 		},
-		sectionSelector: getSelectorOnWindowSize(),
+		sectionSelector: selector,
 		licenseKey: window.themeConfig?.fullpageLicenseKey || '',
 		lazyLoading: true,
 		afterLoad: afterLoad,

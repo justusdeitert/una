@@ -3,6 +3,7 @@ import '@/ts/modules/collapse';
 import '@/ts/modules/colors';
 import '@/ts/modules/cookies';
 import '@/ts/modules/fullpage';
+import '@/ts/modules/performance-overlay';
 import '@/ts/modules/sidebar';
 import '@/ts/modules/photoswipe';
 
