@@ -1,6 +1,5 @@
-// Performance subpage layout. Shared by the standalone
-// `single-performance.php` template and by the JS overlay that
-// loads the same markup on top of the fullpage.js layout.
+// Performance subpage layout for the standalone
+// `single-performance.php` template.
 
 // While returning from a performance subpage, hide the page until
 // fullpage has scrolled to the originating section, so we never paint
@@ -21,16 +20,8 @@ html.performance-restoring body {
 	line-height: 1.4;
 	overflow-y: auto;
 
-	.admin-bar & {
-		padding-top: calc(100px + 32px);
-	}
-
 	@include media-breakpoint-down(sm) {
 		padding: 80px 25px 60px;
-
-		.admin-bar & {
-			padding-top: calc(80px + 46px);
-		}
 	}
 }
 
@@ -57,6 +48,12 @@ html.performance-restoring body {
 		display: block;
 		width: 100%;
 		height: 100%;
+	}
+
+	@include media-breakpoint-down(sm) {
+		position: static;
+		display: block;
+		margin: 0 0 30px auto;
 	}
 }
 
@@ -150,24 +147,4 @@ html.performance-restoring body {
 	a {
 		color: inherit;
 	}
-}
-
-// Overlay variant: same `.performance-page` markup, mounted on top
-// of the fullpage.js layout.
-
-.performance-overlay {
-	position: fixed;
-	inset: 0;
-	z-index: 9999;
-	overflow-y: auto;
-	background: #fff;
-	-webkit-overflow-scrolling: touch;
-
-	.performance-page {
-		min-height: 100vh;
-	}
-}
-
-body.performance-overlay-open {
-	overflow: hidden;
 }
