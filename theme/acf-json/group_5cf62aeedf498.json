@@ -64,6 +64,42 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_6820a1b2c000d",
+                            "label": "Caption Text",
+                            "name": "caption_text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "Optional. Auf Desktop unter dem ersten Bild der Gruppe, auf Mobile unter dem letzten Bild. Maximal 3 Zeilen sichtbar.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_6820a1b2c000e",
+                            "label": "Caption Link",
+                            "name": "caption_link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "Optional. Wird unter dem Caption-Text angezeigt.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
                             "key": "field_6820a1b2c0002",
                             "label": "Images",
                             "name": "images",
@@ -93,7 +129,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "25",
                                         "class": "",
                                         "id": ""
                                     },
@@ -118,7 +154,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "25",
                                         "class": "",
                                         "id": ""
                                     },
@@ -228,7 +264,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "25",
                                         "class": "",
                                         "id": ""
                                     },
@@ -244,7 +280,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "25",
                                         "class": "",
                                         "id": ""
                                     },
@@ -853,5 +889,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1777000000
+    "modified": 1777000006
 }
