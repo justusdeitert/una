@@ -38,17 +38,17 @@ if ($slug) {
 }
 ?>
 <article class="performance-page" data-performance-page>
-    <a class="performance-close"
-        href="<?= esc_url($close_url); ?>"
-        data-performance-close
-        aria-label="<?= esc_attr__('Close', 'una'); ?>">
-        <svg viewBox="0 0 24 24" width="48" height="48" aria-hidden="true">
-            <line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="1.5" />
-            <line x1="20" y1="4" x2="4" y2="20" stroke="currentColor" stroke-width="1.5" />
-        </svg>
-    </a>
-
     <div class="performance-content">
+        <a class="performance-close"
+            href="<?= esc_url($close_url); ?>"
+            data-performance-close
+            aria-label="<?= esc_attr__('Close', 'una'); ?>">
+            <svg viewBox="0 0 24 24" width="48" height="48" aria-hidden="true">
+                <line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="1.5" />
+                <line x1="20" y1="4" x2="4" y2="20" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+        </a>
+
         <?php if ($heading) { ?>
             <div class="performance-heading">
                 <p class="big"><?= wp_kses_post($heading); ?></p>
