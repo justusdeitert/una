@@ -43,9 +43,8 @@ if ($slug) {
             href="<?= esc_url($close_url); ?>"
             data-performance-close
             aria-label="<?= esc_attr__('Close', 'una'); ?>">
-            <svg viewBox="0 0 24 24" width="48" height="48" aria-hidden="true">
-                <line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="1.5" />
-                <line x1="20" y1="4" x2="4" y2="20" stroke="currentColor" stroke-width="1.5" />
+            <svg viewBox="0 0 350 350" width="48" height="48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M337.664 0.41866L175 163.068L11.7085 0L0.41816 11.3038L163.501 175.209L0 338.696L11.4994 350L175 186.722L338.919 349.791L350 338.487L187.336 175.209L349.164 11.5132L337.664 0.41866Z" fill="currentColor"/>
             </svg>
         </a>
 
