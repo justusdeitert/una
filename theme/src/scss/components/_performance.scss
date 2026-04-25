@@ -1,0 +1,185 @@
+// Performance subpage layout. Shared by the standalone
+// `single-performance.php` template and by the JS overlay that
+// loads the same markup on top of the fullpage.js layout.
+
+// While returning from a performance subpage, hide the page until
+// fullpage has scrolled to the originating section, so we never paint
+// the wrong section first.
+html.performance-restoring body {
+	visibility: hidden;
+}
+
+.performance-page {
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 100vh;
+	padding: 100px 50px 80px;
+	background: #fff;
+	color: #000;
+	font-size: 14px;
+	line-height: 1.4;
+	overflow-y: auto;
+
+	.admin-bar & {
+		padding-top: calc(100px + 32px);
+	}
+
+	@include media-breakpoint-down(sm) {
+		padding: 80px 25px 60px;
+
+		.admin-bar & {
+			padding-top: calc(80px + 46px);
+		}
+	}
+}
+
+.performance-close {
+	position: absolute;
+	top: 100px;
+	right: 50px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	margin-top: -8px;
+	color: #000;
+	cursor: pointer;
+	transition: opacity 0.15s linear;
+	z-index: 10;
+
+	.admin-bar & {
+		top: calc(100px + 32px);
+	}
+
+	&:hover {
+		opacity: 0.6;
+	}
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	@include media-breakpoint-down(sm) {
+		top: 80px;
+		right: 25px;
+
+		.admin-bar & {
+			top: calc(80px + 46px);
+		}
+	}
+}
+
+.performance-content {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.performance-heading {
+	max-width: 900px;
+	margin-bottom: 80px;
+
+	p {
+		margin: 0;
+	}
+
+	@include media-breakpoint-down(sm) {
+		margin-bottom: 40px;
+	}
+}
+
+.performance-body-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 120px;
+	align-items: start;
+
+	@include media-breakpoint-down(md) {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+}
+
+.performance-body-grid--image-right {
+	.performance-image {
+		order: 2;
+	}
+
+	.performance-body {
+		order: 1;
+	}
+
+	@include media-breakpoint-down(md) {
+		.performance-image {
+			order: 1;
+		}
+
+		.performance-body {
+			order: 2;
+		}
+	}
+}
+
+.performance-image {
+	margin: 0;
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.performance-image-caption {
+	margin-top: 16px;
+	font-style: italic;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.performance-body {
+	column-count: 2;
+	column-gap: 40px;
+	font-size: 14px;
+	line-height: 1.5;
+
+	@include media-breakpoint-down(sm) {
+		column-count: 1;
+	}
+
+	p {
+		margin: 0 0 1em;
+		break-inside: avoid-column;
+	}
+
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	a {
+		color: inherit;
+	}
+}
+
+// Overlay variant: same `.performance-page` markup, mounted on top
+// of the fullpage.js layout.
+
+.performance-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	overflow-y: auto;
+	background: #fff;
+	-webkit-overflow-scrolling: touch;
+
+	.performance-page {
+		min-height: 100vh;
+	}
+}
+
+body.performance-overlay-open {
+	overflow: hidden;
+}
