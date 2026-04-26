@@ -109,6 +109,66 @@
             "toolbar": "basic",
             "media_upload": 0,
             "delay": 0
+        },
+        {
+            "key": "field_performance_body_wide_first_column",
+            "label": "Body – Wide First Column",
+            "name": "body_wide_first_column",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Erste Spalte breiter darstellen (2/3 statt 1/2).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_performance_body_align_bottom",
+            "label": "Body – Align Bottom",
+            "name": "body_align_bottom",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Body-Text am unteren Rand ausrichten.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_performance_body_second_column",
+            "label": "Body – Second Column",
+            "name": "body_second_column",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Optionaler zweiter Textspalte. Wenn befüllt, wird der Body-Text in zwei eigenständige Spalten aufgeteilt.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         }
     ],
     "location": [
