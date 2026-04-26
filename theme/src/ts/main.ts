@@ -2,6 +2,7 @@
 import '@/ts/modules/collapse';
 import '@/ts/modules/colors';
 import '@/ts/modules/cookies';
+import '@/ts/modules/device-class';
 import '@/ts/modules/fullpage';
 import '@/ts/modules/performance-restore';
 import '@/ts/modules/sidebar';

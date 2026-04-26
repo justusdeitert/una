@@ -58,7 +58,7 @@ html.performance-restoring body {
 		height: 100%;
 	}
 
-	@include media-breakpoint-down(sm) {
+	.is-mobile & {
 		position: static;
 		display: block;
 		margin: 0 0 30px auto;
@@ -90,7 +90,7 @@ html.performance-restoring body {
 	gap: 120px;
 	align-items: start;
 
-	@include media-breakpoint-down(md) {
+	.is-mobile & {
 		grid-template-columns: 1fr;
 		gap: 30px;
 	}
@@ -105,7 +105,7 @@ html.performance-restoring body {
 		order: 1;
 	}
 
-	@include media-breakpoint-down(md) {
+	.is-mobile & {
 		.performance-image {
 			order: 1;
 		}
