@@ -132,6 +132,9 @@ ssh "$SSH_HOST" "docker exec $PHP_CONTAINER wp --allow-root search-replace '//$O
 step "Forcing https:// for $TARGET_DOMAIN in remote DB"
 ssh "$SSH_HOST" "docker exec $PHP_CONTAINER wp --allow-root search-replace 'http://$TARGET_DOMAIN' 'https://$TARGET_DOMAIN' --all-tables --skip-columns=guid"
 
+step "Stripping /wordpress/ subdir from remote DB (local installs WP under wordpress/, remote serves from root)"
+ssh "$SSH_HOST" "docker exec $PHP_CONTAINER wp --allow-root search-replace '/wordpress/wp-content/' '/wp-content/' --all-tables --skip-columns=guid"
+
 ssh "$SSH_HOST" "docker exec $PHP_CONTAINER wp --allow-root cache flush || true"
 
 # --- 4. Sync uploads ------------------------------------------------------
