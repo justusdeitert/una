@@ -20,6 +20,14 @@ html.performance-restoring body {
 	line-height: 1.4;
 	overflow-y: auto;
 
+	.admin-bar & {
+		min-height: calc(100vh - 32px);
+
+		@media screen and (max-width: 782px) {
+			min-height: calc(100vh - 46px);
+		}
+	}
+
 	@include media-breakpoint-down(sm) {
 		padding: 80px 25px 60px;
 	}
