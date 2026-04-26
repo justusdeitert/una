@@ -57,8 +57,12 @@ if ($slug) {
         <div class="<?= esc_attr($grid_classes); ?>">
             <?php if ($image) { ?>
                 <figure class="performance-image">
-                    <img <?= una_img_attrs($image, 'large'); ?>
-                        alt="<?= esc_attr($image['alt'] ?: $image['caption']); ?>">
+                    <a class="smart-photo"
+                        href="<?= esc_url($image['url']); ?>"
+                        data-caption="<?= esc_attr($image_caption ?: $image['caption']); ?>">
+                        <img <?= una_img_attrs($image, 'large'); ?>
+                            alt="<?= esc_attr($image['alt'] ?: $image['caption']); ?>">
+                    </a>
                     <?php if ($image_caption) { ?>
                         <figcaption class="performance-image-caption">
                             <?= wp_kses_post($image_caption); ?>
