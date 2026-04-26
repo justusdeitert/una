@@ -43,11 +43,17 @@ $grid-gutter-width: 40px;
 .col-8 { @extend %col-base; @include make-col(8); }
 .col-12 { @extend %col-base; @include make-col(12); }
 
-// md columns
-@include media-breakpoint-up(md) {
+// md columns: scoped to `.section-desktop` because the theme switches
+// between mobile and desktop layouts via the `.is-mobile` / `.is-desktop`
+// body classes (device based), not viewport breakpoints. Mobile templates
+// render into `.section-mobile` and use bare `col-*` classes; desktop
+// templates render into `.section-desktop` and use `col-md-*`.
+.section-desktop {
 	.col-md-4 { @include make-col(4); }
+	.col-md-8 { @include make-col(8); }
 	.col-md-10 { @include make-col(10); }
 	.col-md-11 { @include make-col(11); }
+	.col-md-12 { @include make-col(12); }
 }
 
 // lg columns
