@@ -30,7 +30,7 @@ Copy `.env.dist` to `.env` and fill in the values. The most important ones:
 
 - `FULLPAGE_LICENSE_KEY`: fullpage.js license key. Get one at https://alvarotrigo.com/fullPage/pricing/.
 - `WORDPRESS_ADMIN_USER` / `WORDPRESS_ADMIN_PASSWORD`: credentials created by `make setup_wordpress`.
-- `LOCAL_DOMAIN` / `PRODUCTION_DOMAIN`: used by the DB import/export search-replace scripts.
+- `LOCAL_DOMAIN` / `STAGING_DOMAIN` / `PRODUCTION_DOMAIN`: used by the DB import/export search-replace scripts.
 
 ## Make Targets
 
@@ -43,7 +43,8 @@ Run `make help` for the full list. Most used:
 - `make build`: production build of theme assets.
 - `make analyze`: build with bundle visualizer, opens `stats.html`.
 - `make setup_wordpress`: install WordPress core and activate the theme.
-- `make import_db` / `make export_db`: DB import/export with domain search-replace.
+- `make import_db` / `make export_db`: DB import/export against the production domain.
+- `make import_db_staging` / `make export_db_staging`: same, but against the staging domain.
 - `make enter_php` / `make enter_node` / `make enter_phpmyadmin`: shell into the given container.
 - `make lint_php` / `make fix_php`: run php-cs-fixer against the theme.
 
@@ -72,8 +73,8 @@ wordpress/             WordPress core (git-ignored, installed via make)
 
 ## Database
 
-- `make import_db` reads `db-import.sql`, imports it, and runs a search-replace from `PRODUCTION_DOMAIN` to `LOCAL_DOMAIN`.
-- `make export_db` dumps the current DB to `db-export.sql` with a reverse search-replace applied.
+- `make import_db` reads `db-import.sql`, imports it, and runs a search-replace from `PRODUCTION_DOMAIN` to `LOCAL_DOMAIN`. Use `make import_db_staging` to swap `STAGING_DOMAIN` instead.
+- `make export_db` dumps the current DB to `db-export.sql` with `LOCAL_DOMAIN` replaced by `PRODUCTION_DOMAIN`. Use `make export_db_staging` to target the staging domain.
 
 ## License
 
