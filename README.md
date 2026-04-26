@@ -1,7 +1,26 @@
 
-# una-moehrke.de
+# Una 🎨
 
-WordPress theme and Docker dev environment for [una-moehrke.de](https://www.una-moehrke.de), built with fullpage.js, SCF blocks, and Vite + TypeScript.
+[![WordPress](https://img.shields.io/badge/WordPress-21759B?logo=wordpress&logoColor=white)](https://wordpress.org)
+[![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)](https://www.php.net)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
+[![Sass](https://img.shields.io/badge/Sass-CC6699?logo=sass&logoColor=white)](https://sass-lang.com)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com)
+[![Biome](https://img.shields.io/badge/Biome-60A5FA?logo=biome&logoColor=white)](https://biomejs.dev)
+
+A WordPress theme and Docker dev environment powering [una-moehrke.de](https://www.una-moehrke.de), the portfolio of performance artist Una Möhrke.
+
+🌐 **Live:** [una-moehrke.de](https://www.una-moehrke.de)<br>
+🧪 **Staging:** [una.justusdeitert.de](https://una.justusdeitert.de)
+
+## Tech Stack
+
+- **Backend:** WordPress, PHP, [SCF](https://wordpress.org/plugins/secure-custom-fields/) (Secure Custom Fields)
+- **Frontend:** TypeScript, SCSS, [Vite](https://vitejs.dev) with HMR
+- **Libraries:** [fullpage.js](https://alvarotrigo.com/fullPage/), [PhotoSwipe](https://photoswipe.com), [Draggable](https://shopify.github.io/draggable/)
+- **Infrastructure:** Docker Compose (nginx, PHP-FPM, MariaDB, phpMyAdmin, Node)
+- **Tooling:** [Biome](https://biomejs.dev) for JS/TS, php-cs-fixer for PHP
 
 ## Requirements
 
@@ -64,17 +83,6 @@ devops/                Docker config (nginx, PHP, node Dockerfiles, scripts)
 uploads/               WordPress uploads (mounted into the container)
 wordpress/             WordPress core (git-ignored, installed via make)
 ```
-
-## Frontend
-
-- Vite + TypeScript, SCSS compiled through Sass.
-- Asset loading auto-detects dev vs prod: if `theme/assets/` exists, built files are enqueued, otherwise `functions.php` connects to the Vite dev server on port 5173.
-- Linting and formatting via Biome: `yarn lint`, `yarn lint:fix`, `yarn format` inside the node container (`make enter_node`).
-
-## Database
-
-- `make import_db` reads `db-import.sql`, imports it, and runs a search-replace from `PRODUCTION_DOMAIN` to `LOCAL_DOMAIN`. Use `make import_db_staging` to swap `STAGING_DOMAIN` instead.
-- `make export_db` dumps the current DB to `db-export.sql` with `LOCAL_DOMAIN` replaced by `PRODUCTION_DOMAIN`. Use `make export_db_staging` to target the staging domain.
 
 ## License
 
