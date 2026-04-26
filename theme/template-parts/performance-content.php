@@ -12,6 +12,9 @@ $image = get_field('image');
 $image_caption = get_field('image_caption');
 $image_position = get_field('image_position') ?: 'left';
 $body = get_field('body');
+$body_second_column = get_field('body_second_column');
+$body_wide_first_column = get_field('body_wide_first_column');
+$body_align_bottom = get_field('body_align_bottom');
 $grid_classes = 'performance-body-grid';
 if ($image_position === 'right') {
     $grid_classes .= ' performance-body-grid--image-right';
@@ -72,8 +75,15 @@ if ($slug) {
             <?php } ?>
 
             <?php if ($body) { ?>
-                <div class="performance-body">
-                    <?= apply_filters('the_content', $body); ?>
+                <div class="performance-body<?= $body_second_column ? ' performance-body--has-second-column' : ''; ?><?= $body_wide_first_column ? ' performance-body--wide-first-column' : ''; ?><?= $body_align_bottom ? ' performance-body--align-bottom' : ''; ?>">
+                    <div class="performance-body-col">
+                        <?= apply_filters('the_content', $body); ?>
+                    </div>
+                    <?php if ($body_second_column) { ?>
+                        <div class="performance-body-col">
+                            <?= apply_filters('the_content', $body_second_column); ?>
+                        </div>
+                    <?php } ?>
                 </div>
             <?php } ?>
         </div>

@@ -155,4 +155,48 @@ html.performance-restoring body {
 	a {
 		color: inherit;
 	}
+
+	&--align-bottom {
+		align-self: end;
+	}
+
+	&--wide-first-column {
+		column-count: unset;
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 40px;
+
+		@include media-breakpoint-down(sm) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&--has-second-column {
+		column-count: unset;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 40px;
+
+		@include media-breakpoint-down(sm) {
+			grid-template-columns: 1fr;
+		}
+
+		&.performance-body--wide-first-column {
+			grid-template-columns: 2fr 1fr;
+		}
+	}
+}
+
+.performance-body-col {
+	p {
+		margin: 0 0 1em;
+	}
+
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	a {
+		color: inherit;
+	}
 }
