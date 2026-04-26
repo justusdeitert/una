@@ -9,7 +9,7 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com)
 [![Biome](https://img.shields.io/badge/Biome-60A5FA?logo=biome&logoColor=white)](https://biomejs.dev)
 
-A WordPress theme and Docker dev environment powering [una-moehrke.de](https://www.una-moehrke.de), the portfolio of performance artist Una Möhrke.
+A WordPress theme and Docker dev environment powering the portfolio of performance artist Una Möhrke.
 
 🌐 **Live:** [una-moehrke.de](https://www.una-moehrke.de)<br>
 🧪 **Staging:** [una.justusdeitert.de](https://una.justusdeitert.de)
