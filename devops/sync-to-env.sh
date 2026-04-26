@@ -128,6 +128,10 @@ info "container: $PHP_CONTAINER"
 step "Replacing $OTHER_DOMAIN with $TARGET_DOMAIN in remote DB"
 ssh "$SSH_HOST" "docker exec $PHP_CONTAINER wp --allow-root search-replace 'https://$OTHER_DOMAIN' 'https://$TARGET_DOMAIN' --all-tables --skip-columns=guid"
 ssh "$SSH_HOST" "docker exec $PHP_CONTAINER wp --allow-root search-replace '//$OTHER_DOMAIN'      '//$TARGET_DOMAIN'      --all-tables --skip-columns=guid"
+
+step "Forcing https:// for $TARGET_DOMAIN in remote DB"
+ssh "$SSH_HOST" "docker exec $PHP_CONTAINER wp --allow-root search-replace 'http://$TARGET_DOMAIN' 'https://$TARGET_DOMAIN' --all-tables --skip-columns=guid"
+
 ssh "$SSH_HOST" "docker exec $PHP_CONTAINER wp --allow-root cache flush || true"
 
 # --- 4. Sync uploads ------------------------------------------------------
