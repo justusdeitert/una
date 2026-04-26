@@ -66,6 +66,7 @@
                 $mobile_items[] = array_merge($image_row, [
                     'acf_fc_layout' => 'image',
                     'from_image_group' => true,
+                    'is_last_in_group' => $is_last,
                     'caption_text' => $is_last ? $group_caption_text : '',
                     'caption_link' => $is_last ? $group_caption_link : null,
                 ]);

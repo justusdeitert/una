@@ -3,7 +3,12 @@ $mobile_caption_text = $args['caption_text'] ?? '';
 $mobile_caption_link = $args['caption_link'] ?? null;
 $mobile_has_caption = ($mobile_caption_text !== '' && $mobile_caption_text !== null) || !empty($mobile_caption_link);
 $from_image_group = !empty($args['from_image_group']);
-$wrapper_classes = trim('image-section-mobile-wrapper' . ($from_image_group ? ' image-section-mobile-wrapper--group' : ''));
+$is_last_in_group = !empty($args['is_last_in_group']);
+$wrapper_classes = trim(
+    'image-section-mobile-wrapper'
+    . ($from_image_group ? ' image-section-mobile-wrapper--group' : '')
+    . ($from_image_group && $is_last_in_group ? ' image-section-mobile-wrapper--group-last' : '')
+);
 ?>
 
 <?php if (!get_field('split_up_on_mobile')) { ?>

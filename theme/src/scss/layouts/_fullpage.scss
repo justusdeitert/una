@@ -116,13 +116,13 @@ $back-to-top-height: 60px;
 	.image-group,
 	.section-mobile-inner {
 		.image-wrapper {
-			.admin-bar & {
-				margin-bottom: 32px;
+			margin-bottom: 64px;
+		}
+	}
 
-				@media screen and (max-width: 782px) {
-					margin-bottom: 46px;
-				}
-			}
+	.image-section-mobile-wrapper--group-last {
+		.image-wrapper {
+			margin-bottom: 32px;
 		}
 	}
 
