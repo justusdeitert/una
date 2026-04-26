@@ -23,6 +23,9 @@ $slug = get_post_field('post_name', get_the_ID());
 $close_url = home_url('/');
 if ($slug) {
     $performance_url = get_permalink(get_the_ID());
+    // Strip the scheme so we match content that was authored under a
+    // different protocol (e.g. http on local vs. https on staging/prod).
+    $performance_url_path = preg_replace('#^https?://#', '', $performance_url);
     global $wpdb;
     $referrer_id = $wpdb->get_var($wpdb->prepare(
         "SELECT ID FROM {$wpdb->posts}
@@ -31,7 +34,7 @@ if ($slug) {
            AND post_content LIKE %s
          ORDER BY post_type = 'page' DESC, post_modified DESC
          LIMIT 1",
-        '%' . $wpdb->esc_like($performance_url) . '%'
+        '%' . $wpdb->esc_like($performance_url_path) . '%'
     ));
     if ($referrer_id) {
         $close_url = get_permalink((int) $referrer_id) . '#from_performance=' . rawurlencode($slug);
