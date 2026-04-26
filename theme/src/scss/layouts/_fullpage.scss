@@ -277,10 +277,10 @@ $back-to-top-height: 60px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding-left: 50px;
-		padding-right: 50px;
+		padding-left: 64px;
+		padding-right: 64px;
 
-		@include media-breakpoint-down(sm) {
+		@include media-breakpoint-down(xs) {
 			padding-left: 25px;
 			padding-right: 25px;
 		}
@@ -342,10 +342,10 @@ $back-to-top-height: 60px;
 	}
 
 	.image-item-caption {
-		padding-left: 50px;
-		padding-right: 50px;
+		padding-left: 64px;
+		padding-right: 64px;
 
-		@include media-breakpoint-down(sm) {
+		@include media-breakpoint-down(xs) {
 			padding-left: 25px;
 			padding-right: 25px;
 		}
@@ -497,9 +497,9 @@ $back-to-top-height: 60px;
 }
 
 .content-container {
-	padding: 0 50px 25px;
+	padding: 0 64px 25px;
 
-	@include media-breakpoint-down(sm) {
+	@include media-breakpoint-down(xs) {
 		padding: 0 25px 25px;
 	}
 
