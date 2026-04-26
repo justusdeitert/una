@@ -1,7 +1,10 @@
 DOCKER_COMPOSE := docker compose
 ENSURE_UP = @if [ -z "$$($(DOCKER_COMPOSE) ps --services --filter status=running | grep -x node)" ]; then $(DOCKER_COMPOSE) up -d; fi
 
-.PHONY: help install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db export_db_staging import_db import_db_staging lint_php fix_php
+STAGING_SSH_HOST ?= hetzner
+PRODUCTION_SSH_HOST ?=
+
+.PHONY: help install start stop build_container clean_install enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db export_db_staging import_db import_db_staging sync_to_staging sync_to_production lint_php fix_php
 
 .DEFAULT_GOAL := help
 
@@ -63,6 +66,12 @@ import_db: ## Import DB with production domain search-replace
 
 import_db_staging: ## Import DB with staging domain search-replace
 	@$(DOCKER_COMPOSE) exec -e TARGET=staging php /usr/local/bin/search-replace-import-db.sh
+
+sync_to_staging: ## Push local DB and uploads to the staging deployment on Coolify
+	@TARGET=staging STAGING_SSH_HOST=$(STAGING_SSH_HOST) ./devops/sync-to-env.sh
+
+sync_to_production: ## Push local DB and uploads to production (asks for confirmation)
+	@TARGET=production PRODUCTION_SSH_HOST=$(PRODUCTION_SSH_HOST) ./devops/sync-to-env.sh
 
 lint_php: ## Run php-cs-fixer (dry run)
 	@$(DOCKER_COMPOSE) exec -w /var/www/html/wp-content/themes/una-moehrke-theme php php-cs-fixer fix --dry-run --diff
