@@ -27,3 +27,4 @@ node_modules/
 
 # Ignore dump files
 *.sql
+TODO.md
