@@ -53,6 +53,14 @@ function una_img_attrs(
     $srcset = wp_get_attachment_image_srcset($image['ID'], $size);
     $sizes = una_img_sizes($layout);
 
+    // Intrinsic dimensions: prefer the selected size, fall back to the
+    // original. Required so the browser can reserve aspect-ratio space
+    // before the image (or its lazy-loaded src) decodes, preventing the
+    // "jumping" / "pop-in" layout shift while fullpage.js swaps
+    // data-src -> src.
+    $width = (int) ($image['sizes'][ $size . '-width' ] ?? $image['width'] ?? 0);
+    $height = (int) ($image['sizes'][ $size . '-height' ] ?? $image['height'] ?? 0);
+
     $attrs = $fullpage_lazy ? "data-src=\"$src\"" : "src=\"$src\"";
 
     if ($srcset) {
@@ -60,6 +68,9 @@ function una_img_attrs(
         $attrs .= $fullpage_lazy ? " data-srcset=\"$srcset\"" : " srcset=\"$srcset\"";
     }
     $attrs .= " sizes=\"$sizes\"";
+    if ($width > 0 && $height > 0) {
+        $attrs .= " width=\"$width\" height=\"$height\"";
+    }
     $attrs .= ' decoding="async"';
 
     if (! $fullpage_lazy) {
