@@ -16,11 +16,13 @@ $body_second_column = get_field('body_second_column');
 $body_wide_first_column = get_field('body_wide_first_column');
 $body_align_bottom = get_field('body_align_bottom');
 $grid_classes = 'performance-body-grid';
+
 if ($image_position === 'right') {
     $grid_classes .= ' performance-body-grid--image-right';
 }
 $slug = get_post_field('post_name', get_the_ID());
 $close_url = home_url('/');
+
 if ($slug) {
     $performance_url = get_permalink(get_the_ID());
     // Strip the scheme so we match content that was authored under a
@@ -34,8 +36,9 @@ if ($slug) {
            AND post_content LIKE %s
          ORDER BY post_type = 'page' DESC, post_modified DESC
          LIMIT 1",
-        '%' . $wpdb->esc_like($performance_url_path) . '%'
+        '%' . $wpdb->esc_like($performance_url_path) . '%',
     ));
+
     if ($referrer_id) {
         $close_url = get_permalink((int) $referrer_id) . '#from_performance=' . rawurlencode($slug);
     } else {
@@ -63,12 +66,8 @@ if ($slug) {
         <div class="<?= esc_attr($grid_classes); ?>">
             <?php if ($image) { ?>
                 <figure class="performance-image">
-                    <a class="smart-photo"
-                        href="<?= esc_url($image['url']); ?>"
-                        data-caption="<?= esc_attr($image_caption ?: $image['caption']); ?>">
-                        <img <?= una_img_attrs($image, 'large'); ?>
-                            alt="<?= esc_attr($image['alt'] ?: $image['caption']); ?>">
-                    </a>
+                    <img <?= una_img_attrs($image, 'large'); ?>
+                        alt="<?= esc_attr($image['alt'] ?: $image['caption']); ?>">
                     <?php if ($image_caption) { ?>
                         <figcaption class="performance-image-caption">
                             <?= wp_kses_post($image_caption); ?>
