@@ -42,6 +42,7 @@ declare module 'fullpage.js/dist/fullpage' {
 				sectionSelector?: string;
 				licenseKey?: string;
 				lazyLoading?: boolean;
+				easingcss3?: string;
 				afterLoad?: () => void;
 				afterRender?: () => void;
 				onLeave?: (origin: unknown, destination: FullPageDestination, direction: string) => void;
