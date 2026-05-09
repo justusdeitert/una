@@ -82,6 +82,11 @@
 						height: 34px;
 					}
 				}
+
+				&.active a,
+				&.current-menu-item a {
+					border-right: 3px solid currentColor;
+				}
 			}
 		}
 	}

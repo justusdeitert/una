@@ -55,6 +55,13 @@ const syncActiveSections = (selector: string): void => {
 
 export let fullPageInstance: fullpage | null = null;
 
+const updateMobileNavActive = (index: number): void => {
+	const items = document.querySelectorAll('.sidebar-nav .main-navigation li');
+	items.forEach((li, i) => {
+		li.classList.toggle('active', i === index);
+	});
+};
+
 const updateNavClasses = (): void => {
 	setTimeout(() => {
 		const fpNav = document.getElementById('fp-nav');
@@ -108,7 +115,7 @@ const rebuildAfterImages = (): void => {
 	}
 };
 
-const afterLoad = (): void => {
+const afterLoad = (_origin: unknown, destination: { index: number }): void => {
 	updateNavClasses();
 
 	document.querySelectorAll('.fp-tableCell').forEach((cell) => {
@@ -136,6 +143,9 @@ const initFullPageInstance = (): fullpage => {
 		afterLoad: afterLoad,
 		afterRender: () => {
 			updateNavClasses();
+			const items = Array.from(document.querySelectorAll('.sidebar-nav .main-navigation li'));
+			const currentIndex = items.findIndex((li) => li.classList.contains('current-menu-item'));
+			updateMobileNavActive(currentIndex >= 0 ? currentIndex : 0);
 			rebuildAfterImages();
 			observeActiveScroller();
 			document.dispatchEvent(new CustomEvent('fullpage:afterRender'));

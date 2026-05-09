@@ -59,15 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Highlight current menu item and store initial color
 	const initialColors = new Map<HTMLElement, string>();
-	const currentMenuItem = document.querySelector('.current-menu-item');
-	if (currentMenuItem) {
-		const color = pickRandomColor();
+	const color = pickRandomColor();
+	document.querySelectorAll<HTMLElement>('.current-menu-item').forEach((currentMenuItem) => {
 		currentMenuItem.querySelectorAll<HTMLElement>('a').forEach((a) => {
 			a.style.color = color;
 			a.style.borderColor = color;
 			initialColors.set(a, color);
 		});
-	}
+	});
 
 	// Hover color on links and colored elements
 	document

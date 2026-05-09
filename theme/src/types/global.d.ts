@@ -24,6 +24,7 @@ declare module 'fullpage.js/vendors/scrolloverflow' {}
 declare module 'fullpage.js/dist/fullpage' {
 	interface FullPageDestination {
 		index: number;
+		anchor: string;
 	}
 
 	interface FullPageData {
@@ -43,7 +44,7 @@ declare module 'fullpage.js/dist/fullpage' {
 				licenseKey?: string;
 				lazyLoading?: boolean;
 				easingcss3?: string;
-				afterLoad?: () => void;
+				afterLoad?: (origin: unknown, destination: FullPageDestination, direction: string) => void;
 				afterRender?: () => void;
 				onLeave?: (origin: unknown, destination: FullPageDestination, direction: string) => void;
 			},
