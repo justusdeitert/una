@@ -4,6 +4,7 @@ import '@/ts/modules/colors';
 import '@/ts/modules/cookies';
 import '@/ts/modules/device-class';
 import '@/ts/modules/fullpage';
+import '@/ts/modules/image-preload';
 import '@/ts/modules/performance-restore';
 import '@/ts/modules/sidebar';
 import '@/ts/modules/photoswipe';

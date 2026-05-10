@@ -41,7 +41,7 @@ $has_caption = ($caption_text !== '' && $caption_text !== null) || !empty($capti
         <a class="admin-prevent-click image-wrapper" href="<?= esc_url($link['url']); ?>">
             <div class="image-container" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                 <div class="hover-overlay"><?= esc_html($link['title']); ?></div>
-                <img <?= una_img_attrs($image, 'large', true, 'hero'); ?>
+                <img <?= una_img_attrs($image, 'large', 'hero'); ?>
                     alt="<?= esc_attr($image['caption']); ?>"
                     itemprop="contentUrl">
             </div>
@@ -52,7 +52,7 @@ $has_caption = ($caption_text !== '' && $caption_text !== null) || !empty($capti
             href="<?= esc_url($image['url']); ?>"
             data-group="desktop-group-<?= $image['ID']; ?>">
             <div class="image-container" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                <img <?= una_img_attrs($image, 'large', true, 'hero'); ?>
+                <img <?= una_img_attrs($image, 'large', 'hero'); ?>
                     title="<?= esc_attr($image['caption']); ?>"
                     itemprop="contentUrl">
                 <div class="caption">

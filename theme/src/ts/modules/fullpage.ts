@@ -140,7 +140,7 @@ const initFullPageInstance = (): fullpage => {
 		},
 		sectionSelector: selector,
 		licenseKey: window.themeConfig?.fullpageLicenseKey || '',
-		lazyLoading: true,
+		lazyLoading: false,
 		afterLoad: afterLoad,
 		afterRender: () => {
 			updateNavClasses();
