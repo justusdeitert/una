@@ -8,7 +8,7 @@ description: "Use before every commit. Review staged/unstaged changes for code q
 - Title: short imperative summary, lowercase after prefix (e.g. `feat: add image lazy loading`)
 - Do not repeat the prefix as a verb (e.g. `fix: broken scroll`, not `fix: fix broken scroll`)
 - Body only when needed; for small changes a title alone is fine
-- Body: flat bullet list of changes, no category headers
+- Body: flat bullet list of changes starting with capital letters, no category headers
 - Maximum 10 list items per commit
 - Use `->` for version transitions (e.g. `bootstrap 4.2->4.3`)
 
