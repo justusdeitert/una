@@ -136,6 +136,7 @@ const initFullPageInstance = (): fullpage => {
 		scrollOverflow: true,
 		scrollOverflowOptions: {
 			preventDefault: false,
+			click: false,
 		},
 		sectionSelector: selector,
 		licenseKey: window.themeConfig?.fullpageLicenseKey || '',

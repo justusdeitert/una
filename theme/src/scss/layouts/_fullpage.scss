@@ -309,6 +309,11 @@ $back-to-top-height: 60px;
 		.front-page-data & {
 			cursor: initial;
 			pointer-events: none;
+
+			&:not(.smart-photo) {
+				pointer-events: auto;
+				cursor: pointer;
+			}
 		}
 
 		img {
@@ -331,6 +336,10 @@ $back-to-top-height: 60px;
 			//font-size: 16px;
 			font-size: 23px;
 			letter-spacing: 0.6px;
+
+			.is-mobile & {
+				pointer-events: none;
+			}
 		}
 
 		&.active {
