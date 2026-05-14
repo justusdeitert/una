@@ -13,7 +13,9 @@ html.performance-restoring body {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: 100vh;
-	padding: 100px 50px 80px;
+	// Fluid edge padding: scales with viewport so the frame stays
+	// proportional between the mobile breakpoint and large desktops.
+	padding: clamp(30px, 3.5vw, 60px);
 	background: #fff;
 	color: #000;
 	font-size: 14px;
@@ -29,7 +31,7 @@ html.performance-restoring body {
 	}
 
 	@include media-breakpoint-down(sm) {
-		padding: 80px 25px 60px;
+		padding: 25px;
 	}
 }
 
@@ -73,21 +75,19 @@ html.performance-restoring body {
 
 .performance-heading {
 	max-width: 900px;
-	margin-bottom: 80px;
+	margin-bottom: clamp(40px, 5vw, 80px);
 
 	p {
 		margin: 0;
-	}
-
-	@include media-breakpoint-down(sm) {
-		margin-bottom: 40px;
 	}
 }
 
 .performance-body-grid {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-	gap: 120px;
+	// Fluid gap between image and text: shrinks before the layout
+	// collapses so the columns stay readable longer.
+	gap: clamp(40px, 8vw, 120px);
 	align-items: start;
 
 	.is-mobile & {
@@ -101,7 +101,7 @@ html.performance-restoring body {
 		order: 2;
 	}
 
-	.performance-body {
+	.performance-body-wrap {
 		order: 1;
 	}
 
@@ -110,7 +110,7 @@ html.performance-restoring body {
 			order: 1;
 		}
 
-		.performance-body {
+		.performance-body-wrap {
 			order: 2;
 		}
 	}
@@ -133,15 +133,20 @@ html.performance-restoring body {
 	line-height: 1.4;
 }
 
+.performance-body-wrap {
+	// Container query context: queries below target this wrapper's
+	// inline-size so `.performance-body` collapses based on its own
+	// column width, not the viewport width. An element cannot query
+	// its own size, so the container has to live on the parent.
+	container-type: inline-size;
+	container-name: performance-body;
+}
+
 .performance-body {
 	column-count: 2;
-	column-gap: 40px;
+	column-gap: clamp(24px, 2.5vw, 40px);
 	font-size: 14px;
 	line-height: 1.5;
-
-	@include media-breakpoint-down(sm) {
-		column-count: 1;
-	}
 
 	p {
 		margin: 0 0 1em;
@@ -164,26 +169,32 @@ html.performance-restoring body {
 		column-count: unset;
 		display: grid;
 		grid-template-columns: 2fr 1fr;
-		gap: 40px;
-
-		@include media-breakpoint-down(sm) {
-			grid-template-columns: 1fr;
-		}
+		gap: clamp(24px, 2.5vw, 40px);
 	}
 
 	&--has-second-column {
 		column-count: unset;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 40px;
-
-		@include media-breakpoint-down(sm) {
-			grid-template-columns: 1fr;
-		}
+		gap: clamp(24px, 2.5vw, 40px);
 
 		&.performance-body--wide-first-column {
 			grid-template-columns: 2fr 1fr;
 		}
+	}
+}
+
+// Container queries kept at top-level: nesting `@container` inside `&`
+// selectors was getting dropped during Sass/PostCSS compilation.
+@container performance-body (max-width: 540px) {
+	.performance-body {
+		column-count: 1;
+	}
+
+	.performance-body--wide-first-column,
+	.performance-body--has-second-column,
+	.performance-body--has-second-column.performance-body--wide-first-column {
+		grid-template-columns: 1fr;
 	}
 }
 

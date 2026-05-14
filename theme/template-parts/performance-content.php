@@ -77,6 +77,7 @@ if ($slug) {
             <?php } ?>
 
             <?php if ($body) { ?>
+                <div class="performance-body-wrap">
                 <div class="performance-body<?= $body_second_column ? ' performance-body--has-second-column' : ''; ?><?= $body_wide_first_column ? ' performance-body--wide-first-column' : ''; ?><?= $body_align_bottom ? ' performance-body--align-bottom' : ''; ?>">
                     <div class="performance-body-col">
                         <?= apply_filters('the_content', $body); ?>
@@ -86,6 +87,7 @@ if ($slug) {
                             <?= apply_filters('the_content', $body_second_column); ?>
                         </div>
                     <?php } ?>
+                </div>
                 </div>
             <?php } ?>
         </div>
