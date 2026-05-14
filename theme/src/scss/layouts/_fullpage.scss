@@ -490,6 +490,9 @@ $back-to-top-height: 60px;
 		line-clamp: 3;
 		overflow: hidden;
 		max-height: calc(1.2em * 3);
+		// Fade the last line out so clipped text doesn't end abruptly.
+		-webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+		mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
 	}
 
 	.image-item-caption-link {
