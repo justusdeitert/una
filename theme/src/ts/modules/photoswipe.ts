@@ -1,5 +1,4 @@
-import PhotoSwipe from 'photoswipe';
-import 'photoswipe/style.css';
+import type PhotoSwipe from 'photoswipe';
 
 let activePswp: PhotoSwipe | null = null;
 
@@ -42,13 +41,19 @@ const closeZonesHtml =
 	'<div class="pswp__close-zone pswp__close-zone--bottom"></div>' +
 	'<div class="pswp__close-zone pswp__close-zone--left"></div>';
 
+const loadPhotoSwipe = async (): Promise<typeof PhotoSwipe> => {
+	const { default: PhotoSwipeCtor } = await import('photoswipe');
+	return PhotoSwipeCtor;
+};
+
 const openLightbox = (triggerEl: HTMLElement, src: string, caption: string): void => {
 	const img = new Image();
-	img.onload = () => {
+	img.onload = async () => {
+		const PhotoSwipeCtor = await loadPhotoSwipe();
 		const thumbEl = triggerEl.querySelector('img') || triggerEl;
 		const thumbSrc = (thumbEl as HTMLImageElement).src || thumbEl.getAttribute('data-src') || src;
 
-		const pswp = new PhotoSwipe({
+		const pswp = new PhotoSwipeCtor({
 			dataSource: [
 				{
 					src: src,

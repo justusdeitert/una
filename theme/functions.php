@@ -39,6 +39,43 @@ function theme_output_config() {
 
 add_action('wp_head', 'theme_output_config');
 
+function theme_preload_primary_font() {
+    $assets_path = get_template_directory() . '/assets';
+    if (!file_exists($assets_path)) {
+        return;
+    }
+
+    $manifest_path = $assets_path . '/.vite/manifest.json';
+    if (!file_exists($manifest_path)) {
+        return;
+    }
+
+    $manifest = json_decode(file_get_contents($manifest_path), true);
+    if (!is_array($manifest)) {
+        return;
+    }
+
+    $assets_uri = get_template_directory_uri() . '/assets/';
+    $fonts = [];
+    foreach ($manifest as $entry) {
+        if (!isset($entry['assets']) || !is_array($entry['assets'])) {
+            continue;
+        }
+        foreach ($entry['assets'] as $asset) {
+            if (str_contains($asset, 'apercu_regular') && str_ends_with($asset, '.woff2')) {
+                $fonts[$asset] = true;
+            }
+        }
+    }
+
+    foreach (array_keys($fonts) as $font_path) {
+        $url = esc_url($assets_uri . $font_path);
+        echo '<link rel="preload" as="font" type="font/woff2" href="' . $url . '" crossorigin>' . "\n";
+    }
+}
+
+add_action('wp_head', 'theme_preload_primary_font', 1);
+
 function una_img_attrs(
     array|false $image,
     string $size = 'large',

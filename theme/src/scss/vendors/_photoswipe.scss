@@ -1,4 +1,6 @@
-// PhotoSwipe Lightbox Styles (base CSS imported in JS)
+// PhotoSwipe Lightbox Styles (base CSS bundled here so overrides apply
+// regardless of when the lazy-loaded library initializes)
+@import 'photoswipe/dist/photoswipe.css';
 
 .pswp {
 	--pswp-bg: #fff;
