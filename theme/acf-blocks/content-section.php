@@ -55,8 +55,24 @@
     foreach ($all_content_sections as $content_section) {
         $layout = $content_section['acf_fc_layout'];
 
+        // Skip image rows whose image sub-field is empty (deleted attachment
+        // or never set). Otherwise the mobile template emits warnings and a
+        // broken section.
+        if ($layout === 'image' && empty($content_section['image'])) {
+            continue;
+        }
+
         if ($layout === 'image_group') {
             $images = $content_section['images'] ?? [];
+            // Drop rows with no attachment so they don't produce empty
+            // sections / PHP warnings downstream.
+            $images = array_values(array_filter($images, function ($image_row) {
+                return !empty($image_row['image']);
+            }));
+
+            if (empty($images)) {
+                continue;
+            }
             $group_caption_text = $content_section['caption_text'] ?? '';
             $group_caption_link = $content_section['caption_link'] ?? null;
             $last_index = count($images) - 1;
