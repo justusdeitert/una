@@ -128,7 +128,7 @@
 		align-items: center;
 		justify-content: center;
 		z-index: 1;
-        padding: 10px 80px;
+        padding: 10px clamp(20px, 8vw, 80px);
         text-align: center;
 	}
 

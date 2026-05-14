@@ -277,13 +277,11 @@ $back-to-top-height: 60px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding-left: 64px;
-		padding-right: 64px;
-
-		@include media-breakpoint-down(xs) {
-			padding-left: 25px;
-			padding-right: 25px;
-		}
+		// Fluid horizontal padding: scales between phone and iPad
+		// portrait widths so the frame stays proportional instead of
+		// jumping at the xs breakpoint.
+		padding-left: clamp(25px, 6vw, 64px);
+		padding-right: clamp(25px, 6vw, 64px);
 
 		&.section-mobile-inner--group {
 			.image-wrapper {
@@ -509,11 +507,7 @@ $back-to-top-height: 60px;
 }
 
 .content-container {
-	padding: 0 64px 25px;
-
-	@include media-breakpoint-down(xs) {
-		padding: 0 25px 25px;
-	}
+	padding: 0 clamp(25px, 6vw, 64px) 25px;
 
 	&:first-child {
 		padding-top: 140px;
