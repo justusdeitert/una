@@ -359,6 +359,21 @@ $back-to-top-height: 60px;
 	}
 }
 
+// When the layout switches to the mobile template due to aspect ratio
+// (rather than narrow viewport), the desktop sidebar nav is still
+// visible on the right. Give the content wrappers extra right padding
+// so the text does not crowd up against the nav.
+@media (min-width: 860px) {
+	.is-mobile {
+		.content-container {
+			&--width-default,
+			&--width-narrow {
+				padding-right: 120px;
+			}
+		}
+	}
+}
+
 .section-desktop {
 	//@include media-breakpoint-down(sm) {
 	display: none;

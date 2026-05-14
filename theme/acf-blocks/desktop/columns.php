@@ -1,7 +1,21 @@
-<div class="content-container">
+<?php
+$width = get_sub_field('width') ?: 'default';
+$container_padding = get_sub_field('container_padding') ?: 'default';
+$width_class_map = [
+    'default' => 'col-md-10',
+    'wide' => 'col-md-12',
+    'narrow' => 'col-md-8',
+];
+$inner_col_class = $width_class_map[$width] ?? 'col-md-10';
+$content_container_classes = ['content-container'];
+if ($container_padding === 'narrow') {
+    $content_container_classes[] = 'content-container-narrow';
+}
+?>
+<div class="<?= esc_attr(implode(' ', $content_container_classes)); ?>">
     <div class="column-container <?php if (get_sub_field('full_width')) { ?>full-width<?php } ?>">
         <div class="row">
-            <div class="col-12 col-md-10">
+            <div class="col-12 <?= esc_attr($inner_col_class); ?>">
                 <div class="row" itemscope itemtype="http://schema.org/ImageGallery">
                     <?php foreach (get_sub_field('column') as $column) { ?>
                         <div class="col-3">

@@ -1,4 +1,7 @@
-<div class="content-container">
+<?php
+$width = $args['width'] ?? 'default';
+?>
+<div class="content-container content-container--width-<?= esc_attr($width); ?>">
     <div class="column-container">
         <div class="row">
             <div class="col-12 col-md-11">

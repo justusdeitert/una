@@ -637,6 +637,59 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_6806a1b0c0201",
+                            "label": "Width",
+                            "name": "width",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Column width on desktop.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "Default (10\/12)",
+                                "wide": "Wide (12\/12)",
+                                "narrow": "Narrow (8\/12)"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_6806a1b0c0202",
+                            "label": "Container Padding",
+                            "name": "container_padding",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Horizontal padding on desktop.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "Default (7%)",
+                                "narrow": "Narrow (12%)"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
                             "key": "field_5d0363a49de41",
                             "label": "Full Width",
                             "name": "full_width",
@@ -646,7 +699,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "25",
                                 "class": "",
                                 "id": ""
                             },

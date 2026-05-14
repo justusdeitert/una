@@ -3,12 +3,14 @@ $section_id = $args['section_id'];
 $accordion_class = '';
 $accordion_id = '';
 $accordion_lines = 8;
+$width = $args['width'] ?? 'default';
+$content_container_classes = ['content-container', 'text-container-accordion', 'content-container--width-' . $width];
 ?>
 <?php if (get_field('split_up_on_mobile')) { ?>
     <div class="section-mobile fp-scrollable">
 <?php } ?>
 
-<div class="content-container text-container-accordion">
+<div class="<?= esc_attr(implode(' ', $content_container_classes)); ?>">
     <?php if ($args['accordion']) { ?>
         <?php
             $accordion_class = 'collapse';
