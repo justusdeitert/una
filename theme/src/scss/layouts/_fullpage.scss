@@ -349,13 +349,8 @@ $back-to-top-height: 60px;
 	}
 
 	.image-item-caption {
-		padding-left: 64px;
-		padding-right: 64px;
-
-		@include media-breakpoint-down(xs) {
-			padding-left: 25px;
-			padding-right: 25px;
-		}
+		padding-left: clamp(25px, 6vw, 64px);
+		padding-right: clamp(25px, 6vw, 64px);
 	}
 }
 
