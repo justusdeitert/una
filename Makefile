@@ -39,6 +39,7 @@ enter_node: ## Shell into Node container
 
 dev: ## Run Vite dev server (HMR on port 5173)
 	$(ENSURE_UP)
+	@$(DOCKER_COMPOSE) exec -w /usr/src/theme node sh -c "pkill -f '[v]ite' >/dev/null 2>&1; exit 0"
 	@HOST_LAN_IP=$$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null); \
 	$(DOCKER_COMPOSE) exec -e HOST_LAN_IP=$$HOST_LAN_IP -w /usr/src/theme node yarn dev
 
