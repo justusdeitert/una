@@ -37,22 +37,11 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
 
-# Install wait-for-it script
-ADD --chmod=755 https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
-
 # Install Oh My Zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
     && chsh -s $(which zsh)
 
-# Copy scripts
-COPY --chmod=755 devops/php/entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY --chmod=755 devops/php/setup-wordpress.sh /usr/local/bin/setup-wordpress.sh
-COPY devops/plugins.txt /usr/local/etc/plugins.txt
-COPY --chmod=755 devops/php/search-replace-export-db.sh /usr/local/bin/search-replace-export-db.sh
-COPY --chmod=755 devops/php/search-replace-import-db.sh /usr/local/bin/search-replace-import-db.sh
-
-# Set the working directory
 WORKDIR /var/www/html
 
-# Set the entrypoint to the setup script
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+# Scripts are bind-mounted from ./devops (see docker-compose.yml)
+ENTRYPOINT ["/devops/php/entrypoint.sh"]

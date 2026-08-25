@@ -94,7 +94,7 @@ fi
 
 # --- 1. Export local DB ----------------------------------------------------
 step "Exporting local DB with $TARGET domain replacement ($LOCAL_DOMAIN -> $TARGET_DOMAIN)"
-docker compose exec -e TARGET="$TARGET" php /usr/local/bin/search-replace-export-db.sh
+docker compose exec -e TARGET="$TARGET" php /devops/php/search-replace-export-db.sh
 [ -f "$DUMP_FILE" ] || fail "expected $DUMP_FILE after export"
 
 # --- 2. Discover remote MariaDB container ----------------------------------
