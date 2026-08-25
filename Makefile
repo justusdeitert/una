@@ -24,13 +24,13 @@ clean:
 	@$(DOCKER_COMPOSE) down -v
 
 enter_php: ## Shell into PHP container
-	@$(DOCKER_COMPOSE) exec php /bin/zsh
+	@$(DOCKER_COMPOSE) exec php bash
 
 enter_phpmyadmin: ## Shell into phpMyAdmin container
 	@$(DOCKER_COMPOSE) exec -w / phpmyadmin /bin/sh
 
 enter_node: ## Shell into Node container
-	@$(DOCKER_COMPOSE) exec node /bin/zsh
+	@$(DOCKER_COMPOSE) exec node sh
 
 dev: start ## Run Vite dev server (HMR on port 5173)
 	@# Stop orphaned vite from a previous session (docker exec does not always forward the kill)

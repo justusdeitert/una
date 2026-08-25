@@ -14,7 +14,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zip \
     unzip \
     tree \
-    zsh \
     git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) mysqli gd zip intl opcache \
@@ -36,10 +35,6 @@ RUN composer global require friendsofphp/php-cs-fixer --no-interaction \
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
-
-# Install Oh My Zsh
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
-    && chsh -s $(which zsh)
 
 WORKDIR /var/www/html
 
