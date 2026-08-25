@@ -68,7 +68,7 @@ else
     RSYNC_DELETE=""
 fi
 
-DUMP_FILE="wordpress/db-export.sql"
+DUMP_FILE="db/db-export.sql"
 REMOTE_DUMP="/tmp/una-db-sync.sql"
 
 [ -d "./uploads" ] || fail "uploads/ directory not found at $repo_root/uploads"
