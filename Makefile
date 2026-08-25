@@ -47,25 +47,25 @@ analyze: start ## Build with bundle visualizer
 	@sleep 2 && rm -f theme/stats.html
 
 setup_wordpress: ## Install WordPress core and activate theme
-	@$(DOCKER_COMPOSE) exec php /devops/php/setup-wordpress.sh
+	@$(DOCKER_COMPOSE) exec php /devops/scripts/setup-wordpress.sh
 
 export_db: ## Export DB with production domain search-replace
-	@$(DOCKER_COMPOSE) exec -e TARGET=production php /devops/php/search-replace-export-db.sh
+	@$(DOCKER_COMPOSE) exec -e TARGET=production php /devops/scripts/db-export.sh
 
 export_db_staging: ## Export DB with staging domain search-replace
-	@$(DOCKER_COMPOSE) exec -e TARGET=staging php /devops/php/search-replace-export-db.sh
+	@$(DOCKER_COMPOSE) exec -e TARGET=staging php /devops/scripts/db-export.sh
 
 import_db: ## Import DB with production domain search-replace
-	@$(DOCKER_COMPOSE) exec -e TARGET=production php /devops/php/search-replace-import-db.sh
+	@$(DOCKER_COMPOSE) exec -e TARGET=production php /devops/scripts/db-import.sh
 
 import_db_staging: ## Import DB with staging domain search-replace
-	@$(DOCKER_COMPOSE) exec -e TARGET=staging php /devops/php/search-replace-import-db.sh
+	@$(DOCKER_COMPOSE) exec -e TARGET=staging php /devops/scripts/db-import.sh
 
 sync_to_staging: ## Push local DB and uploads to the staging deployment on Coolify
-	@TARGET=staging ./devops/sync-to-env.sh
+	@TARGET=staging ./devops/scripts/sync-to-env.sh
 
 sync_to_production: ## Push local DB and uploads to production (asks for confirmation)
-	@TARGET=production ./devops/sync-to-env.sh
+	@TARGET=production ./devops/scripts/sync-to-env.sh
 
 lint_php: ## Run php-cs-fixer (dry run)
 	@$(DOCKER_COMPOSE) exec -w $(THEME_DIR) php php-cs-fixer fix --dry-run --diff

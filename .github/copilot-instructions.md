@@ -35,15 +35,15 @@
   - `assets/` - Vite build output (production only, git-ignored)
   - `vite.config.ts` - Vite config and custom plugins
 - `devops/` - Docker configuration
-  - `Dockerfile.prod` - Multi-stage production build (node builder, PHP-FPM, nginx targets)
+  - `Dockerfile` - Multi-stage build: shared `node-base` and `php-base`, dev targets `node-dev` (Vite) and `php-dev` (local PHP-FPM), prod `php` and `nginx` targets. Pins the WordPress, WP-CLI, Composer and php-cs-fixer versions
   - `plugins.txt` - Single source of truth for WordPress plugin slugs, versions, and activation state
   - `nginx/conf.d/` - nginx site config (shared by dev and prod)
-  - `node/Dockerfile` - Dev-only node image (Vite HMR)
-  - `php/Dockerfile` - Dev-only PHP-FPM image
-  - `php/entrypoint.prod.sh` - Production entrypoint (DB wait, WP install, plugin activation)
+  - `php/entrypoint.prod.sh` - Production entrypoint (WP install, plugin activation)
   - `php/wp-config.prod.php` - Production wp-config (env-driven, handles Traefik headers)
   - `php/php.prod.ini` - Production PHP config
-  - `php/setup-wordpress.sh` - Dev WordPress setup script (reads `plugins.txt`)
+  - `scripts/setup-wordpress.sh` - Dev WordPress setup, run by the dev entrypoint (reads `plugins.txt`)
+  - `scripts/db-export.sh` / `scripts/db-import.sh` - DB export/import with domain search-replace (run inside the php container)
+  - `scripts/sync-to-env.sh` - Push local DB and uploads to staging or production (runs on the host)
 - `uploads/` - WordPress uploads directory
 - `wordpress/` - WordPress core (git-ignored, installed via setup script)
 - `.env` / `.env.dist` - Environment variables (DB credentials, WP setup, `FULLPAGE_LICENSE_KEY`)
@@ -79,7 +79,7 @@
 
 - Hosted on Coolify at `https://una.justusdeitert.de` (staging), deployed from the `main` branch.
 - Coolify project type: Docker Compose, pointing to `docker-compose.staging.yml`.
-- `Dockerfile.prod` is a multi-stage build producing two targets: `php` (PHP-FPM with WordPress + plugins + theme) and `nginx` (static file server).
+- `devops/Dockerfile` builds two prod targets: `php` (PHP-FPM with WordPress + plugins + theme) and `nginx` (static file server).
 - Environment variables are set in the Coolify UI (see `.env.staging.dist` for the full list).
 - Traefik handles SSL termination and reverse proxying via labels injected by Coolify.
 - `wp-config.prod.php` reads all credentials from env vars and trusts `X-Forwarded-Proto`/`X-Forwarded-Host` headers from Traefik.
