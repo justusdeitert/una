@@ -39,7 +39,7 @@
   - `plugins.txt` - Single source of truth for WordPress plugin slugs, versions, and activation state
   - `nginx/conf.d/` - nginx site config (shared by dev and prod)
   - `php/entrypoint.prod.sh` - Production entrypoint (WP install, plugin activation)
-  - `php/wp-config.prod.php` - Production wp-config (env-driven, handles Traefik headers)
+  - `php/wp-config.php` - wp-config for all environments (env-driven, handles Traefik headers; baked into the prod image, mounted in dev)
   - `php/php.prod.ini` - Production PHP config
   - `scripts/setup-wordpress.sh` - Dev WordPress setup, run by the dev entrypoint (reads `plugins.txt`)
   - `scripts/db-export.sh` / `scripts/db-import.sh` - DB export/import with domain search-replace (run inside the php container)
@@ -82,7 +82,7 @@
 - `devops/Dockerfile` builds two prod targets: `php` (PHP-FPM with WordPress + plugins + theme) and `nginx` (static file server).
 - Environment variables are set in the Coolify UI (see `.env.staging.dist` for the full list).
 - Traefik handles SSL termination and reverse proxying via labels injected by Coolify.
-- `wp-config.prod.php` reads all credentials from env vars and trusts `X-Forwarded-Proto`/`X-Forwarded-Host` headers from Traefik.
+- `wp-config.php` reads all credentials from env vars and trusts `X-Forwarded-Proto`/`X-Forwarded-Host` headers from Traefik.
 - Uploads and the MySQL database live in named Docker volumes on the server.
 - DNS: `*.justusdeitert.de` wildcard A record pointing to the Coolify server.
 
