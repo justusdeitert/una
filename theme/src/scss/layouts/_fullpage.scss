@@ -669,3 +669,8 @@ span[style*='underline'] {
 .column-text-container h3 {
 	letter-spacing: 1.5px;
 }
+
+// Columns at the top of a section start at the same height as other content
+.content-container:first-child > .column-container .column-text-container > h3:first-child {
+	margin-top: 0;
+}
