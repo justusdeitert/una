@@ -29,7 +29,13 @@
     </div>
 
     <div class="sidebar-nav d-block d-md-none">
-        <div class="mobile-nav-clicker"></div>
+        <div class="mobile-nav-clicker">
+            <svg class="mobile-nav-label" viewBox="0 0 20 112" role="img" aria-label="Menu">
+                <?php foreach (['M', 'E', 'N', 'U'] as $i => $letter) { ?>
+                    <text x="0" y="<?= 20 + $i * 30.5; ?>" textLength="20" lengthAdjust="spacingAndGlyphs"><?= $letter; ?></text>
+                <?php } ?>
+            </svg>
+        </div>
         <?php if (has_nav_menu('primary_navigation')) {
             wp_nav_menu([
                 'theme_location' => 'primary_navigation',

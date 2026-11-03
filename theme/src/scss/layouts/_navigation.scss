@@ -116,9 +116,16 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
-	width: 90px;
+	box-sizing: content-box;
+	width: 34px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	padding-bottom: 8px;
+	background-color: #0d0800;
+	border-right: 0 solid #000;
 	cursor: pointer;
-	border-right: 15px solid #000;
 	pointer-events: all;
 	transition: transform 0.3s ease, border 0.2s ease;
 
@@ -131,15 +138,25 @@
 	}
 
 	&:hover {
-		border-right: 25px solid #000;
+		border-right-width: 14px;
 	}
+}
 
-	@include media-breakpoint-down(xs) {
-		border-right: 10px solid #000;
+// "MENU" top to bottom as in the design: SVG text so every letter gets the same width
+.mobile-nav-label {
+	display: block;
+	width: 20px;
+	height: 112px;
+	overflow: visible;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 28px;
+	fill: #fff;
+	user-select: none;
 
-		&:hover {
-			border-right: 20px solid #000;
-		}
+	@media screen and (max-height: 800px) {
+		width: 17px;
+		height: 95px;
 	}
 }
 
