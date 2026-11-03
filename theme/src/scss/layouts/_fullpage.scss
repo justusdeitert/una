@@ -649,3 +649,17 @@ $back-to-top-height: 60px;
 .fp-tableCell {
 	width: 100vw;
 }
+
+// Bold-only lines in SCF WYSIWYG fields, wrapped by una_bold_lines() so only
+// they get a tighter line-height
+.bold-line {
+	display: block;
+	line-height: 1.1;
+}
+
+// Underlined years above the entries (inline style from the editor)
+span[style*='underline'] {
+	display: inline-block;
+	margin-bottom: 2px;
+	text-underline-offset: 3px;
+}

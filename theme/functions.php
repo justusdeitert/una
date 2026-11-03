@@ -128,3 +128,47 @@ require_once get_template_directory() . '/inc/allowed-block-types-all.php';
 require_once get_template_directory() . '/inc/disable-comments.php';
 require_once get_template_directory() . '/inc/init.php';
 require_once get_template_directory() . '/inc/tiny-mce-before-init.php';
+
+/**
+ * Wrap lines that consist only of bold text in a block span, so their
+ * line-height can be tightened without affecting the regular lines of the
+ * same paragraph (inline line-height cannot go below the paragraph's own).
+ */
+function una_bold_lines(string $html): string
+{
+    // Line breaks often sit inside inline tags (`<span>2025<br /></span>`,
+    // `<strong>Title<br /></strong>`): move trailing ones out, then close and
+    // reopen the strong around any break left inside it and drop empty ones
+    do {
+        $html = preg_replace('#<br\s*/?>\s*(</(?:span|strong|b|em|i|a)>)#i', "$1<br />\n", $html, -1, $count);
+    } while ($count > 0);
+
+    $html = preg_replace_callback('#<strong>(.*?)</strong>#s', function ($s) {
+        $parts = preg_split('#<br\s*/?>\s*#i', $s[1]);
+        $parts = array_map(fn ($part) => trim($part) === '' ? '' : '<strong>' . $part . '</strong>', $parts);
+
+        return implode("<br />\n", $parts);
+    }, $html);
+
+    return preg_replace_callback('#<p([^>]*)>(.*?)</p>#s', function ($p) {
+        $lines = preg_split('#<br\s*/?>\s*#i', $p[2]);
+        $out = '';
+        $last = count($lines) - 1;
+        foreach ($lines as $i => $line) {
+            $rest = preg_replace(['#<strong>.*?</strong>#s', '#</?a\b[^>]*>#i'], '', $line);
+            $is_bold = str_contains($line, '<strong>') && trim($rest) === '';
+            if ($is_bold) {
+                $out .= '<span class="bold-line">' . trim($line) . '</span>';
+            } else {
+                $out .= $line . ($i < $last ? "<br />\n" : '');
+            }
+        }
+
+        return '<p' . $p[1] . '>' . $out . '</p>';
+    }, $html);
+}
+
+// Apply to every SCF WYSIWYG field, after the field's own formatting (wpautop)
+add_filter('acf/format_value/type=wysiwyg', function ($value) {
+    return is_string($value) ? una_bold_lines($value) : $value;
+}, 20);
