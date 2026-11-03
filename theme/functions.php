@@ -62,7 +62,7 @@ function theme_preload_primary_font() {
             continue;
         }
         foreach ($entry['assets'] as $asset) {
-            if (str_contains($asset, 'apercu_regular') && str_ends_with($asset, '.woff2')) {
+            if (str_contains($asset, 'geomanist_regular') && str_ends_with($asset, '.woff2')) {
                 $fonts[$asset] = true;
             }
         }
