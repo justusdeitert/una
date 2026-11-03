@@ -117,12 +117,12 @@
 	top: 0;
 	bottom: 0;
 	box-sizing: content-box;
-	width: 34px;
+	width: 24px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;
-	padding-bottom: 8px;
+	padding-bottom: 14px;
 	background-color: #0d0800;
 	border-right: 0 solid #000;
 	cursor: pointer;
@@ -138,15 +138,15 @@
 	}
 
 	&:hover {
-		border-right-width: 14px;
+		border-right-width: 10px;
 	}
 }
 
 // "MENU" top to bottom as in the design: SVG text so every letter gets the same width
 .mobile-nav-label {
 	display: block;
-	width: 20px;
-	height: 112px;
+	width: 14px;
+	height: 98px;
 	overflow: visible;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 400;
@@ -155,8 +155,8 @@
 	user-select: none;
 
 	@media screen and (max-height: 800px) {
-		width: 17px;
-		height: 95px;
+		width: 12px;
+		height: 84px;
 	}
 }
 

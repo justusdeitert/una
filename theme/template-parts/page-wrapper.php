@@ -30,9 +30,9 @@
 
     <div class="sidebar-nav d-block d-md-none">
         <div class="mobile-nav-clicker">
-            <svg class="mobile-nav-label" viewBox="0 0 20 112" role="img" aria-label="Menu">
+            <svg class="mobile-nav-label" viewBox="0 0 20 140" role="img" aria-label="Menu">
                 <?php foreach (['M', 'E', 'N', 'U'] as $i => $letter) { ?>
-                    <text x="0" y="<?= 20 + $i * 30.5; ?>" textLength="20" lengthAdjust="spacingAndGlyphs"><?= $letter; ?></text>
+                    <text x="0" y="<?= 20 + $i * 40; ?>" textLength="20" lengthAdjust="spacingAndGlyphs"><?= $letter; ?></text>
                 <?php } ?>
             </svg>
         </div>
