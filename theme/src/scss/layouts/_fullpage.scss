@@ -654,6 +654,7 @@ $back-to-top-height: 60px;
 // they get a tighter line-height
 .bold-line {
 	display: block;
+	font-size: calc(1em + 1px);
 	line-height: 1.1;
 }
 
