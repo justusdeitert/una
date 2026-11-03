@@ -145,8 +145,8 @@
 // "MENU" top to bottom as in the design: SVG text so every letter gets the same width
 .mobile-nav-label {
 	display: block;
-	width: 14px;
-	height: 98px;
+	width: 12px;
+	height: 73px;
 	overflow: visible;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 400;
@@ -155,8 +155,8 @@
 	user-select: none;
 
 	@media screen and (max-height: 800px) {
-		width: 12px;
-		height: 84px;
+		width: 10px;
+		height: 61px;
 	}
 }
 
