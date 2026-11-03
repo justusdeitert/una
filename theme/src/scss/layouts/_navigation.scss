@@ -54,7 +54,7 @@
 
 .sidebar-nav {
 	position: fixed;
-	bottom: 12%;
+	bottom: 9%;
 	right: 0;
 	padding-bottom: 20px;
 	z-index: 9000;
@@ -115,9 +115,10 @@
 	position: absolute;
 	right: 0;
 	top: 0;
-	bottom: 0;
+	// Match the menu height: .sidebar-nav adds 20px padding below it
+	bottom: 20px;
 	box-sizing: content-box;
-	width: 24px;
+	width: 21px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;

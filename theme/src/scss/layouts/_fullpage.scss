@@ -280,8 +280,8 @@ $back-to-top-height: 60px;
 		// Fluid horizontal padding: scales between phone and iPad
 		// portrait widths so the frame stays proportional instead of
 		// jumping at the xs breakpoint.
-		padding-left: clamp(25px, 6vw, 64px);
-		padding-right: clamp(25px, 6vw, 64px);
+		padding-left: clamp(30px, 7vw, 72px);
+		padding-right: clamp(30px, 7vw, 72px);
 
 		&.section-mobile-inner--group {
 			.image-wrapper {
@@ -349,8 +349,8 @@ $back-to-top-height: 60px;
 	}
 
 	.image-item-caption {
-		padding-left: clamp(25px, 6vw, 64px);
-		padding-right: clamp(25px, 6vw, 64px);
+		padding-left: clamp(30px, 7vw, 72px);
+		padding-right: clamp(30px, 7vw, 72px);
 	}
 }
 
