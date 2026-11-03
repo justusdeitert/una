@@ -663,3 +663,8 @@ span[style*='underline'] {
 	margin-bottom: 2px;
 	text-underline-offset: 3px;
 }
+
+// Column headlines (e.g. BIBLIOGRAPHY)
+.column-text-container h3 {
+	letter-spacing: 1.5px;
+}
