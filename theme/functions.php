@@ -170,5 +170,12 @@ function una_bold_lines(string $html): string
 
 // Apply to every SCF WYSIWYG field, after the field's own formatting (wpautop)
 add_filter('acf/format_value/type=wysiwyg', function ($value) {
-    return is_string($value) ? una_bold_lines($value) : $value;
+    if (!is_string($value)) {
+        return $value;
+    }
+
+    // The editor's "Read More" tag marks where a "show more" text is cut off
+    $value = preg_replace('#(<p>\s*)?<!--more(.*?)?-->(\s*</p>)?#', '<span class="collapse-marker"></span>', $value);
+
+    return una_bold_lines($value);
 }, 20);

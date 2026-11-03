@@ -16,6 +16,17 @@ function getLineHeight(el: HTMLElement): number {
 }
 
 function getCollapseHeight(target: HTMLElement): string {
+	// A "Read More" marker in the text overrides the line count, so the cut
+	// lands at the same spot on every screen width
+	const marker = target.querySelector<HTMLElement>('.collapse-marker');
+	if (marker) {
+		const markerRect = marker.getBoundingClientRect();
+		const lineHeight = getLineHeight(marker.parentElement ?? target);
+		// Extend from the marker's glyph box to the bottom of its line box
+		const bottom = markerRect.bottom + Math.max(0, (lineHeight - markerRect.height) / 2);
+		return `${Math.ceil(bottom - target.getBoundingClientRect().top)}px`;
+	}
+
 	const lines = target.dataset.collapseLines;
 	if (!lines) return '0';
 	const targetLines = Number.parseInt(lines);

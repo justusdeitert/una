@@ -18,7 +18,7 @@ if (document.getElementById('draggable')) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	document.querySelectorAll('#fullpage p:empty, #fullpage span:empty, #fullpage h3:empty').forEach((el) => {
+	document.querySelectorAll('#fullpage p:empty, #fullpage span:empty:not(.collapse-marker), #fullpage h3:empty').forEach((el) => {
 		el.remove();
 	});
 
