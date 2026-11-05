@@ -61,3 +61,6 @@ add_filter('intermediate_image_sizes_advanced', function (array $sizes): array {
 
     return $sizes;
 });
+
+// Keep staging out of search engines, whatever blog_public the synced DB carries
+add_filter('pre_option_blog_public', fn ($value) => wp_get_environment_type() === 'staging' ? '0' : $value);

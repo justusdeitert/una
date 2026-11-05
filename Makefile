@@ -1,7 +1,7 @@
 DOCKER_COMPOSE := docker compose
 THEME_DIR := /var/www/html/wp-content/themes/una-moehrke-theme
 
-.PHONY: help install clean_install start stop clean enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db export_db_staging import_db import_db_staging sync_to_staging sync_to_production lint_php fix_php
+.PHONY: help install clean_install start stop clean enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db export_db_staging import_db import_db_staging sync_to_staging sync_to_production sync_from_staging sync_from_production lint_php fix_php
 
 .DEFAULT_GOAL := help
 
@@ -66,6 +66,12 @@ sync_to_staging: ## Push local DB and uploads to the staging deployment on Cooli
 
 sync_to_production: ## Push local DB and uploads to production (asks for confirmation)
 	@TARGET=production ./devops/scripts/sync-to-env.sh
+
+sync_from_staging: ## Pull staging DB and uploads into the local environment
+	@SOURCE=staging ./devops/scripts/sync-from-env.sh
+
+sync_from_production: ## Pull production DB and uploads into the local environment
+	@SOURCE=production ./devops/scripts/sync-from-env.sh
 
 lint_php: ## Run php-cs-fixer (dry run)
 	@$(DOCKER_COMPOSE) exec -w $(THEME_DIR) php php-cs-fixer fix --dry-run --diff

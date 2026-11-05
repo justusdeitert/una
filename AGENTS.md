@@ -37,11 +37,11 @@ devops/
   php/wp-config.php         Env-driven wp-config for all environments (trusts Traefik forwarded headers)
   php/entrypoint.prod.sh    Prod entrypoint (WP install, plugin activation)
   php/php.prod.ini          Production PHP config
-  scripts/                  setup-wordpress, db-export/import, sync-to-env
+  scripts/                  setup-wordpress, db-export/import, sync-to-env/sync-from-env (+ sync-common)
 db/                         Local DB dumps, mounted at /db in the php container
 uploads/                    WordPress uploads (git-ignored)
-.env.dist                   Env vars (DB credentials, WP setup, FULLPAGE_LICENSE_KEY); .env.staging.dist lists Coolify vars
-docker-compose.yml          Local stack (docker-compose.staging.yml for Coolify staging)
+.env.dist                   Env vars (DB credentials, WP setup, FULLPAGE_LICENSE_KEY); .env.prod.dist lists Coolify vars
+docker-compose.yml          Local stack (docker-compose.prod.yml for Coolify staging and production)
 ```
 
 ## Development
@@ -56,6 +56,7 @@ docker-compose.yml          Local stack (docker-compose.staging.yml for Coolify 
 | `make setup_wordpress` | Install WordPress core and activate the theme |
 | `make import_db` / `make export_db` (+ `_staging`) | DB import/export with domain search-replace |
 | `make sync_to_staging` / `make sync_to_production` | Push local DB + uploads to Coolify |
+| `make sync_from_staging` / `make sync_from_production` | Pull DB + uploads into the local stack |
 | `make enter_php` / `make enter_node` / `make enter_phpmyadmin` | Shell into a container |
 
 WordPress: http://localhost:8080, Vite: http://localhost:5173, phpMyAdmin: http://localhost:8081
@@ -71,9 +72,9 @@ WordPress: http://localhost:8080, Vite: http://localhost:5173, phpMyAdmin: http:
 
 ## Deployment (Coolify)
 
-- Staging at https://una.justusdeitert.de, deployed from `main` as a Docker Compose project using `docker-compose.staging.yml`.
+- Staging at https://una.justusdeitert.de and production at https://www.una-moehrke.de, both deployed from `main` as Docker Compose projects using `docker-compose.prod.yml`. They differ only in their Coolify env vars: `WP_ENVIRONMENT_TYPE` (`staging` or `production`) and `WORDPRESS_URL` are required, and `staging` keeps the site out of search engines.
 - `devops/Dockerfile` builds the prod targets `php` (PHP-FPM with WordPress, plugins and theme) and `nginx` (static files).
-- Env vars are set in the Coolify UI (see `.env.staging.dist`). Traefik terminates SSL; uploads and the database live in named volumes on the server.
+- Env vars are set in the Coolify UI (see `.env.prod.dist`). Traefik terminates SSL; uploads and the database live in named volumes on the server.
 
 ## Before you finish a task
 

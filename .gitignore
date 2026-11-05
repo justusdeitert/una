@@ -15,8 +15,9 @@ node_modules/
 
 # Ignore environment-specific files
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.dist
+!.env.prod.dist
 
 # Ignore specific folders
 /wordpress/
