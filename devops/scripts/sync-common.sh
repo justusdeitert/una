@@ -2,7 +2,8 @@
 #
 # Shared helpers for sync-to-env.sh and sync-from-env.sh. Source it, don't run it.
 #
-# Expects ENV_NAME ("staging" | "production") to be set by the caller and sets:
+# Expects ENV_NAME ("staging") to be set by the caller and sets:
+# Production runs on one.com without Coolify, see onecom.sh.
 #   LOCAL_DOMAIN, ENV_DOMAIN, OTHER_DOMAIN, SSH_HOST
 #
 # resolve_deployment additionally sets PROJECT, PHP_CONTAINER and UPLOADS_PATH.
@@ -35,13 +36,8 @@ case "$ENV_NAME" in
         SSH_HOST="${STAGING_SSH_HOST:-$(read_env STAGING_SSH_HOST)}"
         SSH_HOST="${SSH_HOST:-hetzner}"
         ;;
-    production)
-        ENV_DOMAIN="$PRODUCTION_DOMAIN"
-        OTHER_DOMAIN="$STAGING_DOMAIN"
-        SSH_HOST="${PRODUCTION_SSH_HOST:-$(read_env PRODUCTION_SSH_HOST)}"
-        [ -n "$SSH_HOST" ] || fail "PRODUCTION_SSH_HOST must be set (in .env or shell) for production sync"
-        ;;
-    *) fail "environment must be \"staging\" or \"production\" (got \"$ENV_NAME\")" ;;
+    production) fail "production runs on one.com, use make sync_to_production / sync_from_production" ;;
+    *) fail "environment must be \"staging\" (got \"$ENV_NAME\")" ;;
 esac
 
 # Other sites share the server, so the deployment is resolved from the

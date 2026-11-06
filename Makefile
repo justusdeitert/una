@@ -73,8 +73,8 @@ deploy_production: ## Deploy theme, WordPress core and plugins to production on 
 sync_from_staging: ## Pull staging DB and uploads into the local environment
 	@SOURCE=staging ./devops/scripts/sync-from-env.sh
 
-sync_from_production: ## Pull production DB and uploads into the local environment
-	@SOURCE=production ./devops/scripts/sync-from-env.sh
+sync_from_production: ## Pull production DB and uploads from one.com into the local environment
+	@./devops/scripts/onecom.sh pull
 
 lint_php: ## Run php-cs-fixer (dry run)
 	@$(DOCKER_COMPOSE) exec -w $(THEME_DIR) php php-cs-fixer fix --dry-run --diff

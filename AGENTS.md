@@ -41,7 +41,7 @@ devops/
 db/                         Local DB dumps, mounted at /db in the php container
 uploads/                    WordPress uploads (git-ignored)
 .env.dist                   Env vars (DB credentials, WP setup, FULLPAGE_LICENSE_KEY); .env.prod.dist lists Coolify vars
-docker-compose.yml          Local stack (docker-compose.prod.yml for Coolify staging and production)
+docker-compose.yml          Local stack (docker-compose.prod.yml for Coolify staging)
 ```
 
 ## Development
@@ -58,7 +58,8 @@ docker-compose.yml          Local stack (docker-compose.prod.yml for Coolify sta
 | `make sync_to_staging` | Push local DB + uploads to staging on Coolify |
 | `make deploy_production` | Deploy theme, WordPress core and plugins to one.com |
 | `make sync_to_production` | Push local DB + uploads to one.com (asks for confirmation) |
-| `make sync_from_staging` / `make sync_from_production` | Pull DB + uploads into the local stack |
+| `make sync_from_staging` | Pull staging DB + uploads into the local stack |
+| `make sync_from_production` | Pull production DB + uploads from one.com into the local stack |
 | `make enter_php` / `make enter_node` / `make enter_phpmyadmin` | Shell into a container |
 
 WordPress: http://localhost:8080, Vite: http://localhost:5173, phpMyAdmin: http://localhost:8081
@@ -79,10 +80,17 @@ WordPress: http://localhost:8080, Vite: http://localhost:5173, phpMyAdmin: http:
 - https://www.una-moehrke.de runs on one.com shared hosting, without Docker. `devops/scripts/onecom.sh` deploys over SSH (alias `onecom-una` in `~/.ssh/config`).
 - WordPress lives in `webroots/www/wordpress`. The webroot `.htaccess` rewrites everything into it, so `siteurl` ends in `/wordpress` and `home` is the bare domain.
 - `make deploy_production` builds the theme, rsyncs it, updates core to the version pinned in the Dockerfile, installs `plugins.txt` and sets `WP_ENVIRONMENT_TYPE` and `FULLPAGE_LICENSE_KEY` in `wp-config.php`.
-- `make sync_to_production` backs up the remote DB to `~/backups`, imports the local DB and rsyncs uploads.
+- `make sync_from_production` pulls the production DB and uploads into the local stack (read-only on one.com).
+- `make sync_to_production` backs up the remote DB to `~/backups`, imports the local DB and rsyncs uploads. Only use it on purpose: it overwrites content the client edited live.
 - Over SSH, `localhost` has no MySQL socket. The mysql tools need `--host=mysql.cirrnozto.service.one`, and `wp db import/reset/clean` do not work. The script calls `mysql` directly.
 - one.com caches responses in Varnish for a few minutes, also errors.
-- `make sync_from_production` still targets Coolify and does not work with one.com.
+
+### Workflow
+
+- Content lives on production: the client edits it there. Content flows from production to local and staging. Push it back only on purpose.
+- Code flows the other way: push to `main`, Coolify rebuilds staging, the client or designer checks it there, then release (see Releases) and run `make deploy_production`. Deploys change code, core and plugins only, never content.
+- To refresh staging with live content: `make sync_from_production`, then `make sync_to_staging`.
+- Production deploys are manual on purpose. There is no CI deploy to one.com.
 
 ### Staging (Coolify)
 

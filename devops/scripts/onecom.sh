@@ -4,7 +4,8 @@
 #
 # Usage:
 #   ./devops/scripts/onecom.sh deploy   # theme, WordPress core, plugins, config
-#   ./devops/scripts/onecom.sh sync     # local DB + uploads (asks for confirmation)
+#   ./devops/scripts/onecom.sh sync     # push local DB + uploads (asks for confirmation)
+#   ./devops/scripts/onecom.sh pull     # pull production DB + uploads into the local stack
 #
 # Settings (env vars, read from .env unless set in the shell):
 #   ONECOM_SSH_HOST   SSH alias for the one.com account (default: onecom-una)
@@ -157,8 +158,39 @@ WARN
     step "Done. Local DB and uploads synced to $DOMAIN."
 }
 
+pull() {
+    local dump="db/db-import.sql"
+    local backup
+    backup="db/db-local-backup-$(date +%Y%m%d-%H%M%S).sql"
+    [ -d ./uploads ] || fail "uploads/ directory not found at $repo_root/uploads"
+
+    # Also fails early if the local stack is down
+    step "Backing up local DB to $backup"
+    docker compose exec -T php wp db export "/$backup" --skip-ssl --allow-root
+
+    step "Dumping remote DB to $dump"
+    # Write to a temp file so a failed dump does not clobber the previous one
+    remote_wp "db export - --host=$DB_HOST --default-character-set=utf8mb4" > "$dump.tmp"
+    tail -n1 "$dump.tmp" | grep -q '^-- Dump completed' \
+        || { rm -f "$dump.tmp"; fail "remote dump is incomplete"; }
+    mv "$dump.tmp" "$dump"
+
+    step "Importing $dump with production domain replacement"
+    docker compose exec -T -e TARGET=production php /devops/scripts/db-import.sh
+    # siteurl ends in /wordpress on one.com, locally WordPress sits at the root
+    docker compose exec -T php sh -c 'wp option update siteurl "$(wp option get home --allow-root)" --allow-root'
+
+    step "Rsyncing $SSH_HOST:$WP_PATH/wp-content/uploads/ to local uploads/"
+    rsync -az --stats --human-readable \
+        --exclude='cache/' \
+        "$SSH_HOST:$WP_PATH/wp-content/uploads/" ./uploads/
+
+    step "Done. Production ($DOMAIN) DB and uploads pulled to local."
+}
+
 case "${1:-}" in
     deploy) deploy ;;
     sync) sync ;;
-    *) fail "usage: $0 deploy|sync" ;;
+    pull) pull ;;
+    *) fail "usage: $0 deploy|sync|pull" ;;
 esac

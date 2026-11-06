@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 #
 # Pull the DB and uploads of a remote WordPress deployment running on
-# Coolify (staging or production) into the local development environment.
+# Coolify (staging only) into the local development environment. Production
+# runs on one.com, see onecom.sh.
 #
 # Usage:
 #   SOURCE=staging    ./devops/scripts/sync-from-env.sh
-#   SOURCE=production ./devops/scripts/sync-from-env.sh
 #
 # Required env vars (read from .env unless overridden in the shell):
 #   LOCAL_DOMAIN
-#   STAGING_DOMAIN     | PRODUCTION_DOMAIN
-#   STAGING_SSH_HOST   | PRODUCTION_SSH_HOST
+#   STAGING_DOMAIN, PRODUCTION_DOMAIN
+#   STAGING_SSH_HOST (default: hetzner)
 #
 # Steps:
 #   1. Back up the local DB to db/db-local-backup-<timestamp>.sql.
