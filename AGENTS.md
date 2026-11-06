@@ -14,7 +14,7 @@ WordPress theme for a single-page portfolio site built from fullpage.js sections
 - **Backend:** PHP, WordPress, SCF
 - **Frontend:** TypeScript, SCSS, Vite with HMR
 - **Libraries:** fullpage.js, PhotoSwipe, Draggable
-- **Infrastructure:** Docker Compose (nginx, PHP-FPM, MariaDB, phpMyAdmin, Node), Coolify for staging/production
+- **Infrastructure:** Docker Compose (nginx, PHP-FPM, MariaDB, phpMyAdmin, Node), Coolify for staging, one.com shared hosting for production
 - **Tooling:** Biome (TS lint + format), php-cs-fixer (PHP)
 
 ## Workspace map
@@ -37,7 +37,7 @@ devops/
   php/wp-config.php         Env-driven wp-config for all environments (trusts Traefik forwarded headers)
   php/entrypoint.prod.sh    Prod entrypoint (WP install, plugin activation)
   php/php.prod.ini          Production PHP config
-  scripts/                  setup-wordpress, db-export/import, sync-to-env/sync-from-env (+ sync-common)
+  scripts/                  setup-wordpress, db-export/import, sync-to-env/sync-from-env (+ sync-common), onecom (production)
 db/                         Local DB dumps, mounted at /db in the php container
 uploads/                    WordPress uploads (git-ignored)
 .env.dist                   Env vars (DB credentials, WP setup, FULLPAGE_LICENSE_KEY); .env.prod.dist lists Coolify vars
@@ -55,7 +55,9 @@ docker-compose.yml          Local stack (docker-compose.prod.yml for Coolify sta
 | `make analyze` | Build with bundle visualizer, opens `stats.html` |
 | `make setup_wordpress` | Install WordPress core and activate the theme |
 | `make import_db` / `make export_db` (+ `_staging`) | DB import/export with domain search-replace |
-| `make sync_to_staging` / `make sync_to_production` | Push local DB + uploads to Coolify |
+| `make sync_to_staging` | Push local DB + uploads to staging on Coolify |
+| `make deploy_production` | Deploy theme, WordPress core and plugins to one.com |
+| `make sync_to_production` | Push local DB + uploads to one.com (asks for confirmation) |
 | `make sync_from_staging` / `make sync_from_production` | Pull DB + uploads into the local stack |
 | `make enter_php` / `make enter_node` / `make enter_phpmyadmin` | Shell into a container |
 
@@ -70,9 +72,21 @@ WordPress: http://localhost:8080, Vite: http://localhost:5173, phpMyAdmin: http:
 - Check template changes against the fullpage.js layout.
 - UI-facing issues get "Verified on Safari desktop + iOS" as an acceptance criterion.
 
-## Deployment (Coolify)
+## Deployment
 
-- Staging at https://una.justusdeitert.de and production at https://www.una-moehrke.de, both deployed from `main` as Docker Compose projects using `docker-compose.prod.yml`. They differ only in their Coolify env vars: `WP_ENVIRONMENT_TYPE` (`staging` or `production`) and `WORDPRESS_URL` are required, and `staging` keeps the site out of search engines.
+### Production (one.com)
+
+- https://www.una-moehrke.de runs on one.com shared hosting, without Docker. `devops/scripts/onecom.sh` deploys over SSH (alias `onecom-una` in `~/.ssh/config`).
+- WordPress lives in `webroots/www/wordpress`. The webroot `.htaccess` rewrites everything into it, so `siteurl` ends in `/wordpress` and `home` is the bare domain.
+- `make deploy_production` builds the theme, rsyncs it, updates core to the version pinned in the Dockerfile, installs `plugins.txt` and sets `WP_ENVIRONMENT_TYPE` and `FULLPAGE_LICENSE_KEY` in `wp-config.php`.
+- `make sync_to_production` backs up the remote DB to `~/backups`, imports the local DB and rsyncs uploads.
+- Over SSH, `localhost` has no MySQL socket. The mysql tools need `--host=mysql.cirrnozto.service.one`, and `wp db import/reset/clean` do not work. The script calls `mysql` directly.
+- one.com caches responses in Varnish for a few minutes, also errors.
+- `make sync_from_production` still targets Coolify and does not work with one.com.
+
+### Staging (Coolify)
+
+- Staging at https://una.justusdeitert.de is deployed from `main` as a Docker Compose project using `docker-compose.prod.yml`. Coolify env vars: `WP_ENVIRONMENT_TYPE=staging` keeps the site out of search engines, `WORDPRESS_URL` is required.
 - `devops/Dockerfile` builds the prod targets `php` (PHP-FPM with WordPress, plugins and theme) and `nginx` (static files).
 - Env vars are set in the Coolify UI (see `.env.prod.dist`). Traefik terminates SSL; uploads and the database live in named volumes on the server.
 

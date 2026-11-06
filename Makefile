@@ -1,7 +1,7 @@
 DOCKER_COMPOSE := docker compose
 THEME_DIR := /var/www/html/wp-content/themes/una-moehrke-theme
 
-.PHONY: help install clean_install start stop clean enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db export_db_staging import_db import_db_staging sync_to_staging sync_to_production sync_from_staging sync_from_production lint_php fix_php
+.PHONY: help install clean_install start stop clean enter_php enter_phpmyadmin enter_node dev build analyze setup_wordpress export_db export_db_staging import_db import_db_staging sync_to_staging sync_to_production deploy_production sync_from_staging sync_from_production lint_php fix_php
 
 .DEFAULT_GOAL := help
 
@@ -64,8 +64,11 @@ import_db_staging: ## Import DB with staging domain search-replace
 sync_to_staging: ## Push local DB and uploads to the staging deployment on Coolify
 	@TARGET=staging ./devops/scripts/sync-to-env.sh
 
-sync_to_production: ## Push local DB and uploads to production (asks for confirmation)
-	@TARGET=production ./devops/scripts/sync-to-env.sh
+sync_to_production: ## Push local DB and uploads to production on one.com (asks for confirmation)
+	@./devops/scripts/onecom.sh sync
+
+deploy_production: ## Deploy theme, WordPress core and plugins to production on one.com
+	@./devops/scripts/onecom.sh deploy
 
 sync_from_staging: ## Pull staging DB and uploads into the local environment
 	@SOURCE=staging ./devops/scripts/sync-from-env.sh

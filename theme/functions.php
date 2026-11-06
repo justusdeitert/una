@@ -32,7 +32,8 @@ add_action('wp_enqueue_scripts', 'theme_enqueue_styles_scripts');
 
 function theme_output_config() {
     $config = [
-        'fullpageLicenseKey' => getenv('FULLPAGE_LICENSE_KEY') ?: '',
+        // Env var on Docker hosts, wp-config constant on shared hosting (one.com)
+        'fullpageLicenseKey' => getenv('FULLPAGE_LICENSE_KEY') ?: (defined('FULLPAGE_LICENSE_KEY') ? FULLPAGE_LICENSE_KEY : ''),
     ];
     echo '<script>window.themeConfig = ' . wp_json_encode($config) . ';</script>';
 }
