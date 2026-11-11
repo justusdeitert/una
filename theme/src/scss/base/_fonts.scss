@@ -1,7 +1,16 @@
 @font-face {
-    font-family: 'ApercuBold';
-    src: url('@/fonts/apercu_bold.woff2') format('woff2'),
-         url('@/fonts/apercu_bold.woff') format('woff');
+    font-family: 'GeomanistMedium';
+    src: url('@/fonts/geomanist_medium.woff2') format('woff2'),
+         url('@/fonts/geomanist_medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GeomanistBold';
+    src: url('@/fonts/geomanist_bold.woff2') format('woff2'),
+         url('@/fonts/geomanist_bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
